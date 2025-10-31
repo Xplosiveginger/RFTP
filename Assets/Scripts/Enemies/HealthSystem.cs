@@ -7,7 +7,7 @@ public class HealthSystem : MonoBehaviour
 {
     [Header("Health Settings")]
     [SerializeField] private int maxHealth = 100;
-    private int currentHealth;
+    [SerializeField, DisplayOnly] private int currentHealth;
 
     [Header("Settings")]
     public bool canDestroyOnDeath = true;

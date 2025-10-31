@@ -88,6 +88,8 @@ public class LitmusPaper2D : BaseEnemy
 
         playerDamageTimer = 0f;
         currentDamagePerSecond = baseDamagePerSecond;
+
+        playerHealth.Damage((int)damage);
     }
 
     protected override void TakeDamageToSelfOnCollision(Collision2D player)

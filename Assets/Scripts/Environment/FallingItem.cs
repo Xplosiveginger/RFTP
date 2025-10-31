@@ -18,6 +18,7 @@ public float fallChance = 0.4f;
 
     [Header("Fall & Animation")]
     public Transform fallTarget;
+    public Vector3 fallPositionOffset;
     public float fallDuration = 0.7f;
     public float arcHeight = 2f;
     public float popScale = 1.2f;
@@ -67,6 +68,8 @@ public float fallChance = 0.4f;
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(end, 0.3f);
         }
+            Gizmos.DrawWireSphere(transform.position + fallPositionOffset, 1f);
+
     }
 
     void Update()
@@ -117,7 +120,7 @@ public float fallChance = 0.4f;
 
     void DoArcFall()
     {
-        if (fallTarget == null) return;
+        //if (fallTarget == null) return;
 
         // Temporarily unparent to avoid inheriting parent's rotation
         Transform originalParent = fallTarget.parent;
@@ -148,7 +151,7 @@ public float fallChance = 0.4f;
 
             if (prefabToSpawn != null && fallTarget != null)
             {
-                Instantiate(prefabToSpawn, fallTarget.position, Quaternion.identity);
+                Instantiate(prefabToSpawn, transform.position + fallPositionOffset, Quaternion.identity);
             }
 
             if (destroyOnFall) Destroy(gameObject);

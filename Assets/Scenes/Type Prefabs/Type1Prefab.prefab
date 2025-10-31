@@ -31814,7 +31814,7 @@ GameObject:
   - component: {fileID: 4806928888633450257}
   - component: {fileID: 7251362716895768467}
   - component: {fileID: 3886288687401985766}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: three-connected table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
