@@ -46,8 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 2
   laserPrefab: {fileID: 440488741458358225, guid: 7ea7c2c16f5dffb47bb0d023272adcdc, type: 3}
-  offsetRight: 3
-  offsetLeft: 3
+  offsetRight: 5
+  offsetLeft: 5
   offsetUp: 5
-  moveRange: 4
-  moveSpeed: 3
+  rotationSpeed: 150

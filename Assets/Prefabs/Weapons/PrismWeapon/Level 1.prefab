@@ -137,7 +137,5 @@ MonoBehaviour:
   projectilePrefab: {fileID: 254304910891147395, guid: bc288d194aa2b1f47b524347aa36a976, type: 3}
   projectileSpeed: 6
   range: 1
-  spacing: 0.2
+  spacing: 0.5
   fireRate: 5
-  bendAngle: -100
-  curveDelayStep: 0.02
