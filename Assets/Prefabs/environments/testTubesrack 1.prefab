@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1882260956262273762}
   - component: {fileID: 5046192629019495796}
-  - component: {fileID: 3677207783271471870}
   - component: {fileID: 8945823865432317173}
+  - component: {fileID: 4888332095251177629}
   m_Layer: 0
   m_Name: testTubesrack 1
   m_TagString: Untagged
@@ -86,32 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3677207783271471870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2243954269286428638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d7bedd2bf175664d8b4843c44e2f4cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectionRadius: 2
-  playerTag: Player
-  shakeDuration: 0
-  shakeStrength: 0
-  shakeVibrato: 0
-  damageParticlePrefab: {fileID: 3904308360467140003, guid: 6674185484fadb1489bbfb0f82c9344c, type: 3}
-  damageDuration: 2
-  damageAmount: 10
-  damageCheckInterval: 0.5
-  damageParticleRadius: 1
-  initialChance: 0.25
-  chanceMultiplier: 0.05
-  slowMultiplier: 0.5
-  slowDuration: 1
 --- !u!61 &8945823865432317173
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -157,3 +131,31 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 7.931105, y: 5.2645082}
   m_EdgeRadius: 0
+--- !u!114 &4888332095251177629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2243954269286428638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 247e6439467266b49a9c60b1da0dcc57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabToSpawn: {fileID: 3904308360467140003, guid: 8876f0a347b6b664fbb5c0368f14e80b, type: 3}
+  fallChance: 0.4
+  chanceMultiplier: 0.05
+  detectionRadius: 3
+  verticalOffset: -0.5
+  fallDuration: 0.7
+  baseArcHeight: 2
+  arcHeightMultiplier: 0.5
+  minArcHeight: 1
+  maxArcHeight: 4
+  popScale: 1.2
+  popDuration: 0.15
+  targetRotationEuler: {x: 0, y: 0, z: -90}
+  damage: 10
+  damageRadius: 0.4
+  destroyOnFall: 1

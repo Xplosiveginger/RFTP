@@ -146,12 +146,16 @@ MonoBehaviour:
   prefabToSpawn: {fileID: 3904308360467140003, guid: eb580d05ffcb4224ba2804599a5934d2, type: 3}
   fallChance: 0.35
   chanceMultiplier: 0.005
-  detectionRadius: 2
-  fallTarget: {fileID: 0}
+  detectionRadius: 3
+  verticalOffset: -0.5
   fallDuration: 1
-  arcHeight: 2.24
+  baseArcHeight: 2
+  arcHeightMultiplier: 0.5
+  minArcHeight: 1
+  maxArcHeight: 4
   popScale: 1.25
   popDuration: 0.5
   targetRotationEuler: {x: 0, y: 0, z: 240}
   damage: 10
+  damageRadius: 0.4
   destroyOnFall: 1

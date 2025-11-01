@@ -9,17 +9,21 @@ public class ShakeAndSpawnDamage : MonoBehaviour
     public string playerTag = "Player";
 
     [Header("Shake Settings")]
-    public float shakeDuration = 3f;       // Shake duration before spawning particle
-    public float shakeStrength = 10f;      // Degrees to shake on Z axis
+    public float shakeDuration = 3f;
+    public float shakeStrength = 10f;
     public int shakeVibrato = 20;
 
     [Header("Damage Settings")]
-    public GameObject damageParticlePrefab;  // Particle prefab to spawn that deals damage
-    public float damageDuration = 2f;         // How long the particle lasts before destruction
-    public int damageAmount = 10;              // Amount of damage to deal
+    public GameObject damageParticlePrefab;
+    public float damageDuration = 2f;
+    public int damageAmount = 10;
 
-    public float damageCheckInterval = 0.5f;  // Interval between damage applications while particle active
-    public float damageParticleRadius = 1f;   // Radius around particle to detect and damage players
+    public float damageCheckInterval = 0.5f;
+    public float damageParticleRadius = 1f;
+
+    [Header("Spawn Offset")]
+    [Tooltip("Offset position for the damage particle (relative to this object)")]
+    public Vector3 damageParticleOffset = Vector3.zero;
 
     [Header("Chance Settings")]
     [Tooltip("Initial chance to start shake and spawn (0 to 1, e.g. 0.4 for 40%)")]
@@ -34,10 +38,8 @@ public class ShakeAndSpawnDamage : MonoBehaviour
     public float slowDuration = 1f;
 
     private float currentChance;
-
-    private bool playerDetectedPrevFrame = false;  // Tracks if player was inside last frame
+    private bool playerDetectedPrevFrame = false;
     private bool hasSpawned = false;
-
     private Sequence shakeSequence;
 
     void Awake()
@@ -49,13 +51,14 @@ public class ShakeAndSpawnDamage : MonoBehaviour
     {
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
+
+        // Draw offset preview for spawn position
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position + damageParticleOffset, damageParticleRadius);
     }
 
     void Update()
     {
-        // Removed the early return to allow repeated triggering
-        // if (hasSpawned) return;
-
         bool playerDetectedNow = false;
 
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, detectionRadius);
@@ -68,13 +71,11 @@ public class ShakeAndSpawnDamage : MonoBehaviour
             }
         }
 
-        // Trigger only on player entering detection radius (rising edge)
         if (playerDetectedNow && !playerDetectedPrevFrame)
         {
             if (Random.value < currentChance)
             {
                 StartShakeAndSpawn();
-                // Optionally reset chance after successful trigger
                 currentChance = initialChance;
             }
             else
@@ -103,7 +104,8 @@ public class ShakeAndSpawnDamage : MonoBehaviour
     {
         if (damageParticlePrefab != null)
         {
-            GameObject particle = Instantiate(damageParticlePrefab, transform.position, Quaternion.identity);
+            Vector3 spawnPosition = transform.position + damageParticleOffset;
+            GameObject particle = Instantiate(damageParticlePrefab, spawnPosition, Quaternion.identity);
             Destroy(particle, damageDuration);
             StartCoroutine(DealDamageOverTime(particle.transform));
         }
@@ -137,7 +139,6 @@ public class ShakeAndSpawnDamage : MonoBehaviour
             yield return new WaitForSeconds(damageCheckInterval);
             elapsed += damageCheckInterval;
         }
-        // Reset flag to allow triggering again on next player entry
         hasSpawned = false;
     }
 }
