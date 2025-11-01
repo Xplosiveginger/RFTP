@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using JetBrains.Annotations;
 using UnityEngine;
 
-[System.Serializable] // ✅ makes it visible in Inspector
+[System.Serializable]
 public class Timings
 {
     public float coolDownTime;
@@ -12,8 +11,10 @@ public class Timings
 [System.Serializable]
 public class Levels
 {
-    public Timings time;                // cooldown & active time per level
-    public GameObject weaponLevelPrefab; // prefab per level
+    public Timings time;
+    public GameObject weaponLevelPrefab;
+    public Sprite cardSprite;           // ✅ Card image for this level
+    [TextArea] public string levelUpInfo; // ✅ New: Info text for this level
 }
 
 [CreateAssetMenu(fileName = "NewWeapon", menuName = "Weapons/Weapon")]
