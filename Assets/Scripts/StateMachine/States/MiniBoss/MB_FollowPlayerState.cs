@@ -17,7 +17,7 @@ public class MB_FollowPlayerState : EntityState
 
         if (miniboss.charging)
         {
-            stateMachine.ChangeState(miniboss.circTrapPlayerState);
+            stateMachine.ChangeState(miniboss.chargedAttackState);
         }
     }
 }

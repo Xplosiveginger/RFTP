@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -42,6 +43,9 @@ public class HealthSystem : MonoBehaviour
     private Vector3 defaultScale;
     private Sequence hurtSeq;
     private EnemyAI enemy;
+
+    public bool takingDOT {get; private set;}
+    private int dotDamage = 0;
 
     private static readonly int FlashAmountID = Shader.PropertyToID("_FlashAmount");
     private static readonly int ExposureID = Shader.PropertyToID("_Exposure");
@@ -243,5 +247,35 @@ public class HealthSystem : MonoBehaviour
     {
         if (healthSlider != null)
             healthSlider.value = (float)currentHealth / maxHealth;
+    }
+
+    public void TakeDamageOverTime(float duration, float interval, int damageAmount)
+    {
+        if (isDead || takingDOT) return;
+
+        takingDOT = true;
+        dotDamage = damageAmount;
+        InvokeRepeating(nameof(DoDamageTick), 0f, interval);
+        Invoke(nameof(StopDOT), duration);
+    }
+
+    private void DoDamageTick()
+    {
+        if (isDead)
+        {
+            CancelInvoke(nameof(DoDamageTick));
+            takingDOT = false;
+            return;
+        }
+
+        Damage(dotDamage);
+        Debug.Log($"Taking Damage {dotDamage}");
+    }
+
+    private void StopDOT()
+    {
+        CancelInvoke(nameof(DoDamageTick));
+        dotDamage = 0;
+        takingDOT = false;
     }
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 public class ToxicTrailHitDetect : MonoBehaviour
 {
     public int damagePerHit = 2;
+    public float damageDuration = 5f;
+    public float damageInterval;
 
     private void OnParticleCollision(GameObject other)
     {
@@ -12,11 +14,14 @@ public class ToxicTrailHitDetect : MonoBehaviour
 
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Player Hit");
-            HealthSystem playerHealth = other.gameObject.GetComponent<HealthSystem>();
-            if(playerHealth != null)
+            PlayerController2D player = other.gameObject.GetComponent<PlayerController2D>();
+            if (player != null)
             {
-                playerHealth.Damage(damagePerHit);
+                if (!player.inflicted)
+                {
+                    player.inflicted = true;
+                    player.health.TakeDamageOverTime(damageDuration, damageInterval, damagePerHit);
+                }
             }
         }
     }

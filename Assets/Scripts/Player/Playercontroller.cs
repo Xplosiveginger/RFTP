@@ -7,9 +7,12 @@ public class PlayerController2D : MonoBehaviour
 {
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 5f;
+    [DisplayOnly] public bool inflicted = false;
 
     private Rigidbody2D rb;
     private Animator animator;
+    public HealthSystem health {get; private set;}
+
     private Vector2 moveInput;
     private float lastHorizontalDir = 1f; // 1 = right, -1 = left
 
@@ -20,6 +23,7 @@ public class PlayerController2D : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        health = GetComponent<HealthSystem>();
     }
 
     private void Update()
@@ -40,6 +44,8 @@ public class PlayerController2D : MonoBehaviour
         // Update animator
         animator.SetInteger("move", isMoving ? 1 : 0);
         animator.SetFloat("facing", lastHorizontalDir);
+
+        inflicted = health.takingDOT;
     }
 
     private void FixedUpdate()

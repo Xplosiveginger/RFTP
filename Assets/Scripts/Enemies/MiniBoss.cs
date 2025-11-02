@@ -5,6 +5,7 @@ using UnityEngine;
 public class MiniBoss : BaseEnemy
 {
     public GameObject Player { get; private set; }
+    public Animator animator { get; private set; }
     HealthSystem playerHealth;
     [Space]
     [Header("Setup")]
@@ -39,13 +40,14 @@ public class MiniBoss : BaseEnemy
         statemachine = new StateMachine();
         ai = GetComponent<EnemyAI>();
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         Player = GameObject.FindGameObjectWithTag("Player");
 
-        followPlayerState = new MB_FollowPlayerState(this, statemachine, null, "followPlayer");
-        chargedAttackState = new ChargedAttack_State(this, statemachine, null, "chargedAttack");
-        trapPlayerState = new MB_TrapPlayerState(this, statemachine, null, "trapPlayer");
-        pentTrapPlayerState = new MB_pentTrapPlayerState(this, statemachine, null, "trapPlayer");
-        circTrapPlayerState = new MB_circTrapPlayerState(this, statemachine, null, "trapPlayer");
+        followPlayerState = new MB_FollowPlayerState(this, statemachine, animator, "followPlayer");
+        chargedAttackState = new ChargedAttack_State(this, statemachine, animator, "chargedAttack");
+        trapPlayerState = new MB_TrapPlayerState(this, statemachine, animator, "trapPlayer");
+        pentTrapPlayerState = new MB_pentTrapPlayerState(this, statemachine, animator, "trapPlayer");
+        circTrapPlayerState = new MB_circTrapPlayerState(this, statemachine, animator, "trapPlayer");
     }
 
     private void Start()
