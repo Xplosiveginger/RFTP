@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 415596034989212297}
   - component: {fileID: 5209762585441982612}
   - component: {fileID: 3166787011815976063}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Dust puff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4867,7 +4867,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0

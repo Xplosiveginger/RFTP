@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5446686722852350495}
   - component: {fileID: 1765159202135148091}
   m_Layer: 7
-  m_Name: beaker_green
+  m_Name: Beaker_Purple
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: b1d1da7ddfbf5ba45897cb603616125d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0347de6322afbe14aab3595b9cadb8c7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 247e6439467266b49a9c60b1da0dcc57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabToSpawn: {fileID: 3904308360467140003, guid: 8876f0a347b6b664fbb5c0368f14e80b, type: 3}
+  prefabToSpawn: {fileID: 3904308360467140003, guid: b23c88925494145468846607d70daae4, type: 3}
   fallChance: 0.35
   chanceMultiplier: 0.005
   detectionRadius: 3

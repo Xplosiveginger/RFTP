@@ -1,67 +1,109 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnvironmentSpawner2D : MonoBehaviour
 {
-    public GameObject[] assetPrefabs;       // Prefab assets to spawn, assigned in inspector
-    public Transform[] spawnPoints;         // Spawn locations in the scene
-    public float minInterval = 5f;           // Minimum spawn interval in seconds
-    public float maxInterval = 15f;          // Maximum spawn interval in seconds
-    public int itemsPerSpawn = 2;             // Number of items to spawn each time per location
+    [Header("Spawner Settings")]
+    public GameObject[] assetPrefabs;       // Prefab assets to spawn
+    public float minInterval = 5f;          // Minimum spawn interval in seconds
+    public float maxInterval = 15f;         // Maximum spawn interval in seconds
 
-    // Track spawned objects per spawn point and per item
-    private GameObject[][] spawnedItems;
+    // Internal class to track each spawn location
+    private class SpawnData
+    {
+        public Vector3 position;
+        public Quaternion rotation;
+        public Vector3 scale;
+        public GameObject prefabReference;  // Store reference to prefab, not instance
+        public GameObject currentInstance;  // Store reference to current instance at this location
+    }
+
+    private List<SpawnData> spawnLocations = new List<SpawnData>();
 
     void Start()
     {
-        // Initialize the array to track spawned objects for each spawn point and items per spawn
-        spawnedItems = new GameObject[spawnPoints.Length][];
-        for (int i = 0; i < spawnPoints.Length; i++)
+        if (assetPrefabs == null || assetPrefabs.Length == 0)
         {
-            spawnedItems[i] = new GameObject[itemsPerSpawn];
-            // Initialize entries to null
-            for (int j = 0; j < itemsPerSpawn; j++)
-            {
-                spawnedItems[i][j] = null;
-            }
-            StartCoroutine(SpawnRoutine(i));
+            Debug.LogWarning("No prefabs assigned to EnvironmentSpawner2D!");
+            return;
+        }
+
+        // Find all instances of assigned prefabs in the scene
+        FindAndRecordPrefabInstances();
+
+        // Start independent spawn routines for each location
+        foreach (var spawnData in spawnLocations)
+        {
+            StartCoroutine(SpawnRoutine(spawnData));
         }
     }
 
-    IEnumerator SpawnRoutine(int spawnIndex)
+    void FindAndRecordPrefabInstances()
     {
+        // Find all objects in scene (excluding prefabs in project)
+        GameObject[] allObjects = FindObjectsOfType<GameObject>(true);
+
+        foreach (GameObject obj in allObjects)
+        {
+            // Skip if this is the spawner itself or its children
+            if (obj == gameObject || obj.transform.IsChildOf(transform))
+                continue;
+
+            // Check if this object matches any of our prefabs by name
+            foreach (GameObject prefab in assetPrefabs)
+            {
+                if (prefab == null) continue;
+
+                // Check if names match (remove "(Clone)" suffix for comparison)
+                string objName = obj.name.Replace("(Clone)", "").Trim();
+                string prefabName = prefab.name;
+
+                if (objName == prefabName)
+                {
+                    // Record this spawn location with full transform data, tie to existing scene object!
+                    SpawnData data = new SpawnData
+                    {
+                        position = obj.transform.position,
+                        rotation = obj.transform.rotation,
+                        scale = obj.transform.localScale,
+                        prefabReference = prefab,    // Store the prefab asset reference
+                        currentInstance = obj        // Set to *existing scene instance*!
+                    };
+                    spawnLocations.Add(data);
+
+                    Debug.Log($"Recorded spawn location for {prefabName} at {obj.transform.position}");
+                    break;
+                }
+            }
+        }
+
+        Debug.Log($"Total spawn locations found: {spawnLocations.Count}");
+    }
+
+    IEnumerator SpawnRoutine(SpawnData spawnData)
+    {
+        // A continuous loop checking whether currentInstance exists
         while (true)
         {
-            // Wait until all previously spawned items at this spawn point are destroyed or null
-            bool allDestroyed;
-            do
+            if (spawnData.currentInstance == null)
             {
-                allDestroyed = true;
-                for (int j = 0; j < itemsPerSpawn; j++)
-                {
-                    // Unity safe check: if reference exists and the object not destroyed
-                    if (spawnedItems[spawnIndex][j])
-                    {
-                        allDestroyed = false;
-                        break;
-                    }
-                }
-                yield return null; // wait for next frame
+                // Wait a random interval before respawn
+                float waitTime = Random.Range(minInterval, maxInterval);
+                yield return new WaitForSeconds(waitTime);
+
+                // Spawn a new item and update currentInstance
+                spawnData.currentInstance = Instantiate(
+                    spawnData.prefabReference,
+                    spawnData.position,
+                    spawnData.rotation
+                );
+                spawnData.currentInstance.transform.localScale = spawnData.scale;
+
+                Debug.Log($"Spawned {spawnData.prefabReference.name} at {spawnData.position}");
             }
-            while (!allDestroyed);
 
-            // Wait a random interval before spawning new items
-            float waitTime = Random.Range(minInterval, maxInterval);
-            yield return new WaitForSeconds(waitTime);
-
-            // Spawn new prefabs at the spawn point and keep references
-            for (int j = 0; j < itemsPerSpawn; j++)
-            {
-                int prefabIndex = Random.Range(0, assetPrefabs.Length);
-                GameObject prefabToSpawn = assetPrefabs[prefabIndex];
-
-                spawnedItems[spawnIndex][j] = Instantiate(prefabToSpawn, spawnPoints[spawnIndex].position, Quaternion.identity);
-            }
+            yield return new WaitForSeconds(1f); // Check every second if instance was destroyed
         }
     }
 }
