@@ -13,14 +13,13 @@ public class Levels
 {
     public Timings time;
     public GameObject weaponLevelPrefab;
-    public Sprite cardSprite;           // ✅ Card image for this level
-    [TextArea] public string levelUpInfo; // ✅ New: Info text for this level
+    public Sprite cardSprite; // ✅ Image per level
 }
 
 [CreateAssetMenu(fileName = "NewWeapon", menuName = "Weapons/Weapon")]
 public class WeaponSO : ScriptableObject
 {
-    public string weaponName;
+    public string weaponName; // ✅ kept for reference
 
     [Header("Per Level Settings")]
     public List<Levels> levels;

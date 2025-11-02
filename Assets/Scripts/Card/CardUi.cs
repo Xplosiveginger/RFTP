@@ -1,13 +1,10 @@
 ﻿using UnityEngine;
-using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class CardUI : MonoBehaviour
 {
     [Header("UI References")]
-    public TextMeshProUGUI titleText;
-    public TextMeshProUGUI levelUpInfoText; // ✅ New: displays level-up info
     public Image cardImage;
     public Button selectButton;
 
@@ -51,22 +48,14 @@ public class CardUI : MonoBehaviour
         isWeaponCard = true;
         isInitialized = true;
 
-        titleText.text = weapon.weaponName;
-
-        // Determine correct level
         int currentLevel = weaponManager.HasWeapon(weapon)
             ? weaponManager.GetWeaponLevel(weapon) + 1
             : 0;
 
         currentLevel = Mathf.Clamp(currentLevel, 0, weapon.levels.Count - 1);
 
-        // ✅ Apply card sprite
         if (cardImage != null && weapon.levels[currentLevel].cardSprite != null)
             cardImage.sprite = weapon.levels[currentLevel].cardSprite;
-
-        // ✅ Apply level-up info text
-        if (levelUpInfoText != null)
-            levelUpInfoText.text = weapon.levels[currentLevel].levelUpInfo;
 
         selectButton.onClick.RemoveAllListeners();
         selectButton.onClick.AddListener(OnCardClicked);
@@ -81,15 +70,10 @@ public class CardUI : MonoBehaviour
         isWeaponCard = false;
         isInitialized = true;
 
-        titleText.text = item.itemName;
-
         int levelIndex = 0;
+
         if (cardImage != null && item.levels.Count > 0 && item.levels[levelIndex].cardSprite != null)
             cardImage.sprite = item.levels[levelIndex].cardSprite;
-
-        // ✅ Apply level-up info text
-        if (levelUpInfoText != null && item.levels.Count > 0)
-            levelUpInfoText.text = item.levels[levelIndex].levelUpInfo;
 
         selectButton.onClick.RemoveAllListeners();
         selectButton.onClick.AddListener(OnCardClicked);
