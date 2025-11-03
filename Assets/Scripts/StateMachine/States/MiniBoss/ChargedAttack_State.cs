@@ -26,12 +26,12 @@ public class ChargedAttack_State : EntityState
     {
         base.Update();
 
-        Debug.Log(Vector3.Dot(miniBoss.transform.position, dir));
+        Debug.Log(Vector3.Distance(miniBoss.transform.position, target));
 
         if(miniBoss.obstacleDetected)
             stateMachine.ChangeState(miniBoss.followPlayerState);
 
-        if (Vector3.Distance(miniBoss.transform.position, target) < 2.3f)
+        if (Vector3.Distance(miniBoss.transform.position, target) < 3.39f)
             stateMachine.ChangeState(miniBoss.followPlayerState);
     }
 
