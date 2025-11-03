@@ -513,7 +513,7 @@ Transform:
   m_GameObject: {fileID: 368575657}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 243, y: -10, z: -10}
+  m_LocalPosition: {x: 322.5, y: -10, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1196,7 +1196,7 @@ PrefabInstance:
     - target: {fileID: 1047542070399320784, guid: a31d3eda6d885544789a234488df2c25, type: 3}
       propertyPath: startingWeapons.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: b91e8ff84aab57440b23b5766cd022c7, type: 2}
+      objectReference: {fileID: 11400000, guid: e920ce0456a238b49ae322526dc085fb, type: 2}
     - target: {fileID: 2945827086528751042, guid: a31d3eda6d885544789a234488df2c25, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.39810002
@@ -1211,7 +1211,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2945827086528751042, guid: a31d3eda6d885544789a234488df2c25, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 243
+      value: 322.5
       objectReference: {fileID: 0}
     - target: {fileID: 2945827086528751042, guid: a31d3eda6d885544789a234488df2c25, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1269,6 +1269,10 @@ PrefabInstance:
       propertyPath: cardSpawner
       value: 
       objectReference: {fileID: 1082909482}
+    - target: {fileID: 7340812015436146963, guid: a31d3eda6d885544789a234488df2c25, type: 3}
+      propertyPath: xpIncreasePercent
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 7664751407247831055, guid: a31d3eda6d885544789a234488df2c25, type: 3}
       propertyPath: healthSlider
       value: 
@@ -3569,7 +3573,7 @@ Transform:
   m_GameObject: {fileID: 2129525361}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 243, y: -10, z: -10}
+  m_LocalPosition: {x: 322.5, y: -10, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3619,11 +3623,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: cff21e5bbb4aa60409d8c1af1f0df1fa, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 8cf3bf075cadd31429c66847e12214c5, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
