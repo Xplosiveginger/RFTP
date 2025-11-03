@@ -29,4 +29,9 @@ MonoBehaviour:
     maxSpawnRate: 0.6
     timeToIncrease: 60
     poolSize: 50
+  - enemyPrefab: {fileID: 2148986130981883437, guid: 1ff67f7bb2abc34409d2321779448f87, type: 3}
+    minSpawnRate: 0.05
+    maxSpawnRate: 0.1
+    timeToIncrease: 60
+    poolSize: 50
   keepPreviousEnemiesAlive: 0

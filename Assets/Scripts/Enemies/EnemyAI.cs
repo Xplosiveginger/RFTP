@@ -2,11 +2,13 @@
 using UnityEngine;
 using UnityEngine.AI;
 
+// Add require component NavMeshAgent
 public class EnemyAI : MonoBehaviour
 {
     [Header("Movement Settings")]
     public float moveSpeed = 3f;
 
+    // Must be removed from EnemyAI
     [Header("Collision Damage")]
     public bool canDamageOnCollision = false;
     public int collisionDamage = 10;
@@ -14,9 +16,10 @@ public class EnemyAI : MonoBehaviour
     [Header("XP Drop")]
     public int expDrop = 10;
     public GameObject XpOrbPrefab;
+    // ******************************
 
     private Transform target;
-    private NavMeshAgent agent;
+    public NavMeshAgent agent { get; private set; }
     private HealthSystem health;
 
     private void Awake()
