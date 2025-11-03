@@ -18,44 +18,44 @@ MonoBehaviour:
       coolDownTime: 5
       activeTime: 5
     weaponLevelPrefab: {fileID: 2201000893742412666, guid: 663c24ff9b10edd4f950f7ac9a1e78ff, type: 3}
-    cardSprite: {fileID: 21300000, guid: d9e1c912139e0b342843536e184f88ce, type: 3}
+    cardSprite: {fileID: 21300000, guid: b4322ffa38c051b4eaa7f85677b1aa42, type: 3}
   - time:
       coolDownTime: 5
       activeTime: 5
     weaponLevelPrefab: {fileID: 2201000893742412666, guid: 5706cd039f9c32846b0bdd5b7389bf88, type: 3}
-    cardSprite: {fileID: 21300000, guid: bf738f34cf6370346aac15adaa0bc0ac, type: 3}
+    cardSprite: {fileID: 21300000, guid: 3525e5a8d1d972d4b8ad6756c34fb514, type: 3}
   - time:
       coolDownTime: 5
       activeTime: 5
     weaponLevelPrefab: {fileID: 2201000893742412666, guid: a9b38df8b4ee5a14495e4d9eaf53dbb5, type: 3}
-    cardSprite: {fileID: 21300000, guid: 3e2f712800006ba4c9c893c938323eb2, type: 3}
+    cardSprite: {fileID: 21300000, guid: 9ad438b265f9efd4099667dc35c34b83, type: 3}
   - time:
       coolDownTime: 5
       activeTime: 7.5
     weaponLevelPrefab: {fileID: 2201000893742412666, guid: 30db46b12c9a12e4eb5c25f60d569bf8, type: 3}
-    cardSprite: {fileID: 21300000, guid: 0c62df71c26934948816abee979444d4, type: 3}
+    cardSprite: {fileID: 21300000, guid: 90ff2646725cc384893e819d43f9c1dd, type: 3}
   - time:
       coolDownTime: 5
       activeTime: 7.5
     weaponLevelPrefab: {fileID: 2201000893742412666, guid: c5e77ca122d966c4ba4f7c3faf68c22a, type: 3}
-    cardSprite: {fileID: 21300000, guid: ace518bf13e577442ae8a7fa77e94f2a, type: 3}
+    cardSprite: {fileID: 21300000, guid: ed30359402f402f4a84d39190e71ddce, type: 3}
   - time:
       coolDownTime: 5
       activeTime: 7.5
     weaponLevelPrefab: {fileID: 2201000893742412666, guid: 2fbe44fbc8055dc47b5836d1a7df0f3c, type: 3}
-    cardSprite: {fileID: 21300000, guid: a18e0a38e39c30c45a26841fed6b3737, type: 3}
+    cardSprite: {fileID: 21300000, guid: ff01878f3b675d047ac8871b976eec71, type: 3}
   - time:
       coolDownTime: 5
       activeTime: 7.5
     weaponLevelPrefab: {fileID: 2201000893742412666, guid: b3b251c15270ef7449d2f26a11f1c695, type: 3}
-    cardSprite: {fileID: 21300000, guid: 3ce8444e284074545b81a13aeab41d46, type: 3}
+    cardSprite: {fileID: 21300000, guid: ea04236e00bc39646ac51c00581cbcaa, type: 3}
   - time:
       coolDownTime: 5
       activeTime: 9.5
     weaponLevelPrefab: {fileID: 2201000893742412666, guid: 7362ba37cc875dd4fafa7bf4cfb27f08, type: 3}
-    cardSprite: {fileID: 21300000, guid: 16c20af5e5c60b84e95dadfb1c0fea1f, type: 3}
+    cardSprite: {fileID: 21300000, guid: 18a4ad3d777ad4d4d9d08280b9931b12, type: 3}
   - time:
       coolDownTime: 5
       activeTime: 9.5
     weaponLevelPrefab: {fileID: 2201000893742412666, guid: ca1458103ae1acc4c9b64728376927db, type: 3}
-    cardSprite: {fileID: 21300000, guid: 774e5f828f2caf04387b52140e82f620, type: 3}
+    cardSprite: {fileID: 21300000, guid: 3240b509e0d22d54e837e3dfa3d999ce, type: 3}
