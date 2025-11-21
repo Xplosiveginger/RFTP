@@ -1317,6 +1317,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7174557516275297522, guid: a31d3eda6d885544789a234488df2c25, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2026983359}
+    - targetCorrespondingSourceObject: {fileID: 7174557516275297522, guid: a31d3eda6d885544789a234488df2c25, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2026983369}
   m_SourcePrefab: {fileID: 100100000, guid: a31d3eda6d885544789a234488df2c25, type: 3}
 --- !u!4 &682173267 stripped
 Transform:
@@ -2932,7 +2935,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e726ded0652f3a54cbbffeb66929a57e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneName: MainMenu
+  SceneName: MainMenu - Vyshak
 --- !u!1 &1745902948
 GameObject:
   m_ObjectHideFlags: 0
@@ -3485,6 +3488,33 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 2.41, y: 5.1199994}
   m_Direction: 0
+--- !u!114 &2026983363 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7664751407247831055, guid: a31d3eda6d885544789a234488df2c25, type: 3}
+  m_PrefabInstance: {fileID: 682173266}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026983349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ff3ddee1dcecd0499cc220e9d0a097f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2026983369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026983349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6db34c11c33b97e48bfc69a589427d90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: {fileID: 2026983363}
+  statList:
+  - {fileID: 11400000, guid: 207aa412d695dd142ba85747edb30cf8, type: 2}
+  - {fileID: 11400000, guid: 1ddb48cf48ab0a04b800566f8f52bc74, type: 2}
 --- !u!1 &2129525361
 GameObject:
   m_ObjectHideFlags: 0

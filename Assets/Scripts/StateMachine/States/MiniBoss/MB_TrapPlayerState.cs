@@ -61,11 +61,9 @@ public class MB_TrapPlayerState : EntityState
     {
         if (!miniboss.ai.agent.pathPending && miniboss.ai.agent.remainingDistance <= miniboss.ai.agent.stoppingDistance)
         {
-            //Debug.Log("Reached Location");
             if(currentCorner == 0)
                 miniboss.toxicTrail.Play();
             currentCorner++;
-            //Debug.Log($"Corner no {currentCorner}");
         }
 
         if(currentCorner >= 5)
