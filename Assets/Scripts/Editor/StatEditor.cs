@@ -43,7 +43,7 @@ public class StatEditor : Editor
         EditorGUILayout.PropertyField(startValue);
         EditorGUILayout.PropertyField(startMultiplier);
         EditorGUILayout.Space(10);
-        if(statName.enumValueIndex == (int)EStatType.Health)
+        if (statName.enumValueIndex == (int)EStatType.Health)
         {
             EditorGUILayout.PropertyField(customMaxValue);
             if (!customMaxValue.boolValue)
@@ -60,7 +60,7 @@ public class StatEditor : Editor
         EditorGUILayout.PropertyField(showCurrentValues);
 
         GUI.enabled = false;
-        if(showCurrentValues.boolValue)
+        if (showCurrentValues.boolValue)
         {
             EditorGUILayout.PropertyField(currentValue);
             EditorGUILayout.PropertyField(currentMultiplier);
