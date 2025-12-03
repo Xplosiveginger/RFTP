@@ -32,13 +32,17 @@ public class StatManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// Returns the Stat class for which the statName matches.
     /// </summary>
-    /// <param name="statName"></param>
-    /// <returns></returns>
+    /// <param name="statName">The name of the stat you want to get.</param>
     public Stat GetStat(EStatType statName)
     {
         return statList.Find(stat => stat.statName == statName);
+    }
+
+    public List<Stat> GetAllStats()
+    {
+        return statList;
     }
 
     public void ModifyStat(EStatType statName, float modifier)
