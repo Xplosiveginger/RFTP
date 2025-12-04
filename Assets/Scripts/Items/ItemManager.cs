@@ -1,12 +1,18 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemManager : MonoBehaviour
 {
+    [Header("Dependencies")]
+    [SerializeField] private StatManager statManager;
+
     [Header("Starting Items")]
-    public List<ItemSO> startingItems; // Optional starting items to spawn at game start
+    public List<ItemSO> startingItems;
 
     private readonly List<ActiveItem> activeItems = new List<ActiveItem>();
+
+    public event Action<ItemSO, int> OnItemAddedOrUpgraded;
 
     private class ActiveItem
     {
@@ -15,18 +21,20 @@ public class ItemManager : MonoBehaviour
         public GameObject instance;
     }
 
-    void Start()
+    private void Awake()
     {
-        // ? Spawn starting items if any are set
+        if (statManager == null)
+            statManager = StatManager.Instance;
+    }
+
+    private void Start()
+    {
         foreach (var itemSO in startingItems)
         {
             AddItemFromSO(itemSO, 0);
         }
     }
 
-    /// <summary>
-    /// ? Adds a new item (spawns prefab at level 0 or specified level)
-    /// </summary>
     public void AddItemFromSO(ItemSO itemSO, int levelIndex)
     {
         if (itemSO.levels == null || itemSO.levels.Count == 0)
@@ -38,8 +46,8 @@ public class ItemManager : MonoBehaviour
         levelIndex = Mathf.Clamp(levelIndex, 0, itemSO.levels.Count - 1);
         var levelData = itemSO.levels[levelIndex];
 
-        // Spawn prefab for this item
-        GameObject itemInstance = Instantiate(levelData.itemPrefab, transform.position, Quaternion.identity, transform);
+        GameObject itemInstance =
+            Instantiate(levelData.itemPrefab, transform.position, Quaternion.identity, transform);
 
         var newItem = new ActiveItem
         {
@@ -49,11 +57,13 @@ public class ItemManager : MonoBehaviour
         };
 
         activeItems.Add(newItem);
+
+        // Apply this level's stat effect
+        itemSO.StatModify(statManager, levelIndex);
+
+        OnItemAddedOrUpgraded?.Invoke(itemSO, levelIndex);
     }
 
-    /// <summary>
-    /// ? Upgrades an existing item to its next level, if available.
-    /// </summary>
     public void UpgradeItem(ItemSO itemSO)
     {
         ActiveItem activeItem = activeItems.Find(i => i.itemSO == itemSO);
@@ -70,51 +80,36 @@ public class ItemManager : MonoBehaviour
             return;
         }
 
-        // Destroy current prefab
         if (activeItem.instance != null)
             Destroy(activeItem.instance);
 
-        // Spawn upgraded version
         var newLevelData = itemSO.levels[nextLevel];
-        GameObject newInstance = Instantiate(newLevelData.itemPrefab, transform.position, Quaternion.identity, transform);
+        GameObject newInstance =
+            Instantiate(newLevelData.itemPrefab, transform.position, Quaternion.identity, transform);
 
-        // Update active data
         activeItem.currentLevel = nextLevel;
         activeItem.instance = newInstance;
 
-        Debug.Log($"[ItemManager] Upgraded '{itemSO.itemName}' to level {nextLevel + 1}");
+        // Apply the new level's stat effect
+        itemSO.StatModify(statManager, nextLevel);
+
+        OnItemAddedOrUpgraded?.Invoke(itemSO, nextLevel);
     }
 
-    /// <summary>
-    /// ? Checks if the player already has this item.
-    /// </summary>
-    public bool HasItem(ItemSO itemSO)
-    {
-        return activeItems.Exists(i => i.itemSO == itemSO);
-    }
+    public bool HasItem(ItemSO itemSO) =>
+        activeItems.Exists(i => i.itemSO == itemSO);
 
-    /// <summary>
-    /// ? Returns the current level index of this item (-1 if not owned).
-    /// </summary>
     public int GetItemLevel(ItemSO itemSO)
     {
         ActiveItem activeItem = activeItems.Find(i => i.itemSO == itemSO);
         return activeItem != null ? activeItem.currentLevel : -1;
     }
 
-    /// <summary>
-    /// ? Called by CardUI when a new item card is selected.
-    /// Adds new or upgrades existing.
-    /// </summary>
     public void AddItem(ItemSO itemSO)
     {
         if (HasItem(itemSO))
-        {
             UpgradeItem(itemSO);
-        }
         else
-        {
             AddItemFromSO(itemSO, 0);
-        }
     }
 }

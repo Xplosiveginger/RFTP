@@ -10,5 +10,6 @@ public enum EStatType
     Damage,
     Defense,
     JumpHeight,
-    MaxHealth
+    MaxHealth,
+    HealthRegen
 }
