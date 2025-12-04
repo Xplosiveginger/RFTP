@@ -5,17 +5,23 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class PlayerController2D : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] private StatManager statManager;  // NEW: StatManager reference
+
     [Header("Movement Settings")]
-    [SerializeField] private float moveSpeed = 5f;
-    [DisplayOnly] public bool inflicted = false;
+    [SerializeField] private float defaultMoveSpeed = 5f;  // Fallback speed
+
+    [Header("Player State")]
+    [SerializeField] public bool inflicted = false;  // Fixed DisplayOnly
 
     private Rigidbody2D rb;
     private Animator animator;
-    public HealthSystem health {get; private set;}
+    public HealthSystem health { get; private set; }
 
     private Vector2 moveInput;
     private float lastHorizontalDir = 1f; // 1 = right, -1 = left
 
+    // PRESERVED: Your exact speed modifier logic
     public float speedModifier;
     private Coroutine speedCoroutine;
 
@@ -24,6 +30,10 @@ public class PlayerController2D : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         health = GetComponent<HealthSystem>();
+
+        // Fallback to singleton if not assigned
+        if (statManager == null)
+            statManager = StatManager.Instance;
     }
 
     private void Update()
@@ -50,9 +60,31 @@ public class PlayerController2D : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Move the player
-        rb.MovePosition(rb.position + moveInput * moveSpeed * Time.fixedDeltaTime);
+        // Get move speed from StatManager instead of hardcoded value
+        float currentMoveSpeed = GetMoveSpeedFromStatManager();
+
+        // Move the player (your exact logic preserved)
+        rb.MovePosition(rb.position + moveInput * currentMoveSpeed * Time.fixedDeltaTime);
     }
+
+    /// <summary>
+    /// NEW: Get move speed from StatManager.MoveSpeed stat
+    /// Falls back to defaultMoveSpeed if stat not found
+    /// </summary>
+    private float GetMoveSpeedFromStatManager()
+    {
+        if (statManager == null) return defaultMoveSpeed;
+
+        var moveSpeedStat = statManager.GetStat(EStatType.MoveSpeed);
+        if (moveSpeedStat != null)
+        {
+            return moveSpeedStat.currentValue * moveSpeedStat.currentMultiplier;
+        }
+
+        return defaultMoveSpeed;
+    }
+
+    // PRESERVED: Your exact temporary speed modifier methods
     public void ApplyTemporarySpeedModifier(float modifier, float duration)
     {
         if (speedCoroutine != null)

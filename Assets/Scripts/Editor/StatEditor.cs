@@ -1,23 +1,12 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
 [CustomEditor(typeof(Stat))]
-//[CanEditMultipleObjects]
 public class StatEditor : Editor
 {
-    SerializedProperty statName;
-    SerializedProperty baseValue;
-    SerializedProperty startValue;
-    SerializedProperty startMultiplier;
-    SerializedProperty maxValue;
-
-    SerializedProperty customMaxValue;
-    SerializedProperty showCurrentValues;
-
-    SerializedProperty currentMultiplier;
-    SerializedProperty currentValue;
+    SerializedProperty statName, baseValue, startValue, startMultiplier, maxValue;
+    SerializedProperty customMaxValue, showCurrentValues, currentMultiplier, currentValue;
 
     private void OnEnable()
     {
@@ -36,22 +25,22 @@ public class StatEditor : Editor
     {
         serializedObject.Update();
 
-        Stat stat = (Stat)target;
-
+        // SAFE CASTING - Use serialized properties instead of target cast
         EditorGUILayout.PropertyField(statName);
         EditorGUILayout.PropertyField(baseValue);
         EditorGUILayout.PropertyField(startValue);
         EditorGUILayout.PropertyField(startMultiplier);
         EditorGUILayout.Space(10);
-        if(statName.enumValueIndex == (int)EStatType.Health)
+
+        if ((EStatType)statName.enumValueIndex == EStatType.Health)
         {
             EditorGUILayout.PropertyField(customMaxValue);
             if (!customMaxValue.boolValue)
             {
                 GUI.enabled = false;
+                maxValue.floatValue = baseValue.floatValue;
             }
 
-            maxValue.floatValue = baseValue.floatValue;
             EditorGUILayout.PropertyField(maxValue);
             GUI.enabled = true;
         }
@@ -60,7 +49,7 @@ public class StatEditor : Editor
         EditorGUILayout.PropertyField(showCurrentValues);
 
         GUI.enabled = false;
-        if(showCurrentValues.boolValue)
+        if (showCurrentValues.boolValue)
         {
             EditorGUILayout.PropertyField(currentValue);
             EditorGUILayout.PropertyField(currentMultiplier);

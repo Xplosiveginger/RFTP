@@ -1,47 +1,61 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Stat", menuName = "ScriptableObjects/Stat")]
-public class Stat : ScriptableObject
+/// <summary>
+/// Serializable stat data container for player attributes
+/// Handles base values, multipliers, and permanent modifications
+/// </summary>
+[System.Serializable]
+public class Stat
 {
+    [Header("Stat Identification")]
     public EStatType statName;
-    public float baseValue = 0f;
-    public float maxValue = 0f; // incase the max value also scales
-    public float startValue = 0f; // pregame items
-    public float startMultiplier = 1f;
-    
-    public float currentMultiplier = 1f;
-    public float currentValue;
 
-    public bool customMaxValue;
-    public bool showCurrentValues;
+    [Header("Base Values")]
+    public float baseValue = 0f;           // Original unmodified value
+    public float maxValue = 0f;            // Maximum possible value (can scale)
+    public float startValue = 0f;          // Pregame starting value (items/gear)
 
+    [Header("Multipliers")]
+    public float startMultiplier = 1f;     // Initial multiplier from gear
+    public float currentMultiplier = 1f;   // Live multiplier from all sources
+
+    [Header("Runtime")]
+    public float currentValue;             // Live value used by game logic
+    public bool customMaxValue;            // Use maxValue instead of baseValue
+    public bool showCurrentValues;         // Show in UI/debug
+
+    /// <summary>
+    /// Initialize stat values on startup
+    /// </summary>
     public void Init()
     {
-        if(maxValue == 0)
-            maxValue = baseValue;
+        // Set max from base if not specified
+        if (maxValue == 0) maxValue = baseValue;
 
-        if(startValue > 0f)
-            currentValue = startValue;
-        else
-            currentValue = maxValue;
+        // Use start value or full max
+        if (startValue > 0f) currentValue = startValue;
+        else currentValue = maxValue;
     }
 
+    /// <summary>
+    /// Apply permanent percentage modifier (+10 = +10%)
+    /// </summary>
     public void ApplyModifier(float modifier)
     {
         float tempMultiplier = modifier / 100f;
-
         float valueToAdd = baseValue * tempMultiplier;
         currentValue += valueToAdd;
         currentMultiplier += tempMultiplier;
     }
-}
 
-public enum EStatType
-{
-    MoveSpeed,
-    Health,
-    AttackSpeed,
-    AttackCooldown,
+    /// <summary>
+    /// Revert a previously applied modifier (called by StatManager)
+    /// </summary>
+    public void RevertModifier(float modifier)
+    {
+        float tempMultiplier = -modifier / 100f;
+        float valueToAdd = baseValue * tempMultiplier;
+        currentValue += valueToAdd;
+        currentMultiplier += tempMultiplier;
+    }
 }
