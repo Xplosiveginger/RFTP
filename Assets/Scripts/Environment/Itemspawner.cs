@@ -72,7 +72,7 @@ public class EnvironmentSpawner2D : MonoBehaviour
                     };
                     spawnLocations.Add(data);
 
-                    Debug.Log($"Recorded spawn location for {prefabName} at {obj.transform.position}");
+                    //Debug.Log($"Recorded spawn location for {prefabName} at {obj.transform.position}");
                     break;
                 }
             }
