@@ -1,37 +1,54 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponBase : MonoBehaviour
+public abstract class WeaponBase : MonoBehaviour
 {
     public StatManager statManager;
     public GameObject gfx;
 
-    private float damage;
-    private float projectileSpeed;
-    private float projectileCount;
-    private float AOESize;
-    private float cooldown;
-    private float duration;
+    public WeaponDataSO weaponData;
 
-    private float activeTimer;
-    private float coolDownTimer;
+    protected float damage;
+    protected float projectileSpeed;
+    protected float projectileCount;
+    protected float AOESize;
+    protected float cooldown;
+    protected float duration;
 
-    private bool isActive;
-    private bool inCooldown;
+    protected float activeTimer;
+    protected float coolDownTimer;
 
-    private void Start()
+    protected bool isActive;
+    protected bool inCooldown;
+
+    public event Action<WeaponBase> OnWeaponCreated;
+
+    public virtual void SpawnWeapon(Transform parent)
     {
-        damage = statManager.GetStat(EStatType.Damage).currentValue;
-        projectileSpeed = statManager.GetStat(EStatType.ProjectileSpeed).currentValue;
-        projectileCount = statManager.GetStat(EStatType.ProjectileCount).currentValue;
-        AOESize = statManager.GetStat(EStatType.AOESize).currentValue;
-        duration = statManager.GetStat(EStatType.ActiveDuration).currentValue;
-        cooldown = statManager.GetStat(EStatType.AttackCooldown).currentValue;
+        if(weaponData.weaponPrefab != null)
+        {
+            WeaponBase weapon = Instantiate(weaponData.weaponPrefab, parent.position + Vector3.zero, Quaternion.identity, parent).GetComponent<WeaponBase>();
+            OnWeaponCreated?.Invoke(weapon);
+        }
     }
 
-    public void UpdateWeapon()
+    protected virtual void Awake()
     {
+        statManager.statList = weaponData.GetAllWeaponStats();
+        statManager.InitializeStats();
+    }
+
+    protected virtual void Start()
+    {
+        UpdateWeaponDamage();
+    }
+
+    public virtual void UpdateWeapon()
+    {
+        Debug.Log("Updating Weapon");
+
         if (coolDownTimer > 0f)
         {
             coolDownTimer -= Time.deltaTime;
@@ -43,22 +60,35 @@ public class WeaponBase : MonoBehaviour
         // cooldown done. Activate weapon if it is not active.
         if (!isActive)
         {
+            Debug.Log("Weapon Activated");
             activeTimer = duration;
-            gfx.SetActive(true);
+            ToggleGFXVisibility(true);
             isActive = true;
             inCooldown = false;
+            return;
         }
 
         if (activeTimer > 0f)
         {
             activeTimer -= Time.deltaTime;
+            Debug.Log("Ticking Active");
         }
         else
         {
             coolDownTimer = cooldown;
-            gfx.SetActive(false);
+            ToggleGFXVisibility(false);
             isActive = false;
             inCooldown = true;
         }
+    }
+
+    public virtual void ToggleGFXVisibility(bool b)
+    {
+        gfx.SetActive(b);
+    }
+
+    public virtual void UpdateWeaponDamage()
+    {
+        damage = statManager.GetStat(EStatType.Damage).currentValue;
     }
 }

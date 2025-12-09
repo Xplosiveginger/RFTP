@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3685487472065963962}
   - component: {fileID: 6412931172621792234}
+  - component: {fileID: 3998422313783520057}
   m_Layer: 0
   m_Name: Level 1
   m_TagString: Untagged
@@ -39,7 +40,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 356355764091272799}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 81b32fa8c98016f488edca86b18e8365, type: 3}
   m_Name: 
@@ -51,3 +52,25 @@ MonoBehaviour:
   offsetUp: 5
   moveRange: 4
   moveSpeed: 3
+--- !u!114 &3998422313783520057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 356355764091272799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a3f0c0e942f02e44be4255e2bab80d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statManager: {fileID: 0}
+  gfx: {fileID: 0}
+  weaponData: {fileID: 11400000, guid: ed389e58d0b223941b77e32fce08ff87, type: 2}
+  range: 1
+  laserPrefab: {fileID: 440488741458358225, guid: 42911a0ec48646d4e81f9a296dc0c66f, type: 3}
+  offsetRight: 0.5
+  offsetLeft: 0.5
+  offsetUp: 0.5
+  moveRange: 0.5
+  moveSpeed: 2

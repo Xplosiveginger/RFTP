@@ -23,7 +23,15 @@ public class StatManager : MonoBehaviour
 
     private void Awake()
     {
-        foreach(Stat stat in statList)
+        InitializeStats();
+    }
+
+    public void InitializeStats()
+    {
+        if(statList.Count == 0)
+            return;
+
+        foreach (Stat stat in statList)
         {
             stat.Init();
 

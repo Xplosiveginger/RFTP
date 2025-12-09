@@ -90,14 +90,6 @@ public class PlayerController2D : MonoBehaviour
         statManager.ModifyStat(EStatType.MoveSpeed, 10);
     }
 
-    private void GetModifiedStat(EStatType type)
-    {
-        switch (type)
-        {
-
-        }
-    }
-
     private void GetModifiedSpeed()
     {
         Stat stat = statManager.GetStat(EStatType.MoveSpeed);

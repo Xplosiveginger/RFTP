@@ -15,7 +15,7 @@ public class PreSecDamage : MonoBehaviour
 
     void Start()
     {
-        Destroy(gameObject, deathAfterSec);
+        //Destroy(gameObject, deathAfterSec);
     }
 
     void Update()
