@@ -10,12 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6648218138225331326}
   - component: {fileID: -4067602106491617216}
-  - component: {fileID: 6258133313003359613}
   - component: {fileID: -5680870213639239265}
   - component: {fileID: 561017459816956103}
-  - component: {fileID: 1673288738089122336}
   - component: {fileID: 8438849726224143363}
   - component: {fileID: 1170173700785934726}
+  - component: {fileID: -7651760724963556788}
   m_Layer: 6
   m_Name: Atom
   m_TagString: Enemy
@@ -60,23 +59,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
---- !u!114 &6258133313003359613
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7117651411527206627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6d06b78f1e04b84c9298b0cf706a286, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 3
-  expDrop: 10
-  canDamageOnCollision: 1
-  collisionDamage: 8
-  XpOrbPrefab: {fileID: 6835560325603651991, guid: fc5d21bb0b85bd64b9e1eb3be3c019e4, type: 3}
 --- !u!212 &-5680870213639239265
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -164,22 +146,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.71
---- !u!114 &1673288738089122336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7117651411527206627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 386bbe221e4822144a8737f46b0f87e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosionRadius: 0.66
-  explosionDamage: 8
-  explosionEffect: {fileID: 358637981425055526, guid: 8eb503696b886e04faff8fc0f480d473, type: 3}
-  proximityRadius: 0.98
 --- !u!114 &8438849726224143363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,9 +159,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
+  currentHealth: 0
   canDestroyOnDeath: 0
   isPlayer: 0
-  allowRevive: 0
   onDeath:
     m_PersistentCalls:
       m_Calls: []
@@ -240,3 +206,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-7651760724963556788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7117651411527206627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f560ce9db0a2d94683de833c56153c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

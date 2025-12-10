@@ -11,11 +11,10 @@ GameObject:
   - component: {fileID: 5742518800619548545}
   - component: {fileID: 3710307397465602487}
   - component: {fileID: 4769748596215525619}
-  - component: {fileID: 7439082110067346898}
   - component: {fileID: 3391313754715533149}
   - component: {fileID: 6333612064184335406}
-  - component: {fileID: -333062252967407297}
   - component: {fileID: 1867706625461616748}
+  - component: {fileID: 3960886808154332643}
   m_Layer: 6
   m_Name: MutatedRat
   m_TagString: Enemy
@@ -117,23 +116,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &7439082110067346898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7677058516892065867}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 900df3df4b215e848a526bdd27b39896, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 3.5
-  acidParticlePrefab: {fileID: 7155335147208632822, guid: 97c43495f80a3244fad1301dfafbe252, type: 3}
-  acidSpritePrefab: {fileID: 3904308360467140003, guid: e85ae5f0cf155554ca7e8d58b014d3de, type: 3}
-  spawnRadius: 3
-  acidSpawnInterval: 2
 --- !u!58 &3391313754715533149
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -191,23 +173,6 @@ NavMeshAgent:
   m_BaseOffset: 2.5599997
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
---- !u!114 &-333062252967407297
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7677058516892065867}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6d06b78f1e04b84c9298b0cf706a286, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 10
-  expDrop: 10
-  canDamageOnCollision: 1
-  collisionDamage: 3
-  XpOrbPrefab: {fileID: 6835560325603651991, guid: fc5d21bb0b85bd64b9e1eb3be3c019e4, type: 3}
 --- !u!114 &1867706625461616748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,9 +186,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 45
+  currentHealth: 0
   canDestroyOnDeath: 0
   isPlayer: 0
-  allowRevive: 0
   onDeath:
     m_PersistentCalls:
       m_Calls: []
@@ -241,3 +206,19 @@ MonoBehaviour:
   scaleEase: 8
   hurtCooldown: 0.1
   healthSlider: {fileID: 0}
+--- !u!114 &3960886808154332643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7677058516892065867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 641db4e2dc0a334408e4b978b45323f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acidParticlePrefab: {fileID: 7155335147208632822, guid: 97c43495f80a3244fad1301dfafbe252, type: 3}
+  acidSpritePrefab: {fileID: 3904308360467140003, guid: e85ae5f0cf155554ca7e8d58b014d3de, type: 3}
+  spawnRadius: 3
+  acidSpawnInterval: 2
