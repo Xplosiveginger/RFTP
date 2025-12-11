@@ -19,5 +19,22 @@ public class MB_FollowPlayerState : EntityState
         {
             stateMachine.ChangeState(miniboss.chargedAttackState);
         }
+
+        if(miniboss.trap)
+            stateMachine.ChangeState(ChooseState());
+    }
+
+    EntityState ChooseState()
+    {
+        float roll = Random.Range(0, 5);
+
+        if(roll > 0 && roll < 2)
+        {
+            return miniboss.trapPlayerState;
+        }
+        else
+        {
+            return miniboss.pentTrapPlayerState;
+        }
     }
 }

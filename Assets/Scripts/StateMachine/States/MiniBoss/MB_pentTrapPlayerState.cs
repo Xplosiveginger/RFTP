@@ -40,6 +40,7 @@ public class MB_pentTrapPlayerState : EntityState
     public override void Exit()
     {
         base.Exit();
+        miniboss.toxicTrail.Stop();
         miniboss.ai.agent.speed = miniboss.ai.moveSpeed;
         miniboss.ai.enabled = true;
     }
@@ -66,6 +67,8 @@ public class MB_pentTrapPlayerState : EntityState
         if (!miniboss.ai.agent.pathPending && miniboss.ai.agent.remainingDistance <= miniboss.ai.agent.stoppingDistance)
         {
             Debug.Log("Reached Location");
+            if (currentCorner == 0)
+                miniboss.toxicTrail.Play();
             currentCorner++;
             Debug.Log($"Corner no {currentCorner}");
         }

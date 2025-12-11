@@ -19,11 +19,21 @@ public class PlayerController2D : MonoBehaviour
     public float speedModifier;
     private Coroutine speedCoroutine;
 
-    private void Awake()
+    public StatManager statManager;
+
+    private void OnEnable()
+    {
+        statManager.OnMoveSpeedChanged += GetModifiedSpeed;
+        statManager.OnHealthChanged += GetModifiedHealth;
+    }
+
+    private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         health = GetComponent<HealthSystem>();
+
+        GetModifiedSpeed();
     }
 
     private void Update()
@@ -46,6 +56,11 @@ public class PlayerController2D : MonoBehaviour
         animator.SetFloat("facing", lastHorizontalDir);
 
         inflicted = health.takingDOT;
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            ApplySpeedModif();
+        }
     }
 
     private void FixedUpdate()
@@ -67,5 +82,23 @@ public class PlayerController2D : MonoBehaviour
         yield return new WaitForSeconds(duration);
         speedModifier = 1f;
         speedCoroutine = null;
+    }
+
+    // Testing
+    private void ApplySpeedModif()
+    {
+        statManager.ModifyStat(EStatType.MoveSpeed, 10);
+    }
+
+    private void GetModifiedSpeed()
+    {
+        Stat stat = statManager.GetStat(EStatType.MoveSpeed);
+        moveSpeed = stat.currentValue;
+    }
+
+    private void GetModifiedHealth()
+    {
+        Stat stat = statManager.GetStat(EStatType.Health);
+        //health.CurrentHealth = stat.currentValue;
     }
 }

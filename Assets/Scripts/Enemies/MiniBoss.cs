@@ -14,18 +14,28 @@ public class MiniBoss : BaseEnemy
     public Rigidbody2D rb;
     public Vector2 trapRectangleSize = new Vector2(5, 3);
     public float trapCircleRadius = 5f;
-
+    public float cooldown = 5f;
 
     public EnemyAI ai;
     public Transform obstacleCheckTransform;
     public Vector2 obstacleCheckSize;
     public LayerMask obstacleLayerMask;
     public ParticleSystem toxicTrail;
+    public float decisionInterval = 5f;
+    private float lastDecisionTime;
+
+    public float trapCooldown = 5f;
+    public float chargeCooldown = 5f;
+
+    [HideInInspector] public float lastTrapTime;
+    [HideInInspector] public float lastChargeTime;
 
     StateMachine statemachine;
-    [SerializeField, DisplayOnly] private bool playerInRange = false;
+    [field: SerializeField, DisplayOnly] public bool playerInRange { get; set; }
     [DisplayOnly] public bool charging = false;
+    [DisplayOnly] public bool trap = false;
     [DisplayOnly] public bool obstacleDetected = false;
+    [SerializeField, DisplayOnly] private bool onCooldown = false;
 
     public EntityState currState;
 
@@ -57,18 +67,18 @@ public class MiniBoss : BaseEnemy
 
     private void Update()
     {
-        obstacleDetected = Physics2D.OverlapBox(obstacleCheckTransform.position, obstacleCheckSize, 0,obstacleLayerMask);
+        FacePlayer();
+
+        obstacleDetected = Physics2D.OverlapBox(obstacleCheckTransform.position, obstacleCheckSize, 0, obstacleLayerMask);
 
         statemachine.UpdateActiveState();
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Time.time - lastDecisionTime >= decisionInterval)
         {
-            charging = true;
+            PickNextState();
+            lastDecisionTime = Time.time;
         }
-        else
-        {
-            charging = false;
-        }
+        
 
         currState = statemachine.CurrentState;
 
@@ -91,6 +101,55 @@ public class MiniBoss : BaseEnemy
             Debug.Log("Charged Attack State");
         else if (currState == trapPlayerState)
             Debug.Log("Trap Player State");
+    }
+
+    void FacePlayer()
+    {
+        if (Player.transform.position.x < transform.position.x)
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        else
+            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+    }
+
+    void PickNextState()
+    {
+        if (!playerInRange)
+            return;
+
+        bool trapReady = Time.time - lastTrapTime >= trapCooldown;
+        bool chargeReady = Time.time - lastChargeTime >= chargeCooldown;
+
+        int choice = 2;
+        if (trapReady && chargeReady)
+        {
+            choice = Random.Range(0, 3); // 0 = trap, 1 = charge, 2 = follow
+        }
+        else if (trapReady)
+        {
+            choice = Random.Range(0, 2) == 0 ? 0 : 2;
+        }
+        else if (chargeReady)
+        {
+            choice = Random.Range(0, 2) == 0 ? 1 : 2;
+        }
+
+        switch (choice)
+        {
+            case 0:
+                charging = false;
+                trap = true;
+                lastTrapTime = Time.time;
+                break;
+            case 1:
+                trap = false;
+                charging = true;
+                lastChargeTime = Time.time;
+                break;
+            case 2:
+                charging = false;
+                trap = false;
+                break;
+        }
     }
 
     private void OnDrawGizmos()

@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3685487472065963962}
   - component: {fileID: 6412931172621792234}
-  - component: {fileID: -7044986070055796584}
+  - component: {fileID: -27851780833024759}
+  - component: {fileID: -1125593109612402093}
   m_Layer: 0
   m_Name: Level 8
   m_TagString: Untagged
@@ -40,110 +41,53 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 356355764091272799}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 81b32fa8c98016f488edca86b18e8365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   range: 3
   laserPrefab: {fileID: 440488741458358225, guid: 76b56d245545b24418c0bf0637fca784, type: 3}
-  offsetRight: 5
-  offsetLeft: 5
+  offsetRight: 3
+  offsetLeft: 3
   offsetUp: 5
-  rotationSpeed: 150
---- !u!82 &-7044986070055796584
-AudioSource:
+  moveRange: 4
+  moveSpeed: 3
+--- !u!114 &-27851780833024759
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 356355764091272799}
   m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 8f1ba48cb1f9d6848b8f7d987fc41072, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.5
-  m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a3f0c0e942f02e44be4255e2bab80d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statManager: {fileID: -1125593109612402093}
+  gfx: {fileID: 0}
+  weaponData: {fileID: 11400000, guid: ed389e58d0b223941b77e32fce08ff87, type: 2}
+  range: 3
+  laserPrefab: {fileID: 440488741458358225, guid: 42911a0ec48646d4e81f9a296dc0c66f, type: 3}
+  player: {fileID: 0}
+  offsetRight: 3
+  offsetLeft: 3
+  offsetUp: 5
+  moveRange: 4
+  moveSpeed: 3
+  activeLasers: []
+--- !u!114 &-1125593109612402093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 356355764091272799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6db34c11c33b97e48bfc69a589427d90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: {fileID: 0}
+  statList: []

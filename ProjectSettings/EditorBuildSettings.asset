@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main Level.unity
     guid: b897fa625720a76449ddc7407d669eb7
+  - enabled: 1
+    path: Assets/Scenes/MainMenu - Vyshak.unity
+    guid: 2c9439cd109862b44a5674ea587b4750
   m_configObjects: {}
