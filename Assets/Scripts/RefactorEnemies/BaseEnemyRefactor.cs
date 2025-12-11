@@ -9,9 +9,12 @@ public class BaseEnemyRefactor : MonoBehaviour
     [Tooltip("True if the default sprite (scale.x positive) faces left, false if it faces right")]
     public bool defaultFacingLeft = true;
 
+    [SerializeField] private float moveSpeed = 3.5f;
+
     protected virtual void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        agent.speed = moveSpeed;
     }
 
     public virtual void UpdateMovement(Vector3 targetPos)
@@ -21,7 +24,6 @@ public class BaseEnemyRefactor : MonoBehaviour
             transform.rotation = Quaternion.identity;
             agent.SetDestination(targetPos);
 
-            // Face the player
             FaceTarget(targetPos);
         }
     }
@@ -33,10 +35,6 @@ public class BaseEnemyRefactor : MonoBehaviour
 
         EnemyManager.Instance.DespawnEnemy(this);
     }
-
-    // --------------------------------------------------
-    // FACE THE PLAYER (works for any default facing)
-    // --------------------------------------------------
     protected void FaceTarget(Vector3 targetPos)
     {
         Vector3 direction = targetPos - transform.position;

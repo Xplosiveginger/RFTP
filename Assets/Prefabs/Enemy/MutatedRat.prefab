@@ -161,7 +161,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 2.5599997
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -218,6 +218,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 641db4e2dc0a334408e4b978b45323f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultFacingLeft: 1
+  moveSpeed: 5
   acidParticlePrefab: {fileID: 7155335147208632822, guid: 97c43495f80a3244fad1301dfafbe252, type: 3}
   acidSpritePrefab: {fileID: 3904308360467140003, guid: e85ae5f0cf155554ca7e8d58b014d3de, type: 3}
   spawnRadius: 3
