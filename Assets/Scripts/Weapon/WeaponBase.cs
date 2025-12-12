@@ -16,12 +16,13 @@ public abstract class WeaponBase : MonoBehaviour
     protected float AOESize;
     protected float cooldown;
     protected float duration;
+    protected float fireRate;
 
     protected float activeTimer;
     protected float coolDownTimer;
 
-    protected bool isActive;
-    protected bool inCooldown;
+    [SerializeField, DisplayOnly] protected bool isActive;
+    [SerializeField, DisplayOnly] protected bool inCooldown;
 
     public event Action<WeaponBase> OnWeaponCreated;
 

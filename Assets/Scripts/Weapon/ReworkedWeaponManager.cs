@@ -43,8 +43,19 @@ public class ReworkedWeaponManager : MonoBehaviour
         }
     }
 
+    private void InitializeWeapon(WeaponDataSO weaponToAdd)
+    {
+        WeaponBase weapon = weaponToAdd.SpawnWeapon(transform);
+        AddActiveWeapon(weapon);
+    }
+
     public void AddActiveWeapon(WeaponBase weapon)
     {
         activeWeapons.Add(weapon);
+    }
+
+    public void AddNewWeapon(WeaponDataSO weaponToAdd)
+    {
+        InitializeWeapon(weaponToAdd);
     }
 }
