@@ -23,7 +23,12 @@ public class WeaponDataSO : ScriptableObject
 
 public enum EWeaponName
 {
+    AcidRainClouds,
+    Bacteria,
     Laser,
+    LithiumIon,
     Magnet,
-
+    Prism,
+    SolarSystem,
+    TuningFork,
 }
