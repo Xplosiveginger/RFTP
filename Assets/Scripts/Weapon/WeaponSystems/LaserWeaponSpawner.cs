@@ -12,8 +12,9 @@ public class LaserWeaponSpawner : MonoBehaviour
     public float offsetLeft = 0.5f;
     public float offsetUp = 0.5f;
 
-    [Header("Rotation Settings")]
-    public float rotationSpeed = 60f;        // Degrees per second
+    [Header("Oscillation Settings")]
+    public float moveRange = 0.5f;   // How far they move
+    public float moveSpeed = 2f;     // Speed of oscillation
 
     private readonly List<GameObject> activeLasers = new List<GameObject>();
 
@@ -33,30 +34,33 @@ public class LaserWeaponSpawner : MonoBehaviour
         if (laserPrefab == null) return;
 
         // Always spawn Right
-        CreateLaser(Vector2.right, offsetRight);
+        CreateLaser(Vector2.right, 0f, offsetRight);
 
         if (range >= 2)
-            CreateLaser(Vector2.left, offsetLeft);
+            CreateLaser(Vector2.left, 180f, offsetLeft);
 
         if (range >= 3)
-            CreateLaser(Vector2.up, offsetUp);
+            CreateLaser(Vector2.up, 90f, offsetUp);
     }
 
-    void CreateLaser(Vector2 dir, float distanceOffset)
+    void CreateLaser(Vector2 dir, float angle, float distanceOffset)
     {
         GameObject laser = Instantiate(laserPrefab, transform);
 
         // Position relative to spawner
         laser.transform.localPosition = dir * distanceOffset;
 
-        // Ensure laser points along its local direction
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        // Rotate correctly
         laser.transform.localRotation = Quaternion.Euler(0f, 0f, angle);
 
-        // Add rotation component
-        LaserRotator rotator = laser.AddComponent<LaserRotator>();
-        rotator.center = transform;
-        rotator.rotationSpeed = rotationSpeed;
+        // Add oscillator
+        LaserOscillator osc = laser.AddComponent<LaserOscillator>();
+        osc.range = moveRange;
+        osc.speed = moveSpeed;
+        osc.startPos = laser.transform.localPosition;
+
+        // Random phase for non-simultaneous motion
+        osc.phaseOffset = Random.Range(0f, Mathf.PI * 2f);
 
         activeLasers.Add(laser);
     }
@@ -71,17 +75,27 @@ public class LaserWeaponSpawner : MonoBehaviour
 }
 
 /// <summary>
-/// Rotates the object around a center point (the spawner) at a given speed.
+/// Oscillates along the laser's local perpendicular axis with random phase.
 /// </summary>
-public class LaserRotator : MonoBehaviour
+public class LaserOscillator : MonoBehaviour
 {
-    public Transform center;
-    public float rotationSpeed = 60f;
+    public float range = 0.5f;
+    public float speed = 2f;
+    public float phaseOffset = 0f;
+    [HideInInspector] public Vector3 startPos;
 
     void Update()
     {
-        if (center == null) return;
+        // Local perpendicular direction
+        Vector3 perpDir = Vector3.up; // default for Right/Left lasers
+        if (Mathf.Approximately(transform.localRotation.eulerAngles.z, 90f) ||
+            Mathf.Approximately(transform.localRotation.eulerAngles.z, 270f))
+        {
+            // Up/Down laser → move horizontally
+            perpDir = Vector3.right;
+        }
 
-        transform.RotateAround(center.position, Vector3.forward, rotationSpeed * Time.deltaTime);
+        float offset = Mathf.Sin(Time.time * speed + phaseOffset) * range;
+        transform.localPosition = startPos + perpDir * offset;
     }
 }

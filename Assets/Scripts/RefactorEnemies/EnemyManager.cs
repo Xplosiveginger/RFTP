@@ -8,9 +8,10 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private Transform player;
 
     private readonly List<BaseEnemyRefactor> activeEnemies = new List<BaseEnemyRefactor>();
-    private readonly List<ENP_Enemy> enpEnemies = new List<ENP_Enemy>(); // ENP combination only
+    private readonly List<ENP_Enemy> enpEnemies = new List<ENP_Enemy>(); 
     private readonly List<MutatedRats_Refactor> mutatedRats = new List<MutatedRats_Refactor>();
     private readonly List<Skeleton_refactor> skeletons = new List<Skeleton_refactor>();
+    private readonly List<LitmusPaper_Refactor> litmusPaper = new List<LitmusPaper_Refactor>();
 
     private void Awake()
     {
@@ -27,6 +28,7 @@ public class EnemyManager : MonoBehaviour
         HandleENPCombination();
         HandleMutatedRatAcid(playerPos, Time.deltaTime);
         HandleSkeletonAttacks(playerPos, Time.deltaTime);
+        HandleLitmusPaperHealthCheck();
     }
 
     // =======================================================
@@ -115,6 +117,17 @@ public class EnemyManager : MonoBehaviour
     }
 
     // =======================================================
+    // LITMUSPAPER HEALTHCHECK
+    // =======================================================
+    private void HandleLitmusPaperHealthCheck()
+    {
+        for(int i = 0; i<litmusPaper.Count; i++)
+        {
+            litmusPaper[i].CheckHealthState();
+        }
+    }
+
+    // =======================================================
     // SPAWNING / DESPAWNING
     // =======================================================
     public void RegisterEnemy(BaseEnemyRefactor enemy)
@@ -130,6 +143,9 @@ public class EnemyManager : MonoBehaviour
 
         if (enemy is Skeleton_refactor skel && !skeletons.Contains(skel))
             skeletons.Add(skel);
+        
+        if(enemy is LitmusPaper_Refactor litmus && !litmusPaper.Contains(litmus))
+            litmusPaper.Add(litmus);    
     }
 
     public void DespawnEnemy(BaseEnemyRefactor enemy)
@@ -147,6 +163,9 @@ public class EnemyManager : MonoBehaviour
 
         if (enemy is Skeleton_refactor skel)
             skeletons.Remove(skel);
+
+        if(enemy is LitmusPaper_Refactor litmus)
+            litmusPaper.Remove(litmus);
     }
 
     public void SetPlayer(Transform p) => player = p;

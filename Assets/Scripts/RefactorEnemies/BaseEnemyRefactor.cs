@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,12 +10,26 @@ public class BaseEnemyRefactor : MonoBehaviour
     [Tooltip("True if the default sprite (scale.x positive) faces left, false if it faces right")]
     public bool defaultFacingLeft = true;
 
-    [SerializeField] private float moveSpeed = 3.5f;
+    [SerializeField] protected float moveSpeed = 3.5f;
+    public Action moveSpeedincrease;
 
+    private void OnEnable()
+    {
+        moveSpeedincrease += MoveSpeedApplier;
+    }
+
+    
     protected virtual void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        agent.speed = moveSpeed;
+    }
+
+    public void MoveSpeedApplier()
+    {
+        if (agent != null)
+        {
+            agent.speed = moveSpeed;
+        }
     }
 
     public virtual void UpdateMovement(Vector3 targetPos)
@@ -45,5 +60,10 @@ public class BaseEnemyRefactor : MonoBehaviour
             xScale = -xScale;
 
         transform.localScale = new Vector3(xScale, transform.localScale.y, transform.localScale.z);
+    }
+
+    private void OnDisable()
+    {
+        moveSpeedincrease -= MoveSpeedApplier;
     }
 }
