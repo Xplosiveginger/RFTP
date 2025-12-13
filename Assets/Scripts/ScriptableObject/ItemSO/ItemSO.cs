@@ -4,13 +4,15 @@ using UnityEngine;
 [System.Serializable]
 public class ItemLevel
 {
-    public GameObject itemPrefab; // prefab for this item level
+    public GameObject itemPrefab;
+    public Sprite cardSprite; // ? Image per level
 }
 
 [CreateAssetMenu(fileName = "NewItem", menuName = "Items/Item")]
 public class ItemSO : ScriptableObject
 {
-    public string itemName;
+    public string itemName; // ? kept for reference
+
     [Header("Per Level Settings")]
     public List<ItemLevel> levels;
 }

@@ -6,6 +6,7 @@ public class LitIonProjectile : BlastDamage
     [Header("Lithium Ion Projectile Settings")]
     public float fuseTime = 2f; // Time before it explodes
     public Sprite armedSprite;  // Sprite to show when armed
+    public ParticleSystem explosionParticles; // Particle system to play on explosion
 
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
@@ -54,7 +55,15 @@ public class LitIonProjectile : BlastDamage
         if (hasExploded) return;
         hasExploded = true;
 
+        // Play the explosion particle system once
+        if (explosionParticles != null)
+        {
+            explosionParticles.transform.parent = null; // detach so particles stay in world space
+            explosionParticles.Play();
+            Destroy(explosionParticles.gameObject,1);
+        }
+
         ApplyBlastDamage(); // Call the inherited blast logic
-        Destroy(gameObject, lifeTime); // Cleanup after
+        Destroy(gameObject); // Destroy projectile immediately after explosion
     }
 }

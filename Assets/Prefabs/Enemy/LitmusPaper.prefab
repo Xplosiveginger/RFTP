@@ -9,14 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2362254301239987520}
-  - component: {fileID: 4208531747001448709}
   - component: {fileID: 2169733631905815024}
-  - component: {fileID: 1566192535582116339}
   - component: {fileID: 6365162885047968328}
   - component: {fileID: 3858200894259231518}
-  - component: {fileID: -8320243880558920816}
   - component: {fileID: 7190401663606683929}
   - component: {fileID: -5043783504497774089}
+  - component: {fileID: -5985460390454809785}
+  - component: {fileID: 4718403573189803202}
   m_Layer: 6
   m_Name: LitmusPaper
   m_TagString: Enemy
@@ -39,31 +38,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4208531747001448709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2913699253501788760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 709e8af00f2560742bd3d2f9b2803bfb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canDamagePlayerOnContact: 0
-  damageOnContact: 10
-  damage: 10
-  damageInterval: 1
-  canDamageSelfOnContact: 1
-  rotationSpeed: 100
-  expDrop: 10
-  XpOrbPrefab: {fileID: 0}
-  alkalineSprite: {fileID: 21300000, guid: 48ed8a4a2fdccaf448806b6c0062c349, type: 3}
-  neutralSprite: {fileID: 21300000, guid: 8d24129ebfb5ffc4cbbf80452be806d8, type: 3}
-  acidicSprite: {fileID: 21300000, guid: 2ccadd0c581b26543b01edf32c8bdb57, type: 3}
-  baseDamagePerSecond: 5
-  damageIncreaseRate: 1
 --- !u!212 &2169733631905815024
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -105,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 353ac8fcf50773f43a71044c8cada957, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8d24129ebfb5ffc4cbbf80452be806d8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -116,23 +90,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1566192535582116339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2913699253501788760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6d06b78f1e04b84c9298b0cf706a286, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 3
-  canDamageOnCollision: 0
-  collisionDamage: 0
-  expDrop: 10
-  XpOrbPrefab: {fileID: 6835560325603651991, guid: fc5d21bb0b85bd64b9e1eb3be3c019e4, type: 3}
 --- !u!50 &6365162885047968328
 Rigidbody2D:
   serializedVersion: 4
@@ -182,38 +139,6 @@ NavMeshAgent:
   m_BaseOffset: 0.08
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
---- !u!114 &-8320243880558920816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2913699253501788760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ff3ddee1dcecd0499cc220e9d0a097f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  canDestroyOnDeath: 0
-  isPlayer: 0
-  onDeath:
-    m_PersistentCalls:
-      m_Calls: []
-  onPostDeath:
-    m_PersistentCalls:
-      m_Calls: []
-  onDamageTaken:
-    m_PersistentCalls:
-      m_Calls: []
-  deathEffect: {fileID: 0}
-  jumpPower: 0.6
-  jumpNum: 1
-  jumpDuration: 0.45
-  scaleDuration: 0.4
-  scaleEase: 8
-  hurtCooldown: 0.1
-  healthSlider: {fileID: 0}
 --- !u!61 &7190401663606683929
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -280,3 +205,62 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-5985460390454809785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2913699253501788760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 413ab5763806ac946a870eb10a6bdd19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultFacingLeft: 0
+  moveSpeed: 3.5
+  changingSprites:
+  - {fileID: 21300000, guid: 8d24129ebfb5ffc4cbbf80452be806d8, type: 3}
+  - {fileID: 21300000, guid: 48ed8a4a2fdccaf448806b6c0062c349, type: 3}
+  - {fileID: 21300000, guid: 2ccadd0c581b26543b01edf32c8bdb57, type: 3}
+  radius: 5
+  minDamage: 10
+  midDamage: 20
+  maxDamage: 40
+  moveSpeedIncreaser: 2
+  damageArea:
+    serializedVersion: 2
+    m_Bits: 2048
+--- !u!114 &4718403573189803202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2913699253501788760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ff3ddee1dcecd0499cc220e9d0a097f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
+  canDestroyOnDeath: 1
+  isPlayer: 0
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  onPostDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  onDamageTaken:
+    m_PersistentCalls:
+      m_Calls: []
+  deathEffect: {fileID: 0}
+  jumpPower: 0.6
+  jumpNum: 1
+  jumpDuration: 0.45
+  scaleDuration: 0.4
+  scaleEase: 8
+  hurtCooldown: 0.1
+  healthSlider: {fileID: 0}

@@ -16,29 +16,36 @@ MonoBehaviour:
   levels:
   - time:
       coolDownTime: 5
-      activeTime: 5
-    weaponLevelPrefab: {fileID: 7393424903972071204, guid: f736ffafaf272ef48b99278ceecb6d5e, type: 3}
-  - time:
-      coolDownTime: 5
       activeTime: 4
     weaponLevelPrefab: {fileID: 7393424903972071204, guid: 9054883abdfb6554189503e901863aa5, type: 3}
+    cardSprite: {fileID: 21300000, guid: a633a768da30fea43b1df0d608fba676, type: 3}
   - time:
       coolDownTime: 5
       activeTime: 4
     weaponLevelPrefab: {fileID: 7393424903972071204, guid: 1d9449719d09d244c9c0a534146e0d36, type: 3}
+    cardSprite: {fileID: 21300000, guid: 9c65e2f34b72c144988c1773180a5f63, type: 3}
   - time:
       coolDownTime: 5
       activeTime: 4
     weaponLevelPrefab: {fileID: 7393424903972071204, guid: 1fa0bef25db3e804a868429bc3d7f2c2, type: 3}
+    cardSprite: {fileID: 21300000, guid: 659f603310976024190536682de8201b, type: 3}
   - time:
       coolDownTime: 5
       activeTime: 4.5
     weaponLevelPrefab: {fileID: 7393424903972071204, guid: 03b20147e913ea64db7595f1a7122258, type: 3}
+    cardSprite: {fileID: 21300000, guid: 5c4f71bb90095504a900dd013e9f6786, type: 3}
   - time:
       coolDownTime: 5
       activeTime: 4.5
     weaponLevelPrefab: {fileID: 7393424903972071204, guid: fff1bb7d3f8a00944852dfb9110a5884, type: 3}
+    cardSprite: {fileID: 21300000, guid: 7c0378a2ffd55154b835e4f0a6ae8d66, type: 3}
   - time:
       coolDownTime: 5
       activeTime: 5
     weaponLevelPrefab: {fileID: 7393424903972071204, guid: e08ce7e2b17bc554da842a5c428d28c8, type: 3}
+    cardSprite: {fileID: 21300000, guid: 42ab5b8eced27e041ad0ae17a03abac8, type: 3}
+  - time:
+      coolDownTime: 5
+      activeTime: 5
+    weaponLevelPrefab: {fileID: 7393424903972071204, guid: f736ffafaf272ef48b99278ceecb6d5e, type: 3}
+    cardSprite: {fileID: 21300000, guid: 3a6a939028427ad4f9b2c616c53ca9dc, type: 3}

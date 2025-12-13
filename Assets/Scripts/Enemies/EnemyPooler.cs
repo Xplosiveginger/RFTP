@@ -1,9 +1,9 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyPooler
 {
-    public EnemySpawnData EnemyData; // reference to spawn info
+    public EnemySpawnData EnemyData; // optional reference to spawn info
     private GameObject prefab;
     private Transform parent;
     private List<GameObject> pool;
@@ -25,9 +25,7 @@ public class EnemyPooler
     public GameObject Get()
     {
         foreach (var obj in pool)
-        {
             if (!obj.activeInHierarchy) return obj;
-        }
 
         GameObject newObj = GameObject.Instantiate(prefab, parent);
         pool.Add(newObj);

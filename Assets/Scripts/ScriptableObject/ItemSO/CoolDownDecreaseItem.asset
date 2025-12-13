@@ -15,7 +15,12 @@ MonoBehaviour:
   itemName: 'Cool Down Decrease '
   levels:
   - itemPrefab: {fileID: 997292954101884441, guid: 078d01d9d25b3ee46a89f62380b1478d, type: 3}
+    cardSprite: {fileID: 21300000, guid: c26283908367ac7408509e67e03f50b3, type: 3}
   - itemPrefab: {fileID: 997292954101884441, guid: f1896f818f40cda42abfe7167de9d040, type: 3}
+    cardSprite: {fileID: 21300000, guid: ac99680f1e094a048afdfd0936371935, type: 3}
   - itemPrefab: {fileID: 997292954101884441, guid: 766ca8fd9f8edad4ead3607c647196b5, type: 3}
+    cardSprite: {fileID: 21300000, guid: c8871e87d5785024b96fcc4f51ff6730, type: 3}
   - itemPrefab: {fileID: 997292954101884441, guid: acf61434b39f1f34cb4f40e8b2c1b0f1, type: 3}
+    cardSprite: {fileID: 21300000, guid: 68f701ee425464b4eaa4432aa277baf9, type: 3}
   - itemPrefab: {fileID: 997292954101884441, guid: 0ec39ac06e1551947bed6ef9bb0ffbd4, type: 3}
+    cardSprite: {fileID: 21300000, guid: b389080f56338394aabe118adc575cc5, type: 3}

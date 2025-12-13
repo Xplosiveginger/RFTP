@@ -15,7 +15,12 @@ MonoBehaviour:
   itemName: 'Active TIme Increase '
   levels:
   - itemPrefab: {fileID: 5521168302522034236, guid: 3e72d80d9f683704c8b8612111fd0c6d, type: 3}
+    cardSprite: {fileID: 21300000, guid: bbe362ff498d80e4ca1e46eac91d51a9, type: 3}
   - itemPrefab: {fileID: 5521168302522034236, guid: 5b3f52170ce0f624189e91325fd0c1e1, type: 3}
+    cardSprite: {fileID: 21300000, guid: 4d03dc1d4b1f0e243be801b0988883c7, type: 3}
   - itemPrefab: {fileID: 5521168302522034236, guid: 026a031e03bde7742a15a62b8dc8a5e0, type: 3}
+    cardSprite: {fileID: 21300000, guid: 65dab79503969db48ad50c0803346bca, type: 3}
   - itemPrefab: {fileID: 5521168302522034236, guid: c0634046002e36e4f87df5f18295933d, type: 3}
+    cardSprite: {fileID: 21300000, guid: deabed503edf7e046bff56cb23dd9260, type: 3}
   - itemPrefab: {fileID: 5521168302522034236, guid: 222980d9e65943d4c9b09d75771785d4, type: 3}
+    cardSprite: {fileID: 21300000, guid: 1ddf128a43f718c4c941e6691956e092, type: 3}

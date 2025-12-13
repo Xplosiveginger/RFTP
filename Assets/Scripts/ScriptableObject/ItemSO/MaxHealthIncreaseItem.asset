@@ -15,7 +15,12 @@ MonoBehaviour:
   itemName: Max Health Increase
   levels:
   - itemPrefab: {fileID: 8735038476278301767, guid: 325d038e5e9b3994b9eb9877167ab015, type: 3}
+    cardSprite: {fileID: 21300000, guid: 9abfdad0c92a24d4f943820d97c825a4, type: 3}
   - itemPrefab: {fileID: 8735038476278301767, guid: a329602d44242ca4d88786c66db5926f, type: 3}
+    cardSprite: {fileID: 21300000, guid: 03a134e676ea34f43bdd5494af580d8b, type: 3}
   - itemPrefab: {fileID: 8735038476278301767, guid: 707d337059488604cb775d1f69aa2b19, type: 3}
+    cardSprite: {fileID: 21300000, guid: aa24f4be0a3e6d245a3608a7ffebe981, type: 3}
   - itemPrefab: {fileID: 8735038476278301767, guid: d5babc5e830274c4db70f08e30c6a1f6, type: 3}
+    cardSprite: {fileID: 21300000, guid: a6bff96c95e197f46a6f6b17d6b60b1d, type: 3}
   - itemPrefab: {fileID: 8735038476278301767, guid: 400f6a75e227b084a8160738741f95cb, type: 3}
+    cardSprite: {fileID: 21300000, guid: 7c4793dd155047745aa6aabc8425f0a9, type: 3}

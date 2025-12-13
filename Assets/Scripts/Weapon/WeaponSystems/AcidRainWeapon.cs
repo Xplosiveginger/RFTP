@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class AcidRainWeapon : MonoBehaviour
 {
-    [Header("Spawn Area")]
-    public float boxLength = 5f;
-    public float boxBreadth = 3f;
-
     [Header("Projectile Settings")]
     public GameObject projectilePrefab;
     public int projectileCount = 10;  // how many to spawn once
@@ -27,22 +23,22 @@ public class AcidRainWeapon : MonoBehaviour
     {
         if (projectilePrefab == null) return;
 
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        if (enemies.Length == 0) return;
+
         for (int i = 0; i < projectileCount; i++)
         {
-            // Pick a random point inside the box
-            float randX = Random.Range(-boxLength / 2f, boxLength / 2f);
-            float randY = Random.Range(-boxBreadth / 2f, boxBreadth / 2f);
+            GameObject enemy = enemies[Random.Range(0, enemies.Length)];
+            if (enemy == null) continue;
 
-            Vector3 spawnPos = transform.position + new Vector3(randX, randY, 0f);
-
+            Vector3 spawnPos = enemy.transform.position;
             Instantiate(projectilePrefab, spawnPos, Quaternion.identity);
         }
     }
 
-    // Draw Gizmos for editor visualization
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireCube(transform.position, new Vector3(boxLength, boxBreadth, 0f));
+        Gizmos.DrawWireSphere(transform.position, 3f);
     }
 }

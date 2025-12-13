@@ -10,12 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6648218138225331326}
   - component: {fileID: -4067602106491617216}
-  - component: {fileID: 6258133313003359613}
   - component: {fileID: -5680870213639239265}
   - component: {fileID: 561017459816956103}
-  - component: {fileID: -5173760367669743178}
   - component: {fileID: 4637089688207398922}
   - component: {fileID: -496759890244635487}
+  - component: {fileID: 1140631652261528199}
   m_Layer: 6
   m_Name: Electron
   m_TagString: Enemy
@@ -48,7 +47,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -60,23 +59,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
---- !u!114 &6258133313003359613
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7117651411527206627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6d06b78f1e04b84c9298b0cf706a286, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 3
-  expDrop: 10
-  canDamageOnCollision: 1
-  collisionDamage: 2
-  XpOrbPrefab: {fileID: 6835560325603651991, guid: fc5d21bb0b85bd64b9e1eb3be3c019e4, type: 3}
 --- !u!212 &-5680870213639239265
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -164,23 +146,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 3.67
---- !u!114 &-5173760367669743178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7117651411527206627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fdfbbd1e2ddeef48b67783a486d80b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 2
-  moveSpeed: 3
-  expDrop: 10
-  atomPrefab: {fileID: 7117651411527206627, guid: ad70a5c7473c53047b6d9529808d7eee, type: 3}
-  formationRadius: 1
 --- !u!114 &4637089688207398922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,9 +159,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 20
+  currentHealth: 0
   canDestroyOnDeath: 0
   isPlayer: 0
-  allowRevive: 0
   onDeath:
     m_PersistentCalls:
       m_Calls: []
@@ -241,3 +206,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1140631652261528199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7117651411527206627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32e9b2181487f0241b1aae87fbcc11a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultFacingLeft: 1
+  moveSpeed: 5
+  Type: 0
+  combineRadius: 2.85
+  gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  showGizmo: 1
