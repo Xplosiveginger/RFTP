@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02361c39e6e4db440a898fa7ae5786a6, type: 3}
+  m_Name: BacteriaWeapon_Data
+  m_EditorClassIdentifier: 
+  weaponName: 1
+  weaponStats:
+  - {fileID: 11400000, guid: 306da15689376e745ab8eb81280991a3, type: 2}
+  - {fileID: 11400000, guid: 3c36066ab367ab043a4e9bfa029a730d, type: 2}
+  - {fileID: 11400000, guid: 165db7eef9982844397b5393cd4fd779, type: 2}
+  - {fileID: 11400000, guid: 01293cc087717f34fba4f38b45e58824, type: 2}
+  - {fileID: 11400000, guid: 0502fc3862d81614ea721f885ee99696, type: 2}
+  weaponPrefab: {fileID: 5562305457002169948, guid: c6720c861af1d3146a1379d40c618710, type: 3}
