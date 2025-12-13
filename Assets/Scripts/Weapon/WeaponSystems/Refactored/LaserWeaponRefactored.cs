@@ -6,7 +6,6 @@ public class LaserWeaponRefactored : WeaponBase
     [Header("Spawner Settings")]
     [Range(1, 3)] public int range = 1;      // 1 = Right, 2 = Right+Left, 3 = Right+Left+Up
     public GameObject laserPrefab;           // Prefab designed to fire right
-    public GameObject player;
 
     [Header("Offsets (distance from center)")]
     public float offsetRight = 0.5f;

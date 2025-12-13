@@ -37,6 +37,8 @@ public abstract class WeaponBase : MonoBehaviour
 
     protected virtual void Awake()
     {
+        statManager = GetComponent<StatManager>();
+
         statManager.statList = weaponData.GetAllWeaponStats();
         statManager.InitializeStats();
     }

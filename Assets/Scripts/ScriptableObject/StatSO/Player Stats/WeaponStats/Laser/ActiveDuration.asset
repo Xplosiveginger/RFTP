@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5648d6fdc02a4514794796024044aed3, type: 3}
   m_Name: ActiveDuration
   m_EditorClassIdentifier: 
-  statName: 3
+  statName: 4
   baseValue: 5
   maxValue: 5
   startValue: 0
