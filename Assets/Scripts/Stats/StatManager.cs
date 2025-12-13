@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class StatManager : MonoBehaviour
 {
+    public bool isDamagable;
     public HealthSystem health;
 
     public List<Stat> statList;
@@ -24,6 +25,16 @@ public class StatManager : MonoBehaviour
     private void Awake()
     {
         InitializeStats();
+    }
+
+    private void OnEnable()
+    {
+        if(isDamagable) health.OnHealthChanged += UpdateHealthCurrentValue;
+    }
+
+    private void OnDisable()
+    {
+        if(isDamagable) health.OnHealthChanged -= UpdateHealthCurrentValue;
     }
 
     public void InitializeStats()
@@ -75,6 +86,11 @@ public class StatManager : MonoBehaviour
                 stat.ApplyHealthModifier(modifier);
             }
         }
+    }
+
+    private void UpdateHealthCurrentValue(float value)
+    {
+        GetStat(EStatType.Health).currentValue = value;
     }
 
     private void OnCurrentValueChangedHandled(Stat stat)
