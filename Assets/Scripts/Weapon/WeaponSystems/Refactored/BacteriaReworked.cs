@@ -52,8 +52,9 @@ public class BacteriaReworked : WeaponBase
     private void ShootProjectiles()
     {
         var projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        projectile.GetComponent<Projectile>().damage = damage;
         firedProjectileCount++;
-        Vector3 shootDir = new Vector2(20, 30); // Change this later to detect enemies and fire in their direction.
-        projectile.GetComponent<Rigidbody2D>().velocity = (shootDir - transform.position).normalized * projectileSpeed;
+        Vector3 shootAt = enemyDetector.GetPositionOfRandomEnemy(); // Change this later to detect enemies and fire in their direction.
+        projectile.GetComponent<Rigidbody2D>().velocity = (shootAt - transform.position).normalized * projectileSpeed;
     }
 }

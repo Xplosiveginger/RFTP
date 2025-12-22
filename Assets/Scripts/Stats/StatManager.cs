@@ -11,6 +11,7 @@ public class StatManager : MonoBehaviour
     public List<Stat> statList;
 
     public event Action<Stat> OnValueChanged;
+    public event Action OnStatChanged;
     public event Action OnMoveSpeedChanged;
     public event Action OnHealthChanged;
     public event Action OnCooldownChanged;
@@ -50,11 +51,23 @@ public class StatManager : MonoBehaviour
         }
     }
 
+    public Stat TryGetStat(EStatType statName)
+    {
+        Stat stat = GetStat(statName);
+        if (stat == null)
+        {
+            Debug.Log($"{statName} stat not present in {transform.gameObject.name}.");
+            return null; 
+        }
+
+        return stat;
+    }
+
     /// <summary>
     /// Returns the Stat class for which the statName matches.
     /// </summary>
     /// <param name="statName">The name of the stat you want to get.</param>
-    public Stat GetStat(EStatType statName)
+    public Stat GetStat(EStatType statName) // Add a TryGetStat() which checks the obtained value.
     {
         return statList.Find(stat => stat.statName == statName);
     }
@@ -97,6 +110,7 @@ public class StatManager : MonoBehaviour
     {
         InvokeOnStatChangedEvents(stat.statName);
         OnValueChanged?.Invoke(stat);
+        OnStatChanged?.Invoke();
     }
 
     private void OnMaxValueChangedHandled()

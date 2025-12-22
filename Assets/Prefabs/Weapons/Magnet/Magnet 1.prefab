@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5458959046591573408}
   - component: {fileID: 3369360073234245079}
+  - component: {fileID: 4376997320481308540}
   - component: {fileID: 1662209880686688148}
   - component: {fileID: 8439450556747747728}
-  - component: {fileID: 4376997320481308540}
   m_Layer: 0
   m_Name: Magnet 1
   m_TagString: Untagged
@@ -42,7 +42,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1200271685182604513}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2e31246725d42946b940d8c0bb047fc, type: 3}
   m_Name: 
@@ -53,6 +53,21 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &4376997320481308540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200271685182604513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6942e897cfdf92469f2c1f3ea19d790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  damgeInterval: 0
+  size: 0
 --- !u!212 &1662209880686688148
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -201,15 +216,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &4376997320481308540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1200271685182604513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6942e897cfdf92469f2c1f3ea19d790, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

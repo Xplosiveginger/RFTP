@@ -1184,6 +1184,8 @@ MonoBehaviour:
   poolParent: {fileID: 544647157}
   timerText: {fileID: 1510725371}
   EndPanel: {fileID: 1745902948}
+  atomPrefab: {fileID: 7117651411527206627, guid: ad70a5c7473c53047b6d9529808d7eee, type: 3}
+  atomPoolSize: 5
   debugMode: 1
   debugStartTime: 900
 --- !u!1001 &575439589
@@ -1408,6 +1410,7 @@ GameObject:
   m_Component:
   - component: {fileID: 664814408}
   - component: {fileID: 664814409}
+  - component: {fileID: 664814410}
   m_Layer: 11
   m_Name: EnemyDetection
   m_TagString: Untagged
@@ -1465,6 +1468,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 50
+--- !u!114 &664814410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664814407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a582a750a63150047b94c3582d6b3fb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyList: []
 --- !u!1001 &671266765
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1602,11 +1618,15 @@ PrefabInstance:
     - target: {fileID: 4317606704090541399, guid: a31d3eda6d885544789a234488df2c25, type: 3}
       propertyPath: liIon
       value: 
-      objectReference: {fileID: 11400000, guid: e668b5821adb649409fb0dc1c7bd15bc, type: 2}
+      objectReference: {fileID: 11400000, guid: 758daacc25fd5b3439399034a12c73e1, type: 2}
     - target: {fileID: 4317606704090541399, guid: a31d3eda6d885544789a234488df2c25, type: 3}
       propertyPath: statManager
       value: 
       objectReference: {fileID: 2026983369}
+    - target: {fileID: 4317606704090541399, guid: a31d3eda6d885544789a234488df2c25, type: 3}
+      propertyPath: weaponManager
+      value: 
+      objectReference: {fileID: 2026983370}
     - target: {fileID: 5516582164667082271, guid: a31d3eda6d885544789a234488df2c25, type: 3}
       propertyPath: m_SortingOrder
       value: 2
@@ -2051,6 +2071,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1004138726}
+  - component: {fileID: 1004138727}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -2074,6 +2095,19 @@ Transform:
   - {fileID: 544647157}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1004138727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004138725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b873737e2f18db44fb12b59390c4feeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 682173267}
 --- !u!1 &1028376522
 GameObject:
   m_ObjectHideFlags: 0
@@ -3754,7 +3788,7 @@ MonoBehaviour:
   m_BuildHeightMesh: 0
   m_MinRegionArea: 0
   m_HideEditorLogs: 0
-  m_NavMeshData: {fileID: 23800000, guid: d2e4dfd79a2192b47b434b1fdfd929f6, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 8386e84eeb543a741b9f6ced33574d64, type: 2}
 --- !u!1 &2022531886
 GameObject:
   m_ObjectHideFlags: 0
@@ -3928,6 +3962,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ed389e58d0b223941b77e32fce08ff87, type: 2}
   activeWeapons: []
   ownerStats: {fileID: 2026983369}
+  enemyDetector: {fileID: 664814410}
 --- !u!1 &2129525361
 GameObject:
   m_ObjectHideFlags: 0

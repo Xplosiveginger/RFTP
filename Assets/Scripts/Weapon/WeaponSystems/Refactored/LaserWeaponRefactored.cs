@@ -30,10 +30,6 @@ public class LaserWeaponRefactored : WeaponBase
     protected override void Start()
     {
         SpawnLasers();
-
-        Debug.Log(damage);
-        
-
         base.Start();
     }
 
@@ -107,7 +103,6 @@ public class LaserWeaponRefactored : WeaponBase
     {
         foreach(var laser in activeLasers)
         {
-            Debug.Log(laser.transform.GetChild(4).name);
             laser.transform.GetChild(4).GetComponent<Damage>().damage = damage;
         }
     }
