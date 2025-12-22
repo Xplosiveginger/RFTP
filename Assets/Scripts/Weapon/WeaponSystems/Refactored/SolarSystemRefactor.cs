@@ -87,7 +87,7 @@ public class SolarSystemRefactor : WeaponBase
         }
     }
 
-    protected override void LevelUpWeapon()
+    public override void LevelUpWeapon()
     {
         
     }
