@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,10 +8,15 @@ public class ReworkedWeaponManager : MonoBehaviour
     public List<WeaponDataSO> weapons;
     public List<WeaponBase> activeWeapons;
     public StatManager ownerStats;
+    public EnemyDetection enemyDetector;
+
+    public event Action<EWeaponName> OnWeaponLeveledUp; 
 
     private void Awake()
     {
         InitializeWeapon();
+
+        OnWeaponLeveledUp += LevelUpWeaponHandled;
     }
 
     public void UpdateWeaponStat(EStatType statName, float modifier)
@@ -39,6 +45,7 @@ public class ReworkedWeaponManager : MonoBehaviour
         foreach(var weapon in weapons)
         {
             WeaponBase weaponToAdd = weapon.SpawnWeapon(transform);
+            weaponToAdd.enemyDetector = this.enemyDetector;
             AddActiveWeapon(weaponToAdd);
         }
     }
@@ -46,6 +53,7 @@ public class ReworkedWeaponManager : MonoBehaviour
     private void InitializeWeapon(WeaponDataSO weaponToAdd)
     {
         WeaponBase weapon = weaponToAdd.SpawnWeapon(transform);
+        weapon.enemyDetector = this.enemyDetector;
         AddActiveWeapon(weapon);
     }
 
@@ -57,5 +65,10 @@ public class ReworkedWeaponManager : MonoBehaviour
     public void AddNewWeapon(WeaponDataSO weaponToAdd)
     {
         InitializeWeapon(weaponToAdd);
+    }
+
+    private void LevelUpWeaponHandled(EWeaponName weaponName)
+    {
+        GetWeapon(weaponName).LevelUpWeapon();
     }
 }

@@ -78,10 +78,12 @@ public enum EStatType
 {
     MoveSpeed,
     Health,
+    HealthRegen,
     AttackCooldown,
     ActiveDuration,
     ProjectileCount,
     ProjectileSpeed,
     Damage,
-    AOESize
+    AOESize,
+    FireRate
 }

@@ -20,6 +20,10 @@ public class PlayerController2D : MonoBehaviour
     private Coroutine speedCoroutine;
 
     public StatManager statManager;
+    public ReworkedWeaponManager weaponManager;
+
+    //test
+    public WeaponDataSO liIon;
 
     private void OnEnable()
     {
@@ -34,6 +38,7 @@ public class PlayerController2D : MonoBehaviour
         health = GetComponent<HealthSystem>();
 
         GetModifiedSpeed();
+        GetModifiedHealth();
     }
 
     private void Update()
@@ -59,7 +64,12 @@ public class PlayerController2D : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            ApplySpeedModif();
+            AddLithiumIonWeapon();
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            weaponManager.GetWeapon(EWeaponName.Magnet).statManager.ModifyStat(EStatType.AOESize, 20);
         }
     }
 
@@ -84,11 +94,17 @@ public class PlayerController2D : MonoBehaviour
         speedCoroutine = null;
     }
 
-    // Testing
+    // Testing *****************************
+    private void AddLithiumIonWeapon()
+    {
+        GetComponent<ReworkedWeaponManager>().AddNewWeapon(liIon);
+    }
+
     private void ApplySpeedModif()
     {
         statManager.ModifyStat(EStatType.MoveSpeed, 10);
     }
+    //**********************************
 
     private void GetModifiedSpeed()
     {
@@ -99,6 +115,6 @@ public class PlayerController2D : MonoBehaviour
     private void GetModifiedHealth()
     {
         Stat stat = statManager.GetStat(EStatType.Health);
-        //health.CurrentHealth = stat.currentValue;
+        health.currentHealth = (int)stat.currentValue;
     }
 }

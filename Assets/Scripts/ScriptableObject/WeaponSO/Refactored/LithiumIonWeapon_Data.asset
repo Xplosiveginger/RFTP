@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02361c39e6e4db440a898fa7ae5786a6, type: 3}
   m_Name: LithiumIonWeapon_Data
   m_EditorClassIdentifier: 
-  weaponName: 0
-  weaponStats: []
-  weaponPrefab: {fileID: 0}
+  weaponName: 3
+  weaponStats:
+  - {fileID: 11400000, guid: 932d4271d2daf374193a65e456fe13ae, type: 2}
+  - {fileID: 11400000, guid: 6fa848fdb2c05d3498c6eabcead1f26d, type: 2}
+  - {fileID: 11400000, guid: de98bfddcf58cd248b39e6f09736a91c, type: 2}
+  - {fileID: 11400000, guid: f09357fddfbe7bc45a4f06b3c6e97b60, type: 2}
+  - {fileID: 11400000, guid: 6f33a190252a27a479bb357b758be4a2, type: 2}
+  weaponPrefab: {fileID: 7638613402298008950, guid: ac527d2c94e47304b9c02894b6944065, type: 3}

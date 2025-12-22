@@ -9,6 +9,7 @@ public abstract class WeaponBase : MonoBehaviour
     public GameObject gfx;
 
     public WeaponDataSO weaponData;
+    public EnemyDetection enemyDetector;
 
     protected float damage;
     protected float projectileSpeed;
@@ -35,10 +36,24 @@ public abstract class WeaponBase : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        
+    }
+
+    private void OnDisable()
+    {
+        
+    }
+
     protected virtual void Awake()
     {
+        statManager = GetComponent<StatManager>();
+
         statManager.statList = weaponData.GetAllWeaponStats();
         statManager.InitializeStats();
+
+        statManager.OnStatChanged += UpdateStatsHandled;
     }
 
     protected virtual void Start()
@@ -48,8 +63,6 @@ public abstract class WeaponBase : MonoBehaviour
 
     public virtual void UpdateWeapon()
     {
-        Debug.Log("Updating Weapon");
-
         if (coolDownTimer > 0f)
         {
             coolDownTimer -= Time.deltaTime;
@@ -61,7 +74,6 @@ public abstract class WeaponBase : MonoBehaviour
         // cooldown done. Activate weapon if it is not active.
         if (!isActive)
         {
-            Debug.Log("Weapon Activated");
             activeTimer = duration;
             ToggleGFXVisibility(true);
             isActive = true;
@@ -72,7 +84,6 @@ public abstract class WeaponBase : MonoBehaviour
         if (activeTimer > 0f)
         {
             activeTimer -= Time.deltaTime;
-            Debug.Log("Ticking Active");
         }
         else
         {
@@ -85,11 +96,28 @@ public abstract class WeaponBase : MonoBehaviour
 
     public virtual void ToggleGFXVisibility(bool b)
     {
+        if (gfx == null) return;
         gfx.SetActive(b);
     }
 
     public virtual void UpdateWeaponDamage()
     {
         damage = statManager.GetStat(EStatType.Damage).currentValue;
+    }
+
+    protected void UpdateStatsHandled()
+    {
+        AOESize = statManager.GetStat(EStatType.AOESize).currentValue;
+        cooldown = statManager.GetStat(EStatType.AttackCooldown).currentValue;
+        damage = statManager.GetStat(EStatType.Damage).currentValue;
+        duration = statManager.GetStat(EStatType.ActiveDuration).currentValue;
+        fireRate = statManager.GetStat(EStatType.FireRate).currentValue;
+        projectileSpeed = statManager.GetStat(EStatType.ProjectileSpeed).currentValue;
+        projectileCount = statManager.GetStat(EStatType.ProjectileCount).currentValue;
+    }
+
+    public virtual void LevelUpWeapon()
+    {
+
     }
 }

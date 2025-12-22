@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -8,7 +9,7 @@ public class HealthSystem : MonoBehaviour
 {
     [Header("Health Settings")]
     [SerializeField] private int maxHealth = 100;
-    [SerializeField, DisplayOnly] private int currentHealth;
+    [SerializeField, DisplayOnly] public int currentHealth;
 
     [Header("Settings")]
     public bool canDestroyOnDeath = true;
@@ -58,6 +59,8 @@ public class HealthSystem : MonoBehaviour
     public int MaxHealth => maxHealth;
     public int CurrentHealth => currentHealth;
     public bool IsDead => isDead;
+
+    public event Action<float> OnHealthChanged;
 
     private void Awake()
     {
@@ -121,6 +124,7 @@ public class HealthSystem : MonoBehaviour
         {
             PlayHurtEffect();
             onDamageTaken?.Invoke();
+            if(isPlayer) OnHealthChanged?.Invoke(currentHealth);
         }
     }
 

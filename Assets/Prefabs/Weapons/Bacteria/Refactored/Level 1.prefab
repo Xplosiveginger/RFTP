@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7927607670140822403}
   - component: {fileID: 4515729473339641768}
+  - component: {fileID: 4348357215413980032}
+  - component: {fileID: 6251396345773529348}
   m_Layer: 0
   m_Name: Level 1
   m_TagString: Untagged
@@ -39,7 +41,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5562305457002169948}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c3719171a58d814fb70a53039818791, type: 3}
   m_Name: 
@@ -49,3 +51,35 @@ MonoBehaviour:
   throwForce: 5
   radius: 7
   fireInterval: 2
+--- !u!114 &4348357215413980032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5562305457002169948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53cef195c9b844a46bc8ba094b9ba6d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statManager: {fileID: 6251396345773529348}
+  gfx: {fileID: 0}
+  weaponData: {fileID: 11400000, guid: e668b5821adb649409fb0dc1c7bd15bc, type: 2}
+  isActive: 0
+  inCooldown: 0
+  projectilePrefab: {fileID: 8256342322822366005, guid: 69a79e338541d8d4099a8d5db87632c1, type: 3}
+--- !u!114 &6251396345773529348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5562305457002169948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6db34c11c33b97e48bfc69a589427d90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: {fileID: 0}
+  statList: []

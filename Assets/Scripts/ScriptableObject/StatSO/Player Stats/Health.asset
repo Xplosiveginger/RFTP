@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Health
   m_EditorClassIdentifier: 
   statName: 1
-  baseValue: 100
-  maxValue: 100
+  baseValue: 10000
+  maxValue: 10000
   startValue: 0
   startMultiplier: 1
   currentMultiplier: 1
-  currentValue: 100
+  currentValue: 10000
   customMaxValue: 0
-  showCurrentValues: 0
+  showCurrentValues: 1
