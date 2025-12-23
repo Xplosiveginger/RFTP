@@ -104,6 +104,7 @@ public class StatManager : MonoBehaviour
     private void UpdateHealthCurrentValue(float value)
     {
         GetStat(EStatType.Health).currentValue = value;
+
     }
 
     private void OnCurrentValueChangedHandled(Stat stat)

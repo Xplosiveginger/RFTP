@@ -26,7 +26,8 @@ public class BaseEnemyRefactor : MonoBehaviour
         statManager = GetComponent<StatManager>();
         moveSpeed = statManager.GetStat(EStatType.MoveSpeed).currentValue;
         health = statManager.GetStat(EStatType.Health).currentValue;
-        maxHealth = statManager.GetStat(EStatType.Health).currentValue;
+        maxHealth = statManager.GetStat(EStatType.Health).maxValue;
+        agent.updateUpAxis = false;
         MoveSpeedApplier();
     }
 
@@ -44,9 +45,9 @@ public class BaseEnemyRefactor : MonoBehaviour
         {
             transform.rotation = Quaternion.identity;
             agent.SetDestination(targetPos);
-
             FaceTarget(targetPos);
         }
+
     }
 
     public virtual void Die()
@@ -72,7 +73,12 @@ public class BaseEnemyRefactor : MonoBehaviour
     {
         moveSpeed = statManager.GetStat(EStatType.MoveSpeed).currentValue;
         health = statManager.GetStat(EStatType.Health).currentValue;
+        maxHealth = statManager.GetStat(EStatType.Health).maxValue;
         MoveSpeedApplier();
+    }
+    public virtual void UpdateHealth()
+    {
+        health = statManager.GetStat(EStatType.Health).currentValue;
     }
 
 }

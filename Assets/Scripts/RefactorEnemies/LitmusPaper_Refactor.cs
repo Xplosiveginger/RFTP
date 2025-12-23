@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 
 public class LitmusPaper_Refactor : BaseEnemyRefactor
@@ -33,7 +32,8 @@ public class LitmusPaper_Refactor : BaseEnemyRefactor
     public void CheckHealthState()
     {
 
-        float hpPercent = (float)statManager.GetStat(EStatType.Health).currentValue / maxHealth;
+        float hpPercent = (health/ maxHealth);
+        Debug.Log(hpPercent+("IS Damageing"));
 
         if (hpPercent <= 25f && !exploded)
         {
@@ -120,6 +120,11 @@ public class LitmusPaper_Refactor : BaseEnemyRefactor
     protected override void UpdateStatsHandled()
     {
         base.UpdateStatsHandled();
+        CheckHealthState();
+    }
+    public override void UpdateHealth()
+    {
+        base.UpdateHealth();
         CheckHealthState();
     }
 
