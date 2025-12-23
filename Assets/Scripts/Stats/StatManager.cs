@@ -8,6 +8,7 @@ public class StatManager : MonoBehaviour
     public bool isDamagable;
     public HealthSystem health;
 
+    public List<StatDataSO> statDataList;
     public List<Stat> statList;
 
     public event Action<Stat> OnValueChanged;
@@ -31,23 +32,34 @@ public class StatManager : MonoBehaviour
     private void OnEnable()
     {
         if(isDamagable) health.OnHealthChanged += UpdateHealthCurrentValue;
+
+        if (statList.Count == 0) return;
+        foreach (Stat stat in statList)
+        {
+            stat.OnCurrentValueChanged += OnCurrentValueChangedHandled;
+        }
     }
 
     private void OnDisable()
     {
         if(isDamagable) health.OnHealthChanged -= UpdateHealthCurrentValue;
+
+        foreach (Stat stat in statList)
+        {
+            stat.OnCurrentValueChanged -= OnCurrentValueChangedHandled;
+        }
     }
 
     public void InitializeStats()
     {
-        if(statList.Count == 0)
+        if(statDataList.Count == 0)
             return;
 
-        foreach (Stat stat in statList)
+        statList.Clear();
+        foreach (StatDataSO statData in statDataList)
         {
-            stat.Init();
-
-            stat.OnCurrentValueChanged += OnCurrentValueChangedHandled;
+            Stat stat = statData.Init();
+            statList.Add(stat);
         }
     }
 
@@ -143,5 +155,5 @@ public class StatManager : MonoBehaviour
             default: Debug.LogError($"Stat changed event for {statName} stat not defined.\nPlease define the event.");
                 break;
         }
-    }
+    } 
 }

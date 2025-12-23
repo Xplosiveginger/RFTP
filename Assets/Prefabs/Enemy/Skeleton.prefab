@@ -222,6 +222,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultFacingLeft: 0
   moveSpeed: 5
+  moveSpeedMultiplier: 0
+  statManager: {fileID: -4183431948116384970}
   boneProjectilePrefab: {fileID: 4378682058645906929, guid: 928b57ab7bc594d4d91f9949ac698da1, type: 3}
   attackRange: 5
   attackCooldown: 2
@@ -240,6 +242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDamagable: 1
   health: {fileID: -5904573852011322737}
+  statDataList: []
   statList: []
 --- !u!1 &6001087531730801353
 GameObject:

@@ -221,6 +221,7 @@ MonoBehaviour:
   defaultFacingLeft: 0
   moveSpeed: 3.5
   moveSpeedMultiplier: 50
+  statManager: {fileID: -6722925433350841161}
   changingSprites:
   - {fileID: 21300000, guid: 8d24129ebfb5ffc4cbbf80452be806d8, type: 3}
   - {fileID: 21300000, guid: 48ed8a4a2fdccaf448806b6c0062c349, type: 3}
@@ -292,6 +293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDamagable: 1
   health: {fileID: 4718403573189803202}
-  statList:
-  - {fileID: 11400000, guid: e46498aa1b1ce2d42ac3fd466d5e63da, type: 2}
+  statDataList:
   - {fileID: 11400000, guid: 28436043897c2c24a91b33015f54d11f, type: 2}
+  - {fileID: 11400000, guid: e46498aa1b1ce2d42ac3fd466d5e63da, type: 2}
+  statList: []

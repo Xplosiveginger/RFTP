@@ -120,7 +120,6 @@ public class LitmusPaper_Refactor : BaseEnemyRefactor
     protected override void UpdateStatsHandled()
     {
         base.UpdateStatsHandled();
-        CheckHealthState();
     }
     public override void UpdateHealth()
     {

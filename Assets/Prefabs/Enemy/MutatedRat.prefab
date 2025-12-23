@@ -221,6 +221,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultFacingLeft: 1
   moveSpeed: 5
+  moveSpeedMultiplier: 0
+  statManager: {fileID: 118058094996581986}
   acidParticlePrefab: {fileID: 7155335147208632822, guid: 97c43495f80a3244fad1301dfafbe252, type: 3}
   acidSpritePrefab: {fileID: 3904308360467140003, guid: e85ae5f0cf155554ca7e8d58b014d3de, type: 3}
   spawnRadius: 3
@@ -239,4 +241,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDamagable: 1
   health: {fileID: 1867706625461616748}
+  statDataList: []
   statList: []

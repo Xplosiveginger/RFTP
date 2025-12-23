@@ -31,11 +31,24 @@ public class PlayerController2D : MonoBehaviour
         statManager.OnHealthChanged += GetModifiedHealth;
     }
 
-    private void Start()
+    private void OnDisable()
+    {
+        statManager.OnMoveSpeedChanged -= GetModifiedSpeed;
+        statManager.OnHealthChanged -= GetModifiedHealth;
+    }
+
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         health = GetComponent<HealthSystem>();
+
+        statManager.InitializeStats();
+    }
+
+    private void Start()
+    {
+        
 
         GetModifiedSpeed();
         GetModifiedHealth();
@@ -69,7 +82,8 @@ public class PlayerController2D : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            weaponManager.GetWeapon(EWeaponName.Magnet).statManager.ModifyStat(EStatType.AOESize, 20);
+            statManager.ModifyStat(EStatType.MoveSpeed, 20);
+            //weaponManager.GetWeapon(EWeaponName.Magnet).statManager.ModifyStat(EStatType.AOESize, 20);
         }
     }
 

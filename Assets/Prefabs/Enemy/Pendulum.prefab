@@ -191,6 +191,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultFacingLeft: 1
   moveSpeed: 3.5
+  moveSpeedMultiplier: 0
+  statManager: {fileID: -7171792425800454507}
 --- !u!114 &-7171792425800454507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,6 +207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDamagable: 1
   health: {fileID: -1017736596779775944}
+  statDataList: []
   statList: []
 --- !u!1 &8033702345953058883
 GameObject:

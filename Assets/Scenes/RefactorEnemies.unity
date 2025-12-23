@@ -731,7 +731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b873737e2f18db44fb12b59390c4feeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1976184402}
 --- !u!1001 &575439589
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3309,9 +3309,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDamagable: 1
   health: {fileID: 1976184396}
-  statList:
+  statDataList:
   - {fileID: 11400000, guid: 207aa412d695dd142ba85747edb30cf8, type: 2}
   - {fileID: 11400000, guid: 1ddb48cf48ab0a04b800566f8f52bc74, type: 2}
+  statList: []
 --- !u!70 &1976184392
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

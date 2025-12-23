@@ -36,24 +36,22 @@ public abstract class WeaponBase : MonoBehaviour
         }
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
-        
+        statManager.OnStatChanged += UpdateStatsHandled;
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
-        
+        statManager.OnStatChanged -= UpdateStatsHandled;
     }
 
     protected virtual void Awake()
     {
         statManager = GetComponent<StatManager>();
 
-        statManager.statList = weaponData.GetAllWeaponStats();
+        statManager.statDataList = weaponData.GetAllWeaponStatDatas();
         statManager.InitializeStats();
-
-        statManager.OnStatChanged += UpdateStatsHandled;
     }
 
     protected virtual void Start()

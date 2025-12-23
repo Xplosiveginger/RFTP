@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -15,15 +16,25 @@ public class BaseEnemyRefactor : MonoBehaviour
     [SerializeField] protected float moveSpeedMultiplier;
     protected float health;
     protected float maxHealth;
-    protected StatManager statManager;
-    private void OnEnable()
+    [SerializeField] protected StatManager statManager;
+
+    public StatManager StatManager => statManager;
+
+    protected virtual void OnEnable()
     {
         statManager.OnStatChanged += UpdateStatsHandled;
     }
+
+    protected virtual void OnDisable()
+    {
+        statManager.OnStatChanged -= UpdateStatsHandled;
+    }
+
     protected virtual void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         statManager = GetComponent<StatManager>();
+        statManager.InitializeStats();
         moveSpeed = statManager.GetStat(EStatType.MoveSpeed).currentValue;
         health = statManager.GetStat(EStatType.Health).currentValue;
         maxHealth = statManager.GetStat(EStatType.Health).maxValue;
@@ -81,4 +92,17 @@ public class BaseEnemyRefactor : MonoBehaviour
         health = statManager.GetStat(EStatType.Health).currentValue;
     }
 
+
+    public void Freeze(float time)
+    {
+        StartCoroutine(FreezeMovement(time));
+    }
+
+    IEnumerator FreezeMovement(float time)
+    {
+        float temp = moveSpeed;
+        moveSpeed = 0;
+        yield return new WaitForSeconds(time);
+        moveSpeed = temp;
+    }
 }
