@@ -17,7 +17,3 @@ MonoBehaviour:
   maxValue: 0
   startValue: 0
   startMultiplier: 1
-  currentMultiplier: 1
-  currentValue: 0
-  customMaxValue: 0
-  showCurrentValues: 0

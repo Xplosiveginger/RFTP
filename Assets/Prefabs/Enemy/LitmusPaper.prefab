@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -5043783504497774089}
   - component: {fileID: -5985460390454809785}
   - component: {fileID: 4718403573189803202}
+  - component: {fileID: -6722925433350841161}
   m_Layer: 6
   m_Name: LitmusPaper
   m_TagString: Enemy
@@ -98,7 +99,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2913699253501788760}
-  m_BodyType: 2
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -219,6 +220,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultFacingLeft: 0
   moveSpeed: 3.5
+  moveSpeedMultiplier: 50
+  statManager: {fileID: -6722925433350841161}
   changingSprites:
   - {fileID: 21300000, guid: 8d24129ebfb5ffc4cbbf80452be806d8, type: 3}
   - {fileID: 21300000, guid: 48ed8a4a2fdccaf448806b6c0062c349, type: 3}
@@ -255,7 +258,19 @@ MonoBehaviour:
       m_Calls: []
   onDamageTaken:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -5985460390454809785}
+        m_TargetAssemblyTypeName: BaseEnemyRefactor, Assembly-CSharp
+        m_MethodName: UpdateHealth
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   deathEffect: {fileID: 0}
   jumpPower: 0.6
   jumpNum: 1
@@ -264,3 +279,21 @@ MonoBehaviour:
   scaleEase: 8
   hurtCooldown: 0.1
   healthSlider: {fileID: 0}
+--- !u!114 &-6722925433350841161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2913699253501788760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6db34c11c33b97e48bfc69a589427d90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDamagable: 1
+  health: {fileID: 4718403573189803202}
+  statDataList:
+  - {fileID: 11400000, guid: 28436043897c2c24a91b33015f54d11f, type: 2}
+  - {fileID: 11400000, guid: e46498aa1b1ce2d42ac3fd466d5e63da, type: 2}
+  statList: []

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 
 public class LitmusPaper_Refactor : BaseEnemyRefactor
@@ -18,14 +17,12 @@ public class LitmusPaper_Refactor : BaseEnemyRefactor
     public LayerMask damageArea;
 
     private SpriteRenderer spriteRenderer;
-    private HealthSystem health;
     private bool exploded = false;
 
     protected override void Awake()
     {
         base.Awake();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        health = GetComponent<HealthSystem>();
 
         if (changingSprites != null && changingSprites.Count > 0)
             spriteRenderer.sprite = changingSprites[0];
@@ -34,9 +31,9 @@ public class LitmusPaper_Refactor : BaseEnemyRefactor
     }
     public void CheckHealthState()
     {
-        if (health == null) return;
 
-        float hpPercent = (float)health.CurrentHealth / health.MaxHealth;
+        float hpPercent = (health/ maxHealth);
+        Debug.Log(hpPercent+("IS Damageing"));
 
         if (hpPercent <= 25f && !exploded)
         {
@@ -120,10 +117,19 @@ public class LitmusPaper_Refactor : BaseEnemyRefactor
         }
     }
 
+    protected override void UpdateStatsHandled()
+    {
+        base.UpdateStatsHandled();
+    }
+    public override void UpdateHealth()
+    {
+        base.UpdateHealth();
+        CheckHealthState();
+    }
+
     private void IncreaseSpeedOnce()
     {
-        moveSpeed += moveSpeedIncreaser;
-        moveSpeedincrease?.Invoke();
+       statManager.ModifyStat(EStatType.MoveSpeed, moveSpeedIncreaser);
     }
     private void OnDrawGizmos()
     {

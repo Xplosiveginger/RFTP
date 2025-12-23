@@ -28,7 +28,6 @@ public class EnemyManager : MonoBehaviour
         HandleENPCombination();
         HandleMutatedRatAcid(playerPos, Time.deltaTime);
         HandleSkeletonAttacks(playerPos, Time.deltaTime);
-        HandleLitmusPaperHealthCheck();
     }
 
     // =======================================================
@@ -113,17 +112,6 @@ public class EnemyManager : MonoBehaviour
         for (int i = 0; i < skeletons.Count; i++)
         {
             skeletons[i].CheckAttack(playerPos, deltaTime);
-        }
-    }
-
-    // =======================================================
-    // LITMUSPAPER HEALTHCHECK
-    // =======================================================
-    private void HandleLitmusPaperHealthCheck()
-    {
-        for(int i = 0; i<litmusPaper.Count; i++)
-        {
-            litmusPaper[i].CheckHealthState();
         }
     }
 

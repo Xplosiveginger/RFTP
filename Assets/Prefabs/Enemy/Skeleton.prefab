@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -5904573852011322737}
   - component: {fileID: 3761545616782106416}
   - component: {fileID: -3153848889844271207}
+  - component: {fileID: -4183431948116384970}
   m_Layer: 6
   m_Name: Skeleton
   m_TagString: Enemy
@@ -221,10 +222,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultFacingLeft: 0
   moveSpeed: 5
+  moveSpeedMultiplier: 0
+  statManager: {fileID: -4183431948116384970}
   boneProjectilePrefab: {fileID: 4378682058645906929, guid: 928b57ab7bc594d4d91f9949ac698da1, type: 3}
   attackRange: 5
   attackCooldown: 2
   throwPoint: {fileID: 7896511847740555964}
+--- !u!114 &-4183431948116384970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 12792752347874169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6db34c11c33b97e48bfc69a589427d90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDamagable: 1
+  health: {fileID: -5904573852011322737}
+  statDataList: []
+  statList: []
 --- !u!1 &6001087531730801353
 GameObject:
   m_ObjectHideFlags: 0

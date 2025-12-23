@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,18 +12,34 @@ public class BaseEnemyRefactor : MonoBehaviour
     [Tooltip("True if the default sprite (scale.x positive) faces left, false if it faces right")]
     public bool defaultFacingLeft = true;
 
-    [SerializeField] protected float moveSpeed = 3.5f;
-    public Action moveSpeedincrease;
+    [SerializeField] protected float moveSpeed;
+    [SerializeField] protected float moveSpeedMultiplier;
+    protected float health;
+    protected float maxHealth;
+    [SerializeField] protected StatManager statManager;
 
-    private void OnEnable()
+    public StatManager StatManager => statManager;
+
+    protected virtual void OnEnable()
     {
-        moveSpeedincrease += MoveSpeedApplier;
+        statManager.OnStatChanged += UpdateStatsHandled;
     }
 
-    
+    protected virtual void OnDisable()
+    {
+        statManager.OnStatChanged -= UpdateStatsHandled;
+    }
+
     protected virtual void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        statManager = GetComponent<StatManager>();
+        statManager.InitializeStats();
+        moveSpeed = statManager.GetStat(EStatType.MoveSpeed).currentValue;
+        health = statManager.GetStat(EStatType.Health).currentValue;
+        maxHealth = statManager.GetStat(EStatType.Health).maxValue;
+        agent.updateUpAxis = false;
+        MoveSpeedApplier();
     }
 
     public void MoveSpeedApplier()
@@ -38,9 +56,9 @@ public class BaseEnemyRefactor : MonoBehaviour
         {
             transform.rotation = Quaternion.identity;
             agent.SetDestination(targetPos);
-
             FaceTarget(targetPos);
         }
+
     }
 
     public virtual void Die()
@@ -62,8 +80,29 @@ public class BaseEnemyRefactor : MonoBehaviour
         transform.localScale = new Vector3(xScale, transform.localScale.y, transform.localScale.z);
     }
 
-    private void OnDisable()
+    protected virtual void UpdateStatsHandled()
     {
-        moveSpeedincrease -= MoveSpeedApplier;
+        moveSpeed = statManager.GetStat(EStatType.MoveSpeed).currentValue;
+        health = statManager.GetStat(EStatType.Health).currentValue;
+        maxHealth = statManager.GetStat(EStatType.Health).maxValue;
+        MoveSpeedApplier();
+    }
+    public virtual void UpdateHealth()
+    {
+        health = statManager.GetStat(EStatType.Health).currentValue;
+    }
+
+
+    public void Freeze(float time)
+    {
+        StartCoroutine(FreezeMovement(time));
+    }
+
+    IEnumerator FreezeMovement(float time)
+    {
+        float temp = moveSpeed;
+        moveSpeed = 0;
+        yield return new WaitForSeconds(time);
+        moveSpeed = temp;
     }
 }

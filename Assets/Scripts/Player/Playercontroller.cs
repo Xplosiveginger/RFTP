@@ -23,8 +23,7 @@ public class PlayerController2D : MonoBehaviour
     public ReworkedWeaponManager weaponManager;
 
     //test
-    public WeaponDataSO weapon;
-    public EWeaponName weaponToLevelUp;
+    public WeaponDataSO liIon;
 
     private void OnEnable()
     {
@@ -32,11 +31,24 @@ public class PlayerController2D : MonoBehaviour
         statManager.OnHealthChanged += GetModifiedHealth;
     }
 
-    private void Start()
+    private void OnDisable()
+    {
+        statManager.OnMoveSpeedChanged -= GetModifiedSpeed;
+        statManager.OnHealthChanged -= GetModifiedHealth;
+    }
+
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         health = GetComponent<HealthSystem>();
+
+        statManager.InitializeStats();
+    }
+
+    private void Start()
+    {
+        
 
         GetModifiedSpeed();
         GetModifiedHealth();
@@ -65,12 +77,13 @@ public class PlayerController2D : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            AddNewWeapon();
+            AddLithiumIonWeapon();
         }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            weaponManager.GetWeapon(weaponToLevelUp).LevelUpWeapon();
+            statManager.ModifyStat(EStatType.MoveSpeed, 20);
+            //weaponManager.GetWeapon(EWeaponName.Magnet).statManager.ModifyStat(EStatType.AOESize, 20);
         }
     }
 
@@ -96,9 +109,9 @@ public class PlayerController2D : MonoBehaviour
     }
 
     // Testing *****************************
-    private void AddNewWeapon()
+    private void AddLithiumIonWeapon()
     {
-        GetComponent<ReworkedWeaponManager>().AddNewWeapon(weapon);
+        GetComponent<ReworkedWeaponManager>().AddNewWeapon(liIon);
     }
 
     private void ApplySpeedModif()
@@ -117,6 +130,5 @@ public class PlayerController2D : MonoBehaviour
     {
         Stat stat = statManager.GetStat(EStatType.Health);
         health.currentHealth = (int)stat.currentValue;
-        health.maxHealth = (int)stat.maxValue;
     }
 }

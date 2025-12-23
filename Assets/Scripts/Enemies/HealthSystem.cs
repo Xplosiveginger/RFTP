@@ -124,7 +124,7 @@ public class HealthSystem : MonoBehaviour
         {
             PlayHurtEffect();
             onDamageTaken?.Invoke();
-            if(isPlayer) OnHealthChanged?.Invoke(currentHealth);
+            OnHealthChanged?.Invoke(currentHealth);
         }
     }
 
