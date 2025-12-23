@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,18 +11,23 @@ public class BaseEnemyRefactor : MonoBehaviour
     [Tooltip("True if the default sprite (scale.x positive) faces left, false if it faces right")]
     public bool defaultFacingLeft = true;
 
-    [SerializeField] protected float moveSpeed = 3.5f;
-    public Action moveSpeedincrease;
-
+    [SerializeField] protected float moveSpeed;
+    [SerializeField] protected float moveSpeedMultiplier;
+    protected float health;
+    protected float maxHealth;
+    protected StatManager statManager;
     private void OnEnable()
     {
-        moveSpeedincrease += MoveSpeedApplier;
+        statManager.OnStatChanged += UpdateStatsHandled;
     }
-
-    
     protected virtual void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        statManager = GetComponent<StatManager>();
+        moveSpeed = statManager.GetStat(EStatType.MoveSpeed).currentValue;
+        health = statManager.GetStat(EStatType.Health).currentValue;
+        maxHealth = statManager.GetStat(EStatType.Health).currentValue;
+        MoveSpeedApplier();
     }
 
     public void MoveSpeedApplier()
@@ -62,8 +68,11 @@ public class BaseEnemyRefactor : MonoBehaviour
         transform.localScale = new Vector3(xScale, transform.localScale.y, transform.localScale.z);
     }
 
-    private void OnDisable()
+    protected virtual void UpdateStatsHandled()
     {
-        moveSpeedincrease -= MoveSpeedApplier;
+        moveSpeed = statManager.GetStat(EStatType.MoveSpeed).currentValue;
+        health = statManager.GetStat(EStatType.Health).currentValue;
+        MoveSpeedApplier();
     }
+
 }

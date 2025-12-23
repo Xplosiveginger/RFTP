@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6501894726412244800}
   - component: {fileID: 4189684448977457385}
   - component: {fileID: -5984972142892319199}
+  - component: {fileID: -7171792425800454507}
   m_Layer: 6
   m_Name: Pendulum
   m_TagString: Enemy
@@ -189,6 +190,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultFacingLeft: 1
+  moveSpeed: 3.5
+--- !u!114 &-7171792425800454507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2148986130981883437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6db34c11c33b97e48bfc69a589427d90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDamagable: 1
+  health: {fileID: -1017736596779775944}
+  statList: []
 --- !u!1 &8033702345953058883
 GameObject:
   m_ObjectHideFlags: 0
