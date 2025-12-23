@@ -23,7 +23,8 @@ public class PlayerController2D : MonoBehaviour
     public ReworkedWeaponManager weaponManager;
 
     //test
-    public WeaponDataSO liIon;
+    public WeaponDataSO weapon;
+    public EWeaponName weaponToLevelUp;
 
     private void OnEnable()
     {
@@ -64,12 +65,12 @@ public class PlayerController2D : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            AddLithiumIonWeapon();
+            AddNewWeapon();
         }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            weaponManager.GetWeapon(EWeaponName.Magnet).statManager.ModifyStat(EStatType.AOESize, 20);
+            weaponManager.GetWeapon(weaponToLevelUp).LevelUpWeapon();
         }
     }
 
@@ -95,9 +96,9 @@ public class PlayerController2D : MonoBehaviour
     }
 
     // Testing *****************************
-    private void AddLithiumIonWeapon()
+    private void AddNewWeapon()
     {
-        GetComponent<ReworkedWeaponManager>().AddNewWeapon(liIon);
+        GetComponent<ReworkedWeaponManager>().AddNewWeapon(weapon);
     }
 
     private void ApplySpeedModif()
@@ -116,5 +117,6 @@ public class PlayerController2D : MonoBehaviour
     {
         Stat stat = statManager.GetStat(EStatType.Health);
         health.currentHealth = (int)stat.currentValue;
+        health.maxHealth = (int)stat.maxValue;
     }
 }

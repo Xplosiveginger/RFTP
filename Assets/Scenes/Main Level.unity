@@ -1620,6 +1620,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 758daacc25fd5b3439399034a12c73e1, type: 2}
     - target: {fileID: 4317606704090541399, guid: a31d3eda6d885544789a234488df2c25, type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 11400000, guid: e668b5821adb649409fb0dc1c7bd15bc, type: 2}
+    - target: {fileID: 4317606704090541399, guid: a31d3eda6d885544789a234488df2c25, type: 3}
       propertyPath: statManager
       value: 
       objectReference: {fileID: 2026983369}

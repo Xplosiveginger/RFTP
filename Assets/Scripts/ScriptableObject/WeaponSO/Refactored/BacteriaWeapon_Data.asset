@@ -19,4 +19,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 165db7eef9982844397b5393cd4fd779, type: 2}
   - {fileID: 11400000, guid: 01293cc087717f34fba4f38b45e58824, type: 2}
   - {fileID: 11400000, guid: 0502fc3862d81614ea721f885ee99696, type: 2}
+  - {fileID: 11400000, guid: f08a1759439fd3f44b1240a9a23890ef, type: 2}
+  - {fileID: 11400000, guid: c21256671319a2e45a0014f64176c091, type: 2}
   weaponPrefab: {fileID: 5562305457002169948, guid: c6720c861af1d3146a1379d40c618710, type: 3}

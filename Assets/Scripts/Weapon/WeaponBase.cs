@@ -11,6 +11,8 @@ public abstract class WeaponBase : MonoBehaviour
     public WeaponDataSO weaponData;
     public EnemyDetection enemyDetector;
 
+    protected int level = 1;
+
     protected float damage;
     protected float projectileSpeed;
     protected float projectileCount;
@@ -105,7 +107,7 @@ public abstract class WeaponBase : MonoBehaviour
         damage = statManager.GetStat(EStatType.Damage).currentValue;
     }
 
-    protected void UpdateStatsHandled()
+    protected virtual void UpdateStatsHandled()
     {
         AOESize = statManager.GetStat(EStatType.AOESize).currentValue;
         cooldown = statManager.GetStat(EStatType.AttackCooldown).currentValue;
@@ -118,6 +120,6 @@ public abstract class WeaponBase : MonoBehaviour
 
     public virtual void LevelUpWeapon()
     {
-
+        level++;
     }
 }

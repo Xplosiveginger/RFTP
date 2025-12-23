@@ -20,4 +20,4 @@ MonoBehaviour:
   currentMultiplier: 1
   currentValue: 6
   customMaxValue: 0
-  showCurrentValues: 0
+  showCurrentValues: 1

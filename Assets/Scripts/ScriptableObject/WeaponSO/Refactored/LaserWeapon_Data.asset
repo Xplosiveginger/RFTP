@@ -17,4 +17,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 446ca8c45b9c4a14bba265892e2ab089, type: 2}
   - {fileID: 11400000, guid: 691b414de1d876140b32bc84d6ce1459, type: 2}
   - {fileID: 11400000, guid: 623c172b48784f9458bbb7c29aaf413d, type: 2}
+  - {fileID: 11400000, guid: 455541c71dd47c040b3f2c5a226bf15d, type: 2}
+  - {fileID: 11400000, guid: dc861cce90aca8c4381efbda8cf3e84b, type: 2}
+  - {fileID: 11400000, guid: 53b097847a9fcee4db7346a7807f3c3f, type: 2}
+  - {fileID: 11400000, guid: 6ed59128b94132a44a3f814a3fc62592, type: 2}
   weaponPrefab: {fileID: 356355764091272799, guid: e27f151903661194d8b635110386d09d, type: 3}

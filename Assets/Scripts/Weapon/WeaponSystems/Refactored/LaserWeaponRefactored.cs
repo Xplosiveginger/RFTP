@@ -25,6 +25,7 @@ public class LaserWeaponRefactored : WeaponBase
         damage = statManager.GetStat(EStatType.Damage).currentValue;
         duration = statManager.GetStat(EStatType.ActiveDuration).currentValue;
         cooldown = statManager.GetStat(EStatType.AttackCooldown).currentValue;
+        projectileCount = statManager.GetStat(EStatType.ProjectileCount).currentValue;
     }
 
     protected override void Start()
@@ -52,6 +53,9 @@ public class LaserWeaponRefactored : WeaponBase
 
         if (range >= 3)
             CreateLaser(Vector2.up, 90f, offsetUp);
+
+        if(projectileCount < 3)
+            activeLasers[activeLasers.Count - 1].SetActive(false);
     }
 
     void CreateLaser(Vector2 dir, float angle, float distanceOffset)
@@ -90,6 +94,10 @@ public class LaserWeaponRefactored : WeaponBase
         {
             laser.SetActive(b);
         }
+        if(projectileCount < 3)
+            activeLasers[activeLasers.Count - 1].SetActive(false);
+        else
+            activeLasers[activeLasers.Count - 1].SetActive(b);
     }
 
     public override void UpdateWeaponDamage()
@@ -105,5 +113,48 @@ public class LaserWeaponRefactored : WeaponBase
         {
             laser.transform.GetChild(4).GetComponent<Damage>().damage = damage;
         }
+    }
+
+    public override void LevelUpWeapon()
+    {
+        base.LevelUpWeapon();
+        UpgradeLaser();
+    }
+
+    private void UpgradeLaser()
+    {
+        switch (level)
+        {
+            case 1:
+                break;
+            case 2: statManager.ModifyStatValue(EStatType.AttackCooldown, 0.5f, true);
+                break;
+            case 3: statManager.ModifyStatValue(EStatType.Damage, 5f, false);
+                break;
+            case 4: statManager.ModifyStatValue(EStatType.Damage, 5f, false);
+                break;
+            case 5: statManager.ModifyStatValue(EStatType.Damage, 5f, false);
+                break;
+            case 6: statManager.ModifyStatValue(EStatType.Damage, 5f, false);
+                statManager.ModifyStatValue(EStatType.ProjectileCount, 1f, false);
+                break;
+            case 7: statManager.ModifyStatValue(EStatType.Damage, 5f, false);
+                statManager.ModifyStatValue(EStatType.AttackCooldown, 0.5f, true);
+                break;
+            case 8: statManager.ModifyStatValue(EStatType.Damage, 5f, false);
+                break;
+            default:
+                break;
+        }
+    }
+
+    protected override void UpdateStatsHandled()
+    {
+        base.UpdateStatsHandled();
+
+        if (isActive)
+            ToggleGFXVisibility(true);
+
+        UpdateDamageForEachLaser();
     }
 }

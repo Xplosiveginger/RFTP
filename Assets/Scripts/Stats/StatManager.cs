@@ -77,6 +77,22 @@ public class StatManager : MonoBehaviour
         return statList;
     }
 
+    /// <summary>
+    /// Modifies the Current value of the provided stat by a certain amount.
+    /// </summary>
+    /// <param name="statType">The stat to modify.</param>
+    /// <param name="value">The amount by which the current value should be changed.</param>
+    /// <param name="subtract">Should the value be subtracted or added to the current value.</param>
+    public void ModifyStatValue(EStatType statType, float value, bool subtract)
+    {
+        Stat stat = GetStat(statType);
+        if (stat == null) return;
+
+        stat.currentValue = (!subtract)? stat.currentValue + value : stat.currentValue - value;
+        OnValueChanged?.Invoke(stat);
+        OnStatChanged?.Invoke();
+    }
+
     public void ModifyStat(EStatType statName, float modifier)
     {
         foreach (Stat stat in statList)

@@ -57,4 +57,50 @@ public class BacteriaReworked : WeaponBase
         Vector3 shootAt = enemyDetector.GetPositionOfRandomEnemy(); // Change this later to detect enemies and fire in their direction.
         projectile.GetComponent<Rigidbody2D>().velocity = (shootAt - transform.position).normalized * projectileSpeed;
     }
+
+    public override void LevelUpWeapon()
+    {
+        base.LevelUpWeapon();
+
+        UpgradeBacteria();
+    }
+
+    private void UpgradeBacteria()
+    {
+        switch(level)
+        {
+            case 1:
+                break;
+            case 2:
+                statManager.ModifyStatValue(EStatType.AttackCooldown, 0.3f, true);
+                break;
+            case 3:
+                statManager.ModifyStatValue(EStatType.Damage, 5f, false);
+                break;
+            case 4:
+                statManager.ModifyStatValue(EStatType.ProjectileCount, 1f, false);
+                break;
+            case 5:
+                statManager.ModifyStatValue(EStatType.Damage, 5f, false);
+                statManager.ModifyStatValue(EStatType.AttackCooldown, 0.3f, true);
+                break;
+            case 6:
+                statManager.ModifyStatValue(EStatType.ProjectileCount, 1f, false);
+                break;
+            case 7:
+                statManager.ModifyStatValue(EStatType.Damage, 5f, false);
+                break;
+            case 8:
+                statManager.ModifyStatValue(EStatType.Damage, 5f, false);
+                statManager.ModifyStatValue(EStatType.AttackCooldown, 0.3f, true);
+                break;
+            default:
+                break;
+        }
+    }
+
+    protected override void UpdateStatsHandled()
+    {
+        base.UpdateStatsHandled();
+    }
 }
