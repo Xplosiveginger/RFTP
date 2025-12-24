@@ -58,4 +58,12 @@ public class Stat
         currentValue += valueToAdd;
         currentMultiplier += tempMultiplier;
     }
+    /// <summary>
+    /// Flat stat change (used for non-percentage stats).
+    /// </summary>
+    public void AddFlat(float value)
+    {
+        currentValue += value;
+    }
+    
 }

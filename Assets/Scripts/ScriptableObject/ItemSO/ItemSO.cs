@@ -1,30 +1,53 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Defines whether an item is permanent (Shop)
+/// or temporary for a single run (Game).
+/// </summary>
+public enum ItemType
+{
+    Shop,   // Permanent, pre-run
+    Game    // Temporary, run-only
+}
+
+/// <summary>
+/// Represents ONE level/rank of an item.
+/// Each level applies exactly one stat modification
+/// and optionally has a visual prefab.
+/// </summary>
 [System.Serializable]
 public class ItemLevel
 {
-    [Header("Visuals / Prefab")]
-    public GameObject itemPrefab;
-    public Sprite cardSprite;
+    [Header("Visual Representation")]
+    public GameObject itemPrefab;   // Spawned when an item is owned at this level
+    public Sprite cardSprite;       // Used by UI (shop/cards)
 
     [Header("Stat Effect")]
-    public EStatType targetStat;     // Which stat this level affects
-    public float modifierAmount;     // e.g. 10 = +10%
-    public bool isPercentage = true; // If true, use Stat.ApplyModifier
+    public EStatType targetStat;     // Stat affected by this level
+    public float modifierAmount;     // +10 = +10% or +10 flat
+    public bool isPercentage = true; // true = %, false = flat
 }
 
+/// <summary>
+/// ScriptableObject representing an item.
+/// Used by both Shop items and Game items.
+/// Contains ONLY data and stat application logic.
+/// </summary>
 [CreateAssetMenu(fileName = "NewItem", menuName = "Items/Item")]
 public class ItemSO : ScriptableObject
 {
     public string itemName;
 
-    [Header("Per Level Settings")]
+    [Header("Item Category")]
+    public ItemType itemType;
+
+    [Header("Level Configuration")]
     public List<ItemLevel> levels;
 
     /// <summary>
-    /// Applies the stat modification for the given level index.
-    /// Called by ItemManager when this item becomes active / levels up.
+    /// Applies stat modification for the given level.
+    /// Called by ItemManager when an item is added or upgraded.
     /// </summary>
     public void StatModify(StatManager statManager, int levelIndex)
     {
@@ -38,12 +61,8 @@ public class ItemSO : ScriptableObject
         if (stat == null) return;
 
         if (level.isPercentage)
-        {
             stat.ApplyModifier(level.modifierAmount);
-        }
         else
-        {
-            stat.currentValue += level.modifierAmount;
-        }
+            stat.AddFlat(level.modifierAmount);
     }
 }
