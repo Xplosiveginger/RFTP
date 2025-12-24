@@ -15,16 +15,29 @@ public class ReworkedWeaponManager : MonoBehaviour
     private void Awake()
     {
         InitializeWeapon();
+    }
 
+    private void OnEnable()
+    {
         OnWeaponLeveledUp += LevelUpWeaponHandled;
     }
 
-    public void UpdateWeaponStat(EStatType statName, float modifier)
+    private void OnDisable()
+    {
+        OnWeaponLeveledUp -= LevelUpWeaponHandled;
+    }
+
+    public void UpdateStatForAllWeapons(EStatType statName, float modifier, bool subtract)
     {
         foreach (var weapon in activeWeapons)
         {
-            weapon.statManager.ModifyStat(statName, modifier);
+            weapon.statManager.ModifyStat(statName, modifier, subtract);
         }
+    }
+
+    public void UpdateWeaponStat(EWeaponName weaponName, EStatType statName, float modifier, bool subtract)
+    {
+        GetWeapon(weaponName).statManager.GetStat(statName).ApplyModifier(modifier, subtract);
     }
 
     public WeaponBase GetWeapon(EWeaponName weaponName)

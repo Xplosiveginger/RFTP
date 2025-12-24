@@ -29,29 +29,29 @@ public class Stat
         this.currentValue = this.baseValue;
     }
 
-    public void ApplyModifier(float modifier)
+    public void ApplyModifier(float modifier, bool subtract)
     {
         float tempMultiplier = modifier / 100f;
 
         float valueToAdd = baseValue * tempMultiplier;
-        currentValue += valueToAdd;
-        currentMultiplier += tempMultiplier;
+        currentValue = (!subtract)? currentValue + valueToAdd : currentValue - valueToAdd;
+        currentMultiplier = (!subtract) ? currentMultiplier + tempMultiplier : currentMultiplier - tempMultiplier;
 
         OnCurrentValueChanged?.Invoke(this);
     }
 
-    public void ApplyHealthModifier(float modifier)
+    public void ApplyHealthModifier(float modifier, bool subtract)
     {
         if (statName != EStatType.Health) return;
 
         float tempMultiplier = modifier / 100f;
 
         float valueToAdd = maxValue * tempMultiplier;
-        currentValue += valueToAdd;
+        currentValue = (!subtract) ? currentValue + valueToAdd : currentValue - valueToAdd;
         OnCurrentValueChanged?.Invoke(this);
-        maxValue += valueToAdd;
+        maxValue = (!subtract) ? maxValue + valueToAdd : maxValue - valueToAdd;
         OnMaxValueChanged.Invoke();
-        currentMultiplier += tempMultiplier;
+        currentMultiplier = (!subtract) ? currentMultiplier + tempMultiplier : currentMultiplier - tempMultiplier;
     }
 
     public void ApplyCooldownModifier(float modifier)

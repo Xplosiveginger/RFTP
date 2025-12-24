@@ -87,12 +87,12 @@ public class StatManager : MonoBehaviour
     /// <summary>
     /// Modifies the Current value of the provided stat by a certain amount.
     /// </summary>
-    /// <param name="statType">The stat to modify.</param>
+    /// <param name="statName">The stat to modify.</param>
     /// <param name="value">The amount by which the current value should be changed.</param>
     /// <param name="subtract">Should the value be subtracted or added to the current value.</param>
-    public void ModifyStatValue(EStatType statType, float value, bool subtract)
+    public void ModifyStatValue(EStatType statName, float value, bool subtract)
     {
-        Stat stat = GetStat(statType);
+        Stat stat = GetStat(statName);
         if (stat == null) return;
 
         stat.currentValue = (!subtract)? stat.currentValue + value : stat.currentValue - value;
@@ -100,26 +100,32 @@ public class StatManager : MonoBehaviour
         OnStatChanged?.Invoke();
     }
 
-    public void ModifyStat(EStatType statName, float modifier)
+    /// <summary>
+    /// Modifies the Current value of the provided stat by a certain percentage.
+    /// </summary>
+    /// <param name="statName">The stat to modify.</param>
+    /// <param name="modifier">The percentage by which the current value should be changed.</param>
+    /// <param name="subtract">Should the value be subtracted or added to the current value.</param>
+    public void ModifyStat(EStatType statName, float modifier, bool subtract)
     {
         foreach (Stat stat in statList)
         {
             if(stat.statName == statName)
             {
-                stat.ApplyModifier(modifier);
+                stat.ApplyModifier(modifier, subtract);
                 break;
             }
             continue;
         }
     }
 
-    public void ModifyHealthStat(float modifier)
+    public void ModifyHealthStat(float modifier, bool subtract)
     {
         foreach (Stat stat in statList)
         {
             if (stat.statName == EStatType.Health)
             {
-                stat.ApplyHealthModifier(modifier);
+                stat.ApplyHealthModifier(modifier, subtract);
             }
         }
     }
