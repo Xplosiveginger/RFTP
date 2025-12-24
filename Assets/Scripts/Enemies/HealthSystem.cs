@@ -45,7 +45,7 @@ public class HealthSystem : MonoBehaviour
     private Sequence hurtSeq;
     private EnemyAI enemy;
 
-    public bool takingDOT {get; private set;}
+    public bool takingDOT { get; private set; }
     private int dotDamage = 0;
 
     private static readonly int FlashAmountID = Shader.PropertyToID("_FlashAmount");
@@ -86,19 +86,17 @@ public class HealthSystem : MonoBehaviour
     private void OnEnable()
     {
         // Kill any tweens first
-        if(DOTween.IsTweening(transform))
+        if (DOTween.IsTweening(transform))
         {
             transform.DOKill(true); // kill and complete
             hurtSeq?.Kill();
         }
-       
 
         // Reset scale before anything else
         transform.localScale = defaultScale;
 
         ResetHealth();
     }
-
 
     private void Update()
     {
@@ -147,7 +145,7 @@ public class HealthSystem : MonoBehaviour
             Instantiate(deathEffect, transform.position, Quaternion.identity);
 
         // Kill ongoing tweens
-        if(DOTween.IsTweening(transform))
+        if (DOTween.IsTweening(transform))
         {
             transform.DOKill();
             hurtSeq?.Kill();
@@ -221,7 +219,6 @@ public class HealthSystem : MonoBehaviour
         // Kill any running tweens
         if (DOTween.IsTweening(transform))
         {
-
             transform.DOKill(true);
             hurtSeq?.Kill();
         }
@@ -235,7 +232,6 @@ public class HealthSystem : MonoBehaviour
         gameObject.SetActive(true);
         UpdateHealthUI();
     }
-
 
     public void SetMaxHealth(int newMaxHealth, bool resetCurrentHealth = true)
     {
