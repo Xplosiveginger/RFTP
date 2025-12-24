@@ -24,11 +24,6 @@ public class StatManager : MonoBehaviour
     public event Action OnDamageChanged;
     public event Action OnAOESizeChanged;
 
-    private void Awake()
-    {
-        InitializeStats();
-    }
-
     private void OnEnable()
     {
         if(isDamagable) health.OnHealthChanged += UpdateHealthCurrentValue;
