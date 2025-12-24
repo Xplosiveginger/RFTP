@@ -56,4 +56,48 @@ public class LithiumIonReworked : WeaponBase
         Vector3 shootAt = enemyDetector.GetPositionOfRandomEnemy(); // Change this later to detect enemies and fire in their direction.
         projectile.GetComponent<Rigidbody2D>().velocity = (shootAt - transform.position).normalized * projectileSpeed;
     }
+
+    public override void LevelUpWeapon()
+    {
+        base.LevelUpWeapon();
+
+        LevelUpLiIon();
+    }
+
+    private void LevelUpLiIon()
+    {
+        switch (level)
+        {
+            case 1:
+                break;
+            case 2: 
+                statManager.ModifyStatValue(EStatType.Damage, 2f, false);
+                break;
+            case 3: 
+                statManager.ModifyStatValue(EStatType.Damage, 2f, false);
+                break;
+            case 4: 
+                statManager.ModifyStatValue(EStatType.Damage, 2f, false);
+                statManager.ModifyStatValue(EStatType.ProjectileCount, 1f, false);
+                break;
+            case 5: 
+                statManager.ModifyStatValue(EStatType.Damage, 2f, false);
+                statManager.ModifyStat(EStatType.AOESize, 10f, false);
+                break;
+            case 6: 
+                statManager.ModifyStatValue(EStatType.Damage, 2f, false);
+                statManager.ModifyStat(EStatType.ProjectileCount, 1f, false);
+                break;
+            case 7: 
+                statManager.ModifyStatValue(EStatType.Damage, 2f, false);
+                statManager.ModifyStat(EStatType.AOESize, 10f, false);
+                break;
+            case 8: 
+                statManager.ModifyStatValue(EStatType.Damage, 4f, false);
+                break;
+            default: 
+                Debug.Log($"Max Level Reached for {weaponData.weaponName}");
+                break;
+        }
+    }
 }

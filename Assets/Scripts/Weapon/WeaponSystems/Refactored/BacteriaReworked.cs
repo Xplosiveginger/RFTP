@@ -95,6 +95,7 @@ public class BacteriaReworked : WeaponBase
                 statManager.ModifyStatValue(EStatType.AttackCooldown, 0.3f, true);
                 break;
             default:
+                Debug.Log($"Max Level Reached for {weaponData.weaponName}");
                 break;
         }
     }

@@ -32,4 +32,48 @@ public class MagnetRefactored : WeaponBase
                 return -1.0f;
         }
     }
+
+    public override void LevelUpWeapon()
+    {
+        base.LevelUpWeapon();
+
+        LevelUpMagnet();
+    }
+
+    private void LevelUpMagnet()
+    {
+        switch (level)
+        {
+            case 1:
+                break;
+            case 2:
+                statManager.ModifyStatValue(EStatType.Damage, 4f, false);
+                break;
+            case 3:
+                statManager.ModifyStatValue(EStatType.Damage, 4f, false);
+                statManager.ModifyStat(EStatType.AOESize, 15f, false);
+                break;
+            case 4:
+                statManager.ModifyStatValue(EStatType.Damage, 4f, false);
+                statManager.ModifyStatValue(EStatType.AttackCooldown, 0.5f, true);
+                break;
+            case 5:
+                statManager.ModifyStatValue(EStatType.Damage, 4f, false);
+                statManager.ModifyStat(EStatType.AOESize, 15f, false);
+                break;
+            case 6:
+                statManager.ModifyStatValue(EStatType.Damage, 4f, false);
+                statManager.ModifyStatValue(EStatType.AttackCooldown, 0.5f, true);
+                break;
+            case 7:
+                statManager.ModifyStatValue(EStatType.Damage, 5f, false);
+                break;
+            case 8:
+                statManager.ModifyStatValue(EStatType.Damage, 6f, false);
+                break;
+            default:
+                Debug.Log($"Max Level Reached for {weaponData.weaponName}");
+                break;
+        }
+    }
 }
