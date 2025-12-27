@@ -82,7 +82,7 @@ public class PlayerController2D : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            statManager.ModifyStat(EStatType.MoveSpeed, 20, false);
+            statManager.ModifyStat(EStatType.MoveSpeed, 20);
             //weaponManager.GetWeapon(EWeaponName.Magnet).statManager.ModifyStat(EStatType.AOESize, 20);
         }
     }
@@ -116,7 +116,7 @@ public class PlayerController2D : MonoBehaviour
 
     private void ApplySpeedModif()
     {
-        statManager.ModifyStat(EStatType.MoveSpeed, 10, false);
+        statManager.ModifyStat(EStatType.MoveSpeed, 10);
     }
     //**********************************
 

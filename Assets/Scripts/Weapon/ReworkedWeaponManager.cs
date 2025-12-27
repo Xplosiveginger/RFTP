@@ -27,17 +27,17 @@ public class ReworkedWeaponManager : MonoBehaviour
         OnWeaponLeveledUp -= LevelUpWeaponHandled;
     }
 
-    public void UpdateStatForAllWeapons(EStatType statName, float modifier, bool subtract)
+    public void UpdateStatForAllWeapons(EStatType statName, float modifier)
     {
         foreach (var weapon in activeWeapons)
         {
-            weapon.statManager.ModifyStat(statName, modifier, subtract);
+            weapon.statManager.ModifyStat(statName, modifier);
         }
     }
 
-    public void UpdateWeaponStat(EWeaponName weaponName, EStatType statName, float modifier, bool subtract)
+    public void UpdateWeaponStat(EWeaponName weaponName, EStatType statName, float modifier)
     {
-        GetWeapon(weaponName).statManager.GetStat(statName).ApplyModifier(modifier, subtract);
+        GetWeapon(weaponName).statManager.GetStat(statName).ApplyModifier(modifier);
     }
 
     public WeaponBase GetWeapon(EWeaponName weaponName)

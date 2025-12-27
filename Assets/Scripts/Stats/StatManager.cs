@@ -89,13 +89,12 @@ public class StatManager : MonoBehaviour
     /// </summary>
     /// <param name="statName">The stat to modify.</param>
     /// <param name="value">The amount by which the current value should be changed.</param>
-    /// <param name="subtract">Should the value be subtracted or added to the current value.</param>
-    public void ModifyStatValue(EStatType statName, float value, bool subtract)
+    public void ModifyStatValue(EStatType statName, float value)
     {
         Stat stat = GetStat(statName);
         if (stat == null) return;
 
-        stat.currentValue = (!subtract)? stat.currentValue + value : stat.currentValue - value;
+        stat.currentValue += value;
         OnValueChanged?.Invoke(stat);
         OnStatChanged?.Invoke();
     }
@@ -105,27 +104,26 @@ public class StatManager : MonoBehaviour
     /// </summary>
     /// <param name="statName">The stat to modify.</param>
     /// <param name="modifier">The percentage by which the current value should be changed.</param>
-    /// <param name="subtract">Should the value be subtracted or added to the current value.</param>
-    public void ModifyStat(EStatType statName, float modifier, bool subtract)
+    public void ModifyStat(EStatType statName, float modifier)
     {
         foreach (Stat stat in statList)
         {
             if(stat.statName == statName)
             {
-                stat.ApplyModifier(modifier, subtract);
+                stat.ApplyModifier(modifier);
                 break;
             }
             continue;
         }
     }
 
-    public void ModifyHealthStat(float modifier, bool subtract)
+    public void ModifyHealthStat(float modifier)
     {
         foreach (Stat stat in statList)
         {
             if (stat.statName == EStatType.Health)
             {
-                stat.ApplyHealthModifier(modifier, subtract);
+                stat.ApplyHealthModifier(modifier);
             }
         }
     }

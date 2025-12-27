@@ -71,29 +71,29 @@ public class LithiumIonReworked : WeaponBase
             case 1:
                 break;
             case 2: 
-                statManager.ModifyStatValue(EStatType.Damage, 2f, false);
+                statManager.ModifyStatValue(EStatType.Damage, 2f);
                 break;
             case 3: 
-                statManager.ModifyStatValue(EStatType.Damage, 2f, false);
+                statManager.ModifyStatValue(EStatType.Damage, 2f);
                 break;
             case 4: 
-                statManager.ModifyStatValue(EStatType.Damage, 2f, false);
-                statManager.ModifyStatValue(EStatType.ProjectileCount, 1f, false);
+                statManager.ModifyStatValue(EStatType.Damage, 2f);
+                statManager.ModifyStatValue(EStatType.ProjectileCount, 1f);
                 break;
             case 5: 
-                statManager.ModifyStatValue(EStatType.Damage, 2f, false);
-                statManager.ModifyStat(EStatType.AOESize, 10f, false);
+                statManager.ModifyStatValue(EStatType.Damage, 2f);
+                statManager.ModifyStat(EStatType.AOESize, 10f);
                 break;
             case 6: 
-                statManager.ModifyStatValue(EStatType.Damage, 2f, false);
-                statManager.ModifyStat(EStatType.ProjectileCount, 1f, false);
+                statManager.ModifyStatValue(EStatType.Damage, 2f);
+                statManager.ModifyStat(EStatType.ProjectileCount, 1f);
                 break;
             case 7: 
-                statManager.ModifyStatValue(EStatType.Damage, 2f, false);
-                statManager.ModifyStat(EStatType.AOESize, 10f, false);
+                statManager.ModifyStatValue(EStatType.Damage, 2f);
+                statManager.ModifyStat(EStatType.AOESize, 10f);
                 break;
             case 8: 
-                statManager.ModifyStatValue(EStatType.Damage, 4f, false);
+                statManager.ModifyStatValue(EStatType.Damage, 4f);
                 break;
             default: 
                 Debug.Log($"Max Level Reached for {weaponData.weaponName}");

@@ -129,7 +129,7 @@ public class LitmusPaper_Refactor : BaseEnemyRefactor
 
     private void IncreaseSpeedOnce()
     {
-       statManager.ModifyStat(EStatType.MoveSpeed, moveSpeedIncreaser, false);
+       statManager.ModifyStat(EStatType.MoveSpeed, moveSpeedIncreaser);
     }
     private void OnDrawGizmos()
     {

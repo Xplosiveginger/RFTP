@@ -47,29 +47,29 @@ public class MagnetRefactored : WeaponBase
             case 1:
                 break;
             case 2:
-                statManager.ModifyStatValue(EStatType.Damage, 4f, false);
+                statManager.ModifyStatValue(EStatType.Damage, 4f);
                 break;
             case 3:
-                statManager.ModifyStatValue(EStatType.Damage, 4f, false);
-                statManager.ModifyStat(EStatType.AOESize, 15f, false);
+                statManager.ModifyStatValue(EStatType.Damage, 4f);
+                statManager.ModifyStat(EStatType.AOESize, 15f);
                 break;
             case 4:
-                statManager.ModifyStatValue(EStatType.Damage, 4f, false);
-                statManager.ModifyStatValue(EStatType.AttackCooldown, 0.5f, true);
+                statManager.ModifyStatValue(EStatType.Damage, 4f);
+                statManager.ModifyStatValue(EStatType.AttackCooldown, -0.5f);
                 break;
             case 5:
-                statManager.ModifyStatValue(EStatType.Damage, 4f, false);
-                statManager.ModifyStat(EStatType.AOESize, 15f, false);
+                statManager.ModifyStatValue(EStatType.Damage, 4f);
+                statManager.ModifyStat(EStatType.AOESize, 15f);
                 break;
             case 6:
-                statManager.ModifyStatValue(EStatType.Damage, 4f, false);
-                statManager.ModifyStatValue(EStatType.AttackCooldown, 0.5f, true);
+                statManager.ModifyStatValue(EStatType.Damage, 4f);
+                statManager.ModifyStatValue(EStatType.AttackCooldown, -0.5f);
                 break;
             case 7:
-                statManager.ModifyStatValue(EStatType.Damage, 5f, false);
+                statManager.ModifyStatValue(EStatType.Damage, 5f);
                 break;
             case 8:
-                statManager.ModifyStatValue(EStatType.Damage, 6f, false);
+                statManager.ModifyStatValue(EStatType.Damage, 6f);
                 break;
             default:
                 Debug.Log($"Max Level Reached for {weaponData.weaponName}");

@@ -72,27 +72,27 @@ public class BacteriaReworked : WeaponBase
             case 1:
                 break;
             case 2:
-                statManager.ModifyStatValue(EStatType.AttackCooldown, 0.3f, true);
+                statManager.ModifyStatValue(EStatType.AttackCooldown, -0.3f);
                 break;
             case 3:
-                statManager.ModifyStatValue(EStatType.Damage, 5f, false);
+                statManager.ModifyStatValue(EStatType.Damage, 5f);
                 break;
             case 4:
-                statManager.ModifyStatValue(EStatType.ProjectileCount, 1f, false);
+                statManager.ModifyStatValue(EStatType.ProjectileCount, 1f);
                 break;
             case 5:
-                statManager.ModifyStatValue(EStatType.Damage, 5f, false);
-                statManager.ModifyStatValue(EStatType.AttackCooldown, 0.3f, true);
+                statManager.ModifyStatValue(EStatType.Damage, 5f);
+                statManager.ModifyStatValue(EStatType.AttackCooldown, -0.3f);
                 break;
             case 6:
-                statManager.ModifyStatValue(EStatType.ProjectileCount, 1f, false);
+                statManager.ModifyStatValue(EStatType.ProjectileCount, 1f);
                 break;
             case 7:
-                statManager.ModifyStatValue(EStatType.Damage, 5f, false);
+                statManager.ModifyStatValue(EStatType.Damage, 5f);
                 break;
             case 8:
-                statManager.ModifyStatValue(EStatType.Damage, 5f, false);
-                statManager.ModifyStatValue(EStatType.AttackCooldown, 0.3f, true);
+                statManager.ModifyStatValue(EStatType.Damage, 5f);
+                statManager.ModifyStatValue(EStatType.AttackCooldown, -0.3f);
                 break;
             default:
                 Debug.Log($"Max Level Reached for {weaponData.weaponName}");
