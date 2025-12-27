@@ -66,6 +66,7 @@ public class BaseEnemyRefactor : MonoBehaviour
         if (agent != null)
             agent.ResetPath();
 
+        statManager.ResetHealthStatOnDeath();
         EnemyManager.Instance.DespawnEnemy(this);
     }
     protected void FaceTarget(Vector3 targetPos)

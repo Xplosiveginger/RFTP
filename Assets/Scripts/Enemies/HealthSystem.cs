@@ -45,6 +45,8 @@ public class HealthSystem : MonoBehaviour
     private Sequence hurtSeq;
     private EnemyAI enemy;
 
+    public bool debug;
+
     public bool takingDOT { get; private set; }
     private int dotDamage = 0;
 
@@ -111,6 +113,9 @@ public class HealthSystem : MonoBehaviour
     public void Damage(int damageAmount)
     {
         if (isDead || damageAmount <= 0) return;
+
+        if(debug)
+            Debug.Log(damageAmount);
 
         currentHealth -= damageAmount;
         currentHealth = Mathf.Max(0, currentHealth);

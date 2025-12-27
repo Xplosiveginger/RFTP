@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 [System.Serializable]
 public class Stat
@@ -64,5 +61,22 @@ public class Stat
         currentValue -= valueToRemove;
         OnCurrentValueChanged?.Invoke(this);
         currentMultiplier -= tempMultiplier;
+    }
+
+    public void RevertModifier(float modifier)
+    {
+        float tempMultiplier = -modifier / 100f;
+
+        float valueToAdd = baseValue * tempMultiplier;
+        currentValue +=  valueToAdd;
+        currentMultiplier += tempMultiplier;
+
+        OnCurrentValueChanged?.Invoke(this);
+    }
+
+    public void AddFlat(float value)
+    {
+        currentValue += value;
+        OnCurrentValueChanged?.Invoke(this);
     }
 }

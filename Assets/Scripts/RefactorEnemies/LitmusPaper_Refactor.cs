@@ -33,9 +33,9 @@ public class LitmusPaper_Refactor : BaseEnemyRefactor
     {
 
         float hpPercent = (health/ maxHealth);
-        Debug.Log(hpPercent+("IS Damageing"));
+        Debug.Log(hpPercent+(" IS Damageing"));
 
-        if (hpPercent <= 25f && !exploded)
+        if (hpPercent <= 25f && !exploded) // problem - Check math calc
         {
             exploded = true;
             EnterAcidicBurst();
@@ -129,7 +129,7 @@ public class LitmusPaper_Refactor : BaseEnemyRefactor
 
     private void IncreaseSpeedOnce()
     {
-       statManager.ModifyStat(EStatType.MoveSpeed, moveSpeedIncreaser);
+       statManager.ModifyStat(EStatType.MoveSpeed, moveSpeedIncreaser, false);
     }
     private void OnDrawGizmos()
     {

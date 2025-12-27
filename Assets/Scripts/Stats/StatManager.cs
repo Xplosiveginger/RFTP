@@ -133,7 +133,6 @@ public class StatManager : MonoBehaviour
     private void UpdateHealthCurrentValue(float value)
     {
         GetStat(EStatType.Health).currentValue = value;
-
     }
 
     private void OnCurrentValueChangedHandled(Stat stat)
@@ -173,4 +172,11 @@ public class StatManager : MonoBehaviour
                 break;
         }
     } 
+
+    public void ResetHealthStatOnDeath()
+    {
+        Stat stat = GetStat(EStatType.Health);
+
+        stat.currentValue = stat.maxValue;
+    }
 }

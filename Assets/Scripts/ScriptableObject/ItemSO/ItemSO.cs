@@ -61,7 +61,7 @@ public class ItemSO : ScriptableObject
         if (stat == null) return;
 
         if (level.isPercentage)
-            stat.ApplyModifier(level.modifierAmount);
+            stat.ApplyModifier(level.modifierAmount, false);
         else
             stat.AddFlat(level.modifierAmount);
     }

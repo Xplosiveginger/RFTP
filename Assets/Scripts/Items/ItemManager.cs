@@ -37,8 +37,7 @@ public class ItemManager : MonoBehaviour
 
     private void Awake()
     {
-        if (statManager == null)
-            statManager = StatManager.Instance;
+        statManager = GetComponent<StatManager>();
     }
 
     private void Start()

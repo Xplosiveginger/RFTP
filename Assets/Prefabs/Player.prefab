@@ -18,7 +18,6 @@ GameObject:
   - component: {fileID: 7340812015436146963}
   - component: {fileID: 1191794303852628603}
   - component: {fileID: 8242218151111905515}
-  - component: {fileID: 7343476908725539296}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -167,10 +166,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e1a3b66ddec2d48888ee0f301f5e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statManager: {fileID: 0}
-  defaultMoveSpeed: 5
+  moveSpeed: 5
   inflicted: 0
   speedModifier: 0
+  statManager: {fileID: 0}
+  weaponManager: {fileID: 0}
+  liIon: {fileID: 0}
 --- !u!114 &7664751407247831055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,20 +184,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ff3ddee1dcecd0499cc220e9d0a097f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
   canDestroyOnDeath: 1
   isPlayer: 1
-  onDamageRequested:
-    m_PersistentCalls:
-      m_Calls: []
-  onHealRequested:
-    m_PersistentCalls:
-      m_Calls: []
-  onRegenTick:
-    m_PersistentCalls:
-      m_Calls: []
-  onDotTick:
-    m_PersistentCalls:
-      m_Calls: []
   onDeath:
     m_PersistentCalls:
       m_Calls:
@@ -215,7 +206,7 @@ MonoBehaviour:
   onPostDeath:
     m_PersistentCalls:
       m_Calls: []
-  onDamageTakenVisual:
+  onDamageTaken:
     m_PersistentCalls:
       m_Calls: []
   deathEffect: {fileID: 0}
@@ -226,8 +217,6 @@ MonoBehaviour:
   scaleEase: 8
   hurtCooldown: 0.1
   healthSlider: {fileID: 0}
-  maxHealthVisual: 100
-  currentHealthVisual: 100
 --- !u!114 &7340812015436146963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,17 +286,3 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 2.41, y: 5.1199994}
   m_Direction: 0
---- !u!114 &7343476908725539296
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7174557516275297522}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee31479613b1282429df07ab17160eb2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSystem: {fileID: 7664751407247831055}
-  statManager: {fileID: 0}

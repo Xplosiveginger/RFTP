@@ -279,6 +279,7 @@ MonoBehaviour:
   scaleEase: 8
   hurtCooldown: 0.1
   healthSlider: {fileID: 0}
+  debug: 1
 --- !u!114 &-6722925433350841161
 MonoBehaviour:
   m_ObjectHideFlags: 0
