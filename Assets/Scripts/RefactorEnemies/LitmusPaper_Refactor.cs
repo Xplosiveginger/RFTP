@@ -33,9 +33,9 @@ public class LitmusPaper_Refactor : BaseEnemyRefactor
     {
 
         float hpPercent = (health/ maxHealth);
-        Debug.Log(hpPercent+(" IS Damageing"));
+        Debug.Log(hpPercent+("IS Damageing"));
 
-        if (hpPercent <= 25f && !exploded) // problem - Check math calc
+        if (hpPercent <= 0.25f && !exploded)
         {
             exploded = true;
             EnterAcidicBurst();
