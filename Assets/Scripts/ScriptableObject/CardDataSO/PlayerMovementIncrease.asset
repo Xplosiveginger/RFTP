@@ -12,15 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 781b090621e04b44ab0b2e52cc84c23d, type: 3}
   m_Name: PlayerMovementIncrease
   m_EditorClassIdentifier: 
-  levelImages: []
-  cardPriority: 1
-  affectsPlayer: 0
+  levelImages:
+  - {fileID: 21300000, guid: b6cb32d8e9ded1a4b9ace1b42e60d654, type: 3}
+  - {fileID: 21300000, guid: 0d5fef4fa14e5bc409705f4eea23394b, type: 3}
+  - {fileID: 21300000, guid: dc9e36bbd351cbb43b9ebe6e84c2eb04, type: 3}
+  - {fileID: 21300000, guid: 79453649262db8b499852d7945d4c1bd, type: 3}
+  - {fileID: 21300000, guid: cc08863846d41124596ea8ee3757756d, type: 3}
+  cardPriority: 3
+  affectsPlayer: 1
   affectedPlayerStat: 0
   playerStatModifier: 0
   affectsEnemy: 0
   affectedEnemyStat: 0
   enemyStatModifier: 0
-  affectsWeapon: 0
+  affectsWeaponLevel: 0
   weaponName: 0
+  affectsWeaponStat: 0
   affectedWeaponStat: 0
   weaponStatModifier: 0

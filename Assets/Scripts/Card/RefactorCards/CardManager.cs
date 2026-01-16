@@ -6,6 +6,7 @@ public class CardManager : MonoBehaviour
 {
     [SerializeField] protected List<CardDataSO> cardDatas;
     [SerializeField] protected List<RefactorCardUi> cards;
+    [SerializeField] protected ReworkedWeaponManager weaponManager; 
 
     public event Action OnCardsInitialized;
     public static event Action<CardDataSO> CardSelected;
@@ -58,7 +59,7 @@ public class CardManager : MonoBehaviour
 
             CardDataSO selectedCard = weightedCardPool[UnityEngine.Random.Range(0, weightedCardPool.Count)];
 
-            cards[i].Initialize(selectedCard, this);
+            cards[i].Initialize(selectedCard, this , weaponManager);
 
             weightedCardPool.RemoveAll(c => c == selectedCard);
         }

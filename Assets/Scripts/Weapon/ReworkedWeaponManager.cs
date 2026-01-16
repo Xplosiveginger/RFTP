@@ -14,7 +14,7 @@ public class ReworkedWeaponManager : MonoBehaviour
 
     private void Awake()
     {
-        InitializeWeapon();
+        //InitializeWeapon();
 
         OnWeaponLeveledUp += LevelUpWeaponHandled;
     }
@@ -67,7 +67,7 @@ public class ReworkedWeaponManager : MonoBehaviour
         InitializeWeapon(weaponToAdd);
     }
 
-    private void LevelUpWeaponHandled(EWeaponName weaponName)
+    public void LevelUpWeaponHandled(EWeaponName weaponName)
     {
         GetWeapon(weaponName).LevelUpWeapon();
     }
