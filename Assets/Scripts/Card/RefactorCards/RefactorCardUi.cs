@@ -33,13 +33,16 @@ public class RefactorCardUi : MonoBehaviour
             if (cardData.affectsWeaponLevel)
             {
                 if(cardData.levelImages.Count > 0)
-                    weaponManager.LevelUpWeaponHandled(cardData.weaponName);
+                {
+
+                }
+                    //weaponManager.LevelUpWeaponHandled(cardData.weaponName);
                 //else if(cardData.levelImages.Count == 0)
 
             }
             else if (cardData.affectsWeaponStat)
             {
-                weaponManager.UpdateWeaponStat(cardData.affectedWeaponStat, cardData.weaponStatModifier);
+                //weaponManager.UpdateWeaponStat(cardData.affectedWeaponStat, cardData.weaponStatModifier);
             }
             cardManager.OnCardSelected(cardData);
         }
