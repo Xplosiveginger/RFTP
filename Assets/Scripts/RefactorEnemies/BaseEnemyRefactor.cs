@@ -16,22 +16,31 @@ public class BaseEnemyRefactor : MonoBehaviour
     [SerializeField] protected float moveSpeedMultiplier;
     protected float health;
     protected float maxHealth;
+    HealthSystem healthSystem;
     [SerializeField] protected StatManager statManager;
+
+    // to be removed later
+    [SerializeField] GameObject XpOrbPrefab;
+    [SerializeField] int expDrop;
+    // ********************
 
     public StatManager StatManager => statManager;
 
     protected virtual void OnEnable()
     {
+        healthSystem.OnDeath += Die;
         statManager.OnStatChanged += UpdateStatsHandled;
     }
 
     protected virtual void OnDisable()
     {
+        healthSystem.OnDeath -= Die;
         statManager.OnStatChanged -= UpdateStatsHandled;
     }
 
     protected virtual void Awake()
     {
+        healthSystem = GetComponent<HealthSystem>();
         agent = GetComponent<NavMeshAgent>();
         statManager = GetComponent<StatManager>();
         statManager.InitializeStats();
@@ -66,9 +75,17 @@ public class BaseEnemyRefactor : MonoBehaviour
         if (agent != null)
             agent.ResetPath();
 
-        statManager.ResetHealthStatOnDeath();
+        SpawnXp();
+        //statManager.ResetHealthStatOnDeath();
         EnemyManager.Instance.DespawnEnemy(this);
     }
+
+    public virtual void ResetOnDeath()
+    {
+        statManager.ResetHealthStatOnDeath();
+        health = statManager.GetStat(EStatType.Health).maxValue;
+    }
+
     protected void FaceTarget(Vector3 targetPos)
     {
         Vector3 direction = targetPos - transform.position;
@@ -93,6 +110,15 @@ public class BaseEnemyRefactor : MonoBehaviour
         health = statManager.GetStat(EStatType.Health).currentValue;
     }
 
+    public void SpawnXp()
+    {
+        if (XpOrbPrefab == null) return;
+
+        GameObject xpOrb = Instantiate(XpOrbPrefab, transform.position, Quaternion.identity);
+        XpDrop orb = xpOrb.GetComponent<XpDrop>();
+        if (orb != null)
+            orb.xpAmount = expDrop;
+    }
 
     public void Freeze(float time)
     {

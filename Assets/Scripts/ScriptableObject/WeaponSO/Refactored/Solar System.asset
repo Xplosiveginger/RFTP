@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Solar System
   m_EditorClassIdentifier: 
   weaponName: 6
-  weaponStats:
+  weaponStatData:
   - {fileID: 11400000, guid: 39516d146b5990f43be06b8f6e589df8, type: 2}
   - {fileID: 11400000, guid: 15c1c825c46b66f429e9228967af868e, type: 2}
   - {fileID: 11400000, guid: 6bb1b446ad393f8408e3d482fb680ac2, type: 2}

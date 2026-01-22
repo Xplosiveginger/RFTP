@@ -14,4 +14,13 @@ public class Projectile : MonoBehaviour
 
         Destroy(gameObject);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        BaseEnemyRefactor enemy = collision.gameObject.GetComponent<BaseEnemyRefactor>();
+        if (enemy != null)
+            enemy.GetComponent<HealthSystem>().Damage((int)damage);
+
+        Destroy(gameObject);
+    }
 }

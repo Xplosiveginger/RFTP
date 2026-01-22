@@ -117,6 +117,18 @@ public class StatManager : MonoBehaviour
         }
     }
 
+    public void ApplyTemporaryStatModifier(EStatType statName, float modifier, float time)
+    {
+        StartCoroutine(ApplyTemporaryStatModifierCoroutine(statName, modifier, time));
+    }
+
+    IEnumerator ApplyTemporaryStatModifierCoroutine(EStatType statName, float modifier, float time)
+    {
+        ModifyStat(statName, modifier);
+        yield return new WaitForSeconds(time);
+        GetStat(statName).RevertModifier(modifier);
+    }
+
     public void ModifyHealthStat(float modifier)
     {
         foreach (Stat stat in statList)

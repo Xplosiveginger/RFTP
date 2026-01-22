@@ -17,15 +17,15 @@ public class ReworkedWeaponManager : MonoBehaviour
         InitializeWeapon();
     }
 
-    private void OnEnable()
-    {
-        OnWeaponLeveledUp += LevelUpWeaponHandled;
-    }
+    //private void OnEnable()
+    //{
+    //    OnWeaponLeveledUp += LevelUpWeaponHandled;
+    //}
 
-    private void OnDisable()
-    {
-        OnWeaponLeveledUp -= LevelUpWeaponHandled;
-    }
+    //private void OnDisable()
+    //{
+    //    OnWeaponLeveledUp -= LevelUpWeaponHandled;
+    //}
 
     public void UpdateStatForAllWeapons(EStatType statName, float modifier)
     {
@@ -37,7 +37,8 @@ public class ReworkedWeaponManager : MonoBehaviour
 
     public void UpdateWeaponStat(EWeaponName weaponName, EStatType statName, float modifier)
     {
-        GetWeapon(weaponName).statManager.GetStat(statName).ApplyModifier(modifier);
+        //GetWeapon(weaponName).statManager.GetStat(statName).ApplyModifier(modifier);
+        GetWeapon(weaponName).statManager.ModifyStat(statName, modifier);
     }
 
     public WeaponBase GetWeapon(EWeaponName weaponName)
@@ -80,7 +81,7 @@ public class ReworkedWeaponManager : MonoBehaviour
         InitializeWeapon(weaponToAdd);
     }
 
-    private void LevelUpWeaponHandled(EWeaponName weaponName)
+    public void LevelUpWeapon(EWeaponName weaponName)
     {
         GetWeapon(weaponName).LevelUpWeapon();
     }

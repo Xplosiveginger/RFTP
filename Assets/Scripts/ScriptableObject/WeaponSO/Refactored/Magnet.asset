@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: Magnet
   m_EditorClassIdentifier: 
   weaponName: 4
-  weaponStats:
+  weaponStatData:
   - {fileID: 11400000, guid: 5d07bd9f90be43041a2e591a44e82498, type: 2}
   - {fileID: 11400000, guid: 5db13ac2bab5b3745b27f217b799967e, type: 2}
   - {fileID: 11400000, guid: ac2b0635130fd714793f4ada0cd5e871, type: 2}
   - {fileID: 11400000, guid: 36f572fee2d21884c9680e693233774e, type: 2}
+  - {fileID: 11400000, guid: a35b78f87be85024386795a7f142f7c2, type: 2}
+  - {fileID: 11400000, guid: 3eaae5d79cb6acb4eaa0c94b3f7abc71, type: 2}
+  - {fileID: 11400000, guid: 5a91b64b7a55230429e5ec8109b214c2, type: 2}
   weaponPrefab: {fileID: 5521066491209815744, guid: 09704ae62d3bbf843b65d7403f7ad294, type: 3}

@@ -74,6 +74,7 @@ public class LitmusPaper_Refactor : BaseEnemyRefactor
         ApplyBlastDamage();
         Die();
     }
+
     protected virtual void ApplyBlastDamage()
     {
         // Ensure we operate on the 2D plane (Z = 0)

@@ -40,6 +40,16 @@ public class ItemManager : MonoBehaviour
         statManager = GetComponent<StatManager>();
     }
 
+    private void OnEnable()
+    {
+        
+    }
+
+    private void OnDisable()
+    {
+        
+    }
+
     private void Start()
     {
         // Apply permanent shop/meta items at run start
@@ -166,5 +176,12 @@ public class ItemManager : MonoBehaviour
         }
 
         activeItems.RemoveAll(i => i.itemSO.itemType == ItemType.Game);
+    }
+
+    private void AddItemToStartingItems(ItemSO itemSO)
+    {
+        if (startingItems.Contains(itemSO)) return;
+
+        startingItems.Add(itemSO);
     }
 }

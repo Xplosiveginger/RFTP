@@ -21,15 +21,3 @@ public class WeaponDataSO : ScriptableObject
         return go.GetComponent<WeaponBase>();
     }
 }
-
-public enum EWeaponName
-{
-    AcidRainClouds,
-    Bacteria,
-    Laser,
-    LithiumIon,
-    Magnet,
-    Prism,
-    SolarSystem,
-    TuningFork,
-}

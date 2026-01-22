@@ -13,5 +13,10 @@ MonoBehaviour:
   m_Name: MoveSpeedIncreaseItem
   m_EditorClassIdentifier: 
   itemName: MoveSpeedIncreaseItem
+  itemType: 1
   levels:
   - itemPrefab: {fileID: 7095098469743831864, guid: c1095b6c0df887643b5ab1b75a04111c, type: 3}
+    cardSprite: {fileID: 0}
+    targetStat: 0
+    modifierAmount: 0
+    isPercentage: 1

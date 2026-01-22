@@ -8,5 +8,6 @@ using UnityEngine;
 public class ShopItemSO : ItemSO
 {
     [Header("Shop Data")]
+    public bool unlocked;
     public int unlockCost; // Cost to unlock or upgrade in shop
 }

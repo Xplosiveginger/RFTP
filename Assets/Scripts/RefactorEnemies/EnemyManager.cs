@@ -140,7 +140,6 @@ public class EnemyManager : MonoBehaviour
     {
         if (enemy == null) return;
 
-        enemy.gameObject.SetActive(false);
         activeEnemies.Remove(enemy);
 
         if (enemy is ENP_Enemy enp)
@@ -154,6 +153,9 @@ public class EnemyManager : MonoBehaviour
 
         if(enemy is LitmusPaper_Refactor litmus)
             litmusPaper.Remove(litmus);
+
+        enemy.ResetOnDeath();
+        enemy.gameObject.SetActive(false);
     }
 
     public void SetPlayer(Transform p) => player = p;

@@ -19,9 +19,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 79453649262db8b499852d7945d4c1bd, type: 3}
   - {fileID: 21300000, guid: cc08863846d41124596ea8ee3757756d, type: 3}
   cardPriority: 3
+  cardType: 1
   affectsPlayer: 1
   affectedPlayerStat: 0
-  playerStatModifier: 0
+  playerStatModifier: 5
   affectsEnemy: 0
   affectedEnemyStat: 0
   enemyStatModifier: 0
@@ -30,3 +31,6 @@ MonoBehaviour:
   affectsWeaponStat: 0
   affectedWeaponStat: 0
   weaponStatModifier: 0
+  weaponToAdd: {fileID: 0}
+  isBuffDebuff: 0
+  time: 0

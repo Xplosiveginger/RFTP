@@ -58,6 +58,8 @@ public class HealthSystem : MonoBehaviour
     private Color originalSpriteColor = Color.white;
     private Color originalTintColor = Color.white;
 
+    public event Action OnDeath;
+
     public int MaxHealth => maxHealth;
     public int CurrentHealth => currentHealth;
     public bool IsDead => isDead;
@@ -169,8 +171,7 @@ public class HealthSystem : MonoBehaviour
                 Destroy(gameObject);
             else
             {
-                gameObject.SetActive(false);
-                enemy.SpawnXp();
+                OnDeath?.Invoke();
             }
         });
     }
@@ -229,12 +230,12 @@ public class HealthSystem : MonoBehaviour
         }
 
         isDead = false;
-        currentHealth = maxHealth;
+        //currentHealth = maxHealth;
 
         // Make sure the scale is correct
         transform.localScale = defaultScale;
 
-        gameObject.SetActive(true);
+        //gameObject.SetActive(true);
         UpdateHealthUI();
     }
 

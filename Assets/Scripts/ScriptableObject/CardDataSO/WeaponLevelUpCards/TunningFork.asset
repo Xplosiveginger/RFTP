@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: TunningFork
   m_EditorClassIdentifier: 
   levelImages:
-  - {fileID: 21300000, guid: ad1cad37344035e4e848361ce5cb702c, type: 3}
   - {fileID: 21300000, guid: 6dbcbc395401b2d4b99ce411b690be0a, type: 3}
   - {fileID: 21300000, guid: 24808e6e4094058428cd8af8f92079e3, type: 3}
   - {fileID: 21300000, guid: fa2beacc757542e45ae15162ec61734a, type: 3}
@@ -22,6 +21,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: eaefb6ad0ca2ed947958d9da7e37fd01, type: 3}
   - {fileID: 21300000, guid: 1b572ae2199539246a96946e7a0569fe, type: 3}
   cardPriority: 5
+  cardType: 3
   affectsPlayer: 0
   affectedPlayerStat: 0
   playerStatModifier: 0
@@ -33,3 +33,6 @@ MonoBehaviour:
   affectsWeaponStat: 0
   affectedWeaponStat: 0
   weaponStatModifier: 0
+  weaponToAdd: {fileID: 0}
+  isBuffDebuff: 0
+  time: 0

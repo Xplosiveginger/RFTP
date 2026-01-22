@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using vyshak.CustomTools;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
@@ -23,12 +24,14 @@ public class PlayerController2D : MonoBehaviour
     public ReworkedWeaponManager weaponManager;
 
     //test
-    public WeaponDataSO liIon;
+    [SearchObject(typeof(WeaponDataSO))]
+    public WeaponDataSO weaponToAdd;
 
     private void OnEnable()
     {
         statManager.OnMoveSpeedChanged += GetModifiedSpeed;
         statManager.OnHealthChanged += GetModifiedHealth;
+        CardManager.CardSelected += OnCardSelectedHandled;
     }
 
     private void OnDisable()
@@ -77,7 +80,7 @@ public class PlayerController2D : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            AddLithiumIonWeapon();
+            AddWeapon();
         }
 
         if (Input.GetKeyDown(KeyCode.E))
@@ -109,9 +112,9 @@ public class PlayerController2D : MonoBehaviour
     }
 
     // Testing *****************************
-    private void AddLithiumIonWeapon()
+    private void AddWeapon()
     {
-        GetComponent<ReworkedWeaponManager>().AddNewWeapon(liIon);
+        GetComponent<ReworkedWeaponManager>().AddNewWeapon(weaponToAdd);
     }
 
     private void ApplySpeedModif()
@@ -130,5 +133,48 @@ public class PlayerController2D : MonoBehaviour
     {
         Stat stat = statManager.GetStat(EStatType.Health);
         health.currentHealth = (int)stat.currentValue;
+    }
+
+    private void AddWeapon(WeaponDataSO weapon)
+    {
+        weaponManager.AddNewWeapon(weapon);
+    }
+
+    private void OnCardSelectedHandled(CardDataSO card)
+    {
+        //if (card.affectsEnemy) return;
+
+        //if (card.affectsPlayer)
+        //{
+        //    statManager.ModifyStat(card.affectedPlayerStat, card.playerStatModifier);
+        //}
+
+        //if (card.affectsWeaponLevel)
+        //{
+        //    weaponManager.LevelUpWeapon(card.weaponName);
+        //}
+
+        //if (card.affectsWeaponStat)
+        //{
+        //    weaponManager.UpdateWeaponStat(card.weaponName, card.affectedWeaponStat, card.weaponStatModifier);
+        //}
+
+        switch (card.cardType)
+        {
+            case ECardType.AddsWeapon:
+                AddWeapon(card.weaponToAdd);
+                break;
+            case ECardType.AffectsPlayer:
+                statManager.ModifyStat(card.affectedPlayerStat, card.playerStatModifier);
+                break;
+            case ECardType.AffectsWeaponLevel:
+                weaponManager.LevelUpWeapon(card.weaponName);
+                break;
+            case ECardType.AffectsSpecificWeaponStat:
+                weaponManager.UpdateWeaponStat(card.weaponName, card.affectedWeaponStat, card.weaponStatModifier);
+                break;
+            default:
+                break;
+        }
     }
 }

@@ -10,17 +10,26 @@ public class CardManager : MonoBehaviour
 
     public event Action OnCardsInitialized;
     public static event Action<CardDataSO> CardSelected;
+    public static event Action CardClicked;
+
     private void OnEnable()
     {
-        OnCardsInitialized += CardInitializer;
+        PlayerXp.OnPlayerLeveledUp += CardInitializer;
+        PlayerXPRefactored.OnLeveledUp += CardInitializer;
+
+        //foreach (var card in cards)
+        //{
+        //    card.OnCardSelected += OnCardSelectedHandled;
+        //}
     }
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            OnCardsInitialized?.Invoke();
-        }
-    }
+
+    //private void Update()
+    //{
+    //    if(Input.GetKeyDown(KeyCode.P))
+    //    {
+    //        OnCardsInitialized?.Invoke();
+    //    }
+    //}
 
     // Will populate the cards and stop time in the game until player picks a card
     private void CardInitializer()
@@ -77,7 +86,6 @@ public class CardManager : MonoBehaviour
         }
     }
 
-
     // Called by RefactorCardUi when a card is picked
     public void OnCardSelected(CardDataSO selectedData)
     {
@@ -91,10 +99,17 @@ public class CardManager : MonoBehaviour
             card.gameObject.SetActive(false);
         }
         CardSelected?.Invoke(selectedData);
+        CardClicked?.Invoke();
     }
 
     private void OnDisable()
     {
-        OnCardsInitialized -= CardInitializer;
+        PlayerXp.OnPlayerLeveledUp -= CardInitializer;
+        PlayerXPRefactored.OnLeveledUp -= CardInitializer;
+
+        //foreach (var card in cards)
+        //{
+        //    card.OnCardSelected -= OnCardSelectedHandled;
+        //}
     }
 }

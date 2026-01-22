@@ -1,23 +1,15 @@
 using UnityEngine;
 using System.Collections.Generic;
-
-public enum EPriority
-{
-    One = 1,
-    Two = 2,
-    Three = 3,
-    Four = 4,
-    Five = 5
-}
+using vyshak.CustomTools;
 
 [CreateAssetMenu(fileName = "CardData", menuName = "CardDataSO")]
 public class CardDataSO : ScriptableObject
 {
-    
     public List<Sprite> levelImages; 
 
     [Header("Priority (1 = common, 5 = rare)")]
     public EPriority cardPriority = EPriority.One;
+    public ECardType cardType = ECardType.AffectsPlayer;
 
     [Header("Affects Player")]
     public bool affectsPlayer;
@@ -37,4 +29,10 @@ public class CardDataSO : ScriptableObject
     public bool affectsWeaponStat;
     public EStatType affectedWeaponStat;
     public float weaponStatModifier;
+
+    [Header("Adds Weapon"), SearchObject(typeof(WeaponDataSO))]
+    public WeaponDataSO weaponToAdd;
+
+    public bool isBuffDebuff = false;
+    public float time = 0f;
 }

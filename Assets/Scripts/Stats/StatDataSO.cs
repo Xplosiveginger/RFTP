@@ -17,17 +17,3 @@ public class StatDataSO : ScriptableObject
         return new Stat(statName, baseValue, maxValue, startValue, startMultiplier);
     }
 }
-
-public enum EStatType
-{
-    MoveSpeed,
-    Health,
-    HealthRegen,
-    AttackCooldown,
-    ActiveDuration,
-    ProjectileCount,
-    ProjectileSpeed,
-    Damage,
-    AOESize,
-    FireRate
-}
