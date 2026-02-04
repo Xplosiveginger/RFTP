@@ -121,6 +121,7 @@ MonoBehaviour:
   scaleEase: 8
   hurtCooldown: 0.1
   healthSlider: {fileID: 0}
+  debug: 0
 --- !u!70 &6501894726412244800
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -193,6 +194,8 @@ MonoBehaviour:
   moveSpeed: 3.5
   moveSpeedMultiplier: 0
   statManager: {fileID: -7171792425800454507}
+  XpOrbPrefab: {fileID: 0}
+  expDrop: 0
 --- !u!114 &-7171792425800454507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,7 +222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4504779929288588955}
   - component: {fileID: 8140943537749464167}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pendulum
   m_TagString: Untagged
   m_Icon: {fileID: 0}

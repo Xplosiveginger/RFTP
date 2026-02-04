@@ -8,6 +8,7 @@ public class MagnetDamageObject : MonoBehaviour
     [SerializeField, DisplayOnly] private float size;
     [SerializeField] private float damageInterval;
     [SerializeField] private MagnetRefactored magnet;
+    [SerializeField] private LayerMask damageLM;
 
     public bool drawHitBox;
     private Coroutine damageRoutine;
@@ -38,7 +39,7 @@ public class MagnetDamageObject : MonoBehaviour
     {
         while (true)
         {
-            Collider2D[] enemies = Physics2D.OverlapBoxAll(transform.position, new Vector2(size, size), 0.0f);
+            Collider2D[] enemies = Physics2D.OverlapBoxAll(transform.position, new Vector2(size, size), 0.0f, damageLM);
 
             foreach (Collider2D collider in enemies)
             {

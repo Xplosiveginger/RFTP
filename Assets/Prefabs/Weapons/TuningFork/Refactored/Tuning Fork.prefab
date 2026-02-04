@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2104998848924956344}
   - component: {fileID: 1001455771857338842}
   - component: {fileID: 6728614208340576539}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Lvl 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2590698481771628165}
   - component: {fileID: 4568974091895074825}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -288,7 +288,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2209696991546927339}
   - component: {fileID: 2999092870207475029}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -372,7 +372,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9012072793484540390}
   - component: {fileID: 7178094182336781648}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Tunic fork (frequency waves)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -458,7 +458,7 @@ GameObject:
   - component: {fileID: 1987310234433820280}
   - component: {fileID: 2171325040721534393}
   - component: {fileID: 7598138594447955787}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Tuning Fork
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -527,4 +527,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDamagable: 0
   health: {fileID: 0}
+  statDataList: []
   statList: []

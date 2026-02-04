@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2900185478900180941}
   - component: {fileID: 6851178415755960992}
   - component: {fileID: 6021260224375037781}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: MagnetWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66,6 +66,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDamagable: 0
   health: {fileID: 0}
+  statDataList: []
   statList: []
 --- !u!1 &9121690177814540391
 GameObject:
@@ -80,7 +81,7 @@ GameObject:
   - component: {fileID: 8106535481003624828}
   - component: {fileID: 8247946809532645485}
   - component: {fileID: 1002944095397125439}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: MagnetGfx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,6 +137,9 @@ MonoBehaviour:
   size: 0
   damageInterval: 0
   magnet: {fileID: 6851178415755960992}
+  damageLM:
+    serializedVersion: 2
+    m_Bits: 3521
   drawHitBox: 0
 --- !u!212 &8247946809532645485
 SpriteRenderer:
