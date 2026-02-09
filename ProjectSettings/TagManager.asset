@@ -16,12 +16,12 @@ TagManager:
   - Enemy
   - Items
   - assets
-  - 
+  - Player Collision
   - Obstacle
   - Player
   - Projectile
-  - 
-  - 
+  - Weapon
+  - XP
   - 
   - 
   - 

@@ -18,6 +18,8 @@ public class BaseEnemyRefactor : MonoBehaviour
     protected float maxHealth;
     HealthSystem healthSystem;
     [SerializeField] protected StatManager statManager;
+    [SerializeField] protected bool DiesOnContactWithPlayer;
+    [SerializeField] protected bool DoesDamageOnContact;
 
     // to be removed later
     [SerializeField] GameObject XpOrbPrefab;
