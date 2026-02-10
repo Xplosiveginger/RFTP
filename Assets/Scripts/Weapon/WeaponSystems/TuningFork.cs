@@ -5,7 +5,7 @@ public class TuningFork : MonoBehaviour
 {
     [Header("Freeze time")]
     public float freezeTime = 1f;
-    [SerializeField, DisplayOnly] private float size;
+    [SerializeField,  ] private float size;
     [SerializeField] private TuningForkRefactored tuning;
     [SerializeField] private Collider2D hitbox;
 

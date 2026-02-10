@@ -1186,7 +1186,7 @@ MonoBehaviour:
   EndPanel: {fileID: 1745902948}
   atomPrefab: {fileID: 7117651411527206627, guid: ad70a5c7473c53047b6d9529808d7eee, type: 3}
   atomPoolSize: 5
-  debugMode: 1
+  debugMode: 0
   debugStartTime: 0
 --- !u!1001 &575439589
 PrefabInstance:

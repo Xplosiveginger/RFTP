@@ -180,6 +180,7 @@ MonoBehaviour:
   scaleEase: 8
   hurtCooldown: 0.1
   healthSlider: {fileID: 0}
+  debug: 0
 --- !u!50 &-496759890244635487
 Rigidbody2D:
   serializedVersion: 4
@@ -223,6 +224,10 @@ MonoBehaviour:
   moveSpeed: 5
   moveSpeedMultiplier: 0
   statManager: {fileID: 1504111582107600711}
+  DiesOnContactWithPlayer: 0
+  DoesDamageOnContact: 0
+  XpOrbPrefab: {fileID: 0}
+  expDrop: 0
   Type: 0
   combineRadius: 2.85
   gizmoColor: {r: 0, g: 1, b: 1, a: 1}
@@ -241,5 +246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDamagable: 1
   health: {fileID: 4637089688207398922}
-  statDataList: []
+  statDataList:
+  - {fileID: 11400000, guid: 12d656cb00982c742b55135f73ea9c64, type: 2}
+  - {fileID: 11400000, guid: dd7c1e5a44ef4e1449cafefd40aef2af, type: 2}
   statList: []

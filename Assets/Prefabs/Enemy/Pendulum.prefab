@@ -194,6 +194,8 @@ MonoBehaviour:
   moveSpeed: 3.5
   moveSpeedMultiplier: 0
   statManager: {fileID: -7171792425800454507}
+  DiesOnContactWithPlayer: 0
+  DoesDamageOnContact: 0
   XpOrbPrefab: {fileID: 0}
   expDrop: 0
 --- !u!114 &-7171792425800454507
@@ -210,7 +212,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDamagable: 1
   health: {fileID: -1017736596779775944}
-  statDataList: []
+  statDataList:
+  - {fileID: 11400000, guid: 27a27764d2594e34f814944d8997b974, type: 2}
+  - {fileID: 11400000, guid: e140431c760b81d46b73c84d66d52688, type: 2}
   statList: []
 --- !u!1 &8033702345953058883
 GameObject:
