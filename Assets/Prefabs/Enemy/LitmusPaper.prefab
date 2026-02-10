@@ -103,7 +103,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.0001
+  m_Mass: 100
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -222,6 +222,8 @@ MonoBehaviour:
   moveSpeed: 3.5
   moveSpeedMultiplier: 50
   statManager: {fileID: -6722925433350841161}
+  DiesOnContactWithPlayer: 0
+  DoesDamageOnContact: 0
   XpOrbPrefab: {fileID: 6835560325603651991, guid: fc5d21bb0b85bd64b9e1eb3be3c019e4, type: 3}
   expDrop: 100
   changingSprites:
