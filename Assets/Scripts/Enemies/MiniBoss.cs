@@ -31,11 +31,11 @@ public class MiniBoss : BaseEnemy
     [HideInInspector] public float lastChargeTime;
 
     StateMachine statemachine;
-    [field: SerializeField, DisplayOnly] public bool playerInRange { get; set; }
-    [DisplayOnly] public bool charging = false;
-    [DisplayOnly] public bool trap = false;
-    [DisplayOnly] public bool obstacleDetected = false;
-    [SerializeField, DisplayOnly] private bool onCooldown = false;
+    [field: SerializeField] public bool playerInRange { get; set; }
+    public bool charging = false;
+    public bool trap = false;
+    public bool obstacleDetected = false;
+    [SerializeField] private bool onCooldown = false;
 
     public EntityState currState;
 

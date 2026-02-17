@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using vyshak.CustomTools;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
@@ -8,7 +7,7 @@ public class PlayerController2D : MonoBehaviour
 {
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 5f;
-    [DisplayOnly] public bool inflicted = false;
+    public bool inflicted = false;
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -25,7 +24,6 @@ public class PlayerController2D : MonoBehaviour
     public ItemManager itemManager;
 
     //test
-    [SearchObject(typeof(WeaponDataSO))]
     public WeaponDataSO weaponToAdd;
 
     private void OnEnable()

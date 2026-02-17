@@ -24,8 +24,8 @@ public abstract class WeaponBase : MonoBehaviour
     protected float activeTimer;
     protected float coolDownTimer;
 
-    [SerializeField, DisplayOnly] protected bool isActive;
-    [SerializeField, DisplayOnly] protected bool inCooldown;
+    [SerializeField] protected bool isActive;
+    [SerializeField] protected bool inCooldown;
 
     public event Action<WeaponBase> OnWeaponCreated;
 
