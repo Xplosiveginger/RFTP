@@ -1186,7 +1186,7 @@ MonoBehaviour:
   EndPanel: {fileID: 1745902948}
   atomPrefab: {fileID: 7117651411527206627, guid: ad70a5c7473c53047b6d9529808d7eee, type: 3}
   atomPoolSize: 5
-  debugMode: 1
+  debugMode: 0
   debugStartTime: 0
 --- !u!1001 &575439589
 PrefabInstance:
@@ -1632,6 +1632,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: e668b5821adb649409fb0dc1c7bd15bc, type: 2}
     - target: {fileID: 4317606704090541399, guid: a31d3eda6d885544789a234488df2c25, type: 3}
+      propertyPath: itemManager
+      value: 
+      objectReference: {fileID: 682173268}
+    - target: {fileID: 4317606704090541399, guid: a31d3eda6d885544789a234488df2c25, type: 3}
       propertyPath: statManager
       value: 
       objectReference: {fileID: 2026983369}
@@ -1765,6 +1769,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2945827086528751042, guid: a31d3eda6d885544789a234488df2c25, type: 3}
   m_PrefabInstance: {fileID: 682173266}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &682173268 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1191794303852628603, guid: a31d3eda6d885544789a234488df2c25, type: 3}
+  m_PrefabInstance: {fileID: 682173266}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026983349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af3a95f0294e52743a790fa5026e998e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &833737381
 GameObject:
   m_ObjectHideFlags: 0

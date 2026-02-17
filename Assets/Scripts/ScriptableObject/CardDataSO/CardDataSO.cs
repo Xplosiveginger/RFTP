@@ -12,6 +12,7 @@ public class CardDataSO : ScriptableObject
     public ECardType cardType = ECardType.AffectsPlayer;
 
     [Header("Affects Player")]
+    public Item item;
     public bool affectsPlayer;
     public EStatType affectedPlayerStat;
     public float playerStatModifier;

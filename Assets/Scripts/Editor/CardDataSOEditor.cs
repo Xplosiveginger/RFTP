@@ -49,6 +49,7 @@ public class CardDataSOEditor : Editor
             case ECardType.AffectsPlayer:
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("affectedPlayerStat"));
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("playerStatModifier"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("item"));
                 break;
             case ECardType.AddsWeapon:
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("weaponToAdd"));

@@ -22,6 +22,7 @@ public class PlayerController2D : MonoBehaviour
 
     public StatManager statManager;
     public ReworkedWeaponManager weaponManager;
+    public ItemManager itemManager;
 
     //test
     [SearchObject(typeof(WeaponDataSO))]
@@ -165,7 +166,8 @@ public class PlayerController2D : MonoBehaviour
                 AddWeapon(card.weaponToAdd);
                 break;
             case ECardType.AffectsPlayer:
-                statManager.ModifyStat(card.affectedPlayerStat, card.playerStatModifier);
+                //itemManager.AddItem(card.item);
+                //statManager.ModifyStat(card.affectedPlayerStat, card.playerStatModifier);
                 break;
             case ECardType.AffectsWeaponLevel:
                 weaponManager.LevelUpWeapon(card.weaponName);
