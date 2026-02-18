@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,7 +13,7 @@ public class ShopItemUI : MonoBehaviour, IPointerClickHandler
     private bool selected;
 
     public static event Action<ShopItemSO> OnItemAdded;
-
+   
     public void OnPointerClick(PointerEventData eventData)
     {
         selected = !selected;
