@@ -7,6 +7,7 @@ using DG.Tweening;
 public class Shop : MonoBehaviour
 {
     public static Shop instance;
+    private ShopItemUI currentSelected;
 
     public float btnScaleTime = 0.5f;
 
@@ -33,11 +34,14 @@ public class Shop : MonoBehaviour
 
     public void SelectItem(ShopItemUI itemUI, bool selected)
     {
-        if (selected)
-            SelectItem(itemUI);
-        else
-            UnSelectItem(itemUI);
+        if (currentSelected != null && currentSelected != itemUI)
+            currentSelected.SetSelected(false);
+
+        currentSelected = itemUI;
+
+        itemUI.SetSelected(true);
     }
+
 
     public void SelectItem(ShopItemUI itemUI)
     {
