@@ -41,14 +41,14 @@ public class Shop : MonoBehaviour
 
     public void SelectItem(ShopItemUI itemUI)
     {
-        itemUI.buyBtn.GetComponent<RectTransform>().DOScaleY(1f, btnScaleTime);
+        itemUI.buyBtn.GetComponent<RectTransform>().DOScaleY(1.2f, btnScaleTime);
         //item.unlocked;
         //OnItemSelected?.Invoke(item);
     }
 
     public void UnSelectItem(ShopItemUI itemUI)
     {
-        itemUI.buyBtn.GetComponent<RectTransform>().DOScaleY(0f, btnScaleTime);
+        itemUI.buyBtn.GetComponent<RectTransform>().DOScaleY(1f, btnScaleTime);
         //OnItemUnSelected?.Invoke(item);
     }
 
