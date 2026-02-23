@@ -13,9 +13,30 @@ MonoBehaviour:
   m_Name: DamageItem
   m_EditorClassIdentifier: 
   itemName: Damage Increase
+  itemType: 1
   levels:
   - itemPrefab: {fileID: 4360923086910765533, guid: 037e63102cc473643a603983dd78df96, type: 3}
+    cardSprite: {fileID: 21300000, guid: 14e6a90a9dd5d29479a5d98d67d5302b, type: 3}
+    targetStat: 7
+    modifierAmount: 0
+    isPercentage: 1
   - itemPrefab: {fileID: 4360923086910765533, guid: d7d78215816eaac4c93a8cfeac46f2c7, type: 3}
+    cardSprite: {fileID: 21300000, guid: 4ce06ec81b1be974cac82a91b010ce12, type: 3}
+    targetStat: 7
+    modifierAmount: 0
+    isPercentage: 1
   - itemPrefab: {fileID: 4360923086910765533, guid: 3ef1b38013c930f4aa725f412c4ad893, type: 3}
+    cardSprite: {fileID: 21300000, guid: a7aad61588a247848bffe2cb563af8a4, type: 3}
+    targetStat: 7
+    modifierAmount: 0
+    isPercentage: 1
   - itemPrefab: {fileID: 4360923086910765533, guid: 4a1cc6c6e21e9f64b9af8edac9ac287f, type: 3}
+    cardSprite: {fileID: 21300000, guid: 5c48c9efc5a311e48b9f58b87f8895b9, type: 3}
+    targetStat: 7
+    modifierAmount: 0
+    isPercentage: 1
   - itemPrefab: {fileID: 4360923086910765533, guid: 5e3b24918e96624478b1401baa836c63, type: 3}
+    cardSprite: {fileID: 21300000, guid: 1a7cc1bb63f8b6f4c8488b54265dfa7c, type: 3}
+    targetStat: 7
+    modifierAmount: 0
+    isPercentage: 1

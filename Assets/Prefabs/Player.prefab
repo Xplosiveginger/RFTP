@@ -60,7 +60,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -166,8 +166,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e1a3b66ddec2d48888ee0f301f5e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 8
+  moveSpeed: 5
+  inflicted: 0
   speedModifier: 0
+  statManager: {fileID: 0}
+  weaponManager: {fileID: 0}
+  weaponToAdd: {fileID: 0}
 --- !u!114 &7664751407247831055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,7 +184,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ff3ddee1dcecd0499cc220e9d0a097f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 75
+  maxHealth: 100
+  currentHealth: 0
   canDestroyOnDeath: 1
   isPlayer: 1
   onDeath:
@@ -212,6 +217,7 @@ MonoBehaviour:
   scaleEase: 8
   hurtCooldown: 0.1
   healthSlider: {fileID: 0}
+  debug: 0
 --- !u!114 &7340812015436146963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,6 +250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af3a95f0294e52743a790fa5026e998e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  statManager: {fileID: 0}
   startingItems: []
 --- !u!70 &8242218151111905515
 CapsuleCollider2D:

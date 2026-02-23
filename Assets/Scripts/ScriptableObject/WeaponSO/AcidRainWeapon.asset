@@ -15,34 +15,42 @@ MonoBehaviour:
   weaponName: Acid Rain Cloud
   levels:
   - time:
-      coolDownTime: 5
-      activeTime: 5
+      coolDownTime: 4
+      activeTime: 3
     weaponLevelPrefab: {fileID: 939387012340278055, guid: 1023f4fbc32d9be48b1ccc463831d4e9, type: 3}
+    cardSprite: {fileID: 21300000, guid: a7cde99ab2fe20a4eb0617dd02c350d2, type: 3}
   - time:
-      coolDownTime: 5
-      activeTime: 5
+      coolDownTime: 4
+      activeTime: 3
     weaponLevelPrefab: {fileID: 939387012340278055, guid: 80d2164dcfcbb64479482efa314c2406, type: 3}
+    cardSprite: {fileID: 21300000, guid: ec1f9c8446ffe0b499d5e5a7b5041aef, type: 3}
   - time:
-      coolDownTime: 5
-      activeTime: 5
+      coolDownTime: 4
+      activeTime: 3
     weaponLevelPrefab: {fileID: 939387012340278055, guid: a3f8a02e5acceed4d96a4fe2c10ede58, type: 3}
+    cardSprite: {fileID: 21300000, guid: 6a94171323fd7f142a1d43abdaec8702, type: 3}
   - time:
-      coolDownTime: 5
-      activeTime: 5
+      coolDownTime: 4
+      activeTime: 3
     weaponLevelPrefab: {fileID: 939387012340278055, guid: 762126bb7161b7c4584969ca3b674963, type: 3}
+    cardSprite: {fileID: 21300000, guid: f4a84e8538ef7784296091e2a4ab7f25, type: 3}
   - time:
-      coolDownTime: 5
-      activeTime: 5
+      coolDownTime: 4
+      activeTime: 3
     weaponLevelPrefab: {fileID: 939387012340278055, guid: c2ee4d24c8f001548be6ce095b503d71, type: 3}
+    cardSprite: {fileID: 21300000, guid: 32734c94ee4e0ff48bc3a66645a4240a, type: 3}
   - time:
-      coolDownTime: 5
-      activeTime: 5
+      coolDownTime: 4
+      activeTime: 3
     weaponLevelPrefab: {fileID: 939387012340278055, guid: 2f8cdf84730b2fe41a8b7deac99ddd01, type: 3}
+    cardSprite: {fileID: 21300000, guid: a9ffbacc1b96ea64b8f3e6780635b97c, type: 3}
   - time:
-      coolDownTime: 5
-      activeTime: 5
+      coolDownTime: 4
+      activeTime: 3
     weaponLevelPrefab: {fileID: 939387012340278055, guid: 8c33bb50e89b9114183b6c619fde7eda, type: 3}
+    cardSprite: {fileID: 21300000, guid: f3ddcfd15cc56f4499900b3c66cb2a41, type: 3}
   - time:
-      coolDownTime: 5
-      activeTime: 5
+      coolDownTime: 4
+      activeTime: 3
     weaponLevelPrefab: {fileID: 939387012340278055, guid: 8c2d77b40827e4343be74b5891e92e7e, type: 3}
+    cardSprite: {fileID: 21300000, guid: 523f07caa7ac8d549927b6a12cd2a927, type: 3}

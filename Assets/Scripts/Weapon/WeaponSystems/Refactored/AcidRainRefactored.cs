@@ -15,8 +15,9 @@ public class AcidRainRefactored : WeaponBase
     [Header("Spawn Timing")]
     public bool spawnOnEnable = true;
 
-    void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         if (spawnOnEnable)
         {
             SpawnProjectiles();

@@ -5,11 +5,14 @@ using UnityEngine;
 
 public class StatManager : MonoBehaviour
 {
+    public bool isDamagable;
     public HealthSystem health;
 
+    public List<StatDataSO> statDataList;
     public List<Stat> statList;
 
     public event Action<Stat> OnValueChanged;
+    public event Action OnStatChanged;
     public event Action OnMoveSpeedChanged;
     public event Action OnHealthChanged;
     public event Action OnCooldownChanged;
@@ -21,29 +24,57 @@ public class StatManager : MonoBehaviour
     public event Action OnDamageChanged;
     public event Action OnAOESizeChanged;
 
-    private void Awake()
+    private void OnEnable()
     {
-        InitializeStats();
+        if(isDamagable) health.OnHealthChanged += UpdateHealthCurrentValue;
+
+        if (statList.Count == 0) return;
+        foreach (Stat stat in statList)
+        {
+            stat.OnCurrentValueChanged += OnCurrentValueChangedHandled;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if(isDamagable) health.OnHealthChanged -= UpdateHealthCurrentValue;
+
+        foreach (Stat stat in statList)
+        {
+            stat.OnCurrentValueChanged -= OnCurrentValueChangedHandled;
+        }
     }
 
     public void InitializeStats()
     {
-        if(statList.Count == 0)
+        if(statDataList.Count == 0)
             return;
 
-        foreach (Stat stat in statList)
+        statList.Clear();
+        foreach (StatDataSO statData in statDataList)
         {
-            stat.Init();
-
-            stat.OnCurrentValueChanged += OnCurrentValueChangedHandled;
+            Stat stat = statData.Init();
+            statList.Add(stat);
         }
+    }
+
+    public Stat TryGetStat(EStatType statName)
+    {
+        Stat stat = GetStat(statName);
+        if (stat == null)
+        {
+            Debug.Log($"{statName} stat not present in {transform.gameObject.name}.");
+            return null; 
+        }
+
+        return stat;
     }
 
     /// <summary>
     /// Returns the Stat class for which the statName matches.
     /// </summary>
     /// <param name="statName">The name of the stat you want to get.</param>
-    public Stat GetStat(EStatType statName)
+    public Stat GetStat(EStatType statName) // Add a TryGetStat() which checks the obtained value.
     {
         return statList.Find(stat => stat.statName == statName);
     }
@@ -53,6 +84,26 @@ public class StatManager : MonoBehaviour
         return statList;
     }
 
+    /// <summary>
+    /// Modifies the Current value of the provided stat by a certain amount.
+    /// </summary>
+    /// <param name="statName">The stat to modify.</param>
+    /// <param name="value">The amount by which the current value should be changed.</param>
+    public void ModifyStatValue(EStatType statName, float value)
+    {
+        Stat stat = GetStat(statName);
+        if (stat == null) return;
+
+        stat.currentValue += value;
+        OnValueChanged?.Invoke(stat);
+        OnStatChanged?.Invoke();
+    }
+
+    /// <summary>
+    /// Modifies the Current value of the provided stat by a certain percentage.
+    /// </summary>
+    /// <param name="statName">The stat to modify.</param>
+    /// <param name="modifier">The percentage by which the current value should be changed.</param>
     public void ModifyStat(EStatType statName, float modifier)
     {
         foreach (Stat stat in statList)
@@ -66,6 +117,18 @@ public class StatManager : MonoBehaviour
         }
     }
 
+    public void ApplyTemporaryStatModifier(EStatType statName, float modifier, float time)
+    {
+        StartCoroutine(ApplyTemporaryStatModifierCoroutine(statName, modifier, time));
+    }
+
+    IEnumerator ApplyTemporaryStatModifierCoroutine(EStatType statName, float modifier, float time)
+    {
+        ModifyStat(statName, modifier);
+        yield return new WaitForSeconds(time);
+        GetStat(statName).RevertModifier(modifier);
+    }
+
     public void ModifyHealthStat(float modifier)
     {
         foreach (Stat stat in statList)
@@ -77,10 +140,16 @@ public class StatManager : MonoBehaviour
         }
     }
 
+    private void UpdateHealthCurrentValue(float value)
+    {
+        GetStat(EStatType.Health).currentValue = value;
+    }
+
     private void OnCurrentValueChangedHandled(Stat stat)
     {
         InvokeOnStatChangedEvents(stat.statName);
         OnValueChanged?.Invoke(stat);
+        OnStatChanged?.Invoke();
     }
 
     private void OnMaxValueChangedHandled()
@@ -112,5 +181,12 @@ public class StatManager : MonoBehaviour
             default: Debug.LogError($"Stat changed event for {statName} stat not defined.\nPlease define the event.");
                 break;
         }
+    } 
+
+    public void ResetHealthStatOnDeath()
+    {
+        Stat stat = GetStat(EStatType.Health);
+
+        stat.currentValue = stat.maxValue;
     }
 }

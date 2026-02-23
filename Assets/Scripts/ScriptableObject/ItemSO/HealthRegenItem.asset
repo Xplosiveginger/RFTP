@@ -13,9 +13,30 @@ MonoBehaviour:
   m_Name: HealthRegenItem
   m_EditorClassIdentifier: 
   itemName: Health Regen
+  itemType: 1
   levels:
   - itemPrefab: {fileID: 2487296512339465188, guid: fad5edb2bde929947a04fc67549f88bd, type: 3}
+    cardSprite: {fileID: 21300000, guid: 2e7c67b1e2a07b648844a16579cfe52d, type: 3}
+    targetStat: 2
+    modifierAmount: 0
+    isPercentage: 1
   - itemPrefab: {fileID: 2487296512339465188, guid: dd6bed855c0b7fb4a94308cd1842bc6a, type: 3}
+    cardSprite: {fileID: 21300000, guid: 0064c8896122a064990fcbc49ec97657, type: 3}
+    targetStat: 2
+    modifierAmount: 0
+    isPercentage: 1
   - itemPrefab: {fileID: 2487296512339465188, guid: 76af13a1e79652441ac560e228f0eb34, type: 3}
+    cardSprite: {fileID: 21300000, guid: 533e84af39ad9e14588e4525ff674855, type: 3}
+    targetStat: 2
+    modifierAmount: 0
+    isPercentage: 1
   - itemPrefab: {fileID: 2487296512339465188, guid: 3043e13631ef79143b1875bffbeee642, type: 3}
+    cardSprite: {fileID: 21300000, guid: aff495bda8d01524a8b30e0cc27f2b7d, type: 3}
+    targetStat: 2
+    modifierAmount: 0
+    isPercentage: 1
   - itemPrefab: {fileID: 2487296512339465188, guid: e754468d6903bbc438b73204c9e0e652, type: 3}
+    cardSprite: {fileID: 21300000, guid: c197d67ad698dba4c88dd449a47eead3, type: 3}
+    targetStat: 2
+    modifierAmount: 0
+    isPercentage: 1

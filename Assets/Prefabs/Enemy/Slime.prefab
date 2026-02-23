@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 4769748596215525619}
   - component: {fileID: 3391313754715533149}
   - component: {fileID: 6333612064184335406}
-  - component: {fileID: -333062252967407297}
   - component: {fileID: 7735975701133036650}
-  - component: {fileID: 6293876349122534842}
+  - component: {fileID: 8926482076233465506}
+  - component: {fileID: -6823676528299072591}
   m_Layer: 6
   m_Name: Slime
   m_TagString: Enemy
@@ -58,7 +58,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -162,7 +162,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 2.5599997
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -174,23 +174,6 @@ NavMeshAgent:
   m_BaseOffset: 2.5599997
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
---- !u!114 &-333062252967407297
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7677058516892065867}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6d06b78f1e04b84c9298b0cf706a286, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  expDrop: 10
-  canDamageOnCollision: 1
-  collisionDamage: 1
-  XpOrbPrefab: {fileID: 6835560325603651991, guid: fc5d21bb0b85bd64b9e1eb3be3c019e4, type: 3}
 --- !u!114 &7735975701133036650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,9 +187,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 30
+  currentHealth: 0
   canDestroyOnDeath: 0
   isPlayer: 0
-  allowRevive: 0
   onDeath:
     m_PersistentCalls:
       m_Calls: []
@@ -224,7 +207,8 @@ MonoBehaviour:
   scaleEase: 8
   hurtCooldown: 0.1
   healthSlider: {fileID: 0}
---- !u!114 &6293876349122534842
+  debug: 0
+--- !u!114 &8926482076233465506
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -233,9 +217,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 7677058516892065867}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 327e07c18e41d46418438d116bd7ba38, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f560ce9db0a2d94683de833c56153c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slowAmount: 0.2
-  slowDuration: 5
-  damageOnCollision: 0
+  defaultFacingLeft: 1
+  moveSpeed: 3.5
+  moveSpeedMultiplier: 0
+  statManager: {fileID: -6823676528299072591}
+  XpOrbPrefab: {fileID: 0}
+  expDrop: 0
+--- !u!114 &-6823676528299072591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7677058516892065867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6db34c11c33b97e48bfc69a589427d90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDamagable: 1
+  health: {fileID: 7735975701133036650}
+  statDataList: []
+  statList: []

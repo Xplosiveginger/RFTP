@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,8 +8,8 @@ using UnityEngine.UI;
 public class HealthSystem : MonoBehaviour
 {
     [Header("Health Settings")]
-    [SerializeField] private int maxHealth = 100;
-    [SerializeField, DisplayOnly] private int currentHealth;
+    [SerializeField] public int maxHealth = 100;
+    [SerializeField, DisplayOnly] public int currentHealth;
 
     [Header("Settings")]
     public bool canDestroyOnDeath = true;
@@ -44,7 +45,9 @@ public class HealthSystem : MonoBehaviour
     private Sequence hurtSeq;
     private EnemyAI enemy;
 
-    public bool takingDOT {get; private set;}
+    public bool debug;
+
+    public bool takingDOT { get; private set; }
     private int dotDamage = 0;
 
     private static readonly int FlashAmountID = Shader.PropertyToID("_FlashAmount");
@@ -55,9 +58,13 @@ public class HealthSystem : MonoBehaviour
     private Color originalSpriteColor = Color.white;
     private Color originalTintColor = Color.white;
 
+    public event Action OnDeath;
+
     public int MaxHealth => maxHealth;
     public int CurrentHealth => currentHealth;
     public bool IsDead => isDead;
+
+    public event Action<float> OnHealthChanged;
 
     private void Awake()
     {
@@ -83,19 +90,17 @@ public class HealthSystem : MonoBehaviour
     private void OnEnable()
     {
         // Kill any tweens first
-        if(DOTween.IsTweening(transform))
+        if (DOTween.IsTweening(transform))
         {
             transform.DOKill(true); // kill and complete
             hurtSeq?.Kill();
         }
-       
 
         // Reset scale before anything else
         transform.localScale = defaultScale;
 
         ResetHealth();
     }
-
 
     private void Update()
     {
@@ -111,6 +116,9 @@ public class HealthSystem : MonoBehaviour
     {
         if (isDead || damageAmount <= 0) return;
 
+        if(debug)
+            Debug.Log(damageAmount);
+
         currentHealth -= damageAmount;
         currentHealth = Mathf.Max(0, currentHealth);
         UpdateHealthUI();
@@ -121,6 +129,7 @@ public class HealthSystem : MonoBehaviour
         {
             PlayHurtEffect();
             onDamageTaken?.Invoke();
+            OnHealthChanged?.Invoke(currentHealth);
         }
     }
 
@@ -143,7 +152,7 @@ public class HealthSystem : MonoBehaviour
             Instantiate(deathEffect, transform.position, Quaternion.identity);
 
         // Kill ongoing tweens
-        if(DOTween.IsTweening(transform))
+        if (DOTween.IsTweening(transform))
         {
             transform.DOKill();
             hurtSeq?.Kill();
@@ -162,8 +171,7 @@ public class HealthSystem : MonoBehaviour
                 Destroy(gameObject);
             else
             {
-                gameObject.SetActive(false);
-                enemy.SpawnXp();
+                OnDeath?.Invoke();
             }
         });
     }
@@ -217,21 +225,19 @@ public class HealthSystem : MonoBehaviour
         // Kill any running tweens
         if (DOTween.IsTweening(transform))
         {
-
             transform.DOKill(true);
             hurtSeq?.Kill();
         }
 
         isDead = false;
-        currentHealth = maxHealth;
+        //currentHealth = maxHealth;
 
         // Make sure the scale is correct
         transform.localScale = defaultScale;
 
-        gameObject.SetActive(true);
+        //gameObject.SetActive(true);
         UpdateHealthUI();
     }
-
 
     public void SetMaxHealth(int newMaxHealth, bool resetCurrentHealth = true)
     {

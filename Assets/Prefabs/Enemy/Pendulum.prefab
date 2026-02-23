@@ -9,13 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8200705173164664287}
-  - component: {fileID: 7689488041914498111}
   - component: {fileID: 1214776933482908559}
   - component: {fileID: 2792584028712334268}
-  - component: {fileID: 1355446808857704533}
   - component: {fileID: -1017736596779775944}
   - component: {fileID: 6501894726412244800}
   - component: {fileID: 4189684448977457385}
+  - component: {fileID: -5984972142892319199}
+  - component: {fileID: -7171792425800454507}
   m_Layer: 6
   m_Name: Pendulum
   m_TagString: Enemy
@@ -39,22 +39,6 @@ Transform:
   - {fileID: 4504779929288588955}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7689488041914498111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2148986130981883437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00024d1d946c50441b8481604c70c2de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stoppingDistance: 5
-  moveSpeed: 3.5
-  frequencyWaveParticles: {fileID: 1861272202064540, guid: c6efda0ae3c8b6e4988a95684d950237, type: 3}
-  attackCooldown: 5
 --- !u!50 &1214776933482908559
 Rigidbody2D:
   serializedVersion: 4
@@ -92,7 +76,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 1.1100984
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -104,23 +88,6 @@ NavMeshAgent:
   m_BaseOffset: 1.4724998
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
---- !u!114 &1355446808857704533
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2148986130981883437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6d06b78f1e04b84c9298b0cf706a286, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 3
-  canDamageOnCollision: 0
-  collisionDamage: 10
-  expDrop: 10
-  XpOrbPrefab: {fileID: 6835560325603651991, guid: fc5d21bb0b85bd64b9e1eb3be3c019e4, type: 3}
 --- !u!114 &-1017736596779775944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,6 +121,7 @@ MonoBehaviour:
   scaleEase: 8
   hurtCooldown: 0.1
   healthSlider: {fileID: 0}
+  debug: 0
 --- !u!70 &6501894726412244800
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -210,6 +178,40 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-5984972142892319199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2148986130981883437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f560ce9db0a2d94683de833c56153c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultFacingLeft: 1
+  moveSpeed: 3.5
+  moveSpeedMultiplier: 0
+  statManager: {fileID: -7171792425800454507}
+  XpOrbPrefab: {fileID: 0}
+  expDrop: 0
+--- !u!114 &-7171792425800454507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2148986130981883437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6db34c11c33b97e48bfc69a589427d90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDamagable: 1
+  health: {fileID: -1017736596779775944}
+  statDataList: []
+  statList: []
 --- !u!1 &8033702345953058883
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,7 +264,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

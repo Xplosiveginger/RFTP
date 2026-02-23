@@ -1,39 +1,29 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-[CreateAssetMenu(fileName = "Stat", menuName = "ScriptableObjects/Stat"), Serializable]
-public class Stat : ScriptableObject
+[System.Serializable]
+public class Stat
 {
     public EStatType statName;
     public float baseValue = 0f;
     public float maxValue = 0f; // incase the max value also scales
     public float startValue = 0f; // pregame items
     public float startMultiplier = 1f;
-    
+
     public float currentMultiplier = 1f;
     public float currentValue;
-
-    public bool customMaxValue;
-    public bool showCurrentValues;
 
     public event Action<Stat> OnCurrentValueChanged;
     public event Action OnMaxValueChanged;
 
-    public void Init()
+    public Stat(EStatType statName, float baseValue, float maxValue, float startValue, float startMultiplier) // Change this
     {
-        if(maxValue == 0)
-            maxValue = baseValue;
-
-        if(startValue > 0f)
-            currentValue = startValue;
-        else
-        {
-            currentValue = (statName == EStatType.Health)? maxValue : baseValue;
-        }
-
-        currentMultiplier = startMultiplier;
+        this.statName = statName;
+        this.baseValue = baseValue;
+        this.maxValue = maxValue;
+        this.startValue = startValue;
+        this.startMultiplier = startMultiplier;
+        this.currentMultiplier = this.startMultiplier;
+        this.currentValue = this.baseValue;
     }
 
     public void ApplyModifier(float modifier)
@@ -63,7 +53,7 @@ public class Stat : ScriptableObject
 
     public void ApplyCooldownModifier(float modifier)
     {
-        if(statName != EStatType.AttackCooldown) return;
+        if (statName != EStatType.AttackCooldown) return;
 
         float tempMultiplier = modifier / 100f;
 
@@ -72,16 +62,21 @@ public class Stat : ScriptableObject
         OnCurrentValueChanged?.Invoke(this);
         currentMultiplier -= tempMultiplier;
     }
-}
 
-public enum EStatType
-{
-    MoveSpeed,
-    Health,
-    AttackCooldown,
-    ActiveDuration,
-    ProjectileCount,
-    ProjectileSpeed,
-    Damage,
-    AOESize
+    public void RevertModifier(float modifier)
+    {
+        float tempMultiplier = -modifier / 100f;
+
+        float valueToAdd = baseValue * tempMultiplier;
+        currentValue +=  valueToAdd;
+        currentMultiplier += tempMultiplier;
+
+        OnCurrentValueChanged?.Invoke(this);
+    }
+
+    public void AddFlat(float value)
+    {
+        currentValue += value;
+        OnCurrentValueChanged?.Invoke(this);
+    }
 }

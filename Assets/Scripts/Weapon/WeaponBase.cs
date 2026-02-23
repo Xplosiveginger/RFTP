@@ -9,6 +9,9 @@ public abstract class WeaponBase : MonoBehaviour
     public GameObject gfx;
 
     public WeaponDataSO weaponData;
+    public EnemyDetection enemyDetector;
+
+    protected int level = 1;
 
     protected float damage;
     protected float projectileSpeed;
@@ -16,12 +19,13 @@ public abstract class WeaponBase : MonoBehaviour
     protected float AOESize;
     protected float cooldown;
     protected float duration;
+    protected float fireRate;
 
     protected float activeTimer;
     protected float coolDownTimer;
 
-    protected bool isActive;
-    protected bool inCooldown;
+    [SerializeField, DisplayOnly] protected bool isActive;
+    [SerializeField, DisplayOnly] protected bool inCooldown;
 
     public event Action<WeaponBase> OnWeaponCreated;
 
@@ -34,9 +38,21 @@ public abstract class WeaponBase : MonoBehaviour
         }
     }
 
+    protected virtual void OnEnable()
+    {
+        statManager.OnStatChanged += UpdateStatsHandled;
+    }
+
+    protected virtual void OnDisable()
+    {
+        statManager.OnStatChanged -= UpdateStatsHandled;
+    }
+
     protected virtual void Awake()
     {
-        statManager.statList = weaponData.GetAllWeaponStats();
+        statManager = GetComponent<StatManager>();
+
+        statManager.statDataList = weaponData.GetAllWeaponStatDatas();
         statManager.InitializeStats();
     }
 
@@ -47,8 +63,6 @@ public abstract class WeaponBase : MonoBehaviour
 
     public virtual void UpdateWeapon()
     {
-        Debug.Log("Updating Weapon");
-
         if (coolDownTimer > 0f)
         {
             coolDownTimer -= Time.deltaTime;
@@ -60,7 +74,6 @@ public abstract class WeaponBase : MonoBehaviour
         // cooldown done. Activate weapon if it is not active.
         if (!isActive)
         {
-            Debug.Log("Weapon Activated");
             activeTimer = duration;
             ToggleGFXVisibility(true);
             isActive = true;
@@ -71,7 +84,6 @@ public abstract class WeaponBase : MonoBehaviour
         if (activeTimer > 0f)
         {
             activeTimer -= Time.deltaTime;
-            Debug.Log("Ticking Active");
         }
         else
         {
@@ -84,11 +96,28 @@ public abstract class WeaponBase : MonoBehaviour
 
     public virtual void ToggleGFXVisibility(bool b)
     {
+        if (gfx == null) return;
         gfx.SetActive(b);
     }
 
     public virtual void UpdateWeaponDamage()
     {
         damage = statManager.GetStat(EStatType.Damage).currentValue;
+    }
+
+    protected virtual void UpdateStatsHandled()
+    {
+        AOESize = statManager.GetStat(EStatType.AOESize).currentValue;
+        cooldown = statManager.GetStat(EStatType.AttackCooldown).currentValue;
+        damage = statManager.GetStat(EStatType.Damage).currentValue;
+        duration = statManager.GetStat(EStatType.ActiveDuration).currentValue;
+        fireRate = statManager.GetStat(EStatType.FireRate).currentValue;
+        projectileSpeed = statManager.GetStat(EStatType.ProjectileSpeed).currentValue;
+        projectileCount = statManager.GetStat(EStatType.ProjectileCount).currentValue;
+    }
+
+    public virtual void LevelUpWeapon()
+    {
+        level++;
     }
 }

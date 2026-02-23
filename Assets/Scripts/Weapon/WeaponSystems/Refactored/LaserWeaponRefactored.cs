@@ -6,7 +6,6 @@ public class LaserWeaponRefactored : WeaponBase
     [Header("Spawner Settings")]
     [Range(1, 3)] public int range = 1;      // 1 = Right, 2 = Right+Left, 3 = Right+Left+Up
     public GameObject laserPrefab;           // Prefab designed to fire right
-    public GameObject player;
 
     [Header("Offsets (distance from center)")]
     public float offsetRight = 0.5f;
@@ -26,15 +25,12 @@ public class LaserWeaponRefactored : WeaponBase
         damage = statManager.GetStat(EStatType.Damage).currentValue;
         duration = statManager.GetStat(EStatType.ActiveDuration).currentValue;
         cooldown = statManager.GetStat(EStatType.AttackCooldown).currentValue;
+        projectileCount = statManager.GetStat(EStatType.ProjectileCount).currentValue;
     }
 
     protected override void Start()
     {
         SpawnLasers();
-
-        Debug.Log(damage);
-        
-
         base.Start();
     }
 
@@ -57,6 +53,9 @@ public class LaserWeaponRefactored : WeaponBase
 
         if (range >= 3)
             CreateLaser(Vector2.up, 90f, offsetUp);
+
+        if(projectileCount < 3)
+            activeLasers[activeLasers.Count - 1].SetActive(false);
     }
 
     void CreateLaser(Vector2 dir, float angle, float distanceOffset)
@@ -95,6 +94,10 @@ public class LaserWeaponRefactored : WeaponBase
         {
             laser.SetActive(b);
         }
+        if(projectileCount < 3)
+            activeLasers[activeLasers.Count - 1].SetActive(false);
+        else
+            activeLasers[activeLasers.Count - 1].SetActive(b);
     }
 
     public override void UpdateWeaponDamage()
@@ -108,8 +111,58 @@ public class LaserWeaponRefactored : WeaponBase
     {
         foreach(var laser in activeLasers)
         {
-            Debug.Log(laser.transform.GetChild(4).name);
             laser.transform.GetChild(4).GetComponent<Damage>().damage = damage;
         }
+    }
+
+    public override void LevelUpWeapon()
+    {
+        base.LevelUpWeapon();
+        UpgradeLaser();
+    }
+
+    private void UpgradeLaser()
+    {
+        switch (level)
+        {
+            case 1:
+                break;
+            case 2: 
+                statManager.ModifyStatValue(EStatType.AttackCooldown, -0.5f);
+                break;
+            case 3: 
+                statManager.ModifyStatValue(EStatType.Damage, 5f);
+                break;
+            case 4: 
+                statManager.ModifyStatValue(EStatType.Damage, 5f);
+                break;
+            case 5: 
+                statManager.ModifyStatValue(EStatType.Damage, 5f);
+                break;
+            case 6: 
+                statManager.ModifyStatValue(EStatType.Damage, 5f);
+                statManager.ModifyStatValue(EStatType.ProjectileCount, 1f);
+                break;
+            case 7: 
+                statManager.ModifyStatValue(EStatType.Damage, 5f);
+                statManager.ModifyStatValue(EStatType.AttackCooldown, -0.5f);
+                break;
+            case 8: 
+                statManager.ModifyStatValue(EStatType.Damage, 5f);
+                break;
+            default:
+                Debug.Log($"Max Level Reached for {weaponData.weaponName}");
+                break;
+        }
+    }
+
+    protected override void UpdateStatsHandled()
+    {
+        base.UpdateStatsHandled();
+
+        if (isActive)
+            ToggleGFXVisibility(true);
+
+        UpdateDamageForEachLaser();
     }
 }

@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-using TMPro; // Required for TextMeshProUGUI
+using TMPro;
+using System; // Required for TextMeshProUGUI
 
 public class PlayerXp : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class PlayerXp : MonoBehaviour
 
     [Header("Card Spawner")]
     public CardSpawner cardSpawner;
+
+    public static event Action OnPlayerLeveledUp;
 
     private void Start()
     {
@@ -61,10 +64,13 @@ public class PlayerXp : MonoBehaviour
         UpdateLevelText();
 
         // Show card spawner if assigned
-        if (cardSpawner != null)
-        {
-            cardSpawner.gameObject.SetActive(true); // activates panel and triggers OnEnable
-        }
+
+        OnPlayerLeveledUp?.Invoke();
+
+        //if (cardSpawner != null)
+        //{
+        //    cardSpawner.gameObject.SetActive(true); // activates panel and triggers OnEnable
+        //}
     }
 
     private void UpdateXpBar()

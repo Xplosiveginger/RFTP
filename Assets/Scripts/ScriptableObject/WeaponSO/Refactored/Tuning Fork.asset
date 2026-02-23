@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02361c39e6e4db440a898fa7ae5786a6, type: 3}
+  m_Name: Tuning Fork
+  m_EditorClassIdentifier: 
+  weaponName: 7
+  weaponStats:
+  - {fileID: 11400000, guid: ae694fdc6f715ec44918e113e7f4708c, type: 2}
+  - {fileID: 11400000, guid: 75d10c52ad5862f49a1208df70456c15, type: 2}
+  - {fileID: 11400000, guid: aa22e6871f2bc794ab6158e5056e0f79, type: 2}
+  - {fileID: 11400000, guid: d52e397728db5a144b0fa507540400e0, type: 2}
+  weaponPrefab: {fileID: 6319129144428016273, guid: ea618545724ac7d458c1fa4ee5e7e904, type: 3}

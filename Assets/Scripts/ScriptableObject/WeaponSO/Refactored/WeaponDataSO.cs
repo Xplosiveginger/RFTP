@@ -6,12 +6,13 @@ using UnityEngine;
 public class WeaponDataSO : ScriptableObject
 {
     public EWeaponName weaponName;
-    public List<Stat> weaponStats;
+    public List<StatDataSO> weaponStatData;
+    private List<Stat> weaponStats;
     public GameObject weaponPrefab;
 
-    public List<Stat> GetAllWeaponStats()
+    public List<StatDataSO> GetAllWeaponStatDatas()
     {
-        return weaponStats;
+        return weaponStatData;
     }
 
     public WeaponBase SpawnWeapon(Transform parent)
@@ -19,11 +20,4 @@ public class WeaponDataSO : ScriptableObject
         GameObject go = Instantiate(weaponPrefab, parent.position, Quaternion.identity, parent);
         return go.GetComponent<WeaponBase>();
     }
-}
-
-public enum EWeaponName
-{
-    Laser,
-    Magnet,
-
 }

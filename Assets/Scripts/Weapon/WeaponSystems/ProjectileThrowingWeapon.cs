@@ -9,11 +9,8 @@ public class ProjectileThrowingWeapon : MonoBehaviour
     public int projectilesPerThrow = 3;
     public float throwForce = 5f;
 
-    [Header("Throw Radius")]
-    public float radius = 3f;
-
     [Header("Fire Rate")]
-    public float fireInterval = 2f; // time between throws
+    public float fireInterval = 2f;
 
     private float nextFireTime;
 
@@ -28,28 +25,27 @@ public class ProjectileThrowingWeapon : MonoBehaviour
 
     void ThrowProjectiles()
     {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        if (enemies.Length == 0) return;
+
         for (int i = 0; i < projectilesPerThrow; i++)
         {
-            // Spawn at weapon position
+            GameObject enemy = enemies[Random.Range(0, enemies.Length)];
+            if (enemy == null) continue;
+
             GameObject proj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
 
-            // Ensure it has Rigidbody2D
+            Vector2 dir = (enemy.transform.position - transform.position).normalized;
+
             Rigidbody2D rb = proj.GetComponent<Rigidbody2D>();
             if (rb != null)
-            {
-                // Pick a random point inside circle, normalize to get direction
-                Vector2 randomDir = Random.insideUnitCircle.normalized;
-
-                // Apply force
-                rb.AddForce(randomDir * throwForce, ForceMode2D.Impulse);
-            }
+                rb.AddForce(dir * throwForce, ForceMode2D.Impulse);
         }
     }
 
-    // Draw gizmos in editor
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, radius);
+        Gizmos.DrawWireSphere(transform.position, 3f);
     }
 }

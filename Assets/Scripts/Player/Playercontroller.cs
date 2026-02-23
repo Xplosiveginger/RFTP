@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using vyshak.CustomTools;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
@@ -20,20 +21,40 @@ public class PlayerController2D : MonoBehaviour
     private Coroutine speedCoroutine;
 
     public StatManager statManager;
+    public ReworkedWeaponManager weaponManager;
+
+    //test
+    [SearchObject(typeof(WeaponDataSO))]
+    public WeaponDataSO weaponToAdd;
 
     private void OnEnable()
     {
         statManager.OnMoveSpeedChanged += GetModifiedSpeed;
         statManager.OnHealthChanged += GetModifiedHealth;
+        CardManager.CardSelected += OnCardSelectedHandled;
     }
 
-    private void Start()
+    private void OnDisable()
+    {
+        statManager.OnMoveSpeedChanged -= GetModifiedSpeed;
+        statManager.OnHealthChanged -= GetModifiedHealth;
+    }
+
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         health = GetComponent<HealthSystem>();
 
+        statManager.InitializeStats();
+    }
+
+    private void Start()
+    {
+        
+
         GetModifiedSpeed();
+        GetModifiedHealth();
     }
 
     private void Update()
@@ -59,7 +80,13 @@ public class PlayerController2D : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            ApplySpeedModif();
+            AddWeapon();
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            statManager.ModifyStat(EStatType.MoveSpeed, 20);
+            //weaponManager.GetWeapon(EWeaponName.Magnet).statManager.ModifyStat(EStatType.AOESize, 20);
         }
     }
 
@@ -84,11 +111,17 @@ public class PlayerController2D : MonoBehaviour
         speedCoroutine = null;
     }
 
-    // Testing
+    // Testing *****************************
+    private void AddWeapon()
+    {
+        GetComponent<ReworkedWeaponManager>().AddNewWeapon(weaponToAdd);
+    }
+
     private void ApplySpeedModif()
     {
         statManager.ModifyStat(EStatType.MoveSpeed, 10);
     }
+    //**********************************
 
     private void GetModifiedSpeed()
     {
@@ -99,6 +132,49 @@ public class PlayerController2D : MonoBehaviour
     private void GetModifiedHealth()
     {
         Stat stat = statManager.GetStat(EStatType.Health);
-        //health.CurrentHealth = stat.currentValue;
+        health.currentHealth = (int)stat.currentValue;
+    }
+
+    private void AddWeapon(WeaponDataSO weapon)
+    {
+        weaponManager.AddNewWeapon(weapon);
+    }
+
+    private void OnCardSelectedHandled(CardDataSO card)
+    {
+        //if (card.affectsEnemy) return;
+
+        //if (card.affectsPlayer)
+        //{
+        //    statManager.ModifyStat(card.affectedPlayerStat, card.playerStatModifier);
+        //}
+
+        //if (card.affectsWeaponLevel)
+        //{
+        //    weaponManager.LevelUpWeapon(card.weaponName);
+        //}
+
+        //if (card.affectsWeaponStat)
+        //{
+        //    weaponManager.UpdateWeaponStat(card.weaponName, card.affectedWeaponStat, card.weaponStatModifier);
+        //}
+
+        switch (card.cardType)
+        {
+            case ECardType.AddsWeapon:
+                AddWeapon(card.weaponToAdd);
+                break;
+            case ECardType.AffectsPlayer:
+                statManager.ModifyStat(card.affectedPlayerStat, card.playerStatModifier);
+                break;
+            case ECardType.AffectsWeaponLevel:
+                weaponManager.LevelUpWeapon(card.weaponName);
+                break;
+            case ECardType.AffectsSpecificWeaponStat:
+                weaponManager.UpdateWeaponStat(card.weaponName, card.affectedWeaponStat, card.weaponStatModifier);
+                break;
+            default:
+                break;
+        }
     }
 }

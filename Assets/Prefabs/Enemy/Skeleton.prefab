@@ -9,13 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7091748316972974557}
-  - component: {fileID: 3384245573973631239}
-  - component: {fileID: 1230729582092275700}
   - component: {fileID: 4455393774987062212}
   - component: {fileID: 7980777047355513651}
   - component: {fileID: 6022301853008481053}
   - component: {fileID: -5904573852011322737}
   - component: {fileID: 3761545616782106416}
+  - component: {fileID: -3153848889844271207}
+  - component: {fileID: -4183431948116384970}
   m_Layer: 6
   m_Name: Skeleton
   m_TagString: Enemy
@@ -39,40 +39,6 @@ Transform:
   - {fileID: 7896511847740555964}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3384245573973631239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 12792752347874169}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6413740f6e2dc8940ae77f9813d16fee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 3
-  boneProjectilePrefab: {fileID: 4378682058645906929, guid: 928b57ab7bc594d4d91f9949ac698da1, type: 3}
-  attackRange: 3
-  attackCooldown: 2
-  throwPoint: {fileID: 7896511847740555964}
---- !u!114 &1230729582092275700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 12792752347874169}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6d06b78f1e04b84c9298b0cf706a286, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 3
-  expDrop: 10
-  canDamageOnCollision: 0
-  collisionDamage: 10
-  XpOrbPrefab: {fileID: 6835560325603651991, guid: fc5d21bb0b85bd64b9e1eb3be3c019e4, type: 3}
 --- !u!212 &4455393774987062212
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -93,7 +59,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -162,7 +128,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -187,9 +153,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 60
+  currentHealth: 0
   canDestroyOnDeath: 0
   isPlayer: 0
-  allowRevive: 0
   onDeath:
     m_PersistentCalls:
       m_Calls: []
@@ -207,6 +173,7 @@ MonoBehaviour:
   scaleEase: 8
   hurtCooldown: 0.1
   healthSlider: {fileID: 0}
+  debug: 0
 --- !u!70 &3761545616782106416
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -242,6 +209,44 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1.18, y: 2.09}
   m_Direction: 0
+--- !u!114 &-3153848889844271207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 12792752347874169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74ae2e228e437eb4391b9d713cca1cf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultFacingLeft: 0
+  moveSpeed: 5
+  moveSpeedMultiplier: 0
+  statManager: {fileID: -4183431948116384970}
+  XpOrbPrefab: {fileID: 0}
+  expDrop: 0
+  boneProjectilePrefab: {fileID: 4378682058645906929, guid: 928b57ab7bc594d4d91f9949ac698da1, type: 3}
+  attackRange: 5
+  attackCooldown: 2
+  throwPoint: {fileID: 7896511847740555964}
+--- !u!114 &-4183431948116384970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 12792752347874169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6db34c11c33b97e48bfc69a589427d90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDamagable: 1
+  health: {fileID: -5904573852011322737}
+  statDataList: []
+  statList: []
 --- !u!1 &6001087531730801353
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,9 +313,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  currentHealth: 0
   canDestroyOnDeath: 1
   isPlayer: 0
-  allowRevive: 0
   onDeath:
     m_PersistentCalls:
       m_Calls: []
@@ -328,6 +333,7 @@ MonoBehaviour:
   scaleEase: 8
   hurtCooldown: 0.1
   healthSlider: {fileID: 0}
+  debug: 0
 --- !u!114 &6952006896896520023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,9 +347,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
-  expDrop: 10
   canDamageOnCollision: 0
   collisionDamage: 0
+  expDrop: 10
   XpOrbPrefab: {fileID: 0}
 --- !u!212 &1129240058524930666
 SpriteRenderer:
