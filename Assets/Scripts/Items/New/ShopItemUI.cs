@@ -6,10 +6,10 @@ using TMPro;
 
 public class ShopItemUI : MonoBehaviour, IPointerClickHandler
 {
+    [Header("References")]
     public Button buyBtn;
+    public TextMeshProUGUI buttonText;
     public ShopItemSO item;
-
-    public TextMeshProUGUI buttonText; // 👈 assign this
 
     private bool selected;
 
@@ -17,28 +17,45 @@ public class ShopItemUI : MonoBehaviour, IPointerClickHandler
 
     void Start()
     {
-        SetSelected(false); // default = BUY
+        // ✅ connect BUY button
+        buyBtn.onClick.AddListener(AddItem);
+
+        // default state
+        SetSelected(false);
     }
 
+    // ===============================
+    // Item card clicked (select item)
+    // ===============================
     public void OnPointerClick(PointerEventData eventData)
     {
         selected = !selected;
+
+        // tell shop manager
         Shop.instance.SelectItem(this, selected);
     }
 
+    // ===============================
+    // Visual selection state
+    // ===============================
     public void SetSelected(bool state)
     {
         selected = state;
 
         if (selected)
-            buttonText.text = "$" + item.unlockCost; // show price
+            buttonText.text = "BUY $" + item.unlockCost;
         else
-            buttonText.text = "BUY"; // show buy
+            buttonText.text = "BUY";
     }
 
+    // ===============================
+    // Buy button pressed
+    // ===============================
     public void AddItem()
     {
+        // safety: only buy if selected
+        if (!selected) return;
+
         OnItemAdded?.Invoke(item);
     }
 }
-
