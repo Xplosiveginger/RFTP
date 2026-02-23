@@ -80,7 +80,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -180,6 +180,7 @@ MonoBehaviour:
   scaleEase: 8
   hurtCooldown: 0.1
   healthSlider: {fileID: 0}
+  debug: 0
 --- !u!50 &1170173700785934726
 Rigidbody2D:
   serializedVersion: 4
@@ -223,6 +224,8 @@ MonoBehaviour:
   moveSpeed: 5
   moveSpeedMultiplier: 0
   statManager: {fileID: -7268501394254187593}
+  XpOrbPrefab: {fileID: 0}
+  expDrop: 0
 --- !u!114 &-7268501394254187593
 MonoBehaviour:
   m_ObjectHideFlags: 0
