@@ -158,5 +158,11 @@ public class EnemyManager : MonoBehaviour
         enemy.gameObject.SetActive(false);
     }
 
+    // =======================================================
+    // DAMAGING THE PLAYER
+    // =======================================================
+    void DamagePlayer(float damage)
+    {
+    }
     public void SetPlayer(Transform p) => player = p;
 }
