@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MagnetDamageObject : MonoBehaviour
 {
-    [SerializeField, DisplayOnly] private float damage;
-    [SerializeField, DisplayOnly] private float size;
+    [SerializeField, ] private float damage;
+    [SerializeField, ] private float size;
     [SerializeField] private float damageInterval;
     [SerializeField] private MagnetRefactored magnet;
 

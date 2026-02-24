@@ -9,7 +9,7 @@ public class HealthSystem : MonoBehaviour
 {
     [Header("Health Settings")]
     [SerializeField] public int maxHealth = 100;
-    [SerializeField, DisplayOnly] public int currentHealth;
+    [SerializeField, ] public int currentHealth;
 
     [Header("Settings")]
     public bool canDestroyOnDeath = true;
