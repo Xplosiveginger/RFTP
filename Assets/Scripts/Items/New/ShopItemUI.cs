@@ -6,56 +6,90 @@ using TMPro;
 
 public class ShopItemUI : MonoBehaviour, IPointerClickHandler
 {
-    [Header("References")]
     public Button buyBtn;
     public TextMeshProUGUI buttonText;
     public ShopItemSO item;
 
     private bool selected;
+    private bool owned;
 
     public static event Action<ShopItemSO> OnItemAdded;
 
     void Start()
     {
-        // ✅ connect BUY button
         buyBtn.onClick.AddListener(AddItem);
 
-        // default state
+        Shop.OnRefundAll += ResetItem;
+
         SetSelected(false);
     }
 
+    private void OnDestroy()
+    {
+        Shop.OnRefundAll -= ResetItem;
+    }
+
     // ===============================
-    // Item card clicked (select item)
+    // Select (✅ allow owned too)
     // ===============================
     public void OnPointerClick(PointerEventData eventData)
     {
         selected = !selected;
 
-        // tell shop manager
         Shop.instance.SelectItem(this, selected);
     }
 
     // ===============================
-    // Visual selection state
+    // Visual
     // ===============================
     public void SetSelected(bool state)
     {
         selected = state;
 
+        if (owned)
+        {
+            buttonText.text = "OWNED";
+            buyBtn.interactable = false;
+            return;
+        }
+
         if (selected)
+        {
             buttonText.text = "BUY $" + item.unlockCost;
+            buyBtn.interactable = Shop.instance.playerMoney >= item.unlockCost;
+        }
         else
+        {
             buttonText.text = "BUY";
+            buyBtn.interactable = true;
+        }
     }
 
     // ===============================
-    // Buy button pressed
+    // Buy (❌ block only here)
     // ===============================
     public void AddItem()
     {
-        // safety: only buy if selected
-        if (!selected) return;
+        if (!selected || owned)
+            return;
+
+        owned = true;
+
+        buttonText.text = "OWNED";
+        buyBtn.interactable = false;
 
         OnItemAdded?.Invoke(item);
+    }
+
+    // ===============================
+    // Refund reset
+    // ===============================
+    private void ResetItem()
+    {
+        owned = false;
+        selected = false;
+
+        buttonText.text = "BUY";
+        buyBtn.interactable = true;
     }
 }
