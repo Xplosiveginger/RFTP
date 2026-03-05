@@ -35,7 +35,13 @@ public class ShopItemUI : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         selected = !selected;
+
         Shop.instance.SelectItem(this, selected);
+
+        if (selected)
+        {
+            DescriptionUI.instance.ShowItem(item, currentLevel);
+        }
     }
 
     public void SetSelected(bool state)
@@ -85,6 +91,8 @@ public class ShopItemUI : MonoBehaviour, IPointerClickHandler
         OnItemAdded?.Invoke(item);
 
         SetSelected(true);
+
+        DescriptionUI.instance.ShowItem(item, currentLevel);
     }
 
     void UpdateDots()
@@ -98,6 +106,8 @@ public class ShopItemUI : MonoBehaviour, IPointerClickHandler
     private void ResetItem()
     {
         currentLevel = 0;
+
+        bool wasSelected = selected; // store before resetting
         selected = false;
 
         foreach (GameObject dot in grayDots)
@@ -107,5 +117,11 @@ public class ShopItemUI : MonoBehaviour, IPointerClickHandler
 
         buttonText.text = "BUY";
         buyBtn.interactable = true;
+
+        // ONLY update description if this item was selected
+        if (DescriptionUI.instance != null)
+        {
+            DescriptionUI.instance.ClearDescription();
+        }
     }
 }

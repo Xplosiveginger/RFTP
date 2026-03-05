@@ -10,30 +10,36 @@ public class LoadingScene : MonoBehaviour
     public GameObject currentPanel;
     public GameObject loadingScreen;
 
-    [Header("Progress UI (Optional)")]
-    public Slider progressBar;
-    public TextMeshProUGUI progressText;
+    [Header("Progress Image")]
+    public Image progressImage;
 
-    [Header("Fake Loading Speed")]
+  
+
+    [Header("Loading Speed")]
     public float fakeSpeed = 0.5f;
+
     private Scene oldScene;
+    private bool isLoading = false;
 
     // =========================================
     // PUBLIC CALL
     // =========================================
     public void LoadScene(int sceneId)
     {
+        if (isLoading) return;
+
         StartCoroutine(LoadRoutine(sceneId));
     }
 
     // =========================================
-    // MAIN ROUTINE (NO FADE)
+    // MAIN LOADING ROUTINE
     // =========================================
     IEnumerator LoadRoutine(int sceneId)
     {
+        isLoading = true;
+
         oldScene = SceneManager.GetActiveScene();
 
-        // show loading UI
         currentPanel.SetActive(false);
         loadingScreen.SetActive(true);
 
@@ -44,17 +50,14 @@ public class LoadingScene : MonoBehaviour
 
         float fakeProgress = 0f;
 
-        while (fakeProgress < 1f)
+        while (!op.isDone)
         {
-            // real progress (0–1)
             float realProgress = Mathf.Clamp01(op.progress / 0.9f);
 
-            // smooth move towards real progress
-            fakeProgress = Mathf.MoveTowards(fakeProgress, realProgress, Time.deltaTime * 0.5f);
+            fakeProgress = Mathf.MoveTowards(fakeProgress, realProgress, Time.deltaTime * fakeSpeed);
 
             UpdateProgress(fakeProgress);
 
-            // break only when fully loaded
             if (realProgress >= 1f && fakeProgress >= 1f)
                 break;
 
@@ -74,19 +77,19 @@ public class LoadingScene : MonoBehaviour
         if (oldScene.isLoaded)
             yield return SceneManager.UnloadSceneAsync(oldScene);
 
-        // hide loading UI
         loadingScreen.SetActive(false);
+
+        isLoading = false;
     }
 
     // =========================================
-    // PROGRESS BAR + TEXT
+    // UPDATE UI
     // =========================================
     void UpdateProgress(float value)
     {
-        if (progressBar != null)
-            progressBar.value = value;
+        if (progressImage != null)
+            progressImage.fillAmount = value;
 
-        if (progressText != null)
-            progressText.text = Mathf.RoundToInt(value * 100f) + "%";
+       
     }
 }

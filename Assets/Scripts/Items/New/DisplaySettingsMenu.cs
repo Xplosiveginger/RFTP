@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class DisplaySettingsMenu : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class DisplaySettingsMenu : MonoBehaviour
     [Header("Display")]
     public Toggle fullscreenToggle;
     public TMP_Dropdown resolutionDropdown;
+
+    public GameObject videoPanel;
+    public GameObject audioPanel;
 
     Resolution[] resolutions;
     List<Resolution> uniqueResolutions = new List<Resolution>();
@@ -89,5 +93,23 @@ public class DisplaySettingsMenu : MonoBehaviour
      : FullScreenMode.Windowed;
 
         Debug.Log("Fullscreen: " + Screen.fullScreen);
+    }
+
+    public void OnVideoClick()
+    {
+        ShowPanel(videoPanel);
+    }
+
+    public void OnAudioClick()
+    {
+        ShowPanel(audioPanel);
+    }
+
+    void ShowPanel(GameObject panelToShow)
+    {
+        videoPanel.SetActive(false);
+        audioPanel.SetActive(false);
+
+        panelToShow.SetActive(true);
     }
 }

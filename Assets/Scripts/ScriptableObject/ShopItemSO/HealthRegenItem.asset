@@ -15,27 +15,37 @@ MonoBehaviour:
   itemName: Health Regen
   itemType: 0
   levels:
-  - itemPrefab: {fileID: 0}
+  - levelName: Level 1
+    description: Raises the max health regen by 0.3%
+    itemPrefab: {fileID: 0}
     cardSprite: {fileID: 0}
     targetStat: 2
     modifierAmount: 0.3
     isPercentage: 0
-  - itemPrefab: {fileID: 0}
+  - levelName: Level 2
+    description: Raises the max health regen by 0.6%
+    itemPrefab: {fileID: 0}
     cardSprite: {fileID: 0}
     targetStat: 2
     modifierAmount: 0.3
     isPercentage: 0
-  - itemPrefab: {fileID: 0}
+  - levelName: Level 3
+    description: Raises the max health regen by 0.9%
+    itemPrefab: {fileID: 0}
     cardSprite: {fileID: 0}
     targetStat: 2
     modifierAmount: 0.3
     isPercentage: 0
-  - itemPrefab: {fileID: 0}
+  - levelName: Level 4
+    description: Raises the max health regen by 1.2%
+    itemPrefab: {fileID: 0}
     cardSprite: {fileID: 0}
     targetStat: 2
     modifierAmount: 0.3
     isPercentage: 0
-  - itemPrefab: {fileID: 0}
+  - levelName: Level 5
+    description: Raises the max health regen by 1.5%
+    itemPrefab: {fileID: 0}
     cardSprite: {fileID: 0}
     targetStat: 2
     modifierAmount: 0.3

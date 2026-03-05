@@ -15,12 +15,16 @@ MonoBehaviour:
   itemName: Projectile Speed
   itemType: 0
   levels:
-  - itemPrefab: {fileID: 0}
+  - levelName: Level 1
+    description: Increases the projectile speed of the weapons by 10%
+    itemPrefab: {fileID: 0}
     cardSprite: {fileID: 0}
     targetStat: 6
     modifierAmount: 10
     isPercentage: 1
-  - itemPrefab: {fileID: 0}
+  - levelName: Level 2
+    description: Increases the projectile speed of the weapons by 20%
+    itemPrefab: {fileID: 0}
     cardSprite: {fileID: 0}
     targetStat: 6
     modifierAmount: 10

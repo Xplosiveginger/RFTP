@@ -11,3 +11,10 @@ public class ShopItemSO : ItemSO
     public bool unlocked;
     public int unlockCost; // Cost to unlock or upgrade in shop
 }
+
+[System.Serializable]
+public class ShopItemLevel
+{
+    public string description;
+    public float value;
+}
