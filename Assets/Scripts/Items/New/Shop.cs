@@ -9,7 +9,8 @@ public class Shop : MonoBehaviour
     public static Shop instance;
 
     private ShopItemUI currentSelected;
-
+    [Header("Player")]
+    public StatManager playerStatManager;
     [Header("Animation")]
     public float btnScaleTime = 0.25f;
 
@@ -128,6 +129,9 @@ public class Shop : MonoBehaviour
 
         UpdateMoneyUI();
 
+        // ⭐ APPLY STAT HERE
+        item.StatModify(playerStatManager, 0);
+
         UnlockItem(item);
     }
 
@@ -144,17 +148,15 @@ public class Shop : MonoBehaviour
         if (spentMoney <= 0)
             return;
 
-        // return money
         playerMoney += spentMoney;
-
         spentMoney = 0;
 
-        // clear owned items
         startingItems.Clear();
+
+        playerStatManager.InitializeStats(); // reset stats
 
         UpdateMoneyUI();
 
-        // tell all UI to reset
         OnRefundAll?.Invoke();
 
         Debug.Log("All purchases refunded!");

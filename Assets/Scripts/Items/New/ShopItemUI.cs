@@ -10,8 +10,10 @@ public class ShopItemUI : MonoBehaviour, IPointerClickHandler
     public TextMeshProUGUI buttonText;
     public ShopItemSO item;
 
+    public GameObject[] grayDots;   // Only gray dots needed
+
     private bool selected;
-    private bool owned;
+    private int currentLevel = 0;
 
     public static event Action<ShopItemSO> OnItemAdded;
 
@@ -21,6 +23,7 @@ public class ShopItemUI : MonoBehaviour, IPointerClickHandler
 
         Shop.OnRefundAll += ResetItem;
 
+        UpdateDots();
         SetSelected(false);
     }
 
@@ -29,65 +32,78 @@ public class ShopItemUI : MonoBehaviour, IPointerClickHandler
         Shop.OnRefundAll -= ResetItem;
     }
 
-    // ===============================
-    // Select (✅ allow owned too)
-    // ===============================
     public void OnPointerClick(PointerEventData eventData)
     {
         selected = !selected;
-
         Shop.instance.SelectItem(this, selected);
     }
 
-    // ===============================
-    // Visual
-    // ===============================
     public void SetSelected(bool state)
     {
         selected = state;
 
-        if (owned)
+        int maxLevel = item.levels.Count;
+
+        if (currentLevel >= maxLevel)
         {
-            buttonText.text = "OWNED";
+            buttonText.text = "MAX";
             buyBtn.interactable = false;
             return;
         }
 
+        int cost = item.unlockCost * (currentLevel + 1);
+
         if (selected)
         {
-            buttonText.text = "BUY $" + item.unlockCost;
-            buyBtn.interactable = Shop.instance.playerMoney >= item.unlockCost;
+            buttonText.text = currentLevel == 0 ? "BUY $" + cost : "UPGRADE $" + cost;
+            buyBtn.interactable = Shop.instance.playerMoney >= cost;
         }
         else
         {
-            buttonText.text = "BUY";
+            buttonText.text = currentLevel == 0 ? "BUY" : "UPGRADE";
             buyBtn.interactable = true;
         }
     }
 
-    // ===============================
-    // Buy (❌ block only here)
-    // ===============================
     public void AddItem()
     {
-        if (!selected || owned)
+        if (!selected)
             return;
 
-        owned = true;
+        if (currentLevel >= item.levels.Count)
+            return;
 
-        buttonText.text = "OWNED";
-        buyBtn.interactable = false;
+        int cost = item.unlockCost * (currentLevel + 1);
+
+        if (Shop.instance.playerMoney < cost)
+            return;
+
+        currentLevel++;
+
+        UpdateDots();
 
         OnItemAdded?.Invoke(item);
+
+        SetSelected(true);
     }
 
-    // ===============================
-    // Refund reset
-    // ===============================
+    void UpdateDots()
+    {
+        for (int i = 0; i < grayDots.Length; i++)
+        {
+            grayDots[i].SetActive(i >= currentLevel);
+        }
+    }
+
     private void ResetItem()
     {
-        owned = false;
+        currentLevel = 0;
         selected = false;
+
+        foreach (GameObject dot in grayDots)
+        {
+            dot.SetActive(true);
+        }
 
         buttonText.text = "BUY";
         buyBtn.interactable = true;
