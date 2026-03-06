@@ -6,9 +6,15 @@ using UnityEngine.SceneManagement;
 public class SceneChanger : MonoBehaviour
 {
     public string SceneName;
+    public GameObject Loading;
 
+    private void Start()
+    {
+        Loading.gameObject.SetActive(true);
+    }
     public void SceneChange()
     {
+        
         SceneManager.LoadScene(SceneName);
     }
     public void Exit()
@@ -16,4 +22,5 @@ public class SceneChanger : MonoBehaviour
         Debug.Log("Exit");
         Application.Quit();
     }
+    
 }

@@ -16,6 +16,11 @@ public class DisplaySettingsMenu : MonoBehaviour
     public GameObject videoPanel;
     public GameObject audioPanel;
 
+    public GameObject videoBtn;
+    public GameObject audioBtn;
+    public GameObject backBtn;
+
+
     Resolution[] resolutions;
     List<Resolution> uniqueResolutions = new List<Resolution>();
 
@@ -97,14 +102,28 @@ public class DisplaySettingsMenu : MonoBehaviour
 
     public void OnVideoClick()
     {
+        videoBtn.gameObject.SetActive(false);
+        audioBtn.gameObject.SetActive(false);
         ShowPanel(videoPanel);
+        backBtn.gameObject.SetActive(true);
     }
 
     public void OnAudioClick()
     {
+        videoBtn.gameObject.SetActive(false);
+        audioBtn.gameObject.SetActive(false);
         ShowPanel(audioPanel);
+        backBtn.gameObject.SetActive(true);
     }
 
+    public void OnBackClick()
+    {
+        videoBtn.gameObject.SetActive(true);
+        audioBtn.gameObject.SetActive(true);
+        videoPanel.SetActive(false);
+        audioPanel.SetActive(false);
+        backBtn.gameObject.SetActive(false);
+    }
     void ShowPanel(GameObject panelToShow)
     {
         videoPanel.SetActive(false);
