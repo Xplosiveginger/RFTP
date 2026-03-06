@@ -6,16 +6,16 @@ using UnityEngine.SceneManagement;
 public class SceneChanger : MonoBehaviour
 {
     public string SceneName;
-    public GameObject Loading;
-
-    private void Start()
-    {
-        Loading.gameObject.SetActive(true);
-    }
+    [SerializeField] private GameObject Loading;
     public void SceneChange()
     {
         
         SceneManager.LoadScene(SceneName);
+    }
+
+    public void OnPlay()
+    {
+        Loading.gameObject.SetActive(true);
     }
     public void Exit()
     {

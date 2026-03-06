@@ -12,7 +12,7 @@ public class LoadingScene : MonoBehaviour
 
     [Header("Progress Image")]
     public Image progressImage;
-
+   
   
 
     [Header("Loading Speed")]
@@ -24,11 +24,14 @@ public class LoadingScene : MonoBehaviour
     // =========================================
     // PUBLIC CALL
     // =========================================
+
+   
     public void LoadScene(int sceneId)
     {
         if (isLoading) return;
 
         StartCoroutine(LoadRoutine(sceneId));
+
     }
 
     // =========================================
@@ -92,4 +95,6 @@ public class LoadingScene : MonoBehaviour
 
        
     }
+
+
 }
