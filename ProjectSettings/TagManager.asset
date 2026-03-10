@@ -43,9 +43,3 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: AboveLight
-    uniqueID: 3353850309
-    locked: 0
-  - name: OnLight
-    uniqueID: 4210878183
-    locked: 0
