@@ -59,7 +59,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -173,6 +173,7 @@ MonoBehaviour:
   scaleEase: 8
   hurtCooldown: 0.1
   healthSlider: {fileID: 0}
+  debug: 0
 --- !u!70 &3761545616782106416
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -224,6 +225,8 @@ MonoBehaviour:
   moveSpeed: 5
   moveSpeedMultiplier: 0
   statManager: {fileID: -4183431948116384970}
+  XpOrbPrefab: {fileID: 0}
+  expDrop: 0
   boneProjectilePrefab: {fileID: 4378682058645906929, guid: 928b57ab7bc594d4d91f9949ac698da1, type: 3}
   attackRange: 5
   attackCooldown: 2
@@ -330,6 +333,7 @@ MonoBehaviour:
   scaleEase: 8
   hurtCooldown: 0.1
   healthSlider: {fileID: 0}
+  debug: 0
 --- !u!114 &6952006896896520023
 MonoBehaviour:
   m_ObjectHideFlags: 0
