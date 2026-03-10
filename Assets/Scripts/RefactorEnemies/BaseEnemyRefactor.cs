@@ -86,6 +86,7 @@ public class BaseEnemyRefactor : MonoBehaviour
     {
         statManager.ResetHealthStatOnDeath();
         health = statManager.GetStat(EStatType.Health).maxValue;
+        healthSystem.ResetHealth();
     }
 
     protected void FaceTarget(Vector3 targetPos)

@@ -230,7 +230,7 @@ public class HealthSystem : MonoBehaviour
         }
 
         isDead = false;
-        //currentHealth = maxHealth;
+        currentHealth = maxHealth;
 
         // Make sure the scale is correct
         transform.localScale = defaultScale;

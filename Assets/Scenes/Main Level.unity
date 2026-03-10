@@ -1187,7 +1187,7 @@ MonoBehaviour:
   atomPrefab: {fileID: 7117651411527206627, guid: ad70a5c7473c53047b6d9529808d7eee, type: 3}
   atomPoolSize: 5
   debugMode: 1
-  debugStartTime: 265
+  debugStartTime: 0
 --- !u!1001 &575439589
 PrefabInstance:
   m_ObjectHideFlags: 0
