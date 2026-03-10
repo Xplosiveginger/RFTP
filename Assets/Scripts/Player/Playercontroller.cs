@@ -22,8 +22,10 @@ public class PlayerController2D : MonoBehaviour
     public StatManager statManager;
     public ReworkedWeaponManager weaponManager;
 
+    public ItemSO healthInc;
+
     //test
-    
+
     public WeaponDataSO weaponToAdd;
 
     private void OnEnable()
@@ -84,7 +86,8 @@ public class PlayerController2D : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            statManager.ModifyStat(EStatType.MoveSpeed, 20);
+            //ItemManager.Instance.AddItem(healthInc);
+            //statManager.ModifyStat(EStatType.MoveSpeed, 20);
             //weaponManager.GetWeapon(EWeaponName.Magnet).statManager.ModifyStat(EStatType.AOESize, 20);
         }
     }
@@ -164,7 +167,7 @@ public class PlayerController2D : MonoBehaviour
                 AddWeapon(card.weaponToAdd);
                 break;
             case ECardType.AffectsPlayer:
-                statManager.ModifyStat(card.affectedPlayerStat, card.playerStatModifier);
+                ItemManager.Instance.AddItem(healthInc);
                 break;
             case ECardType.AffectsWeaponLevel:
                 weaponManager.LevelUpWeapon(card.weaponName);

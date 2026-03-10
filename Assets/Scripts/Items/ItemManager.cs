@@ -15,6 +15,7 @@ using UnityEngine;
 /// </summary>
 public class ItemManager : MonoBehaviour
 {
+    public static ItemManager Instance { get; private set; }
     [Header("Dependencies")]
     [SerializeField] private StatManager statManager;
 
@@ -22,7 +23,7 @@ public class ItemManager : MonoBehaviour
     public List<ItemSO> startingItems;
 
     private readonly List<ActiveItem> activeItems = new();
-
+    
     public event Action<ItemSO, int> OnItemAddedOrUpgraded;
 
     /// <summary>
@@ -37,6 +38,7 @@ public class ItemManager : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
         statManager = GetComponent<StatManager>();
     }
 
@@ -57,6 +59,7 @@ public class ItemManager : MonoBehaviour
             AddItemFromSO(itemSO, 0);
     }
 
+
     /// <summary>
     /// Adds an item at a specific level.
     /// Used for shop items or loading saved data.
@@ -72,15 +75,16 @@ public class ItemManager : MonoBehaviour
         GameObject instance = null;
 
         // Spawn visual prefab if present
-        if (level.itemPrefab != null)
-        {
-            instance = Instantiate(
-                level.itemPrefab,
-                transform.position,
-                Quaternion.identity,
-                transform
-            );
-        }
+        // Remove the Instantiation , for items use the stats which are parsing through selected card action and add the item or level up the item 
+        //if (level.itemPrefab != null)
+        //{
+        //    instance = Instantiate(
+        //        level.itemPrefab,
+        //        transform.position,
+        //        Quaternion.identity,
+        //        transform
+        //    );
+        //}
 
         var newItem = new ActiveItem
         {
