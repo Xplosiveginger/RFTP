@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class csDemoSceneCode : MonoBehaviour
 {
     public string[] EffectNames;
     public string[] Effect2Names;
     public Transform[] Effect;
-    public GUIText Text1;
+    public Text Text1; // Changed to text from GUI.Text
     int i = 0;
     int a = 0;
     

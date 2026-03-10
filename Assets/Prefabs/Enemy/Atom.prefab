@@ -98,9 +98,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -941116987
+  m_SortingLayer: 1
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: b00a125d4ae6f014bbbb04e023edbdc5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -224,6 +224,8 @@ MonoBehaviour:
   moveSpeed: 5
   moveSpeedMultiplier: 0
   statManager: {fileID: -7268501394254187593}
+  DiesOnContactWithPlayer: 0
+  DoesDamageOnContact: 0
   XpOrbPrefab: {fileID: 0}
   expDrop: 0
 --- !u!114 &-7268501394254187593
@@ -240,5 +242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDamagable: 1
   health: {fileID: 8438849726224143363}
-  statDataList: []
+  statDataList:
+  - {fileID: 11400000, guid: f3141046eafa2f644bd10def3f801bcc, type: 2}
+  - {fileID: 11400000, guid: 1f6c693facec4ce469f3ff6b30d887ce, type: 2}
   statList: []
