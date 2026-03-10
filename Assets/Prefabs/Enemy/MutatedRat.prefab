@@ -58,7 +58,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -224,6 +224,8 @@ MonoBehaviour:
   moveSpeed: 5
   moveSpeedMultiplier: 0
   statManager: {fileID: 118058094996581986}
+  DiesOnContactWithPlayer: 0
+  DoesDamageOnContact: 0
   XpOrbPrefab: {fileID: 0}
   expDrop: 0
   acidParticlePrefab: {fileID: 7155335147208632822, guid: 97c43495f80a3244fad1301dfafbe252, type: 3}
@@ -244,5 +246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDamagable: 1
   health: {fileID: 1867706625461616748}
-  statDataList: []
+  statDataList:
+  - {fileID: 11400000, guid: fb77007b0e60c84458605540ef88b935, type: 2}
+  - {fileID: 11400000, guid: 213356263d97c8541a922f50111027a3, type: 2}
   statList: []

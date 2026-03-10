@@ -59,7 +59,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -225,6 +225,8 @@ MonoBehaviour:
   moveSpeed: 5
   moveSpeedMultiplier: 0
   statManager: {fileID: -4183431948116384970}
+  DiesOnContactWithPlayer: 0
+  DoesDamageOnContact: 0
   XpOrbPrefab: {fileID: 0}
   expDrop: 0
   boneProjectilePrefab: {fileID: 4378682058645906929, guid: 928b57ab7bc594d4d91f9949ac698da1, type: 3}
@@ -245,7 +247,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDamagable: 1
   health: {fileID: -5904573852011322737}
-  statDataList: []
+  statDataList:
+  - {fileID: 11400000, guid: 0c5fdbb84d8fea748a4e8967353156a6, type: 2}
+  - {fileID: 11400000, guid: d60a8710364befc49b97998d3ac5a584, type: 2}
   statList: []
 --- !u!1 &6001087531730801353
 GameObject:

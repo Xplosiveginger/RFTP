@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using vyshak.CustomTools;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
@@ -8,7 +7,7 @@ public class PlayerController2D : MonoBehaviour
 {
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 5f;
-    [DisplayOnly] public bool inflicted = false;
+     public bool inflicted = false;
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -22,10 +21,11 @@ public class PlayerController2D : MonoBehaviour
 
     public StatManager statManager;
     public ReworkedWeaponManager weaponManager;
-    public ItemManager itemManager;
+
+    public ItemSO healthInc;
 
     //test
-    [SearchObject(typeof(WeaponDataSO))]
+
     public WeaponDataSO weaponToAdd;
 
     private void OnEnable()
@@ -86,7 +86,8 @@ public class PlayerController2D : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            statManager.ModifyStat(EStatType.MoveSpeed, 20);
+            //ItemManager.Instance.AddItem(healthInc);
+            //statManager.ModifyStat(EStatType.MoveSpeed, 20);
             //weaponManager.GetWeapon(EWeaponName.Magnet).statManager.ModifyStat(EStatType.AOESize, 20);
         }
     }
@@ -166,8 +167,7 @@ public class PlayerController2D : MonoBehaviour
                 AddWeapon(card.weaponToAdd);
                 break;
             case ECardType.AffectsPlayer:
-                //itemManager.AddItem(card.item);
-                //statManager.ModifyStat(card.affectedPlayerStat, card.playerStatModifier);
+                ItemManager.Instance.AddItem(healthInc);
                 break;
             case ECardType.AffectsWeaponLevel:
                 weaponManager.LevelUpWeapon(card.weaponName);

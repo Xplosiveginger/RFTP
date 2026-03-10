@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class CardManager : MonoBehaviour
 {
     [SerializeField] protected List<CardDataSO> cardDatas;
+    private List<CardDataSO> neededCards;
+    private List<CardDataSO> weaponLevelCarDatas;
     [SerializeField] protected List<RefactorCardUi> cards;
-    [SerializeField] protected ReworkedWeaponManager weaponManager; 
+    protected ReworkedWeaponManager weaponManager; 
 
     public event Action OnCardsInitialized;
     public static event Action<CardDataSO> CardSelected;

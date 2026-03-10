@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using vyshak.CustomTools;
 
 [CreateAssetMenu(fileName = "CardData", menuName = "CardDataSO")]
 public class CardDataSO : ScriptableObject
@@ -31,7 +30,7 @@ public class CardDataSO : ScriptableObject
     public EStatType affectedWeaponStat;
     public float weaponStatModifier;
 
-    [Header("Adds Weapon"), SearchObject(typeof(WeaponDataSO))]
+    [Header("Adds Weapon")]
     public WeaponDataSO weaponToAdd;
 
     public bool isBuffDebuff = false;
