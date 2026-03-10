@@ -20,6 +20,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: cc08863846d41124596ea8ee3757756d, type: 3}
   cardPriority: 3
   cardType: 1
+  item:
+    displayName: MoveSpeedIncreaser
+    description: 
+    cardSprite: {fileID: 21300000, guid: b6cb32d8e9ded1a4b9ace1b42e60d654, type: 3}
+    affectedStat: 0
+    modifierAmount: 5
+    isPercent: 1
   affectsPlayer: 1
   affectedPlayerStat: 0
   playerStatModifier: 5
