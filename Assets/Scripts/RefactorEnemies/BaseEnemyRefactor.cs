@@ -76,7 +76,7 @@ public class BaseEnemyRefactor : MonoBehaviour
     {
         if (agent != null)
             agent.ResetPath();
-
+        SoundFXManager.instance.PlayEnemyKilledSFX(transform,1);
         SpawnXp();
         //statManager.ResetHealthStatOnDeath();
         EnemyManager.Instance.DespawnEnemy(this);

@@ -1044,6 +1044,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundFXObject
       objectReference: {fileID: 0}
+    - target: {fileID: 8568699741497987934, guid: 61332d18a1f68ae419699589aec3bc2e, type: 3}
+      propertyPath: m_Pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8568699741497987934, guid: 61332d18a1f68ae419699589aec3bc2e, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2750,6 +2758,76 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1168044308
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1168044310}
+  - component: {fileID: 1168044309}
+  m_Layer: 0
+  m_Name: SoundFXManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1168044309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168044308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 377a18e178fe7e143ab7f94f1ed0a5e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundFXObject: {fileID: 8568699741497987934, guid: 61332d18a1f68ae419699589aec3bc2e, type: 3}
+  MainMusic: {fileID: 8300000, guid: cff21e5bbb4aa60409d8c1af1f0df1fa, type: 3}
+  UIButtonSFX: {fileID: 8300000, guid: eda352970dc3d3249bb4ffafdd295c2a, type: 3}
+  UIBuyButtonSFX: {fileID: 8300000, guid: efc23e928250601449690ef94c358c18, type: 3}
+  UIRefundButtonSFX: {fileID: 8300000, guid: 4195a8312b89ae340bae2dd579ba97fb, type: 3}
+  UIPauseButtonSFX: {fileID: 8300000, guid: 6e6145de4971b0248b0a7e244ce73d2c, type: 3}
+  UILevelUpBarSFX: {fileID: 8300000, guid: b63d22c3fe596ec4e8b62b725aa71b1b, type: 3}
+  UICardSelectionSFX: {fileID: 8300000, guid: 1454880d1768a17419db82600f0c7702, type: 3}
+  FurnitureSFX: {fileID: 8300000, guid: bd100a4f0bf13914bb79ae39a24016b2, type: 3}
+  EnemyKilledSFX: {fileID: 8300000, guid: d7780fefbb8be53489b0c9fe126d7dec, type: 3}
+  EXPStarSFX: {fileID: 8300000, guid: 041e4f6225363ac44b80b45b6c5c0333, type: 3}
+  PlayerDmgSFX: {fileID: 8300000, guid: d6f88d074804acf479f7ce1a9fdf64df, type: 3}
+  GlassShatterSFX: {fileID: 8300000, guid: 643d105c3443da047993ba1cb23be5bd, type: 3}
+  SmokeSFX: {fileID: 8300000, guid: 2273e873b3f33524b9495c9f243f7ff2, type: 3}
+  PoofSFX: {fileID: 8300000, guid: 2b43358699b59c04b8eeae9e3589edfd, type: 3}
+  AcidRainSFX: {fileID: 8300000, guid: ed5c462a74201564091e365d01866ff2, type: 3}
+  LaserSFX: {fileID: 8300000, guid: 0e8cea942c5030e418046de45572b1e2, type: 3}
+  PlanetSFX: {fileID: 8300000, guid: aa7cb8e45ffffec4e94d1abd5e35ae3a, type: 3}
+  PrismSFX: {fileID: 8300000, guid: 0e8cea942c5030e418046de45572b1e2, type: 3}
+  MagnetSFX: {fileID: 8300000, guid: 286fe4e37dc2af44ab39bfc13fb621e5, type: 3}
+  BacteriaSFX: {fileID: 8300000, guid: ed5c462a74201564091e365d01866ff2, type: 3}
+  TuningForkSFX: {fileID: 8300000, guid: f6faf01afb8e36e48b655b0ed1c471d5, type: 3}
+  LithiumIonBatterySFX: {fileID: 8300000, guid: bc7299d7bf3346c46a9bac4d8e07da3c, type: 3}
+  HealthSFX: {fileID: 8300000, guid: 1f2f354742a54c046a34d501e25dadfd, type: 3}
+  TestTubeSFX: {fileID: 8300000, guid: 657cb42a491136d46b7ad5cf7e9fb8dd, type: 3}
+  BurningSFX: {fileID: 8300000, guid: b7ac8ef54e4a73a4c820d87126091904, type: 3}
+--- !u!4 &1168044310
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168044308}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1277.3689, y: 467.0892, z: -8.2793455}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4468,6 +4546,7 @@ GameObject:
   - component: {fileID: 2129525362}
   - component: {fileID: 2129525365}
   - component: {fileID: 2129525366}
+  - component: {fileID: 2129525367}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4679,11 +4758,56 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2129525367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129525361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1606179110}
+  - {fileID: 1168044310}
   - {fileID: 1004138726}
   - {fileID: 2129525364}
   - {fileID: 368575659}
