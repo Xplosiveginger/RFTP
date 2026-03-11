@@ -31,6 +31,9 @@ public class CardSpawner : MonoBehaviour
     private System.Collections.IEnumerator SpawnNextFrame()
     {
         yield return null; // Wait one frame to avoid layout spikes
+
+        SoundFXManager.instance.PlayUICardSelectionSFX(transform, 1);
+
         SpawnRandomCards();
         Time.timeScale = 0f;
     }

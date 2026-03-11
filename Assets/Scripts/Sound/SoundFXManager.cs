@@ -60,7 +60,8 @@ public class SoundFXManager : MonoBehaviour
 
         //assign the Audioclip
         audioSource.clip = audioClip;
-        audioSource.pitch = 3;
+
+      
         //assign volume
         audioSource.volume = volume;
         //play sound

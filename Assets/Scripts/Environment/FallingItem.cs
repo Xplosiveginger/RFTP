@@ -211,6 +211,8 @@ public class InteractiveFallingItem : MonoBehaviour
 
         fallSeq.OnComplete(() =>
         {
+            SoundFXManager.instance.PlayGlassShatterSFX(transform, 1);
+
             TryHitPlayer();
 
             if (prefabToSpawn != null)

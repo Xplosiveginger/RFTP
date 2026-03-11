@@ -135,6 +135,7 @@ public class InteractiveTiltingItem : MonoBehaviour
         // Tilt animation (optional: can comment out if you only want droplet, not tilt)
         transform.DOLocalRotate(tiltEuler, tiltDuration).SetEase(Ease.OutSine).OnComplete(() =>
         {
+            SoundFXManager.instance.PlayTestTubeSFX(transform, 1);
             StartCoroutine(StartDropletFall());
         });
     }
@@ -143,6 +144,7 @@ public class InteractiveTiltingItem : MonoBehaviour
     {
         if (dropletSprite == null || tiltTarget == null)
         {
+            
             // Fallback: just spawn prefab
             if (prefabToSpawn != null)
                 Instantiate(prefabToSpawn, tiltTarget.position, Quaternion.identity);

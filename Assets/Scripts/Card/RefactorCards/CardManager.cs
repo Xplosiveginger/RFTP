@@ -39,7 +39,7 @@ public class CardManager : MonoBehaviour
     {
         Time.timeScale = 0f; 
         PopulateCards();
-
+        SoundFXManager.instance.PlayUICardSelectionSFX(transform, 1);
         foreach (var card in cards)
         {
             card.gameObject.SetActive(true);
