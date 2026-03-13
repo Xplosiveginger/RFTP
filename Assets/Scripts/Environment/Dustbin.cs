@@ -15,6 +15,7 @@ public class Dustbin : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            SoundFXManager.instance.PlayFurnitureSFX(transform, 1);
             var healthSys = other.GetComponent<HealthSystem>();
 
             if (healthSys != null)

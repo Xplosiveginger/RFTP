@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class HealthBuffPickup : MonoBehaviour
 {
@@ -8,11 +8,12 @@ public class HealthBuffPickup : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-
+      
         Debug.Log("HealthBuffPickup: OnTriggerEnter2D with " + other.name);
         if (other.CompareTag("Player"))
         {
-            SoundFXManager.instance.PlayPoofSFX(transform, 1);
+
+            SoundFXManager.instance.PlayFurnitureSFX(transform, 1);
 
             HealthSystem playerHealth = other.GetComponent<HealthSystem>();
             if (playerHealth != null && !playerHealth.IsDead)
@@ -31,10 +32,10 @@ public class HealthBuffPickup : MonoBehaviour
 
                     GameObject effectInstance = Instantiate(pickupEffectPrefab, other.transform.position, Quaternion.identity);
                     effectInstance.transform.SetParent(other.transform);
-
+                   
                     Destroy(effectInstance, 1f); // Destroy effect after 1 seconds
                 }
-
+              
                 // Destroy pickup regardless of health state
                 Destroy(gameObject);
             }

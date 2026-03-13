@@ -127,6 +127,13 @@ public class HealthSystem : MonoBehaviour
             Die();
         else
         {
+            if (isPlayer && SoundFXManager.instance != null)
+            {
+                
+                SoundFXManager.instance.PlayPlayerDmgSFX(transform, 1);
+            }
+
+
             PlayHurtEffect();
             onDamageTaken?.Invoke();
             OnHealthChanged?.Invoke(currentHealth);
@@ -137,6 +144,7 @@ public class HealthSystem : MonoBehaviour
     {
         if (isDead || healAmount <= 0) return;
 
+        SoundFXManager.instance.PlayHealthSFX(transform, 1);
         currentHealth = Mathf.Min(maxHealth, currentHealth + healAmount);
         UpdateHealthUI();
     }

@@ -70,4 +70,6 @@ public class AcidDamage2D : MonoBehaviour
             StopCoroutine(damageCoroutine);
         }
     }
+
+
 }

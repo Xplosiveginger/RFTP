@@ -96,7 +96,7 @@ public class ShakeAndSpawnDamage : MonoBehaviour
         shakeSequence.Append(transform.DOPunchRotation(new Vector3(0, 0, shakeStrength), shakeDuration, shakeVibrato));
         shakeSequence.OnComplete(() =>
         {
-            SoundFXManager.instance.PlayPoofSFX(transform, 1);
+            SoundFXManager.instance.PlaySmokeSFX(transform, 1);
 
             SpawnDamageParticle();
         });
