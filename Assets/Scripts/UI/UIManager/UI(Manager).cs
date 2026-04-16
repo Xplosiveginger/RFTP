@@ -15,7 +15,7 @@ public class UIMng : MonoBehaviour
             isActive = !isActive;
             pausePanel.SetActive(isActive);
 
-            // Optional: Pause game time
+            // pauses the game when the pause menu is acitve and resumes it when deactive 
             Time.timeScale = isActive ? 0f : 1f;
         }
     }

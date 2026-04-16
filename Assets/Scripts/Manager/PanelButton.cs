@@ -15,4 +15,14 @@ public class PanelButton : MonoBehaviour
         if (panelToEnable != null)
             panelToEnable.SetActive(true);
     }
+    public void onExitClicked()
+    {
+        Debug.Log("Game is quitting...");
+
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
+    }
 }

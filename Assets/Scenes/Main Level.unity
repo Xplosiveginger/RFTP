@@ -4040,6 +4040,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -6.8484
       objectReference: {fileID: 0}
+    - target: {fileID: 7512409688012322718, guid: f17ddfa8f2a7c7c4d9939411056a0215, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: onExitClicked
+      objectReference: {fileID: 0}
     - target: {fileID: 7528812905600906841, guid: f17ddfa8f2a7c7c4d9939411056a0215, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -5975,6 +5979,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7664751407247831055, guid: a31d3eda6d885544789a234488df2c25, type: 3}
+      propertyPath: onPostDeath.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7664751407247831055, guid: a31d3eda6d885544789a234488df2c25, type: 3}
       propertyPath: onDamageTaken.m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -6002,6 +6010,10 @@ PrefabInstance:
       propertyPath: onDamageTaken.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2026983369}
+    - target: {fileID: 7664751407247831055, guid: a31d3eda6d885544789a234488df2c25, type: 3}
+      propertyPath: onPostDeath.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7664751407247831055, guid: a31d3eda6d885544789a234488df2c25, type: 3}
       propertyPath: onDamageTaken.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -7524,7 +7536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 880a32434feb42740b28e968911a6af6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PausePanel: {fileID: 167291141}
+  pausePanel: {fileID: 167291141}
 --- !u!1 &1548327033
 GameObject:
   m_ObjectHideFlags: 0
