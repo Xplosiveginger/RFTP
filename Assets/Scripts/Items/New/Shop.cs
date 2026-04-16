@@ -1,26 +1,60 @@
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using TMPro;
 
 public class Shop : MonoBehaviour
 {
     public static Shop instance;
 
-    public float btnScaleTime = 0.5f;
+    private ShopItemUI currentSelected;
+    [Header("Player")]
+    public StatManager playerStatManager;
+    [Header("Animation")]
+    public float btnScaleTime = 0.25f;
 
+    [Header("Owned Items")]
     public List<ShopItemSO> startingItems = new List<ShopItemSO>();
+
+    // ===============================
+    // 💰 MONEY
+    // ===============================
+    [Header("Money")]
+    public int startingMoney = 1000;
+    public int playerMoney;
+
+    public TextMeshProUGUI moneyText;
+
+    // track how much spent
+    private int spentMoney = 0;
 
     public static event Action<ItemSO> OnItemSelected;
     public static event Action<ItemSO> OnItemUnSelected;
     public static event Action OnItemUnlocked;
+    public static event Action OnRefundAll;
 
+    // ===============================
+    // Singleton
+    // ===============================
     private void Awake()
     {
-        instance = this;
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
+
+        playerMoney = startingMoney;
     }
 
+    private void Start()
+    {
+        UpdateMoneyUI();
+    }
+
+    // ===============================
+    // Events
+    // ===============================
     private void OnEnable()
     {
         ShopItemUI.OnItemAdded += AddStartingItem;
@@ -31,36 +65,109 @@ public class Shop : MonoBehaviour
         ShopItemUI.OnItemAdded -= AddStartingItem;
     }
 
+    // ===============================
+    // Selection
+    // ===============================
     public void SelectItem(ShopItemUI itemUI, bool selected)
     {
+        if (currentSelected != null && currentSelected != itemUI)
+        {
+            currentSelected.SetSelected(false);
+            AnimateUnselect(currentSelected);
+            OnItemUnSelected?.Invoke(currentSelected.item);
+        }
+
+        currentSelected = selected ? itemUI : null;
+
+        itemUI.SetSelected(selected);
+
         if (selected)
-            SelectItem(itemUI);
+        {
+            AnimateSelect(itemUI);
+            OnItemSelected?.Invoke(itemUI.item);
+        }
         else
-            UnSelectItem(itemUI);
+        {
+            AnimateUnselect(itemUI);
+        }
     }
 
-    public void SelectItem(ShopItemUI itemUI)
+    // ===============================
+    // Animations
+    // ===============================
+    private void AnimateSelect(ShopItemUI itemUI)
     {
-        itemUI.buyBtn.GetComponent<RectTransform>().DOScaleY(1f, btnScaleTime);
-        //item.unlocked;
-        //OnItemSelected?.Invoke(item);
+        itemUI.buyBtn.transform
+            .DOScale(1.2f, btnScaleTime)
+            .SetEase(Ease.OutBack);
     }
 
-    public void UnSelectItem(ShopItemUI itemUI)
+    private void AnimateUnselect(ShopItemUI itemUI)
     {
-        itemUI.buyBtn.GetComponent<RectTransform>().DOScaleY(0f, btnScaleTime);
-        //OnItemUnSelected?.Invoke(item);
+        itemUI.buyBtn.transform
+            .DOScale(1f, btnScaleTime);
     }
 
+    // ===============================
+    // BUY
+    // ===============================
     public void AddStartingItem(ShopItemSO item)
     {
-        if (startingItems.Contains(item)) return;
-            
+        if (startingItems.Contains(item))
+            return;
+
+        if (playerMoney < item.unlockCost)
+        {
+            Debug.Log("Not enough money!");
+            return;
+        }
+
+        playerMoney -= item.unlockCost;
+        spentMoney += item.unlockCost;
+
         startingItems.Add(item);
+
+        UpdateMoneyUI();
+
+        // ⭐ APPLY STAT HERE
+        item.StatModify(playerStatManager, 0);
+
+        UnlockItem(item);
     }
 
     public void UnlockItem(ShopItemSO item)
     {
         OnItemUnlocked?.Invoke();
+    }
+
+    // ===============================
+    // 💥 REFUND ALL
+    // ===============================
+    public void RefundAll()
+    {
+        if (spentMoney <= 0)
+            return;
+
+        playerMoney += spentMoney;
+        spentMoney = 0;
+
+        startingItems.Clear();
+
+        playerStatManager.InitializeStats(); // reset stats
+
+        UpdateMoneyUI();
+
+        OnRefundAll?.Invoke();
+
+        Debug.Log("All purchases refunded!");
+    }
+
+    // ===============================
+    // UI
+    // ===============================
+    public void UpdateMoneyUI()
+    {
+        if (moneyText != null)
+            moneyText.text = "Total Money " + playerMoney;
     }
 }

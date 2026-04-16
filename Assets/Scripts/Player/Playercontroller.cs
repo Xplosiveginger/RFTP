@@ -7,7 +7,7 @@ public class PlayerController2D : MonoBehaviour
 {
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 5f;
-     public bool inflicted = false;
+    public bool inflicted = false;
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -21,11 +21,9 @@ public class PlayerController2D : MonoBehaviour
 
     public StatManager statManager;
     public ReworkedWeaponManager weaponManager;
-
-    public ItemSO healthInc;
+    public ItemManager itemManager;
 
     //test
-
     public WeaponDataSO weaponToAdd;
 
     private void OnEnable()
@@ -86,8 +84,7 @@ public class PlayerController2D : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            //ItemManager.Instance.AddItem(healthInc);
-            //statManager.ModifyStat(EStatType.MoveSpeed, 20);
+            statManager.ModifyStat(EStatType.MoveSpeed, 20);
             //weaponManager.GetWeapon(EWeaponName.Magnet).statManager.ModifyStat(EStatType.AOESize, 20);
         }
     }
@@ -167,7 +164,8 @@ public class PlayerController2D : MonoBehaviour
                 AddWeapon(card.weaponToAdd);
                 break;
             case ECardType.AffectsPlayer:
-                ItemManager.Instance.AddItem(healthInc);
+                //itemManager.AddItem(card.item);
+                //statManager.ModifyStat(card.affectedPlayerStat, card.playerStatModifier);
                 break;
             case ECardType.AffectsWeaponLevel:
                 weaponManager.LevelUpWeapon(card.weaponName);

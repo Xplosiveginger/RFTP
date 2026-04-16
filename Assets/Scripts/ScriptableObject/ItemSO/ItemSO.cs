@@ -17,16 +17,22 @@ public enum ItemType
 /// and optionally has a visual prefab.
 /// </summary>
 [System.Serializable]
+
 public class ItemLevel
 {
+    [Header("UI")]
+    public string levelName;
+    [TextArea(3, 5)]
+    public string description;
+
     [Header("Visual Representation")]
-    public GameObject itemPrefab;   // Spawned when an item is owned at this level
-    public Sprite cardSprite;       // Used by UI (shop/cards)
+    public GameObject itemPrefab;
+    public Sprite cardSprite;
 
     [Header("Stat Effect")]
-    public EStatType targetStat;     // Stat affected by this level
-    public float modifierAmount;     // +10 = +10% or +10 flat
-    public bool isPercentage = true; // true = %, false = flat
+    public EStatType targetStat;
+    public float modifierAmount;
+    public bool isPercentage = true;
 }
 
 /// <summary>
