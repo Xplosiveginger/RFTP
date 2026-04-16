@@ -4,11 +4,11 @@
 - Active scene:
   - Name: Main Level
   - Tags:
-    - Untagged, Respawn, Finish, EditorOnly, MainCamera, Player, GameController, Enemy, Ground
+    - Untagged, Respawn, Finish, EditorOnly, MainCamera, Player, GameController, Enemy, Ground, FxTemporaire
   - Layers:
     - Default, TransparentFX, Ignore Raycast, Ground , Water, UI, Enemy, Items, assets, Player Collision, Obstacle, Player, Projectile, Weapon, XP, death report
 - Active game object:
-  - Name: Player
-  - Tag: Player
-  - Layer: Player
+  - Name: PersistentObjectSpawner
+  - Tag: Untagged
+  - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
