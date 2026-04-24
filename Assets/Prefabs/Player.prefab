@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 1047542070399320784}
   - component: {fileID: 4317606704090541399}
   - component: {fileID: 7664751407247831055}
-  - component: {fileID: 7340812015436146963}
   - component: {fileID: 1191794303852628603}
   - component: {fileID: 8242218151111905515}
+  - component: {fileID: 953874422684228503}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -171,6 +171,7 @@ MonoBehaviour:
   speedModifier: 0
   statManager: {fileID: 0}
   weaponManager: {fileID: 0}
+  itemManager: {fileID: 0}
   weaponToAdd: {fileID: 0}
 --- !u!114 &7664751407247831055
 MonoBehaviour:
@@ -218,26 +219,6 @@ MonoBehaviour:
   hurtCooldown: 0.1
   healthSlider: {fileID: 0}
   debug: 0
---- !u!114 &7340812015436146963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7174557516275297522}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c29bc227a8e1f5048a2824bf8b2fbe48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentXP: 0
-  level: 1
-  xpToNextLevel: 100
-  xpIncreasePercent: 25
-  xpBar: {fileID: 0}
-  fillDuration: 0.5
-  levelText: {fileID: 0}
-  cardSpawner: {fileID: 0}
 --- !u!114 &1191794303852628603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,3 +268,21 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 2.41, y: 5.1199994}
   m_Direction: 0
+--- !u!114 &953874422684228503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7174557516275297522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29bc227a8e1f5048a2824bf8b2fbe48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  progressionSO: {fileID: 11400000, guid: c83c36cd856427a469d0e0a25cda8298, type: 2}
+  xpBar: {fileID: 0}
+  fillDuration: 0.5
+  levelText: {fileID: 0}
+  xpText: {fileID: 0}
+  cardSpawner: {fileID: 0}
