@@ -13,13 +13,17 @@ MonoBehaviour:
   m_Name: ProgressionSO
   m_EditorClassIdentifier: 
   coins: 0
-  XP: 2400
+  XP: 420
   startXP: 100
-  currentXP: 424
-  currentLevel: 7
-  currentXPRequired: 795
-  xpMultiplier: 1.2
-  xpAddition: 50
+  currentXP: 50
+  currentLevel: 3
+  currentXPRequired: 254
+  levelGap: 10
+  xpMultipliers:
+  - 1.2
+  - 1.15
+  - 1.1
+  - 1.08
   testLevel: 4
   testBaseXP: 100
   testedXP: 355
