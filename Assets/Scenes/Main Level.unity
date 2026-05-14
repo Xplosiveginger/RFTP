@@ -1539,6 +1539,10 @@ PrefabInstance:
       propertyPath: timerText
       value: 
       objectReference: {fileID: 1510725371}
+    - target: {fileID: 3711097389521100805, guid: 8947e827853c613448b4480768677859, type: 3}
+      propertyPath: spawnDistance
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5294417539117950286, guid: 8947e827853c613448b4480768677859, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

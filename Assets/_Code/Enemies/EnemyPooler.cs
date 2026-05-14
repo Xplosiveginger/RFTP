@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class EnemyPooler
 {
-    public EnemySpawnData EnemyData; // optional reference to spawn info
+    public EnemySpawnDataNew EnemyData; // optional reference to spawn info
     private GameObject prefab;
     private Transform parent;
     private List<GameObject> pool;
