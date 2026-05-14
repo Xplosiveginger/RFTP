@@ -1,7 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
-using DG.Tweening;
-using TMPro;
 using System;
 using Sirenix.OdinInspector;
 
@@ -10,16 +7,12 @@ public class XpManager : MonoBehaviour
     [Header("Progression")]
     public ProgressionSO progressionSO;
 
-    [Header("UI")]
-    public Slider xpBar;
-    public float fillDuration = 0.5f;
-    public TextMeshProUGUI levelText;
-    public TextMeshProUGUI xpText;
-
     [Header("Card Spawner")]
     public CardSpawner cardSpawner;
 
     public static event Action OnPlayerLeveledUp;
+    public static event Action OnXPUpdated;
+    public static event Action OnCoinsUpdated;
 
     [FoldoutGroup("Testing")]
     [Space(10f)]
@@ -42,6 +35,9 @@ public class XpManager : MonoBehaviour
     }
 
     [FoldoutGroup("Testing")]
+    public int testCoinAmount = 50;
+
+    [FoldoutGroup("Testing")]
     [Button("Add Test Coins", ButtonSizes.Medium)]
     [GUIColor(0.5f, 0.8f, 1f)]
     private void AddTestCoins()
@@ -55,9 +51,6 @@ public class XpManager : MonoBehaviour
         AddCoins(testCoinAmount);
         Debug.Log($"Added {testCoinAmount} test coins. Total coins: {progressionSO.coins}");
     }
-
-    [FoldoutGroup("Testing")]
-    public int testCoinAmount = 50;
 
     [FoldoutGroup("Testing")]
     [Button("Reset Progression", ButtonSizes.Medium)]
@@ -101,13 +94,9 @@ public class XpManager : MonoBehaviour
             return;
         }
 
-        if (xpBar != null)
-        {
-            xpBar.maxValue = 1f;
-            xpBar.value = progressionSO.GetProgressPercentage();
-        }
-
-        UpdateUI();
+        // Notify UI of initial state
+        OnXPUpdated?.Invoke();
+        OnCoinsUpdated?.Invoke();
     }
 
     public void AddXP(int amount)
@@ -118,13 +107,12 @@ public class XpManager : MonoBehaviour
 
         progressionSO.AddXP(amount);
 
-        UpdateUI();
+        OnXPUpdated?.Invoke();
 
         if (progressionSO.currentLevel > previousLevel)
         {
             OnLevelUp();
         }
-
     }
 
     public void AddCoins(int amount)
@@ -132,45 +120,25 @@ public class XpManager : MonoBehaviour
         if (progressionSO == null) return;
 
         progressionSO.coins += amount;
-        UpdateUI();
+        OnCoinsUpdated?.Invoke();
     }
 
     private void OnLevelUp()
     {
         Debug.Log($"Level Up! You are now level {progressionSO.currentLevel}. Next level requires {progressionSO.currentXPRequired} XP.");
 
-        UpdateUI();
-
+        OnXPUpdated?.Invoke();
         OnPlayerLeveledUp?.Invoke();
     }
 
-    private void UpdateUI()
-    {
-        if (progressionSO == null) return;
-
-        if (xpBar != null)
-        {
-            float targetValue = progressionSO.GetProgressPercentage();
-            xpBar.DOValue(targetValue, fillDuration).SetEase(Ease.OutCubic);
-        }
-
-        if (levelText != null)
-        {
-            levelText.text = progressionSO.currentLevel.ToString();
-        }
-
-        if (xpText != null)
-        {
-            xpText.text = $"{progressionSO.currentXP}/{progressionSO.currentXPRequired}";
-        }
-    }
     [Button("Reset Progression", ButtonSizes.Medium)]
     public void ResetProgression()
     {
         if (progressionSO == null) return;
 
         progressionSO.ResetProgression();
-        UpdateUI();
+        OnXPUpdated?.Invoke();
+        OnCoinsUpdated?.Invoke();
     }
 
     public float GetProgressPercentage()
