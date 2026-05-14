@@ -54,7 +54,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5940b7648cf16bd4f95a34fbb6016269, type: 2}
   - {fileID: 11400000, guid: 22703a8ea4d579e4d998d8d2a63f1c2f, type: 2}
   - {fileID: 11400000, guid: b70127babcce7af4b8598c560b20ccac, type: 2}
-  spawnDistance: 1
+  spawnDistance: 10
   poolParent: {fileID: 2046742618742457207}
   timerText: {fileID: 0}
   EndPanel: {fileID: 0}
