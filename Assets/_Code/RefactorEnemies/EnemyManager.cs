@@ -18,7 +18,7 @@ public class EnemyManager : MonoBehaviour
         Instance = this;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (player == null) return;
 
