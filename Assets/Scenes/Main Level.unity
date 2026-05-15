@@ -439,7 +439,7 @@ MonoBehaviour:
   m_Follow: {fileID: 682173267}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 8
+    OrthographicSize: 9.93
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -1358,6 +1358,38 @@ PrefabInstance:
       propertyPath: timerText
       value: 
       objectReference: {fileID: 1510725371}
+    - target: {fileID: 3711097389521100805, guid: 8947e827853c613448b4480768677859, type: 3}
+      propertyPath: spawnPhases.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3711097389521100805, guid: 8947e827853c613448b4480768677859, type: 3}
+      propertyPath: spawnPhases.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 22eb688a37c58f246ae72bdf5cff75e6, type: 2}
+    - target: {fileID: 3711097389521100805, guid: 8947e827853c613448b4480768677859, type: 3}
+      propertyPath: spawnPhases.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 982f0bf7e1e2b9e418460d870ade64d6, type: 2}
+    - target: {fileID: 3711097389521100805, guid: 8947e827853c613448b4480768677859, type: 3}
+      propertyPath: spawnPhases.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: cb1047d707560a74ba5a805a69aee56f, type: 2}
+    - target: {fileID: 3711097389521100805, guid: 8947e827853c613448b4480768677859, type: 3}
+      propertyPath: spawnPhases.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 38e6bf41da3537d44bb0afd73cf72a86, type: 2}
+    - target: {fileID: 3711097389521100805, guid: 8947e827853c613448b4480768677859, type: 3}
+      propertyPath: spawnPhases.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5940b7648cf16bd4f95a34fbb6016269, type: 2}
+    - target: {fileID: 3711097389521100805, guid: 8947e827853c613448b4480768677859, type: 3}
+      propertyPath: spawnPhases.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: 22703a8ea4d579e4d998d8d2a63f1c2f, type: 2}
+    - target: {fileID: 3711097389521100805, guid: 8947e827853c613448b4480768677859, type: 3}
+      propertyPath: spawnPhases.Array.data[7]
+      value: 
+      objectReference: {fileID: 11400000, guid: b70127babcce7af4b8598c560b20ccac, type: 2}
     - target: {fileID: 5294417539117950286, guid: 8947e827853c613448b4480768677859, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2260,6 +2292,7 @@ GameObject:
   - component: {fileID: 2129525362}
   - component: {fileID: 2129525365}
   - component: {fileID: 2129525366}
+  - component: {fileID: 2129525367}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2310,7 +2343,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8
+  orthographic size: 9.93
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2471,6 +2504,50 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2129525367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129525361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1001 &640355257039559581
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2517,6 +2594,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 602501066237466722, guid: 7224e8d3310913b478b968c0e8390a3d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2285705525850618470, guid: 7224e8d3310913b478b968c0e8390a3d, type: 3}
+      propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2611227757868007829, guid: 7224e8d3310913b478b968c0e8390a3d, type: 3}
