@@ -9,17 +9,23 @@ public class SpawnPhaseSO : ScriptableObject
 
     [HorizontalGroup("PhaseInfo")]
     [VerticalGroup("PhaseInfo/Left")]
-    [PropertyRange(0, 900)]
     [LabelText("Start Time (s)")]
     [Tooltip("When this phase starts (in seconds).")]
     public float startTime;
 
     [VerticalGroup("PhaseInfo/Right")]
-    [LabelText("Spawns/Second")]
-    [Tooltip("Number of enemies to spawn per second.")]
-    [MinValue(0)]
-    [SuffixLabel("enemies/s", Overlay = true)]
-    public int spawnsPerSecond = 2;
+    [LabelText("Spawn Gap")]
+    [Tooltip("Time interval between spawns in seconds.")]
+    [MinValue(0.1f)]
+    [SuffixLabel("seconds", Overlay = true)]
+    public float spawnGap = 1f;
+
+    [VerticalGroup("PhaseInfo/Right")]
+    [LabelText("Spawn Count")]
+    [Tooltip("Number of enemies to spawn per interval.")]
+    [MinValue(1)]
+    [SuffixLabel("enemies", Overlay = true)]
+    public int spawnCount = 2;
 
     [Title("Enemy Types")]
     [InfoBox("Total weight should be greater than 0 for enemies to spawn. " +
@@ -58,8 +64,12 @@ public class SpawnPhaseSO : ScriptableObject
     public int EnemyTypeCount => enemiesToSpawn.Count;
 
     [ShowInInspector, ReadOnly, TitleGroup("Stats")]
+    [LabelText("Spawn Rate")]
+    public string SpawnRateInfo => $"{spawnCount} enemies every {spawnGap}s";
+
+    [ShowInInspector, ReadOnly, TitleGroup("Stats")]
     [LabelText("Max Potential Spawn Rate")]
-    public string MaxSpawnRateInfo => $"{spawnsPerSecond * 60} enemies/min";
+    public string MaxSpawnRateInfo => $"{spawnCount / spawnGap * 60:F1} enemies/min";
 
     private bool ValidateWeights()
     {

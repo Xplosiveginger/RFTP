@@ -60,8 +60,12 @@ public class EnemySpawner : MonoBehaviour
         $"Phase {currentPhaseIndex}: {currentPhase.name}" : "No active phase";
 
     [ShowInInspector, ReadOnly]
-    private string SpawnRateInfo => currentPhase != null ?
-        $"{currentPhase.spawnsPerSecond} enemies/s" : "N/A";
+    private string SpawnInfo => currentPhase != null ?
+        $"Spawn {currentPhase.spawnCount} enemies every {currentPhase.spawnGap}s" : "N/A";
+
+    [ShowInInspector, ReadOnly]
+    private float NextSpawnIn => currentPhase != null ?
+        Mathf.Max(0, currentPhase.spawnGap - spawnTimer) : 0f;
 
     [ShowInInspector, ReadOnly]
     private int TotalActiveEnemies
@@ -125,16 +129,19 @@ public class EnemySpawner : MonoBehaviour
 
     private void HandleSpawning()
     {
-        if (currentPhase.spawnsPerSecond <= 0 || currentPhase.enemiesToSpawn.Count == 0)
+        if (currentPhase.spawnCount <= 0 || currentPhase.enemiesToSpawn.Count == 0)
             return;
 
-        float spawnInterval = 1f / currentPhase.spawnsPerSecond;
         spawnTimer += Time.deltaTime;
 
-        while (spawnTimer >= spawnInterval)
+        while (spawnTimer >= currentPhase.spawnGap)
         {
-            SpawnWeightedEnemy();
-            spawnTimer -= spawnInterval;
+            // Spawn the configured number of enemies
+            for (int i = 0; i < currentPhase.spawnCount; i++)
+            {
+                SpawnWeightedEnemy();
+            }
+            spawnTimer -= currentPhase.spawnGap;
         }
     }
 
@@ -215,11 +222,6 @@ public class EnemySpawner : MonoBehaviour
         currentPhaseIndex = phaseIndex;
         currentPhase = spawnPhases[phaseIndex];
 
-        // Clear old pools if needed
-        // Since we removed keepPreviousEnemiesAlive, we can optionally clear old pools
-        // based on your game logic. For now, we'll keep them but you might want to add
-        // logic to clean up pools from phases that are no longer needed.
-
         // Create pools for new phase enemies if they don't exist
         foreach (var enemyData in currentPhase.enemiesToSpawn)
         {
@@ -239,7 +241,7 @@ public class EnemySpawner : MonoBehaviour
         spawnTimer = 0f;
 
         Debug.Log($"[EnemySpawner] Activated Phase {phaseIndex} at {elapsedTime:F1}s | " +
-                  $"{currentPhase.spawnsPerSecond} enemies/s | " +
+                  $"{currentPhase.spawnCount} enemies every {currentPhase.spawnGap}s | " +
                   $"Total Weight: {currentPhase.TotalWeight:F2}");
     }
 
@@ -288,8 +290,6 @@ public class EnemySpawner : MonoBehaviour
         // Find which pool this enemy belongs to
         foreach (var kvp in poolDictionary)
         {
-            // You might want to add a more efficient way to identify which pool an enemy belongs to
-            // For now, we'll check by prefab name or add a component reference
             if (enemy.gameObject.name.Contains(kvp.Key.enemyPrefab.name))
             {
                 kvp.Value.ReturnToPool(enemy.gameObject);
