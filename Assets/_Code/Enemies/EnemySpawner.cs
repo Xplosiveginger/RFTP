@@ -2,51 +2,92 @@
 using UnityEngine;
 using UnityEngine.AI;
 using TMPro;
+using Sirenix.OdinInspector;
 
 public class EnemySpawner : MonoBehaviour
 {
     public static EnemySpawner Instance;
 
-    [Header("Phase Setup")]
+    [Title("Phase Configuration")]
+    [ListDrawerSettings(Expanded = true, ShowIndexLabels = true)]
     public List<SpawnPhaseSO> spawnPhases;
 
-    [Header("Spawn Settings")]
+    [Title("Spawn Settings")]
+    [PropertyRange(5f, 20f)]
     public float spawnDistance = 10f;
+
+    [Required]
     public Transform poolParent;
 
-    [Header("UI")]
+    [Title("UI References")]
     public TextMeshProUGUI timerText;
     public GameObject EndPanel;
 
-    [Header("Atom Enemy")]
+    [Title("Special Enemies")]
+    [HorizontalGroup("Atom")]
+    [PreviewField(50)]
+    [HideLabel]
     public GameObject atomPrefab;
+
+    [VerticalGroup("Atom/Info")]
+    [LabelText("Pool Size")]
+    [MinValue(1)]
     public int atomPoolSize = 5;
 
-    [Header("Debug Settings")]
+    [Title("Debug")]
+    [HorizontalGroup("Debug")]
     public bool debugMode = false;
-    [Range(0f, 900f)]
+
+    [HorizontalGroup("Debug")]
+    [ShowIf("debugMode")]
+    [PropertyRange(0f, 900f)]
     public float debugStartTime = 0f;
 
     private Camera mainCamera;
     private float elapsedTime = 0f;
     private int currentPhaseIndex = -1;
+    private SpawnPhaseSO currentPhase;
 
-    private readonly List<EnemyPooler> currentPools = new List<EnemyPooler>();
-    private EnemyPooler atomPooler;
+    private readonly Dictionary<EnemySpawnDataNew, DynamicEnemyPooler> poolDictionary =
+        new Dictionary<EnemySpawnDataNew, DynamicEnemyPooler>();
+    private DynamicEnemyPooler atomPooler;
 
-    private readonly Dictionary<EnemyPooler, float> spawnTimers = new Dictionary<EnemyPooler, float>();
-    private readonly Dictionary<EnemyPooler, float> elapsedPoolTime = new Dictionary<EnemyPooler, float>();
+    private float spawnTimer = 0f;
+
+    [Title("Runtime Info")]
+    [ShowInInspector, ReadOnly]
+    private string CurrentPhaseInfo => currentPhase != null ?
+        $"Phase {currentPhaseIndex}: {currentPhase.name}" : "No active phase";
+
+    [ShowInInspector, ReadOnly]
+    private string SpawnInfo => currentPhase != null ?
+        $"Spawn {currentPhase.spawnCount} enemies every {currentPhase.spawnGap}s" : "N/A";
+
+    [ShowInInspector, ReadOnly]
+    private float NextSpawnIn => currentPhase != null ?
+        Mathf.Max(0, currentPhase.spawnGap - spawnTimer) : 0f;
+
+    [ShowInInspector, ReadOnly]
+    private int TotalActiveEnemies
+    {
+        get
+        {
+            int total = 0;
+            foreach (var pool in poolDictionary.Values)
+                total += pool.ActiveCount;
+            return total;
+        }
+    }
 
     private void Awake()
     {
         Instance = this;
-        atomPooler = new EnemyPooler(atomPrefab, atomPoolSize, poolParent);
+        atomPooler = new DynamicEnemyPooler(atomPrefab, atomPoolSize, atomPoolSize * 2, poolParent);
     }
 
     private void Start()
     {
         mainCamera = Camera.main;
-
         elapsedTime = debugMode ? debugStartTime : 0f;
 
         if (spawnPhases.Count > 0)
@@ -72,35 +113,99 @@ public class EnemySpawner : MonoBehaviour
         if (elapsedTime >= 901)
             EndPanel.SetActive(true);
 
+        // Check for phase transition
         if (currentPhaseIndex + 1 < spawnPhases.Count &&
             elapsedTime >= spawnPhases[currentPhaseIndex + 1].startTime)
         {
             ActivatePhase(currentPhaseIndex + 1);
         }
 
-        // Spawn enemies from pool
-        foreach (var pool in currentPools)
+        // Handle spawning
+        if (currentPhase != null)
         {
-            if (!spawnTimers.ContainsKey(pool))
+            HandleSpawning();
+        }
+    }
+
+    private void HandleSpawning()
+    {
+        if (currentPhase.spawnCount <= 0 || currentPhase.enemiesToSpawn.Count == 0)
+            return;
+
+        spawnTimer += Time.deltaTime;
+
+        while (spawnTimer >= currentPhase.spawnGap)
+        {
+            // Spawn the configured number of enemies
+            for (int i = 0; i < currentPhase.spawnCount; i++)
             {
-                spawnTimers[pool] = 0f;
-                elapsedPoolTime[pool] = 0f;
+                SpawnWeightedEnemy();
             }
+            spawnTimer -= currentPhase.spawnGap;
+        }
+    }
 
-            elapsedPoolTime[pool] += Time.deltaTime;
+    private void SpawnWeightedEnemy()
+    {
+        EnemySpawnDataNew selectedData = GetWeightedRandomEnemy();
+        if (selectedData == null || selectedData.enemyPrefab == null)
+        {
+            Debug.LogWarning("Failed to select enemy to spawn!");
+            return;
+        }
 
-            var data = pool.EnemyData;
-            float t = Mathf.Clamp01(elapsedPoolTime[pool] / data.timeToIncrease);
-            float currentRate = Mathf.Lerp(data.minSpawnRate, data.maxSpawnRate, t);
-            float interval = 1f / currentRate;
+        if (!poolDictionary.ContainsKey(selectedData))
+        {
+            Debug.LogError($"No pool found for enemy: {selectedData.enemyPrefab.name}");
+            return;
+        }
 
-            spawnTimers[pool] -= Time.deltaTime;
-            if (spawnTimers[pool] <= 0f)
+        DynamicEnemyPooler pool = poolDictionary[selectedData];
+        GameObject enemyObj = pool.Get();
+
+        if (enemyObj == null)
+        {
+            Debug.LogError($"Failed to get enemy from pool: {selectedData.enemyPrefab.name}");
+            return;
+        }
+
+        Vector3 spawnPos = GetRandomPositionOutsideCamera();
+        enemyObj.transform.position = spawnPos;
+        enemyObj.SetActive(true);
+
+        BaseEnemyRefactor enemy = enemyObj.GetComponent<BaseEnemyRefactor>();
+        if (enemy != null)
+        {
+            EnemyManager.Instance.RegisterEnemy(enemy);
+        }
+    }
+
+    private EnemySpawnDataNew GetWeightedRandomEnemy()
+    {
+        if (currentPhase == null || currentPhase.enemiesToSpawn.Count == 0)
+            return null;
+
+        float totalWeight = currentPhase.TotalWeight;
+        if (totalWeight <= 0f)
+        {
+            Debug.LogWarning("Total weight is 0, cannot select weighted enemy!");
+            return null;
+        }
+
+        float randomValue = Random.Range(0f, totalWeight);
+        float currentWeight = 0f;
+
+        foreach (var enemyData in currentPhase.enemiesToSpawn)
+        {
+            currentWeight += enemyData.weight;
+            if (randomValue <= currentWeight)
             {
-                SpawnFromPool(pool);
-                spawnTimers[pool] = interval;
+                return enemyData;
             }
         }
+
+        // Fallback to first enemy if something goes wrong
+        return currentPhase.enemiesToSpawn[0];
     }
 
     void UpdateTimerUI()
@@ -115,36 +220,29 @@ public class EnemySpawner : MonoBehaviour
     void ActivatePhase(int phaseIndex)
     {
         currentPhaseIndex = phaseIndex;
-        var phase = spawnPhases[phaseIndex];
+        currentPhase = spawnPhases[phaseIndex];
 
-        if (!phase.keepPreviousEnemiesAlive)
+        // Create pools for new phase enemies if they don't exist
+        foreach (var enemyData in currentPhase.enemiesToSpawn)
         {
-            foreach (var pool in currentPools)
-                pool.ClearPool();
-
-            currentPools.Clear();
-            spawnTimers.Clear();
-            elapsedPoolTime.Clear();
+            if (!poolDictionary.ContainsKey(enemyData))
+            {
+                DynamicEnemyPooler pool = new DynamicEnemyPooler(
+                    enemyData.enemyPrefab,
+                    enemyData.initialPoolSize,
+                    enemyData.maxPoolSize,
+                    poolParent
+                );
+                poolDictionary[enemyData] = pool;
+            }
         }
 
-        foreach (var enemyData in phase.enemiesToSpawn)
-        {
-            EnemyPooler pool = new EnemyPooler(enemyData.enemyPrefab, enemyData.poolSize, poolParent);
-            pool.EnemyData = enemyData;
-            currentPools.Add(pool);
-        }
+        // Reset spawn timer when phase changes
+        spawnTimer = 0f;
 
-        Debug.Log($"[EnemySpawner] Activated Phase {phaseIndex} at {elapsedTime:F1}s");
-    }
-
-    void SpawnFromPool(EnemyPooler pool)
-    {
-        GameObject enemyObj = pool.Get();
-        enemyObj.transform.position = GetRandomPositionOutsideCamera();
-        enemyObj.SetActive(true);
-
-        BaseEnemyRefactor enemy = enemyObj.GetComponent<BaseEnemyRefactor>();
-        EnemyManager.Instance.RegisterEnemy(enemy);
+        Debug.Log($"[EnemySpawner] Activated Phase {phaseIndex} at {elapsedTime:F1}s | " +
+                  $"{currentPhase.spawnCount} enemies every {currentPhase.spawnGap}s | " +
+                  $"Total Weight: {currentPhase.TotalWeight:F2}");
     }
 
     Vector3 GetRandomPositionOutsideCamera()
@@ -180,5 +278,69 @@ public class EnemySpawner : MonoBehaviour
 
         BaseEnemyRefactor enemy = atom.GetComponent<BaseEnemyRefactor>();
         EnemyManager.Instance.RegisterEnemy(enemy);
+    }
+
+    /// <summary>
+    /// Call this when an enemy is despawned to return it to the appropriate pool
+    /// </summary>
+    public void ReturnEnemyToPool(BaseEnemyRefactor enemy)
+    {
+        if (enemy == null) return;
+
+        // Find which pool this enemy belongs to
+        foreach (var kvp in poolDictionary)
+        {
+            if (enemy.gameObject.name.Contains(kvp.Key.enemyPrefab.name))
+            {
+                kvp.Value.ReturnToPool(enemy.gameObject);
+                return;
+            }
+        }
+
+        Debug.LogWarning($"Could not find pool for enemy: {enemy.name}");
+    }
+
+    [Title("Debug Actions")]
+    [Button("Log Pool Status")]
+    private void LogPoolStatus()
+    {
+        Debug.Log("=== Pool Status ===");
+        foreach (var kvp in poolDictionary)
+        {
+            Debug.Log($"{kvp.Key.enemyPrefab.name}: {kvp.Value.GetPoolInfo()}");
+        }
+        Debug.Log($"Total Active Enemies: {TotalActiveEnemies}");
+    }
+
+    [Button("Test Weight Distribution")]
+    private void TestWeightDistribution()
+    {
+        if (currentPhase == null)
+        {
+            Debug.LogWarning("No active phase to test!");
+            return;
+        }
+
+        Dictionary<string, int> spawnCounts = new Dictionary<string, int>();
+        int testCount = 1000;
+
+        for (int i = 0; i < testCount; i++)
+        {
+            EnemySpawnDataNew selected = GetWeightedRandomEnemy();
+            if (selected != null)
+            {
+                string name = selected.enemyPrefab != null ? selected.enemyPrefab.name : "Unknown";
+                if (!spawnCounts.ContainsKey(name))
+                    spawnCounts[name] = 0;
+                spawnCounts[name]++;
+            }
+        }
+
+        Debug.Log($"Weight Distribution Test ({testCount} spawns):");
+        foreach (var kvp in spawnCounts)
+        {
+            float percentage = (float)kvp.Value / testCount * 100f;
+            Debug.Log($"  {kvp.Key}: {kvp.Value} ({percentage:F1}%)");
+        }
     }
 }

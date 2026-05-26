@@ -17,7 +17,7 @@ public class CardManager : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerXp.OnPlayerLeveledUp += CardInitializer;
+        XpManager.OnPlayerLeveledUp += CardInitializer;
         //PlayerXPRefactored.OnLeveledUp += CardInitializer;
 
         //foreach (var card in cards)
@@ -107,7 +107,7 @@ public class CardManager : MonoBehaviour
 
     private void OnDisable()
     {
-        PlayerXp.OnPlayerLeveledUp -= CardInitializer;
+        XpManager.OnPlayerLeveledUp -= CardInitializer;
         //PlayerXPRefactored.OnLeveledUp -= CardInitializer;
 
         //foreach (var card in cards)

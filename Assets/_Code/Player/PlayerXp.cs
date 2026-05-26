@@ -2,21 +2,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
-using System; // Required for TextMeshProUGUI
+using System;
 
-public class PlayerXp : MonoBehaviour
+public class XPManager : MonoBehaviour
 {
-    [Header("XP Settings")]
-    public int currentXP = 0;
-    public int level = 1;
-    public int xpToNextLevel = 100;
-    [Range(0f, 100f)]
-    public float xpIncreasePercent = 25f; // Percent increase for next level XP
+    [Header("Progression")]
+    public ProgressionSO progressionSO;
 
     [Header("UI")]
-    public Slider xpBar; // Optional UI reference
-    public float fillDuration = 0.5f; // Duration of smooth fill
-    public TextMeshProUGUI levelText; // NEW: display current level
+    public Slider xpBar;
+    public float fillDuration = 0.5f;
+    public TextMeshProUGUI levelText;
+    public TextMeshProUGUI xpText;
 
     [Header("Card Spawner")]
     public CardSpawner cardSpawner;
@@ -25,66 +22,86 @@ public class PlayerXp : MonoBehaviour
 
     private void Start()
     {
+        if (progressionSO == null)
+        {
+            Debug.LogError("ProgressionSO is not assigned!");
+            return;
+        }
+
         if (xpBar != null)
-            xpBar.value = 0f; // Start empty
-        UpdateLevelText();
+        {
+            xpBar.maxValue = 1f;
+            xpBar.value = progressionSO.GetProgressPercentage();
+        }
+
+        UpdateUI();
     }
 
     public void AddXP(int amount)
     {
-        currentXP += amount;
+        if (progressionSO == null) return;
 
-        if (currentXP >= xpToNextLevel)
+        int previousLevel = progressionSO.currentLevel;
+
+        progressionSO.AddXP(amount);
+
+        if (progressionSO.currentLevel > previousLevel)
         {
-            LevelUp();
+            OnLevelUp();
         }
 
-        UpdateXpBar();
+        UpdateUI();
     }
 
-    void LevelUp()
+    public void AddCoins(int amount)
     {
-        level++;
+        if (progressionSO == null) return;
 
-        // Increase XP required for next level by percentage
-        xpToNextLevel = Mathf.RoundToInt(xpToNextLevel * (1 + xpIncreasePercent / 100f));
+        progressionSO.coins += amount;
+        UpdateUI();
+    }
 
-        // Reset current XP for the new level
-        currentXP = 0;
+    private void OnLevelUp()
+    {
+        Debug.Log($"Level Up! You are now level {progressionSO.currentLevel}. Next level requires {progressionSO.currentXPRequired} XP.");
 
-        Debug.Log($"Level Up! You are now level {level}. Next level requires {xpToNextLevel} XP.");
-
-        // Reset XP bar to 0
-        if (xpBar != null)
-        {
-            xpBar.value = 0f;
-        }
-
-        // Update level text
-        UpdateLevelText();
-
-        // Show card spawner if assigned
+        UpdateUI();
 
         OnPlayerLeveledUp?.Invoke();
-
-        //if (cardSpawner != null)
-        //{
-        //    cardSpawner.gameObject.SetActive(true); // activates panel and triggers OnEnable
-        //}
     }
 
-    private void UpdateXpBar()
+    private void UpdateUI()
     {
+        if (progressionSO == null) return;
+
         if (xpBar != null)
         {
-            float targetValue = (float)currentXP / xpToNextLevel;
+            float targetValue = progressionSO.GetProgressPercentage();
             xpBar.DOValue(targetValue, fillDuration).SetEase(Ease.OutCubic);
+        }
+
+        if (levelText != null)
+        {
+            levelText.text = progressionSO.currentLevel.ToString();
+        }
+
+        if (xpText != null)
+        {
+            xpText.text = $"{progressionSO.currentXP}/{progressionSO.currentXPRequired}";
         }
     }
 
-    private void UpdateLevelText()
+    public void ResetProgression()
     {
-        if (levelText != null)
-            levelText.text = level.ToString();
+        if (progressionSO == null) return;
+
+        progressionSO.ResetProgression();
+        UpdateUI();
+    }
+
+    public float GetProgressPercentage()
+    {
+        if (progressionSO == null) return 0f;
+        return progressionSO.GetProgressPercentage();
     }
 }

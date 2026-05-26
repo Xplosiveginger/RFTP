@@ -8,10 +8,13 @@ public class XpDrop : MonoBehaviour
     public float moveSpeed = 5f;
 
     private Transform player;
+    XPManager xpSystem;
+
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        XpManager xpSystem = SM.Instance.XPManager;
     }
 
     void Update()
@@ -30,7 +33,6 @@ public class XpDrop : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PlayerXp xpSystem = other.GetComponent<PlayerXp>();
             if (xpSystem != null)
             {
                 xpSystem.AddXP(xpAmount);
