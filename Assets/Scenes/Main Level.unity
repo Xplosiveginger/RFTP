@@ -134973,18 +134973,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a98d5f4542ac0a41961cf245aaf6986, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardDatas:
-  - {fileID: 11400000, guid: ff95bae0c3c11af44ac78d6c6e74918d, type: 2}
-  - {fileID: 11400000, guid: cfe9211f9e2ac844eae5f09d14a72de5, type: 2}
-  - {fileID: 11400000, guid: c06bfaf55ef69f34d9ca39e0c0d48455, type: 2}
-  - {fileID: 11400000, guid: c0a36557a7305564285e0541c83a4fdc, type: 2}
-  - {fileID: 11400000, guid: f1474da2e4139a1418aaae2158ef36cc, type: 2}
-  - {fileID: 11400000, guid: a9706c4c784da0b40ab07b7331ef68b4, type: 2}
-  - {fileID: 11400000, guid: 5fc368220d87d8b469f69e9fbc2683e3, type: 2}
-  - {fileID: 11400000, guid: 896f0d26dab79c54392e796de6a730ac, type: 2}
-  - {fileID: 11400000, guid: a6455a0715989424ea0afe84664442ec, type: 2}
-  - {fileID: 11400000, guid: 2507767a27f22954c8215928c72619bc, type: 2}
-  - {fileID: 11400000, guid: ff17dd1c2d4b7ea44b30ef4f90cfc1f4, type: 2}
+  cardCategories:
+  - cardCategory: 0
+    cardDataList:
+    - {fileID: 11400000, guid: ff95bae0c3c11af44ac78d6c6e74918d, type: 2}
+  - cardCategory: 1
+    cardDataList:
+    - {fileID: 11400000, guid: cfe9211f9e2ac844eae5f09d14a72de5, type: 2}
+    - {fileID: 11400000, guid: c06bfaf55ef69f34d9ca39e0c0d48455, type: 2}
+    - {fileID: 11400000, guid: c0a36557a7305564285e0541c83a4fdc, type: 2}
+    - {fileID: 11400000, guid: f1474da2e4139a1418aaae2158ef36cc, type: 2}
+    - {fileID: 11400000, guid: a9706c4c784da0b40ab07b7331ef68b4, type: 2}
+  - cardCategory: 2
+    cardDataList:
+    - {fileID: 11400000, guid: 5fc368220d87d8b469f69e9fbc2683e3, type: 2}
+    - {fileID: 11400000, guid: 896f0d26dab79c54392e796de6a730ac, type: 2}
+    - {fileID: 11400000, guid: a6455a0715989424ea0afe84664442ec, type: 2}
+    - {fileID: 11400000, guid: 2507767a27f22954c8215928c72619bc, type: 2}
+    - {fileID: 11400000, guid: ff17dd1c2d4b7ea44b30ef4f90cfc1f4, type: 2}
   cards:
   - {fileID: 1905157225}
   - {fileID: 1635311558}

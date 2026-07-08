@@ -80,8 +80,8 @@ public class GameStatManager : MonoBehaviour
 
     public void SetWeapon(int index, Sprite image, int level)
     {
-        gameStats.SetWeaponData(index, image, level);
-        InvokeStatUpdated();
+        /*gameStats.SetWeaponData(index, image, level);
+        InvokeStatUpdated();*/
     }
 
     public GameStat_SO.WeaponData GetWeapon(int index)
@@ -112,7 +112,7 @@ public class GameStatManager : MonoBehaviour
 
     public void ResetStatValues()
     {
-        gameStats.ResetValues();
+        gameStats.ResetAllValues();
         InvokeStatUpdated();
     }
 

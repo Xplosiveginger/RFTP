@@ -505,11 +505,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponSpawnParentTransform: {fileID: 7006390098740695773}
-  weapons:
-  - {fileID: 11400000, guid: ed389e58d0b223941b77e32fce08ff87, type: 2}
-  activeWeapons: []
   ownerStats: {fileID: 7307218757569305595}
   enemyDetector: {fileID: 5556309516355706689}
+  gameStatSO: {fileID: 11400000, guid: c0e4e38e7c16edc4b8aece16cfd8078c, type: 2}
+  defaultWeapons:
+  - {fileID: 11400000, guid: ed389e58d0b223941b77e32fce08ff87, type: 2}
+  activeWeapons: []
 --- !u!195 &2157944949015471727
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -1,5 +1,7 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
+using System;
+using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "GameStat", menuName = "ScriptableObjects/Game Stats")]
 public class GameStat_SO : ScriptableObject
@@ -41,22 +43,14 @@ public class GameStat_SO : ScriptableObject
     #endregion
 
 
-    #region ===== WEAPON & SKILL DATA =====
+    #region ===== WEAPON DATA =====
 
     [System.Serializable]
     public struct WeaponData
     {
-        public Sprite image;
-        public int level;
+        public WeaponDataSO weaponDataSO;
+        public StatManager statManager;
     }
-
-    [System.Serializable]
-    public struct SkillData
-    {
-        public Sprite image;
-        public int level;
-    }
-
 
     [Title("Weapons")]
     [BoxGroup("Loadout/Weapons")]
@@ -71,6 +65,17 @@ public class GameStat_SO : ScriptableObject
     [BoxGroup("Loadout/Weapons")]
     public WeaponData weapon4;
 
+    #endregion
+
+
+    #region ===== SKILL DATA =====
+
+    [System.Serializable]
+    public struct SkillData
+    {
+        public Sprite image;
+        public int level;
+    }
 
     [Title("Skills")]
     [BoxGroup("Loadout/Skills")]
@@ -88,11 +93,24 @@ public class GameStat_SO : ScriptableObject
     #endregion
 
 
+    #region ===== EVENTS =====
+
+    public event Action<int> OnWeaponUpdated;
+    public event Action<int> OnSkillUpdated;
+    public event Action OnWeaponDataReset;
+
+    #endregion
+
+
     #region ===== WEAPON FUNCTIONS =====
 
-    public void SetWeaponData(int index, Sprite image, int level)
+    public void SetWeaponData(int index, WeaponDataSO weaponDataSO, StatManager statManager)
     {
-        WeaponData data = new WeaponData { image = image, level = level };
+        WeaponData data = new WeaponData 
+        { 
+            weaponDataSO = weaponDataSO, 
+            statManager = statManager 
+        };
 
         switch (index)
         {
@@ -102,8 +120,10 @@ public class GameStat_SO : ScriptableObject
             case 4: weapon4 = data; break;
             default:
                 Debug.LogError("Invalid Weapon Index");
-                break;
+                return;
         }
+        
+        OnWeaponUpdated?.Invoke(index);
     }
 
     public WeaponData GetWeaponData(int index)
@@ -116,6 +136,49 @@ public class GameStat_SO : ScriptableObject
             4 => weapon4,
             _ => throw new System.IndexOutOfRangeException("Invalid Weapon Index")
         };
+    }
+
+    public List<WeaponData> GetAllActiveWeapons()
+    {
+        List<WeaponData> activeWeapons = new List<WeaponData>();
+        
+        if (weapon1.weaponDataSO != null) activeWeapons.Add(weapon1);
+        if (weapon2.weaponDataSO != null) activeWeapons.Add(weapon2);
+        if (weapon3.weaponDataSO != null) activeWeapons.Add(weapon3);
+        if (weapon4.weaponDataSO != null) activeWeapons.Add(weapon4);
+        
+        return activeWeapons;
+    }
+
+    public int GetFirstAvailableWeaponSlot()
+    {
+        if (weapon1.weaponDataSO == null) return 1;
+        if (weapon2.weaponDataSO == null) return 2;
+        if (weapon3.weaponDataSO == null) return 3;
+        if (weapon4.weaponDataSO == null) return 4;
+        
+        return -1; // No available slots
+    }
+
+    public WeaponData GetWeaponByType(EWeaponName weaponName)
+    {
+        if (weapon1.weaponDataSO != null && weapon1.weaponDataSO.weaponName == weaponName) return weapon1;
+        if (weapon2.weaponDataSO != null && weapon2.weaponDataSO.weaponName == weaponName) return weapon2;
+        if (weapon3.weaponDataSO != null && weapon3.weaponDataSO.weaponName == weaponName) return weapon3;
+        if (weapon4.weaponDataSO != null && weapon4.weaponDataSO.weaponName == weaponName) return weapon4;
+        
+        return default;
+    }
+
+    public void ResetWeaponData()
+    {
+        weapon1 = default;
+        weapon2 = default;
+        weapon3 = default;
+        weapon4 = default;
+        
+        OnWeaponDataReset?.Invoke();
+        Debug.Log("Weapon data has been reset");
     }
 
     #endregion
@@ -135,8 +198,10 @@ public class GameStat_SO : ScriptableObject
             case 4: skill4 = data; break;
             default:
                 Debug.LogError("Invalid Skill Index");
-                break;
+                return;
         }
+        
+        OnSkillUpdated?.Invoke(index);
     }
 
     public SkillData GetSkillData(int index)
@@ -154,34 +219,40 @@ public class GameStat_SO : ScriptableObject
     #endregion
 
 
-    #region ===== RESET =====
+    #region ===== RESET ALL =====
 
-    public void ResetValues()
+    [Button("Reset Weapon Data")]
+    public void ResetWeaponDataButton()
+    {
+        ResetWeaponData();
+    }
+
+    [Button("Reset All Data")]
+    public void ResetAllValues()
     {
         // Stats
-        damage = default;
-        areaOfEffect = default;
-        projectileSpeed = default;
-        numberOfProjectiles = default;
-        duration = default;
+        damage = 100f;
+        areaOfEffect = 100f;
+        projectileSpeed = 100f;
+        numberOfProjectiles = 100f;
+        duration = 100f;
 
-        totalHealth = default;
-        healthRegen = default;
+        totalHealth = 100f;
+        healthRegen = 100f;
 
-        cooldown = default;
-        moveSpeed = default;
+        cooldown = 100f;
+        moveSpeed = 100f;
 
         // Weapons
-        weapon1 = default;
-        weapon2 = default;
-        weapon3 = default;
-        weapon4 = default;
+        ResetWeaponData();
 
         // Skills
         skill1 = default;
         skill2 = default;
         skill3 = default;
         skill4 = default;
+        
+        Debug.Log("All data has been reset");
     }
 
     #endregion

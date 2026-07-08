@@ -46,3 +46,11 @@ public enum ECardType
     AffectsSpecificWeaponStat,
     AffectsAllWeaponsStat,
 }
+
+// Add this to your existing enums file
+public enum ECardCategory
+{
+    PlayerRelated,
+    WeaponAddition,
+    WeaponLevelRelated
+}

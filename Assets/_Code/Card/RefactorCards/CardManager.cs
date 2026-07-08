@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public struct CardCategoryData
+{
+    public ECardCategory cardCategory;
+    public List<CardDataSO> cardDataList;
+}
+
 public class CardManager : MonoBehaviour
 {
-    [SerializeField] protected List<CardDataSO> cardDatas;
-    private List<CardDataSO> neededCards;
-    private List<CardDataSO> weaponLevelCarDatas;
+    [SerializeField] protected List<CardCategoryData> cardCategories;
     [SerializeField] protected List<RefactorCardUi> cards;
     protected ReworkedWeaponManager weaponManager;
     
@@ -39,44 +44,68 @@ public class CardManager : MonoBehaviour
 
     private void PopulateCards()
     {
-        int cardCount = Mathf.Min(cards.Count, cardDatas.Count);
-
-        // Create a weighted list based on priority
-        List<CardDataSO> weightedCardPool = new List<CardDataSO>();
-
-        foreach (var card in cardDatas)
-        {
-            int weight = 6 - (int)card.cardPriority;
-            for (int i = 0; i < weight; i++)
-            {
-                weightedCardPool.Add(card);
-            }
-        }
-
-        // Shuffle the weighted list to randomize selection
-        Shuffle(weightedCardPool);
-
+        // Step 1: Accumulate all qualified candidates from all categories
+        List<CardDataSO> qualifiedCandidates = GetAllQualifiedCandidates();
+        
+        // Step 2: Randomize the qualified candidates list
+        Shuffle(qualifiedCandidates);
+        
+        // Step 3: Determine how many cards to show
+        int cardCount = Mathf.Min(cards.Count, qualifiedCandidates.Count);
+        
         // Clear current selection tracking
         currentSelectionCards.Clear();
         
+        // Step 4: Select cards from the randomized list
         for (int i = 0; i < cardCount; i++)
         {
-            if (weightedCardPool.Count == 0) break;
+            if (qualifiedCandidates.Count == 0) break;
 
-            // Get a random card that hasn't been selected yet in this round
-            CardDataSO selectedCard = GetUniqueRandomCard(weightedCardPool);
+            // Get a unique random card from the qualified candidates
+            CardDataSO selectedCard = GetUniqueRandomCard(qualifiedCandidates);
 
             if (selectedCard != null)
             {
                 // Track this card as selected for this round
                 currentSelectionCards.Add(selectedCard);
                 
+                // Initialize the card UI
                 cards[i].Initialize(selectedCard, this, weaponManager);
 
-                // Remove ALL instances of this card from the weighted pool
-                weightedCardPool.RemoveAll(c => c == selectedCard);
+                // Remove the selected card from the candidates to prevent duplicates
+                qualifiedCandidates.RemoveAll(c => c == selectedCard);
             }
         }
+    }
+
+    // Get all qualified candidates from all categories (no filtering for now)
+    private List<CardDataSO> GetAllQualifiedCandidates()
+    {
+        List<CardDataSO> allCandidates = new List<CardDataSO>();
+        
+        foreach (var category in cardCategories)
+        {
+            if (category.cardDataList != null)
+            {
+                allCandidates.AddRange(category.cardDataList);
+            }
+        }
+        
+        return allCandidates;
+    }
+
+    // Get cards from a specific category (useful for future filtering)
+    public List<CardDataSO> GetCardsByCategory(ECardCategory category)
+    {
+        foreach (var cardCategory in cardCategories)
+        {
+            if (cardCategory.cardCategory == category)
+            {
+                return cardCategory.cardDataList;
+            }
+        }
+        
+        return new List<CardDataSO>();
     }
 
     // Helper method to get a random card that hasn't been selected in this round
@@ -84,18 +113,11 @@ public class CardManager : MonoBehaviour
     {
         // Create a list of available cards (cards not yet selected in this round)
         List<CardDataSO> availableCards = new List<CardDataSO>();
-        HashSet<CardDataSO> uniqueCardsInPool = new HashSet<CardDataSO>();
         
-        // Get unique cards from the pool
+        // Get unique cards from the pool that haven't been selected yet
         foreach (var card in cardPool)
         {
-            uniqueCardsInPool.Add(card);
-        }
-        
-        // Filter out cards already selected in this round
-        foreach (var card in uniqueCardsInPool)
-        {
-            if (!currentSelectionCards.Contains(card))
+            if (!currentSelectionCards.Contains(card) && !availableCards.Contains(card))
             {
                 availableCards.Add(card);
             }
@@ -127,8 +149,8 @@ public class CardManager : MonoBehaviour
     // Called by RefactorCardUi when a card is picked
     public void OnCardSelected(CardDataSO selectedData)
     {
-        if (cardDatas.Contains(selectedData))
-            cardDatas.Remove(selectedData);
+        // Remove the selected card from its category
+        RemoveCardFromCategories(selectedData);
 
         Time.timeScale = 1f; // Resume game
 
@@ -139,6 +161,41 @@ public class CardManager : MonoBehaviour
         
         CardSelected?.Invoke(selectedData);
         CardClicked?.Invoke();
+    }
+
+    // Remove a card from all categories
+    private void RemoveCardFromCategories(CardDataSO cardToRemove)
+    {
+        for (int i = 0; i < cardCategories.Count; i++)
+        {
+            if (cardCategories[i].cardDataList != null && cardCategories[i].cardDataList.Contains(cardToRemove))
+            {
+                cardCategories[i].cardDataList.Remove(cardToRemove);
+                break; // Card found and removed, exit loop
+            }
+        }
+    }
+
+    // Method to add a card to a specific category (useful for future dynamic card addition)
+    public void AddCardToCategory(ECardCategory category, CardDataSO cardToAdd)
+    {
+        for (int i = 0; i < cardCategories.Count; i++)
+        {
+            if (cardCategories[i].cardCategory == category)
+            {
+                cardCategories[i].cardDataList.Add(cardToAdd);
+                return;
+            }
+        }
+        
+        // If category doesn't exist, create it
+        CardCategoryData newCategory = new CardCategoryData
+        {
+            cardCategory = category,
+            cardDataList = new List<CardDataSO> { cardToAdd }
+        };
+        
+        cardCategories.Add(newCategory);
     }
 
     private void OnDisable()
