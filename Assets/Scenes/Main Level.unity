@@ -134984,6 +134984,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: c0a36557a7305564285e0541c83a4fdc, type: 2}
     - {fileID: 11400000, guid: f1474da2e4139a1418aaae2158ef36cc, type: 2}
     - {fileID: 11400000, guid: a9706c4c784da0b40ab07b7331ef68b4, type: 2}
+    - {fileID: 11400000, guid: f1474da2e4139a1418aaae2158ef36cc, type: 2}
   - cardCategory: 2
     cardDataList:
     - {fileID: 11400000, guid: 5fc368220d87d8b469f69e9fbc2683e3, type: 2}
@@ -134995,6 +134996,7 @@ MonoBehaviour:
   - {fileID: 1905157225}
   - {fileID: 1635311558}
   - {fileID: 1645244485}
+  gameStatSO: {fileID: 11400000, guid: c0e4e38e7c16edc4b8aece16cfd8078c, type: 2}
 --- !u!1 &1872375097
 GameObject:
   m_ObjectHideFlags: 0

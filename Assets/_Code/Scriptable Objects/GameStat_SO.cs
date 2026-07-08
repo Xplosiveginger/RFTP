@@ -65,6 +65,11 @@ public class GameStat_SO : ScriptableObject
     [BoxGroup("Loadout/Weapons")]
     public WeaponData weapon4;
 
+    [Title("Equipped Weapon Names")]
+    [BoxGroup("Loadout/Weapons")]
+    [ShowInInspector, ReadOnly]
+    [SerializeField] private List<EWeaponName> equippedWeaponNames = new List<EWeaponName>();
+
     #endregion
 
 
@@ -98,6 +103,7 @@ public class GameStat_SO : ScriptableObject
     public event Action<int> OnWeaponUpdated;
     public event Action<int> OnSkillUpdated;
     public event Action OnWeaponDataReset;
+    public event Action<List<EWeaponName>> OnEquippedWeaponNamesUpdated;
 
     #endregion
 
@@ -122,6 +128,9 @@ public class GameStat_SO : ScriptableObject
                 Debug.LogError("Invalid Weapon Index");
                 return;
         }
+        
+        // Update equipped weapon names list
+        UpdateEquippedWeaponNames();
         
         OnWeaponUpdated?.Invoke(index);
     }
@@ -170,12 +179,53 @@ public class GameStat_SO : ScriptableObject
         return default;
     }
 
+    /// <summary>
+    /// Updates the equipped weapon names list based on current weapon data
+    /// </summary>
+    private void UpdateEquippedWeaponNames()
+    {
+        equippedWeaponNames.Clear();
+        
+        var activeWeapons = GetAllActiveWeapons();
+        
+        foreach (var weaponData in activeWeapons)
+        {
+            if (weaponData.weaponDataSO != null)
+            {
+                equippedWeaponNames.Add(weaponData.weaponDataSO.weaponName);
+            }
+        }
+        
+        OnEquippedWeaponNamesUpdated?.Invoke(equippedWeaponNames);
+        
+        Debug.Log($"Equipped weapon names updated: [{string.Join(", ", equippedWeaponNames)}]");
+    }
+
+    /// <summary>
+    /// Returns the current list of equipped weapon names
+    /// </summary>
+    public List<EWeaponName> GetEquippedWeaponNames()
+    {
+        return new List<EWeaponName>(equippedWeaponNames);
+    }
+
+    /// <summary>
+    /// Checks if a specific weapon is currently equipped
+    /// </summary>
+    public bool IsWeaponEquipped(EWeaponName weaponName)
+    {
+        return equippedWeaponNames.Contains(weaponName);
+    }
+
     public void ResetWeaponData()
     {
         weapon1 = default;
         weapon2 = default;
         weapon3 = default;
         weapon4 = default;
+        
+        // Reset equipped weapon names list
+        equippedWeaponNames.Clear();
         
         OnWeaponDataReset?.Invoke();
         Debug.Log("Weapon data has been reset");
