@@ -3,11 +3,20 @@ using UnityEngine;
 
 public class GameStatManager : MonoBehaviour
 {
-    [SerializeField] private GameStat_SO gameStats;
+    public static GameStatManager instance; 
+    public GameStat_SO gameStats;
 
     public static event Action OnStatUpdated;
 
     #region ===== OFFENSIVE =====
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else 
+            Destroy(gameObject);
+    }
 
     public void UpdateDamage(float value)
     {

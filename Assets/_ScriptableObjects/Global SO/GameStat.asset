@@ -33,6 +33,7 @@ MonoBehaviour:
   weapon4:
     weaponDataSO: {fileID: 0}
     statManager: {fileID: 0}
+  equippedWeaponNames: 
   skill1:
     image: {fileID: 0}
     level: 0
