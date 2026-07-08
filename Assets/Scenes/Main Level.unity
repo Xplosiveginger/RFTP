@@ -37826,6 +37826,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &493989686 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2611227757868007829, guid: 7224e8d3310913b478b968c0e8390a3d, type: 3}
+  m_PrefabInstance: {fileID: 640355257039559581}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &503103179
 GameObject:
   m_ObjectHideFlags: 0
@@ -47057,6 +47062,10 @@ PrefabInstance:
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 990739291}
+    - target: {fileID: 7664751407247831055, guid: a31d3eda6d885544789a234488df2c25, type: 3}
+      propertyPath: currentHealth
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 7664751407247831055, guid: a31d3eda6d885544789a234488df2c25, type: 3}
       propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -125987,7 +125996,6 @@ GameObject:
   - component: {fileID: 1606179108}
   - component: {fileID: 1606179107}
   - component: {fileID: 1606179112}
-  - component: {fileID: 1606179113}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -126093,34 +126101,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SceneName: MainMenu - Vyshak
   Loading: {fileID: 0}
---- !u!114 &1606179113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1606179106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a98d5f4542ac0a41961cf245aaf6986, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardDatas:
-  - {fileID: 11400000, guid: ff95bae0c3c11af44ac78d6c6e74918d, type: 2}
-  - {fileID: 11400000, guid: cfe9211f9e2ac844eae5f09d14a72de5, type: 2}
-  - {fileID: 11400000, guid: c06bfaf55ef69f34d9ca39e0c0d48455, type: 2}
-  - {fileID: 11400000, guid: c0a36557a7305564285e0541c83a4fdc, type: 2}
-  - {fileID: 11400000, guid: f1474da2e4139a1418aaae2158ef36cc, type: 2}
-  - {fileID: 11400000, guid: a9706c4c784da0b40ab07b7331ef68b4, type: 2}
-  - {fileID: 11400000, guid: 5fc368220d87d8b469f69e9fbc2683e3, type: 2}
-  - {fileID: 11400000, guid: 896f0d26dab79c54392e796de6a730ac, type: 2}
-  - {fileID: 11400000, guid: a6455a0715989424ea0afe84664442ec, type: 2}
-  - {fileID: 11400000, guid: 2507767a27f22954c8215928c72619bc, type: 2}
-  - {fileID: 11400000, guid: ff17dd1c2d4b7ea44b30ef4f90cfc1f4, type: 2}
-  cards:
-  - {fileID: 1905157225}
-  - {fileID: 1635311558}
-  - {fileID: 1645244485}
 --- !u!1 &1610756570
 GameObject:
   m_ObjectHideFlags: 0
@@ -134981,6 +134961,34 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 602501066237466722, guid: 7224e8d3310913b478b968c0e8390a3d, type: 3}
   m_PrefabInstance: {fileID: 640355257039559581}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1867656242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 493989686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a98d5f4542ac0a41961cf245aaf6986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardDatas:
+  - {fileID: 11400000, guid: ff95bae0c3c11af44ac78d6c6e74918d, type: 2}
+  - {fileID: 11400000, guid: cfe9211f9e2ac844eae5f09d14a72de5, type: 2}
+  - {fileID: 11400000, guid: c06bfaf55ef69f34d9ca39e0c0d48455, type: 2}
+  - {fileID: 11400000, guid: c0a36557a7305564285e0541c83a4fdc, type: 2}
+  - {fileID: 11400000, guid: f1474da2e4139a1418aaae2158ef36cc, type: 2}
+  - {fileID: 11400000, guid: a9706c4c784da0b40ab07b7331ef68b4, type: 2}
+  - {fileID: 11400000, guid: 5fc368220d87d8b469f69e9fbc2683e3, type: 2}
+  - {fileID: 11400000, guid: 896f0d26dab79c54392e796de6a730ac, type: 2}
+  - {fileID: 11400000, guid: a6455a0715989424ea0afe84664442ec, type: 2}
+  - {fileID: 11400000, guid: 2507767a27f22954c8215928c72619bc, type: 2}
+  - {fileID: 11400000, guid: ff17dd1c2d4b7ea44b30ef4f90cfc1f4, type: 2}
+  cards:
+  - {fileID: 1905157225}
+  - {fileID: 1635311558}
+  - {fileID: 1645244485}
 --- !u!1 &1872375097
 GameObject:
   m_ObjectHideFlags: 0
@@ -163308,7 +163316,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2611227757868007829, guid: 7224e8d3310913b478b968c0e8390a3d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1867656242}
   m_SourcePrefab: {fileID: 100100000, guid: 7224e8d3310913b478b968c0e8390a3d, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

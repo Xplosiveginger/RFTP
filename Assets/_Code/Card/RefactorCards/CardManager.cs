@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class CardManager : MonoBehaviour
 {
     [SerializeField] protected List<CardDataSO> cardDatas;
     private List<CardDataSO> neededCards;
     private List<CardDataSO> weaponLevelCarDatas;
     [SerializeField] protected List<RefactorCardUi> cards;
-    protected ReworkedWeaponManager weaponManager; 
+    protected ReworkedWeaponManager weaponManager;
+    
+    // Track which cards have been shown in the current selection
+    private HashSet<CardDataSO> currentSelectionCards = new HashSet<CardDataSO>();
 
     public event Action OnCardsInitialized;
     public static event Action<CardDataSO> CardSelected;
@@ -22,7 +24,11 @@ public class CardManager : MonoBehaviour
     
     private void CardInitializer()
     {
-        Time.timeScale = 0f; 
+        Time.timeScale = 0f;
+        
+        // Clear the current selection tracking
+        currentSelectionCards.Clear();
+        
         PopulateCards();
 
         foreach (var card in cards)
@@ -40,7 +46,7 @@ public class CardManager : MonoBehaviour
 
         foreach (var card in cardDatas)
         {
-            int weight = 6 - (int)card.cardPriority; 
+            int weight = 6 - (int)card.cardPriority;
             for (int i = 0; i < weight; i++)
             {
                 weightedCardPool.Add(card);
@@ -50,16 +56,60 @@ public class CardManager : MonoBehaviour
         // Shuffle the weighted list to randomize selection
         Shuffle(weightedCardPool);
 
+        // Clear current selection tracking
+        currentSelectionCards.Clear();
+        
         for (int i = 0; i < cardCount; i++)
         {
             if (weightedCardPool.Count == 0) break;
 
-            CardDataSO selectedCard = weightedCardPool[UnityEngine.Random.Range(0, weightedCardPool.Count)];
+            // Get a random card that hasn't been selected yet in this round
+            CardDataSO selectedCard = GetUniqueRandomCard(weightedCardPool);
 
-            cards[i].Initialize(selectedCard, this , weaponManager);
+            if (selectedCard != null)
+            {
+                // Track this card as selected for this round
+                currentSelectionCards.Add(selectedCard);
+                
+                cards[i].Initialize(selectedCard, this, weaponManager);
 
-            weightedCardPool.RemoveAll(c => c == selectedCard);
+                // Remove ALL instances of this card from the weighted pool
+                weightedCardPool.RemoveAll(c => c == selectedCard);
+            }
         }
+    }
+
+    // Helper method to get a random card that hasn't been selected in this round
+    private CardDataSO GetUniqueRandomCard(List<CardDataSO> cardPool)
+    {
+        // Create a list of available cards (cards not yet selected in this round)
+        List<CardDataSO> availableCards = new List<CardDataSO>();
+        HashSet<CardDataSO> uniqueCardsInPool = new HashSet<CardDataSO>();
+        
+        // Get unique cards from the pool
+        foreach (var card in cardPool)
+        {
+            uniqueCardsInPool.Add(card);
+        }
+        
+        // Filter out cards already selected in this round
+        foreach (var card in uniqueCardsInPool)
+        {
+            if (!currentSelectionCards.Contains(card))
+            {
+                availableCards.Add(card);
+            }
+        }
+        
+        // If no unique cards available, just return null
+        if (availableCards.Count == 0)
+        {
+            Debug.LogWarning("No more unique cards available!");
+            return null;
+        }
+        
+        // Return a random card from available cards
+        return availableCards[UnityEngine.Random.Range(0, availableCards.Count)];
     }
 
     private void Shuffle<T>(List<T> list)
@@ -86,6 +136,7 @@ public class CardManager : MonoBehaviour
         {
             card.gameObject.SetActive(false);
         }
+        
         CardSelected?.Invoke(selectedData);
         CardClicked?.Invoke();
     }
@@ -93,11 +144,5 @@ public class CardManager : MonoBehaviour
     private void OnDisable()
     {
         XpManager.OnPlayerLeveledUp -= CardInitializer;
-        //PlayerXPRefactored.OnLeveledUp -= CardInitializer;
-
-        //foreach (var card in cards)
-        //{
-        //    card.OnCardSelected -= OnCardSelectedHandled;
-        //}
     }
 }
