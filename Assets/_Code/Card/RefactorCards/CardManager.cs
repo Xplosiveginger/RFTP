@@ -18,23 +18,8 @@ public class CardManager : MonoBehaviour
     private void OnEnable()
     {
         XpManager.OnPlayerLeveledUp += CardInitializer;
-        //PlayerXPRefactored.OnLeveledUp += CardInitializer;
-
-        //foreach (var card in cards)
-        //{
-        //    card.OnCardSelected += OnCardSelectedHandled;
-        //}
     }
-
-    //private void Update()
-    //{
-    //    if(Input.GetKeyDown(KeyCode.P))
-    //    {
-    //        OnCardsInitialized?.Invoke();
-    //    }
-    //}
-
-    // Will populate the cards and stop time in the game until player picks a card
+    
     private void CardInitializer()
     {
         Time.timeScale = 0f; 

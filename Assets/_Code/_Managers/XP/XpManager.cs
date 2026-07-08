@@ -6,10 +6,7 @@ public class XpManager : MonoBehaviour
 {
     [Header("Progression")]
     public ProgressionSO progressionSO;
-
-    [Header("Card Spawner")]
-    public CardSpawner cardSpawner;
-
+    
     public static event Action OnPlayerLeveledUp;
     public static event Action OnXPUpdated;
     public static event Action OnCoinsUpdated;

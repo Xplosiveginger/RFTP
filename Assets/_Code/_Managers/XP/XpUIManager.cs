@@ -31,12 +31,14 @@ public class XpUIManager : MonoBehaviour
     {
         XpManager.OnXPUpdated += UpdateXPUI;
         XpManager.OnCoinsUpdated += UpdateXPUI;
+        XpManager.OnPlayerLeveledUp += OnlevelUp;
     }
 
     private void OnDisable()
     {
         XpManager.OnXPUpdated -= UpdateXPUI;
         XpManager.OnCoinsUpdated -= UpdateXPUI;
+        XpManager.OnPlayerLeveledUp -= OnlevelUp;
     }
 
     private void InitializeUI()
@@ -65,6 +67,12 @@ public class XpUIManager : MonoBehaviour
             float targetValue = xpManager.GetProgressPercentage();
             xpBar.DOValue(targetValue, fillDuration).SetEase(Ease.OutCubic);
         }
+    }
+
+    private void OnlevelUp()
+    {
+        xpBar.value = 1f;
+        //xpBar.DOValue(1, fillDuration).SetEase(Ease.OutCubic);
     }
 
     private void UpdateTextElements()
