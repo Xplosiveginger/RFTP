@@ -72,7 +72,7 @@ public class Skeleton_refactor : BaseEnemyRefactor
         Rigidbody2D rb = bone.GetComponent<Rigidbody2D>();
         if (rb != null)
         {
-            rb.velocity = new Vector2(vx, vy);
+            rb.linearVelocity = new Vector2(vx, vy);
             rb.angularVelocity = UnityEngine.Random.Range(-500f, 500f);
         }
     }
@@ -86,7 +86,7 @@ public class Skeleton_refactor : BaseEnemyRefactor
         if (rb != null)
         {
             float speed = 10f;
-            rb.velocity = dir * speed;
+            rb.linearVelocity = dir * speed;
             rb.angularVelocity = UnityEngine.Random.Range(-500f, 500f);
         }
     }

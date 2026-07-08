@@ -19,7 +19,7 @@ public class ChargedAttack_State : EntityState
         miniBoss.ai.enabled = false;
 
         dir = FindDirectionToPlayer();
-        miniBoss.rb.velocity = miniBoss.chargeSpeed * dir;
+        miniBoss.rb.linearVelocity = miniBoss.chargeSpeed * dir;
     }
 
     public override void Update()
@@ -45,7 +45,7 @@ public class ChargedAttack_State : EntityState
     public override void Exit()
     {
         base.Exit();
-        miniBoss.rb.velocity = Vector2.zero;
+        miniBoss.rb.linearVelocity = Vector2.zero;
         miniBoss.ai.enabled = true;
     }
 }

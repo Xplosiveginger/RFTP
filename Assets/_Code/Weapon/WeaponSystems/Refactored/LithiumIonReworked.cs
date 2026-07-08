@@ -54,7 +54,7 @@ public class LithiumIonReworked : WeaponBase
         projectile.GetComponent<Projectile>().damage = damage;
         firedProjectileCount++;
         Vector3 shootAt = enemyDetector.GetPositionOfRandomEnemy(); // Change this later to detect enemies and fire in their direction.
-        projectile.GetComponent<Rigidbody2D>().velocity = (shootAt - transform.position).normalized * projectileSpeed;
+        projectile.GetComponent<Rigidbody2D>().linearVelocity = (shootAt - transform.position).normalized * projectileSpeed;
     }
 
     public override void LevelUpWeapon()
