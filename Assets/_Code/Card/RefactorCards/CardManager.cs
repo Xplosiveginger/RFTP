@@ -11,12 +11,23 @@ public struct CardCategoryData
 
 public class CardManager : MonoBehaviour
 {
+    [Header("Card Categories")]
     [SerializeField] protected List<CardCategoryData> cardCategories;
+    
+    [Header("Card UI References")]
     [SerializeField] protected List<RefactorCardUi> cards;
+    
+    [Header("Game Data")]
+    [SerializeField] private GameStat_SO gameStatSO;
+    
+    [Header("Weapon Manager")]
     protected ReworkedWeaponManager weaponManager;
     
     // Track which cards have been shown in the current selection
     private HashSet<CardDataSO> currentSelectionCards = new HashSet<CardDataSO>();
+    
+    // List to store equipped weapon names for relevancy filtering
+    private List<EWeaponName> equippedWeaponNames = new List<EWeaponName>();
 
     public event Action OnCardsInitialized;
     public static event Action<CardDataSO> CardSelected;
@@ -34,12 +45,43 @@ public class CardManager : MonoBehaviour
         // Clear the current selection tracking
         currentSelectionCards.Clear();
         
+        // Update equipped weapon names before populating cards
+        UpdateEquippedWeaponNames();
+        
         PopulateCards();
 
         foreach (var card in cards)
         {
             card.gameObject.SetActive(true);
         }
+    }
+
+    /// <summary>
+    /// Extracts equipped weapon names from GameStatSO and updates the list
+    /// </summary>
+    private void UpdateEquippedWeaponNames()
+    {
+        // Clear the list before updating
+        equippedWeaponNames.Clear();
+        
+        if (gameStatSO == null)
+        {
+            Debug.LogWarning("GameStatSO reference is missing in CardManager!");
+            return;
+        }
+        
+        // Get all active weapons from GameStatSO
+        var activeWeapons = gameStatSO.GetAllActiveWeapons();
+        
+        foreach (var weaponData in activeWeapons)
+        {
+            if (weaponData.weaponDataSO != null)
+            {
+                equippedWeaponNames.Add(weaponData.weaponDataSO.weaponName);
+            }
+        }
+        
+        Debug.Log($"Updated equipped weapons: {equippedWeaponNames.Count} weapons found");
     }
 
     private void PopulateCards()
@@ -94,7 +136,7 @@ public class CardManager : MonoBehaviour
         return allCandidates;
     }
 
-    // Get cards from a specific category (useful for future filtering)
+    // Get cards from a specific category
     public List<CardDataSO> GetCardsByCategory(ECardCategory category)
     {
         foreach (var cardCategory in cardCategories)
@@ -132,6 +174,44 @@ public class CardManager : MonoBehaviour
         
         // Return a random card from available cards
         return availableCards[UnityEngine.Random.Range(0, availableCards.Count)];
+    }
+
+    /// <summary>
+    /// Checks if a card is relevant to currently equipped weapons
+    /// </summary>
+    private bool IsCardRelevantToEquippedWeapons(CardDataSO card)
+    {
+        // If no weapons equipped, all cards are relevant
+        if (equippedWeaponNames.Count == 0)
+            return true;
+        
+        // Check if card is related to any equipped weapon
+        switch (card.cardType)
+        {
+            case ECardType.AffectsWeaponLevel:
+                // Check if the weapon level card matches any equipped weapon
+                return equippedWeaponNames.Contains(card.weaponName);
+                
+            case ECardType.AffectsSpecificWeaponStat:
+                // Check if the specific weapon stat card matches any equipped weapon
+                return equippedWeaponNames.Contains(card.weaponName);
+                
+            case ECardType.AffectsAllWeaponsStat:
+                // Cards that affect all weapons are always relevant if weapons are equipped
+                return equippedWeaponNames.Count > 0;
+                
+            case ECardType.AddsWeapon:
+                // Weapon addition cards are always relevant (unless we want to limit slots)
+                return true;
+                
+            case ECardType.AffectsPlayer:
+            case ECardType.AffectsEnemy:
+                // Player and enemy affecting cards are always relevant
+                return true;
+                
+            default:
+                return true;
+        }
     }
 
     private void Shuffle<T>(List<T> list)
@@ -196,6 +276,12 @@ public class CardManager : MonoBehaviour
         };
         
         cardCategories.Add(newCategory);
+    }
+    
+    // Public method to get currently equipped weapon names
+    public List<EWeaponName> GetEquippedWeaponNames()
+    {
+        return new List<EWeaponName>(equippedWeaponNames);
     }
 
     private void OnDisable()
