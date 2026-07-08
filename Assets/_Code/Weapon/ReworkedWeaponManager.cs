@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ReworkedWeaponManager : MonoBehaviour
 {
+    public Transform WeaponSpawnParentTransform;
     public List<WeaponDataSO> weapons;
     public List<WeaponBase> activeWeapons;
     public StatManager ownerStats;
@@ -58,7 +59,7 @@ public class ReworkedWeaponManager : MonoBehaviour
     {
         foreach(var weapon in weapons)
         {
-            WeaponBase weaponToAdd = weapon.SpawnWeapon(transform);
+            WeaponBase weaponToAdd = weapon.SpawnWeapon(WeaponSpawnParentTransform);
             weaponToAdd.enemyDetector = this.enemyDetector;
             AddActiveWeapon(weaponToAdd);
         }
@@ -66,7 +67,7 @@ public class ReworkedWeaponManager : MonoBehaviour
 
     private void InitializeWeapon(WeaponDataSO weaponToAdd)
     {
-        WeaponBase weapon = weaponToAdd.SpawnWeapon(transform);
+        WeaponBase weapon = weaponToAdd.SpawnWeapon(WeaponSpawnParentTransform);
         weapon.enemyDetector = this.enemyDetector;
         AddActiveWeapon(weapon);
     }
