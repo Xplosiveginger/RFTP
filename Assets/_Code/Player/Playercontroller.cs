@@ -41,9 +41,7 @@ public class PlayerController2D : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
         health = GetComponent<HealthSystem>();
-
         statManager.InitializeStats();
     }
 
