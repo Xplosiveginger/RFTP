@@ -16,11 +16,11 @@ MonoBehaviour:
   areaOfEffect: 100
   projectileSpeed: 100
   numberOfProjectiles: 100
-  duration: 100
-  totalHealth: 100
+  duration: 100456
+  totalHealth: 56
   healthRegen: 100
-  cooldown: 100
-  moveSpeed: 100
+  cooldown: 456
+  moveSpeed: 56
   weapon1:
     weaponDataSO: {fileID: 0}
     statManager: {fileID: 0}
