@@ -268,6 +268,25 @@ public class GameStat_SO : ScriptableObject
 
     #endregion
 
+    
+    #region Realtime Stats
+    
+    [Title("Realtime Stats")]
+    public float damageGiven, damageTaken;
+
+    public void TegisterDamageTaken(float value)
+    {
+        if (value <= 0) return;
+        damageTaken += value;
+    }
+    public void TegisterDamageGiven(float value)
+    {
+        if (value <= 0) return;
+        damageGiven += value;
+    }
+    
+    
+    #endregion
 
     #region ===== RESET ALL =====
 
@@ -301,6 +320,10 @@ public class GameStat_SO : ScriptableObject
         skill2 = default;
         skill3 = default;
         skill4 = default;
+
+
+        damageGiven = 0f;
+        damageTaken = 0f;
         
         Debug.Log("All data has been reset");
     }

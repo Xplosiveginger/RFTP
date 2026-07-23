@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameStatManager : MonoBehaviour
@@ -127,6 +128,11 @@ public class GameStatManager : MonoBehaviour
 
     #endregion
 
+
+    private void OnDestroy()
+    {
+        ResetStatValues();
+    }
 
     private void InvokeStatUpdated()
     {
