@@ -276,6 +276,8 @@ public class GameStat_SO : ScriptableObject
     public float damageTaken;
     public int EnemiesKilled;
 
+    public int breakablesDestroyed;
+
     public void RegisterDamageTaken(float value)
     {
         if (value <= 0) return;
@@ -290,6 +292,11 @@ public class GameStat_SO : ScriptableObject
     public void RegisterEnemyKilled(int value = 1)
     {
         EnemiesKilled += value;
+    }
+
+    public void RegisterBreakablesDestroyed(int value = 1)
+    {
+        breakablesDestroyed += value;
     }
     #endregion
 
@@ -330,6 +337,7 @@ public class GameStat_SO : ScriptableObject
         damageGiven = 0f;
         damageTaken = 0f;
         EnemiesKilled = 0;
+        breakablesDestroyed = 0;
         
         Debug.Log("All data has been reset");
     }
