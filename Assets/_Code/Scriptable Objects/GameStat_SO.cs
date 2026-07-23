@@ -270,14 +270,19 @@ public class GameStat_SO : ScriptableObject
 
     
     #region Realtime Stats
-    
-    [Title("Realtime Stats")]
+
+    [Title("Realtime Stats")] 
+    [ReadOnly] public float runTime = 0;
     public float damageGiven;
     public float damageTaken;
     public int EnemiesKilled;
 
     public int breakablesDestroyed;
 
+    public void UpdateRuntime(float value)
+    {
+        runTime = value;
+    }
     public void RegisterDamageTaken(float value)
     {
         if (value <= 0) return;
@@ -333,7 +338,7 @@ public class GameStat_SO : ScriptableObject
         skill3 = default;
         skill4 = default;
 
-
+        runTime = 0f;
         damageGiven = 0f;
         damageTaken = 0f;
         EnemiesKilled = 0;
