@@ -272,20 +272,25 @@ public class GameStat_SO : ScriptableObject
     #region Realtime Stats
     
     [Title("Realtime Stats")]
-    public float damageGiven, damageTaken;
+    public float damageGiven;
+    public float damageTaken;
+    public int EnemiesKilled;
 
-    public void TegisterDamageTaken(float value)
+    public void RegisterDamageTaken(float value)
     {
         if (value <= 0) return;
         damageTaken += value;
     }
-    public void TegisterDamageGiven(float value)
+    public void RegisterDamageGiven(float value)
     {
         if (value <= 0) return;
         damageGiven += value;
     }
-    
-    
+
+    public void RegisterEnemyKilled(int value = 1)
+    {
+        EnemiesKilled += value;
+    }
     #endregion
 
     #region ===== RESET ALL =====
@@ -324,6 +329,7 @@ public class GameStat_SO : ScriptableObject
 
         damageGiven = 0f;
         damageTaken = 0f;
+        EnemiesKilled = 0;
         
         Debug.Log("All data has been reset");
     }

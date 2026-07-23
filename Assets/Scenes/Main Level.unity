@@ -69389,6 +69389,7 @@ PrefabInstance:
     - {fileID: 3078886104624715057, guid: e1985fb9217c5dc4ba85f695ee048868, type: 3}
     - {fileID: 6103577655008706289, guid: e1985fb9217c5dc4ba85f695ee048868, type: 3}
     - {fileID: 8394001917449946436, guid: e1985fb9217c5dc4ba85f695ee048868, type: 3}
+    - {fileID: 6073629830271000218, guid: e1985fb9217c5dc4ba85f695ee048868, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1093453446867371360, guid: e1985fb9217c5dc4ba85f695ee048868, type: 3}
       insertIndex: 0
@@ -128204,8 +128205,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e726ded0652f3a54cbbffeb66929a57e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneName: MainMenu - Vyshak
-  Loading: {fileID: 0}
 --- !u!1 &1610756570
 GameObject:
   m_ObjectHideFlags: 0
@@ -141878,8 +141877,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57d07811764ccf044b6fdb643a301d53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panelToDisable: {fileID: 167291141}
-  panelToEnable: {fileID: 0}
 --- !u!114 &2003424610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166229,12 +166226,28 @@ PrefabInstance:
       value: PanelButton, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1567299012470125757, guid: 7224e8d3310913b478b968c0e8390a3d, type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567299012470125757, guid: 7224e8d3310913b478b968c0e8390a3d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567299012470125757, guid: 7224e8d3310913b478b968c0e8390a3d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567299012470125757, guid: 7224e8d3310913b478b968c0e8390a3d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 48.274292
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567299012470125757, guid: 7224e8d3310913b478b968c0e8390a3d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 54
+      value: 11.200012
       objectReference: {fileID: 0}
     - target: {fileID: 1567299012470125757, guid: 7224e8d3310913b478b968c0e8390a3d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -257
+      value: -148
       objectReference: {fileID: 0}
     - target: {fileID: 1708347671915323707, guid: 7224e8d3310913b478b968c0e8390a3d, type: 3}
       propertyPath: m_AnchorMax.y
@@ -166699,6 +166712,10 @@ PrefabInstance:
     - target: {fileID: 3251803665414367878, guid: 7224e8d3310913b478b968c0e8390a3d, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3305437320722139815, guid: 7224e8d3310913b478b968c0e8390a3d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3555367337953163794, guid: 7224e8d3310913b478b968c0e8390a3d, type: 3}
       propertyPath: m_AnchorMax.y

@@ -66,6 +66,8 @@ public class HealthSystem : MonoBehaviour
 
     public event Action<float> OnHealthChanged;
 
+    private GameStat_SO GameStat_SO;
+
     private void Awake()
     {
         enemy = GetComponent<EnemyAI>();
@@ -102,6 +104,11 @@ public class HealthSystem : MonoBehaviour
         ResetHealth();
     }
 
+    private void Start()
+    {
+        GameStat_SO=PersistentObject.Instance.GameStat_SO;
+    }
+
     private void Update()
     {
         if (isPlayer && !isDead && HealthRegenItem.IsActive())
@@ -123,6 +130,17 @@ public class HealthSystem : MonoBehaviour
         currentHealth = Mathf.Max(0, currentHealth);
         UpdateHealthUI();
 
+        if (isPlayer)
+        {
+            GameStat_SO.RegisterDamageTaken(damageAmount);
+            Debug.Log("Player damage: "+ damageAmount);
+        }
+        else
+        {
+            GameStat_SO.RegisterDamageGiven(damageAmount);
+            
+        }
+        
         if (currentHealth <= 0)
             Die();
         else
@@ -151,6 +169,11 @@ public class HealthSystem : MonoBehaviour
         if (deathEffect)
             Instantiate(deathEffect, transform.position, Quaternion.identity);
 
+        if (!isPlayer)
+        {
+            GameStat_SO.RegisterEnemyKilled();
+        }
+        
         // Kill ongoing tweens
         if (DOTween.IsTweening(transform))
         {
