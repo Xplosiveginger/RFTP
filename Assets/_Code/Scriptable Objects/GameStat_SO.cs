@@ -6,6 +6,16 @@ using System.Collections.Generic;
 [CreateAssetMenu(fileName = "GameStat", menuName = "ScriptableObjects/Game Stats")]
 public class GameStat_SO : ScriptableObject
 {
+    
+    #region Economy
+    [BoxGroup("Economy")]
+    public int AllowanceMoney;
+    public void UpdateAllowanceMoney(int amount)
+    {
+        AllowanceMoney = amount;
+    }
+    #endregion
+    
     #region ===== STATS =====
 
     [Title("Offensive Stats")]
@@ -40,8 +50,7 @@ public class GameStat_SO : ScriptableObject
     [BoxGroup("Stats/Utility")]
     public float moveSpeed = 100f;
 
-    #endregion
-
+    #endregion  
 
     #region ===== WEAPON DATA =====
 
