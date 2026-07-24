@@ -63,7 +63,7 @@ public class EconomyManager : MonoBehaviour
         return FormatCurrency(allowanceMoney);
     }
 
-    public static string FormatCurrency(int value)
+    string FormatCurrency(int value)
     {
         if (value < 1000)
             return value.ToString();
