@@ -18,7 +18,7 @@ public class HealthSystem : MonoBehaviour
     [Header("Death / Damage Events")]
     public UnityEvent onDeath;
     public UnityEvent onPostDeath;
-    public UnityEvent onDamageTaken;
+    public UnityEvent<int> onDamageTaken;
 
     [Header("Effects")]
     public GameObject deathEffect;
@@ -146,7 +146,7 @@ public class HealthSystem : MonoBehaviour
         else
         {
             PlayHurtEffect();
-            onDamageTaken?.Invoke();
+            onDamageTaken?.Invoke(damageAmount);
             OnHealthChanged?.Invoke(currentHealth);
         }
     }
