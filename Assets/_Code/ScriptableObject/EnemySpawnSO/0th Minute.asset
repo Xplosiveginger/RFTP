@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab71951846ba7c04984a239ea7884ff2, type: 3}
   m_Name: 0th Minute
   m_EditorClassIdentifier: 
-  startTime: 0
-  spawnsPerSecond: 2
+  startTime: 90
+  spawnGap: 1
+  spawnCount: 2
   enemiesToSpawn:
   - enemyPrefab: {fileID: 7117651411527206627, guid: b7e0dc40970839c43a6160d6b4f23a67, type: 3}
     weight: 0.33
