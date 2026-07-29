@@ -3,15 +3,16 @@
   <Project Path="MerryYellow.CodeAssist.Editor.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
   <Project Path="ToonyColorsPro.Demo.Editor.csproj" />
-  <Project Path="FullscreenEditor.csproj" />
   <Project Path="NavMeshPlusEditor.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
-  <Project Path="Assembly-CSharp-firstpass.csproj" />
   <Project Path="VoxelLabs.UltimatePreview.Lib.csproj" />
-  <Project Path="CFXRRuntime.csproj" />
+  <Project Path="Assembly-CSharp-firstpass.csproj" />
+  <Project Path="FullscreenEditor.csproj" />
   <Project Path="CFXREditor.csproj" />
   <Project Path="CFXRDemo.csproj" />
   <Project Path="CFXR.WelcomeScreen.csproj" />
   <Project Path="KinoBloom.Runtime.csproj" />
   <Project Path="Sirenix.OdinInspector.Modules.UnityMathematics.csproj" />
+  <Project Path="CFXRRuntime.csproj" />
+  <Project Path="KrisDevelopment.FavoriteAssets.csproj" />
 </Solution>

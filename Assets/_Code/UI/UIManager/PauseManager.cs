@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class PauseManager : MonoBehaviour
 {
+    public static PauseManager instance;
+    public GameObject gameScreenCanvas;
+    
     public GameObject pausePanel;
     public GameObject settingPanel;
-
+    
     [Header("Stats")] 
     public TextMeshProUGUI damageText;
     public TextMeshProUGUI totalHealthText;
@@ -20,6 +23,13 @@ public class PauseManager : MonoBehaviour
     
     
     public bool isPaused;
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        
+    }
 
     private void Update()
     {
