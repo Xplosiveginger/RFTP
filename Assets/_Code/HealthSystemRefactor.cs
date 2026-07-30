@@ -11,9 +11,9 @@ public class HealthSystemRefactor : MonoBehaviour
     public bool isDead;
 
 
-    public static event Action<float> OnDamageRecieved;
-    public static event Action OnDeath;
-    public static event Action OnHealthReset;
+    public event Action<float> OnDamageRecieved;
+    public event Action OnDeath;
+    public event Action OnHealthReset;
 
     public void Initialize()
     {
