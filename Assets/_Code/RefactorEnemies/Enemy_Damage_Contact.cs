@@ -17,7 +17,7 @@ public class Enemy_Damage_Contact : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerHealth = other.GetComponent<HealthSystem>();
-            damageTimer = 0f;
+            damageTimer = damageInterval;
         }
     }
 

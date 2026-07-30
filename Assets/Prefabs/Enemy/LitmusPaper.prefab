@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -5985460390454809785}
   - component: {fileID: 4718403573189803202}
   - component: {fileID: -6722925433350841161}
+  - component: {fileID: -8590481374319888289}
   m_Layer: 6
   m_Name: LitmusPaper
   m_TagString: Enemy
@@ -307,3 +308,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 28436043897c2c24a91b33015f54d11f, type: 2}
   - {fileID: 11400000, guid: e46498aa1b1ce2d42ac3fd466d5e63da, type: 2}
   statList: []
+--- !u!114 &-8590481374319888289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2913699253501788760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 723c2d0164fdb9e4392bb0b1b67be326, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSystem: {fileID: 0}
+  spawnOffset: {x: 0, y: 1, z: 0}
+  DamageNumber: {fileID: 2670166825863091454, guid: 1a573924e6a21a946afc737c3a50381a, type: 3}
