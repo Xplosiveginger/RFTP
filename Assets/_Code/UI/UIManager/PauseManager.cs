@@ -20,7 +20,9 @@ public class PauseManager : MonoBehaviour
     public TextMeshProUGUI durationText;
     public TextMeshProUGUI numOfProjectilesText;
     public TextMeshProUGUI moveSpeedText;
-    
+
+    [Header("Run Report Test")]
+    public GameObject runReportPanel;
     
     public bool isPaused;
 
@@ -40,6 +42,12 @@ public class PauseManager : MonoBehaviour
             pausePanel.SetActive(isPaused);
             settingPanel.SetActive(!isPaused);
             Time.timeScale = isPaused ? 0f : 1f;
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            runReportPanel.SetActive(!runReportPanel.activeSelf);
+            RunReportManager.Instance.UpdateRunReportStats();
         }
     }
 

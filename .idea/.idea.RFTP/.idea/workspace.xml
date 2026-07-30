@@ -3,6 +3,9 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
+  <component name="CMakeSettings">
+    <configurations />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="30adb894-0063-4543-b182-8ab178a8fc49" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main Level.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main Level.unity" afterDir="false" />
@@ -20,7 +23,10 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/_Code/HealthSystemRefactor.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/_Code/Scriptable Objects/GameStat_SO.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_Code/Manager/Items/RunReportWeaponItem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_Code/Manager/RunReportManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_Code/Manager/SoundMixerManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_Code/Scriptable Objects/GameStat_SO.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Code/_Managers/Generic/Enums.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Code/_Managers/Generic/Interfaces.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Code/_Managers/Generic/LivingEntity.cs" root0="SKIP_HIGHLIGHTING" />
@@ -28,11 +34,73 @@
     <setting file="file://$PROJECT_DIR$/Assets/_Code/_Managers/Generic/Structs.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Code/_Managers/Persistent Object/PersistentObject.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Code/_Managers/Singletons/SM.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/_Code/_Managers/Stats/StatManager.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="6.236168220388815E-246" />
+      <entry key="S2" value="1.657395541466449E-61" />
+      <entry key="S5" value="1.2790174800276368E-24" />
+      <entry key="S10" value="2.5322887031901472E-12" />
+      <entry key="S30" value="4.325580150752464E-4" />
+      <entry key="S60" value="0.07152365931744117" />
+      <entry key="M2" value="1.50161680772441" />
+      <entry key="M5" value="18.184113314836733" />
+      <entry key="M10" value="57.14768156099425" />
+      <entry key="M15" value="88.01428594709027" />
+      <entry key="M30" value="139.3644484589467" />
+      <entry key="H1" value="177.41500702736934" />
+      <entry key="H2" value="200.85711457751233" />
+      <entry key="H4" value="213.92256665546626" />
+      <entry key="D1" value="225.57932106497762" />
+      <entry key="W1" value="227.65230767621028" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0" />
+      <entry key="S10" value="1.000000000000818" />
+      <entry key="S30" value="1.000181001992838" />
+      <entry key="S60" value="1.0369764278515539" />
+      <entry key="M2" value="1.7350655774490655" />
+      <entry key="M5" value="7.606381477500675" />
+      <entry key="M10" value="18.33078177479665" />
+      <entry key="M15" value="25.972522960536548" />
+      <entry key="M30" value="37.90099412416881" />
+      <entry key="H1" value="46.30363689440845" />
+      <entry key="H2" value="51.325380626702824" />
+      <entry key="H4" value="54.07546230629707" />
+      <entry key="D1" value="56.499951006411116" />
+      <entry key="W1" value="56.92824831217056" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="0.009888723390392809" />
+      <entry key="MS500" value="0.39721720004805233" />
+      <entry key="S2" value="0.7938839309316524" />
+      <entry key="S5" value="0.911806753501677" />
+      <entry key="S10" value="0.9548857279842439" />
+      <entry key="S30" value="0.9853391128705397" />
+      <entry key="S60" value="1.10016197627309" />
+      <entry key="M2" value="3.2249825473477545" />
+      <entry key="M5" value="25.759725474228105" />
+      <entry key="M10" value="75.43942266309236" />
+      <entry key="M15" value="113.94939798255096" />
+      <entry key="M30" value="177.23766439492107" />
+      <entry key="H1" value="223.70147534883992" />
+      <entry key="H2" value="252.17291071688012" />
+      <entry key="H4" value="267.99295915459754" />
+      <entry key="D1" value="282.0783859239172" />
+      <entry key="W1" value="284.58042835086184" />
+    </decayedShown>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="3CR6IfhjSrsx2z3ACVJXfE9gpzz" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -43,7 +111,7 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "System__Development",
+    "git-widget-placeholder": "Ravi__Branch",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -58,10 +126,9 @@
       <option name="PROGRAM_PARAMETERS" value="-projectPath &quot;F:\Unity Projects\RFTP&quot; -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="F:\Unity Projects\RFTP" />
       <option name="PASS_PARENT_ENVS" value="1" />
-      <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="ENV_FILE_PATHS" value="" />
       <option name="REDIRECT_INPUT_PATH" value="" />
-      <option name="PTY_MODE" value="Auto" />
+      <option name="MIXED_MODE_DEBUG" value="0" />
       <method v="2" />
     </configuration>
     <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
@@ -69,13 +136,12 @@
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath &quot;F:\Unity Projects\RFTP&quot; -testResults Logs/results.xml -logFile Logs/Editor.log -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="F:\Unity Projects\RFTP" />
       <option name="PASS_PARENT_ENVS" value="1" />
-      <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="ENV_FILE_PATHS" value="" />
       <option name="REDIRECT_INPUT_PATH" value="" />
-      <option name="PTY_MODE" value="Auto" />
+      <option name="MIXED_MODE_DEBUG" value="0" />
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" useMixedMode="false">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
@@ -86,10 +152,9 @@
       <option name="selectedOptions">
         <list />
       </option>
-      <option name="useMixedMode" value="false" />
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" useMixedMode="false">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
@@ -100,7 +165,6 @@
       <option name="selectedOptions">
         <list />
       </option>
-      <option name="useMixedMode" value="false" />
       <method v="2" />
     </configuration>
   </component>
@@ -124,6 +188,7 @@
     <option name="unityProject" value="true" />
     <option name="unityProjectFolder" value="true" />
   </component>
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>

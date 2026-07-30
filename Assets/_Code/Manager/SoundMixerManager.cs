@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -10,6 +11,7 @@ public class SoundMixerManager : MonoBehaviour
     private float sfxVolume = 100f;
 
     private bool isMasterMuted = false;
+    
 
     public void SetMasterVolume(float value)
     {

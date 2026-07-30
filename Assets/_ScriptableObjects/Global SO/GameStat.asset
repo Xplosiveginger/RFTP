@@ -12,17 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf64eb223f3eb844b1e06f0530540c1, type: 3}
   m_Name: GameStat
   m_EditorClassIdentifier: 
+  AllowanceMoney: 0
   damage: 100
-  areaOfEffect: 170.51
+  areaOfEffect: 100
   projectileSpeed: 100
   numberOfProjectiles: 100
-  duration: 50
-  totalHealth: 56
+  duration: 100
+  totalHealth: 100
   healthRegen: 100
-  cooldown: 456
-  moveSpeed: 56
+  cooldown: 100
+  moveSpeed: 100
   weapon1:
-    weaponDataSO: {fileID: 11400000, guid: ed389e58d0b223941b77e32fce08ff87, type: 2}
+    weaponDataSO: {fileID: 0}
     statManager: {fileID: 0}
   weapon2:
     weaponDataSO: {fileID: 0}
@@ -46,3 +47,8 @@ MonoBehaviour:
   skill4:
     image: {fileID: 0}
     level: 0
+  runTime: 0
+  damageGiven: 0
+  damageTaken: 0
+  EnemiesKilled: 0
+  breakablesDestroyed: 0
