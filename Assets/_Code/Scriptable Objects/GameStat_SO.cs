@@ -6,6 +6,16 @@ using System.Collections.Generic;
 [CreateAssetMenu(fileName = "GameStat", menuName = "ScriptableObjects/Game Stats")]
 public class GameStat_SO : ScriptableObject
 {
+    
+    #region Economy
+    [BoxGroup("Economy")]
+    public int AllowanceMoney;
+    public void UpdateAllowanceMoney(int amount)
+    {
+        AllowanceMoney = amount;
+    }
+    #endregion
+    
     #region ===== STATS =====
 
     [Title("Offensive Stats")]
@@ -40,8 +50,7 @@ public class GameStat_SO : ScriptableObject
     [BoxGroup("Stats/Utility")]
     public float moveSpeed = 100f;
 
-    #endregion
-
+    #endregion  
 
     #region ===== WEAPON DATA =====
 
@@ -268,6 +277,42 @@ public class GameStat_SO : ScriptableObject
 
     #endregion
 
+    
+    #region Realtime Stats
+
+    [Title("Realtime Stats")] 
+    [ReadOnly] public float runTime = 0;
+    public float damageGiven;
+    public float damageTaken;
+    public int EnemiesKilled;
+
+    public int breakablesDestroyed;
+
+    public void UpdateRuntime(float value)
+    {
+        runTime = value;
+    }
+    public void RegisterDamageTaken(float value)
+    {
+        if (value <= 0) return;
+        damageTaken += value;
+    }
+    public void RegisterDamageGiven(float value)
+    {
+        if (value <= 0) return;
+        damageGiven += value;
+    }
+
+    public void RegisterEnemyKilled(int value = 1)
+    {
+        EnemiesKilled += value;
+    }
+
+    public void RegisterBreakablesDestroyed(int value = 1)
+    {
+        breakablesDestroyed += value;
+    }
+    #endregion
 
     #region ===== RESET ALL =====
 
@@ -301,6 +346,12 @@ public class GameStat_SO : ScriptableObject
         skill2 = default;
         skill3 = default;
         skill4 = default;
+
+        runTime = 0f;
+        damageGiven = 0f;
+        damageTaken = 0f;
+        EnemiesKilled = 0;
+        breakablesDestroyed = 0;
         
         Debug.Log("All data has been reset");
     }

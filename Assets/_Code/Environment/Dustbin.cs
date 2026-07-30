@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Dustbin : MonoBehaviour
 {
@@ -10,6 +12,12 @@ public class Dustbin : MonoBehaviour
     public float spawnChance = 0.3f;
 
     public GameObject prefabToSpawn;
+
+    private GameStat_SO GameStat_SO;
+    private void Start()
+    {
+        GameStat_SO=PersistentObject.Instance.GameStat_SO;
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -29,6 +37,7 @@ public class Dustbin : MonoBehaviour
                 Instantiate(prefabToSpawn, transform.position, Quaternion.identity);
             }
 
+            GameStat_SO.RegisterBreakablesDestroyed();
             Destroy(gameObject);
         }
     }
