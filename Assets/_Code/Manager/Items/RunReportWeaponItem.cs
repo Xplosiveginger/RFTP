@@ -11,25 +11,22 @@ public class RunReportWeaponItem : MonoBehaviour
 
     public void Setup(GameStat_SO.WeaponData weaponData)
     {
-        Debug.Log("Weapon: " + weaponData.weaponDataSO.weaponName);
+        weaponLogo.sprite = weaponData.weaponDataSO.weaponLogo;
+        weaponNameText.text = weaponData.weaponDataSO.weaponName.ToString();
 
-        if (weaponData.statManager == null)
+        // Temporary
+        weaponLevelText.text = "Lv. 1";
+
+        float damage = 0;
+
+        if (weaponData.statManager != null)
         {
-            Debug.Log("StatManager is NULL");
-            return;
+            Stat damageStat = weaponData.statManager.GetStat(EStatType.Damage);
+
+            if (damageStat != null)
+                damage = damageStat.currentValue;
         }
 
-        Debug.Log("Stat count: " + weaponData.statManager.statList.Count);
-
-        Stat damageStat = weaponData.statManager.GetStat(EStatType.Damage);
-
-        if (damageStat == null)
-        {
-            Debug.Log("Damage stat NOT FOUND");
-        }
-        else
-        {
-            Debug.Log("Damage = " + damageStat.currentValue);
-        }
+        weaponDamageText.text = damage.ToString("F0");
     }
 }

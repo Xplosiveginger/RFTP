@@ -23,7 +23,7 @@ MonoBehaviour:
   cooldown: 100
   moveSpeed: 100
   weapon1:
-    weaponDataSO: {fileID: 0}
+    weaponDataSO: {fileID: 11400000, guid: ed389e58d0b223941b77e32fce08ff87, type: 2}
     statManager: {fileID: 0}
   weapon2:
     weaponDataSO: {fileID: 0}
