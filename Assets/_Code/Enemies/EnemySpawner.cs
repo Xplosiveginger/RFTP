@@ -79,6 +79,7 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    private GameStat_SO GameStat_SO;
     private void Awake()
     {
         Instance = this;
@@ -87,6 +88,8 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
+        GameStat_SO=PersistentObject.Instance.GameStat_SO;
+        
         mainCamera = Camera.main;
         elapsedTime = debugMode ? debugStartTime : 0f;
 
@@ -212,6 +215,8 @@ public class EnemySpawner : MonoBehaviour
     {
         if (timerText == null) return;
 
+        GameStat_SO.UpdateRuntime(elapsedTime);
+        
         int m = Mathf.FloorToInt(elapsedTime / 60);
         int s = Mathf.FloorToInt(elapsedTime % 60);
         timerText.text = $"{m:00}:{s:00}";

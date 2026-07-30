@@ -16,8 +16,33 @@ MonoBehaviour:
   areaOfEffect: 100
   projectileSpeed: 100
   numberOfProjectiles: 100
-  duration: 100
-  totalHealth: 100
+  duration: 100456
+  totalHealth: 56
   healthRegen: 100
-  cooldown: 100
-  moveSpeed: 100
+  cooldown: 456
+  moveSpeed: 56
+  weapon1:
+    weaponDataSO: {fileID: 0}
+    statManager: {fileID: 0}
+  weapon2:
+    weaponDataSO: {fileID: 0}
+    statManager: {fileID: 0}
+  weapon3:
+    weaponDataSO: {fileID: 0}
+    statManager: {fileID: 0}
+  weapon4:
+    weaponDataSO: {fileID: 0}
+    statManager: {fileID: 0}
+  equippedWeaponNames: 
+  skill1:
+    image: {fileID: 0}
+    level: 0
+  skill2:
+    image: {fileID: 0}
+    level: 0
+  skill3:
+    image: {fileID: 0}
+    level: 0
+  skill4:
+    image: {fileID: 0}
+    level: 0

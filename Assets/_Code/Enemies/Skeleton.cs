@@ -35,7 +35,7 @@ public class Skeleton2D : MonoBehaviour
         }
         else
         {
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
             Attack();
         }
     }
@@ -102,7 +102,7 @@ public class Skeleton2D : MonoBehaviour
 
             if (boneRb != null)
             {
-                boneRb.velocity = new Vector2(vx, vy);
+                boneRb.linearVelocity = new Vector2(vx, vy);
                 boneRb.angularVelocity = Random.Range(-500f, 500f);
             }
         }
@@ -118,7 +118,7 @@ public class Skeleton2D : MonoBehaviour
         if (boneRb != null)
         {
             float speed = 10f;
-            boneRb.velocity = direction * speed;
+            boneRb.linearVelocity = direction * speed;
             boneRb.angularVelocity = Random.Range(-500f, 500f);
         }
     }

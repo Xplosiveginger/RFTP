@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1867706625461616748}
   - component: {fileID: 3960886808154332643}
   - component: {fileID: 118058094996581986}
+  - component: {fileID: -8148535137859067340}
   m_Layer: 6
   m_Name: MutatedRat
   m_TagString: Enemy
@@ -55,6 +56,9 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -92,7 +96,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!50 &4769748596215525619
 Rigidbody2D:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -103,8 +107,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 50
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -125,6 +129,7 @@ CircleCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7677058516892065867}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -146,11 +151,11 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
   m_Radius: 2.08
 --- !u!195 &6333612064184335406
 NavMeshAgent:
@@ -161,7 +166,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 7677058516892065867}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 2.5599997
+  m_Radius: 0.27
   m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -170,10 +175,10 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 5.1199994
-  m_BaseOffset: 2.5599997
+  m_Height: 6.12
+  m_BaseOffset: 4.14
   m_WalkableMask: 1
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 3
 --- !u!114 &1867706625461616748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,3 +255,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fb77007b0e60c84458605540ef88b935, type: 2}
   - {fileID: 11400000, guid: 213356263d97c8541a922f50111027a3, type: 2}
   statList: []
+--- !u!114 &-8148535137859067340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7677058516892065867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 723c2d0164fdb9e4392bb0b1b67be326, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSystem: {fileID: 0}
+  spawnOffset: {x: 0, y: 1, z: 0}
+  DamageNumber: {fileID: 2670166825863091454, guid: 1a573924e6a21a946afc737c3a50381a, type: 3}

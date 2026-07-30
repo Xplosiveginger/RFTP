@@ -120,7 +120,7 @@ public class PrismWeapon : MonoBehaviour
             if (rb2d != null)
             {
                 rb2d.isKinematic = false;
-                rb2d.velocity = right * projectileSpeed;
+                rb2d.linearVelocity = right * projectileSpeed;
             }
             else
             {
@@ -128,7 +128,7 @@ public class PrismWeapon : MonoBehaviour
                 if (rb != null)
                 {
                     rb.isKinematic = false;
-                    rb.velocity = right * projectileSpeed;
+                    rb.linearVelocity = right * projectileSpeed;
                 }
             }
         }

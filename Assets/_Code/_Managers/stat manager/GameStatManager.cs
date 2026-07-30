@@ -1,13 +1,23 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameStatManager : MonoBehaviour
 {
-    [SerializeField] private GameStat_SO gameStats;
+    public static GameStatManager instance; 
+    public GameStat_SO gameStats;
 
     public static event Action OnStatUpdated;
 
     #region ===== OFFENSIVE =====
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else 
+            Destroy(gameObject);
+    }
 
     public void UpdateDamage(float value)
     {
@@ -80,8 +90,8 @@ public class GameStatManager : MonoBehaviour
 
     public void SetWeapon(int index, Sprite image, int level)
     {
-        gameStats.SetWeaponData(index, image, level);
-        InvokeStatUpdated();
+        /*gameStats.SetWeaponData(index, image, level);
+        InvokeStatUpdated();*/
     }
 
     public GameStat_SO.WeaponData GetWeapon(int index)
@@ -112,12 +122,17 @@ public class GameStatManager : MonoBehaviour
 
     public void ResetStatValues()
     {
-        gameStats.ResetValues();
+        gameStats.ResetAllValues();
         InvokeStatUpdated();
     }
 
     #endregion
 
+
+    private void OnDestroy()
+    {
+        ResetStatValues();
+    }
 
     private void InvokeStatUpdated()
     {

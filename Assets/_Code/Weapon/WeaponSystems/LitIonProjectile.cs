@@ -32,7 +32,7 @@ public class LitIonProjectile : BlastDamage
         // Stop movement completely
         if (rb != null)
         {
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
             rb.angularVelocity = 0f;
             rb.isKinematic = true; // freezes it so it won't move anymore
         }

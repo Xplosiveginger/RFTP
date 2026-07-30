@@ -2,7 +2,6 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(Animator))]
 public class PlayerController2D : MonoBehaviour
 {
     [Header("Movement Settings")]
@@ -10,7 +9,7 @@ public class PlayerController2D : MonoBehaviour
     public bool inflicted = false;
 
     private Rigidbody2D rb;
-    private Animator animator;
+    public Animator animator;
     public HealthSystem health {get; private set;}
 
     private Vector2 moveInput;
@@ -42,9 +41,7 @@ public class PlayerController2D : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
         health = GetComponent<HealthSystem>();
-
         statManager.InitializeStats();
     }
 

@@ -5,84 +5,225 @@ using UnityEngine;
 
 public class ReworkedWeaponManager : MonoBehaviour
 {
-    public List<WeaponDataSO> weapons;
-    public List<WeaponBase> activeWeapons;
+    [Header("References")]
+    public Transform WeaponSpawnParentTransform;
     public StatManager ownerStats;
     public EnemyDetection enemyDetector;
+    
+    [Header("Game Stat SO")]
+    [SerializeField] private GameStat_SO gameStatSO;
+    
+    [Header("Default Weapons")]
+    [SerializeField] private WeaponDataSO[] defaultWeapons;
+    
+    [Header("Runtime Data")]
+    public List<WeaponBase> activeWeapons;
 
-    public event Action<EWeaponName> OnWeaponLeveledUp; 
+    public event Action<EWeaponName> OnWeaponLeveledUp;
 
     private void Awake()
     {
-        InitializeWeapon();
+        // Clear any existing active weapons list
+        if (activeWeapons == null)
+            activeWeapons = new List<WeaponBase>();
+        else
+            activeWeapons.Clear();
     }
 
-    //private void OnEnable()
-    //{
-    //    OnWeaponLeveledUp += LevelUpWeaponHandled;
-    //}
+    private void Start()
+    {
+        // Reset weapon data first
+        gameStatSO.ResetWeaponData();
+        
+        // Initialize default weapons
+        InitializeDefaultWeapons();
+    }
 
-    //private void OnDisable()
-    //{
-    //    OnWeaponLeveledUp -= LevelUpWeaponHandled;
-    //}
+    private void InitializeDefaultWeapons()
+    {
+        if (defaultWeapons == null || defaultWeapons.Length == 0) 
+        {
+            Debug.LogWarning("No default weapons assigned to WeaponManager");
+            return;
+        }
+        
+        foreach (var defaultWeapon in defaultWeapons)
+        {
+            if (defaultWeapon != null)
+            {
+                int availableSlot = gameStatSO.GetFirstAvailableWeaponSlot();
+                if (availableSlot != -1)
+                {
+                    SpawnAndRegisterWeapon(defaultWeapon, availableSlot);
+                    Debug.Log($"Spawned default weapon: {defaultWeapon.weaponName} in slot {availableSlot}");
+                }
+                else
+                {
+                    Debug.LogWarning("No available weapon slots for default weapon: " + defaultWeapon.weaponName);
+                }
+            }
+        }
+    }
+
+    private void SpawnAndRegisterWeapon(WeaponDataSO weaponDataSO, int slotIndex)
+    {
+        WeaponBase weapon = SpawnWeapon(weaponDataSO);
+        if (weapon != null)
+        {
+            // Wait for stat manager to initialize, then register
+            StartCoroutine(RegisterWeaponAfterFrame(weaponDataSO, weapon, slotIndex));
+        }
+    }
+
+    private IEnumerator RegisterWeaponAfterFrame(WeaponDataSO weaponDataSO, WeaponBase weapon, int slotIndex)
+    {
+        // Wait one frame to ensure stat manager is initialized
+        yield return null;
+        
+        if (weapon != null && weapon.statManager != null)
+        {
+            gameStatSO.SetWeaponData(slotIndex, weaponDataSO, weapon.statManager);
+        }
+        else
+        {
+            Debug.LogError($"Failed to register weapon {weaponDataSO.weaponName} - StatManager is null");
+        }
+    }
+
+    private WeaponBase SpawnWeapon(WeaponDataSO weaponDataSO)
+    {
+        if (weaponDataSO == null)
+        {
+            Debug.LogError("Cannot spawn null weapon data");
+            return null;
+        }
+        
+        WeaponBase weapon = weaponDataSO.SpawnWeapon(WeaponSpawnParentTransform);
+        if (weapon != null)
+        {
+            weapon.enemyDetector = this.enemyDetector;
+            AddActiveWeapon(weapon);
+        }
+        return weapon;
+    }
 
     public void UpdateStatForAllWeapons(EStatType statName, float modifier)
     {
         foreach (var weapon in activeWeapons)
         {
-            weapon.statManager.ModifyStat(statName, modifier);
+            if (weapon != null && weapon.statManager != null)
+            {
+                weapon.statManager.ModifyStat(statName, modifier);
+            }
         }
     }
 
     public void UpdateWeaponStat(EWeaponName weaponName, EStatType statName, float modifier)
     {
-        //GetWeapon(weaponName).statManager.GetStat(statName).ApplyModifier(modifier);
-        GetWeapon(weaponName).statManager.ModifyStat(statName, modifier);
+        WeaponBase weapon = GetWeapon(weaponName);
+        if (weapon != null && weapon.statManager != null)
+        {
+            weapon.statManager.ModifyStat(statName, modifier);
+        }
     }
 
     public WeaponBase GetWeapon(EWeaponName weaponName)
     {
-        return activeWeapons.Find(weapon => weapon.weaponData.weaponName == weaponName);
+        return activeWeapons.Find(weapon => weapon != null && weapon.weaponData != null && weapon.weaponData.weaponName == weaponName);
     }
 
     private void Update()
     {
         foreach(var weapon in activeWeapons)
         {
-            weapon.UpdateWeapon();
+            if (weapon != null)
+            {
+                weapon.UpdateWeapon();
+            }
         }
-    }
-
-    private void InitializeWeapon()
-    {
-        foreach(var weapon in weapons)
-        {
-            WeaponBase weaponToAdd = weapon.SpawnWeapon(transform);
-            weaponToAdd.enemyDetector = this.enemyDetector;
-            AddActiveWeapon(weaponToAdd);
-        }
-    }
-
-    private void InitializeWeapon(WeaponDataSO weaponToAdd)
-    {
-        WeaponBase weapon = weaponToAdd.SpawnWeapon(transform);
-        weapon.enemyDetector = this.enemyDetector;
-        AddActiveWeapon(weapon);
     }
 
     public void AddActiveWeapon(WeaponBase weapon)
     {
-        activeWeapons.Add(weapon);
+        if (weapon != null && !activeWeapons.Contains(weapon))
+        {
+            activeWeapons.Add(weapon);
+        }
     }
 
     public void AddNewWeapon(WeaponDataSO weaponToAdd)
     {
-        InitializeWeapon(weaponToAdd);
+        if (weaponToAdd == null) return;
+        
+        int availableSlot = gameStatSO.GetFirstAvailableWeaponSlot();
+        if (availableSlot != -1)
+        {
+            SpawnAndRegisterWeapon(weaponToAdd, availableSlot);
+            Debug.Log($"Added new weapon: {weaponToAdd.weaponName} in slot {availableSlot}");
+        }
+        else
+        {
+            Debug.LogWarning("No available weapon slots! Cannot add weapon: " + weaponToAdd.weaponName);
+        }
     }
 
     public void LevelUpWeapon(EWeaponName weaponName)
     {
-        GetWeapon(weaponName).LevelUpWeapon();
+        WeaponBase weapon = GetWeapon(weaponName);
+        if (weapon != null)
+        {
+            weapon.LevelUpWeapon();
+            OnWeaponLeveledUp?.Invoke(weaponName);
+            
+            // Update GameStatSO with new stats after level up
+            UpdateWeaponInGameStat(weaponName);
+        }
+    }
+
+    private void UpdateWeaponInGameStat(EWeaponName weaponName)
+    {
+        // Find the weapon slot in GameStatSO and update it
+        for (int i = 1; i <= 4; i++)
+        {
+            try
+            {
+                var weaponData = gameStatSO.GetWeaponData(i);
+                if (weaponData.weaponDataSO != null && weaponData.weaponDataSO.weaponName == weaponName)
+                {
+                    WeaponBase weapon = GetWeapon(weaponName);
+                    if (weapon != null && weapon.statManager != null)
+                    {
+                        gameStatSO.SetWeaponData(i, weaponData.weaponDataSO, weapon.statManager);
+                    }
+                    break;
+                }
+            }
+            catch (System.IndexOutOfRangeException)
+            {
+                continue;
+            }
+        }
+    }
+
+    public StatManager GetWeaponStatManager(EWeaponName weaponName)
+    {
+        var weaponData = gameStatSO.GetWeaponByType(weaponName);
+        return weaponData.statManager;
+    }
+
+    private void OnDestroy()
+    {
+        // Reset weapon data in GameStatSO when this object is destroyed
+        if (gameStatSO != null)
+        {
+            gameStatSO.ResetWeaponData();
+            Debug.Log("WeaponManager destroyed - weapon data reset");
+        }
+        
+        // Clear active weapons list
+        if (activeWeapons != null)
+        {
+            activeWeapons.Clear();
+        }
     }
 }
