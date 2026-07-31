@@ -5,12 +5,24 @@ using UnityEngine;
 public class PauseManager : MonoBehaviour
 {
     public static PauseManager instance;
+
+    [Header("Pause UI")]
     public GameObject gameScreenCanvas;
-    
-    public GameObject pausePanel;
-    public GameObject settingPanel;
-    
-    [Header("Stats")] 
+
+    // Root object that contains the entire pause UI
+    public GameObject pauseRoot;
+
+    // Resume / Settings / Exit box
+    public GameObject pauseBoxPanel;
+
+    // Display / Audio / Exit box
+    public GameObject settingsMenuPanel;
+
+    // Actual settings pages
+    public GameObject displaySettingsPanel;
+    public GameObject audioSettingsPanel;
+
+    [Header("Stats")]
     public TextMeshProUGUI damageText;
     public TextMeshProUGUI totalHealthText;
     public TextMeshProUGUI healthRegenText;
@@ -23,14 +35,13 @@ public class PauseManager : MonoBehaviour
 
     [Header("Run Report Test")]
     public GameObject runReportPanel;
-    
+
     public bool isPaused;
 
     private void Awake()
     {
         if (instance == null)
             instance = this;
-        
     }
 
     private void Update()
@@ -38,10 +49,25 @@ public class PauseManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             isPaused = !isPaused;
-            UpdatePauseStats();
-            pausePanel.SetActive(isPaused);
-            settingPanel.SetActive(!isPaused);
-            Time.timeScale = isPaused ? 0f : 1f;
+
+            if (isPaused)
+            {
+                UpdatePauseStats();
+
+                pauseRoot.SetActive(true);
+
+                pauseBoxPanel.SetActive(true);
+                settingsMenuPanel.SetActive(false);
+
+                displaySettingsPanel.SetActive(false);
+                audioSettingsPanel.SetActive(false);
+
+                Time.timeScale = 0f;
+            }
+            else
+            {
+                Resume();
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.R))
@@ -54,6 +80,7 @@ public class PauseManager : MonoBehaviour
     public void UpdatePauseStats()
     {
         var stats = GameStatManager.instance.gameStats;
+
         damageText.text = stats.damage.ToString();
         totalHealthText.text = stats.totalHealth.ToString();
         healthRegenText.text = stats.healthRegen.ToString();
@@ -64,27 +91,83 @@ public class PauseManager : MonoBehaviour
         numOfProjectilesText.text = stats.numberOfProjectiles.ToString();
         moveSpeedText.text = stats.moveSpeed.ToString();
     }
-    
+
+    //========================================================
+    // Pause Menu
+    //========================================================
+
     public void Resume()
     {
         isPaused = false;
-        pausePanel.SetActive(false);
-        settingPanel.SetActive(false);
+
+        pauseRoot.SetActive(false);
+
+        pauseBoxPanel.SetActive(false);
+        settingsMenuPanel.SetActive(false);
+
+        displaySettingsPanel.SetActive(false);
+        audioSettingsPanel.SetActive(false);
+
         Time.timeScale = 1f;
     }
 
-    public void SettingsMenu()
+    public void OpenSettingsMenu()
     {
-        settingPanel.SetActive(true);
+        pauseBoxPanel.SetActive(false);
+        settingsMenuPanel.SetActive(true);
+
+        displaySettingsPanel.SetActive(false);
+        audioSettingsPanel.SetActive(false);
     }
 
-    public void SettingsDone()
-    {
-        settingPanel.SetActive(false);
-        pausePanel.SetActive(true);
-    }
-    public void Exit()
+    public void ExitGame()
     {
         Application.Quit();
+    }
+
+    //========================================================
+    // Settings Menu
+    //========================================================
+
+    public void OpenDisplaySettings()
+    {
+        settingsMenuPanel.SetActive(false);
+        displaySettingsPanel.SetActive(true);
+    }
+
+    public void OpenAudioSettings()
+    {
+        settingsMenuPanel.SetActive(false);
+        audioSettingsPanel.SetActive(true);
+    }
+
+    public void BackToPauseMenu()
+    {
+        settingsMenuPanel.SetActive(false);
+
+        displaySettingsPanel.SetActive(false);
+        audioSettingsPanel.SetActive(false);
+
+        pauseBoxPanel.SetActive(true);
+    }
+
+    //========================================================
+    // Display Settings
+    //========================================================
+
+    public void CloseDisplaySettings()
+    {
+        displaySettingsPanel.SetActive(false);
+        settingsMenuPanel.SetActive(true);
+    }
+
+    //========================================================
+    // Audio Settings
+    //========================================================
+
+    public void CloseAudioSettings()
+    {
+        audioSettingsPanel.SetActive(false);
+        settingsMenuPanel.SetActive(true);
     }
 }
