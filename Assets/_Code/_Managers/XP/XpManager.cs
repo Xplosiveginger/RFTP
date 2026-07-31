@@ -23,12 +23,10 @@ public class XpManager : MonoBehaviour
     {
         if (testXPAmount <= 0)
         {
-            Debug.LogWarning("Test XP amount must be greater than 0!");
             return;
         }
 
         AddXP(testXPAmount);
-        Debug.Log($"Added {testXPAmount} test XP. Total XP: {progressionSO.XP}");
     }
 
     [FoldoutGroup("Testing")]
@@ -41,12 +39,10 @@ public class XpManager : MonoBehaviour
     {
         if (testCoinAmount <= 0)
         {
-            Debug.LogWarning("Test coin amount must be greater than 0!");
             return;
         }
 
         AddCoins(testCoinAmount);
-        Debug.Log($"Added {testCoinAmount} test coins. Total coins: {progressionSO.coins}");
     }
 
     [FoldoutGroup("Testing")]
@@ -55,7 +51,6 @@ public class XpManager : MonoBehaviour
     private void ResetTestProgression()
     {
         ResetProgression();
-        Debug.Log("Progression has been reset!");
     }
 
     [FoldoutGroup("Testing/Info")]
@@ -87,7 +82,6 @@ public class XpManager : MonoBehaviour
     {
         if (progressionSO == null)
         {
-            Debug.LogError("ProgressionSO is not assigned!");
             return;
         }
 
@@ -122,7 +116,6 @@ public class XpManager : MonoBehaviour
 
     private void OnLevelUp()
     {
-        Debug.Log($"Level Up! You are now level {progressionSO.currentLevel}. Next level requires {progressionSO.currentXPRequired} XP.");
 
         OnXPUpdated?.Invoke();
         OnPlayerLeveledUp?.Invoke();
