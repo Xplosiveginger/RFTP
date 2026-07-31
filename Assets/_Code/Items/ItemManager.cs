@@ -141,6 +141,12 @@ public class ItemManager : MonoBehaviour
     /// </summary>
     public void AddItem(ItemSO itemSO)
     {
+        if (itemSO == null)
+        {
+            Debug.LogError("ItemSO is null. Cannot add item.");
+            return;
+        }
+
         if (HasItem(itemSO))
             UpgradeItem(itemSO);
         else
