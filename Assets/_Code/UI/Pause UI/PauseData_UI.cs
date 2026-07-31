@@ -59,6 +59,18 @@ public class PauseData_UI : MonoBehaviour
     [ContextMenu("update weapon UI")]
     public void UpdateWeaponUI()
     {
+        weapon1.itemImage.sprite = SO.weapon1.image;
+
+        for (int i = 0; i < weapon1.levelObject.Length; i++)
+        {
+            if (i < SO.weapon1.level)
+            {
+                weapon1.levelObject[i].color = LevelColor;
+                continue;
+            }
+            weapon1.levelObject[i].color = NormalColor;
+        }
+
     }
 
 
