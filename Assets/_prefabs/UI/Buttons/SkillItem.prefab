@@ -32,10 +32,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 7454860675458276724}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 0.000091552734, y: 0}
-  m_SizeDelta: {x: 60, y: 60}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &5504048729264062808
 CanvasRenderer:
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 7030800030488117251}
   - component: {fileID: 4887485597761586280}
   m_Layer: 5
-  m_Name: WeaponLevel
+  m_Name: SkillLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,10 +108,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 7454860675458276724}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 12.9, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 232.26999, y: -20.5}
+  m_SizeDelta: {x: 109.36, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3859253211805283104
 CanvasRenderer:
@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 5579678564469225116}
   - component: {fileID: 8680137421646745668}
   m_Layer: 5
-  m_Name: WeaponDamage
+  m_Name: SkillBuff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -260,10 +260,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 7454860675458276724}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 200, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 361.79, y: -20.5}
+  m_SizeDelta: {x: 109.68, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8471310207414609369
 CanvasRenderer:
@@ -392,7 +392,7 @@ GameObject:
   - component: {fileID: 2242012844934123360}
   - component: {fileID: 94042759174200704}
   m_Layer: 5
-  m_Name: WeaponName
+  m_Name: SkillName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -412,10 +412,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 7454860675458276724}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -140.7, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 113.795, y: -20.5}
+  m_SizeDelta: {x: 87.59, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7896242740158044660
 CanvasRenderer:
@@ -540,6 +540,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7454860675458276724}
+  - component: {fileID: 3757506899572428810}
+  - component: {fileID: 5623377825612270708}
   m_Layer: 5
   m_Name: SkillItem
   m_TagString: Untagged
@@ -570,3 +572,45 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 77}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3757506899572428810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8779166116367135771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f68207af6bf237649806df9276a342bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillImage: {fileID: 4456926094068237430}
+  skillNameText: {fileID: 2242012844934123360}
+  skillLevelText: {fileID: 7030800030488117251}
+  skillBuffText: {fileID: 5579678564469225116}
+--- !u!114 &5623377825612270708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8779166116367135771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: 20
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0

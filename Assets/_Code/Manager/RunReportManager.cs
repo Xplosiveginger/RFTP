@@ -39,8 +39,10 @@ public class RunReportManager : MonoBehaviour
         breakableDestroyedText.text = gameStat.breakablesDestroyed.ToString("F2");
         
         PopulateWeapons();
+        PopulateSkills();
 
-    }
+
+    }   
     private void PopulateWeapons()
     {
         // Clear old entries
@@ -61,6 +63,36 @@ public class RunReportManager : MonoBehaviour
                 item.GetComponent<RunReportWeaponItem>();
 
             ui.Setup(weapon);
+        }
+    }
+    private void PopulateSkills()
+    {
+        // Clear old entries
+        foreach (Transform child in skillItemContainer.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        GameStat_SO.SkillData[] skills =
+        {
+            gameStat.skill1,
+            gameStat.skill2,
+            gameStat.skill3,
+            gameStat.skill4
+        };
+
+        foreach (var skill in skills)
+        {
+            // Skip empty slots
+            if (skill.image == null)
+                continue;
+
+            GameObject item = Instantiate(
+                skillItemPrefab,
+                skillItemContainer.transform);
+
+            RunReportSkillItem ui = item.GetComponent<RunReportSkillItem>();
+            ui.Setup(skill);
         }
     }
 }
