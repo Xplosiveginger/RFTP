@@ -3452,6 +3452,7 @@ MonoBehaviour:
   - {fileID: 1905157225}
   - {fileID: 1635311558}
   - {fileID: 1645244485}
+  weaponManager: {fileID: 0}
 --- !u!1 &1635311554
 GameObject:
   m_ObjectHideFlags: 0
@@ -4339,6 +4340,17 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 2.41, y: 5.1199994}
   m_Direction: 0
+--- !u!114 &2026983363 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7664751407247831055, guid: a31d3eda6d885544789a234488df2c25, type: 3}
+  m_PrefabInstance: {fileID: 682173266}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026983349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ff3ddee1dcecd0499cc220e9d0a097f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2026983369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4351,7 +4363,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6db34c11c33b97e48bfc69a589427d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameStats: {fileID: 0}
+  isDamagable: 1
+  health: {fileID: 2026983363}
+  statDataList:
+  - {fileID: 11400000, guid: 207aa412d695dd142ba85747edb30cf8, type: 2}
+  - {fileID: 11400000, guid: 1ddb48cf48ab0a04b800566f8f52bc74, type: 2}
+  statList:
+  - statName: 0
+    baseValue: 0
+    maxValue: 0
+    startValue: 0
+    startMultiplier: 0
+    currentMultiplier: 0
+    currentValue: 0
+  - statName: 0
+    baseValue: 0
+    maxValue: 0
+    startValue: 0
+    startMultiplier: 0
+    currentMultiplier: 0
+    currentValue: 0
 --- !u!114 &2026983370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4367,7 +4398,7 @@ MonoBehaviour:
   weapons:
   - {fileID: 11400000, guid: ed389e58d0b223941b77e32fce08ff87, type: 2}
   activeWeapons: []
-  ownerStats: {fileID: 0}
+  ownerStats: {fileID: 2026983369}
   enemyDetector: {fileID: 664814410}
 --- !u!1 &2129525361
 GameObject:
