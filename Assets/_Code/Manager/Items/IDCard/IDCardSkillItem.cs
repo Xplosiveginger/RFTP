@@ -5,12 +5,13 @@ public class IDCardSkillItem : MonoBehaviour
 {
     [Header("UI")]
     public Image skillIcon;
+    [Header("Display")]
+    public bool showLevelIcons = true;
 
     [Header("Border")]
     public Image borderImage;
     public Sprite defaultBorderSprite;
     public Sprite maxLevelBorderSprite;
-
     [Header("Level")]
     public Transform levelIconContainer;
     public GameObject levelIconPrefab;
@@ -28,13 +29,22 @@ public class IDCardSkillItem : MonoBehaviour
         // Temporary until skill levels are added
         int currentLevel = Random.Range(1, MaxSkillLevel + 1);
 
-        PopulateLevels(currentLevel);
+        if (showLevelIcons)
+        {
+            PopulateLevels(currentLevel);
+        }
+        else
+        {
+            foreach (Transform child in levelIconContainer)
+                Destroy(child.gameObject);
+
+            levelIconContainer.gameObject.SetActive(false);
+        }
 
         borderImage.sprite = currentLevel >= MaxSkillLevel
             ? maxLevelBorderSprite
             : defaultBorderSprite;
     }
-
     private void PopulateLevels(int currentLevel)
     {
         foreach (Transform child in levelIconContainer)

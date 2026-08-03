@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class HealthSystem : MonoBehaviour
 {
+    public static HealthSystem Instance { get; private set; }
     [Header("Health Settings")]
     [SerializeField] public int maxHealth = 100;
     [SerializeField,  ] public int currentHealth;
@@ -70,6 +71,8 @@ public class HealthSystem : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance == null)
+            Instance = this;
         enemy = GetComponent<EnemyAI>();
         sr = GetComponentInChildren<SpriteRenderer>();
         if (sr)
@@ -129,7 +132,8 @@ public class HealthSystem : MonoBehaviour
         currentHealth -= damageAmount;
         currentHealth = Mathf.Max(0, currentHealth);
         UpdateHealthUI();
-
+        if (isPlayer && IDCardManager.instance != null)
+            IDCardManager.instance.UpdatePlayerPortrait();
         if (isPlayer)
         {
             GameStat_SO.RegisterDamageTaken(damageAmount);

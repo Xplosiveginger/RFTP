@@ -61,7 +61,7 @@ public class PauseManager : MonoBehaviour
 
                 displaySettingsPanel.SetActive(false);
                 audioSettingsPanel.SetActive(false);
-
+                IDCardManager.instance.ShowPauseUI();
                 Time.timeScale = 0f;
             }
             else
@@ -98,8 +98,9 @@ public class PauseManager : MonoBehaviour
 
     public void Resume()
     {
+        IDCardManager.instance.ShowGameplayUI();
         isPaused = false;
-
+        
         pauseRoot.SetActive(false);
 
         pauseBoxPanel.SetActive(false);

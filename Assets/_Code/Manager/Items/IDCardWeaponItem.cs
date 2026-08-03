@@ -5,7 +5,8 @@ public class IDCardWeaponItem : MonoBehaviour
 {
     [Header("UI")]
     public Image weaponIcon;
-    
+    [Header("Display")]
+    public bool showLevelIcons = true;
     [Header("Border")]
     public Image borderImage;
     public Sprite defaultBorderSprite;
@@ -30,7 +31,17 @@ public class IDCardWeaponItem : MonoBehaviour
         int currentLevel = Random.Range(1, MaxSkillLevel + 1);
         int maxLevel = weaponData.weaponDataSO.weaponStatData.Count;
 
-        PopulateLevels(currentLevel);
+        if (showLevelIcons)
+        {
+            PopulateLevels(currentLevel);
+        }
+        else
+        {
+            foreach (Transform child in levelIconContainer)
+                Destroy(child.gameObject);
+
+            levelIconContainer.gameObject.SetActive(false);
+        }
 
         borderImage.sprite = currentLevel >= maxLevel
             ? maxLevelBorderSprite
