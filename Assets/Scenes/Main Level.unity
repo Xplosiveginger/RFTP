@@ -168337,8 +168337,8 @@ MonoBehaviour:
   timeSurvivedText: {fileID: 1019105659}
   moneyEarnedText: {fileID: 2108638471}
   enemyKilledText: {fileID: 1055182700}
-  damageTakenText: {fileID: 587770506}
-  damageGivenText: {fileID: 600636370}
+  damageTakenText: {fileID: 600636370}
+  damageGivenText: {fileID: 587770506}
   breakableDestroyedText: {fileID: 426996561}
   weaponItemContainer: {fileID: 185001820}
   weaponItemPrefab: {fileID: 8518192925927050151, guid: 27dcf0407b434fd449d365a149a117ce, type: 3}
