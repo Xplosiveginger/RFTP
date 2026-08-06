@@ -4,54 +4,90 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class AsyncLevelLoader : MonoBehaviour
 {
     public GameObject mainMenuPanel;
     public GameObject loadingPanel;
 
-    public Image loadingBar;
 
-    public string levelName;
+    public string gameLevelName;
+    public string menuLevelName;
 
     public float loadingTime;
     private float loadingTimer;
+    
+    public Image loadingMask;
 
     public TextMeshProUGUI hintText;
+
+    public string[] randomHints;
+
     private void Start()
     {
         loadingPanel.SetActive(false);
+
     }
-
-
     private IEnumerator LoadLevelAsync(string levelToLoad)
     {
+        loadingTimer = 0f;
+
+        hintText.text = randomHints[Random.Range(0, randomHints.Length)];
+
+        loadingMask.fillAmount = 1f;
+
         AsyncOperation operation = SceneManager.LoadSceneAsync(levelToLoad);
         operation.allowSceneActivation = false;
 
+        bool timerFinished = false;
+        bool sceneLoaded = false;
+
         while (!operation.isDone)
         {
-            float progress = Mathf.Clamp01(operation.progress / 0.9f);
-            loadingBar.fillAmount = progress;
-            
-            if (operation.progress >= 0.9f)
+            // Update timer
+            if (!timerFinished)
             {
-                loadingTimer += Time.deltaTime;
+                loadingTimer += Time.unscaledDeltaTime;
 
-                hintText.text = "Here is a random hint...";
+                float normalized = Mathf.Clamp01(loadingTimer / loadingTime);
+
+                // Reduce fill from 1 -> 0
+                loadingMask.fillAmount = 1f - normalized;
 
                 if (loadingTimer >= loadingTime)
                 {
-                    operation.allowSceneActivation = true;
+                    timerFinished = true;
+                    loadingMask.fillAmount = 0f;
                 }
+            }
+
+            // Scene has finished loading in the background
+            if (operation.progress >= 0.9f)
+            {
+                sceneLoaded = true;
+            }
+
+            // Wait until BOTH are complete
+            if (timerFinished && sceneLoaded)
+            {
+                operation.allowSceneActivation = true;
             }
 
             yield return null;
         }
-    }
+    }   
     public void OnPlayButtonClicked()
     {
         loadingPanel.SetActive(true);
-        StartCoroutine(LoadLevelAsync(levelName));
+        mainMenuPanel.SetActive(false);
+        Time.timeScale = 1f;
+        StartCoroutine(LoadLevelAsync(gameLevelName));
+    }
+    public void OnMenuButtonClicked()
+    {
+        PauseManager.instance.gameScreenCanvas.SetActive(false);
+        loadingPanel.SetActive(true);
+        StartCoroutine(LoadLevelAsync(menuLevelName));
     }
 }
