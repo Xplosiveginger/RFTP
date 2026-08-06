@@ -1,4 +1,5 @@
 
+using System;
 using UnityEngine;
 public interface IAttractable
 {
@@ -22,11 +23,17 @@ public class XpDrop : MonoBehaviour, IAttractable
     private float acceleration;
     private int xpAmount;
 
+    private XpManager XpManager;
     private void Awake()
     {
         col = GetComponent<Collider2D>();
 
         acceleration = maxSpeed / Mathf.Max(0.01f, accelerationTime);
+    }
+
+    private void Start()
+    {
+        XpManager = SM.Instance.XPManager;
     }
 
     private void Update()
@@ -70,10 +77,8 @@ public class XpDrop : MonoBehaviour, IAttractable
 
     private void XpCollected()
     {
-        Debug.Log($"Collected {xpAmount} XP");
-
-        // PlayerXpManager.AddXp(xpAmount);
-
+        
+        XpManager?.AddXP(xpAmount);
         Destroy(gameObject);
     }
 }
