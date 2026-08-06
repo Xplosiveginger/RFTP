@@ -84,7 +84,7 @@ public class XpManager : MonoBehaviour
         {
             return;
         }
-
+        ResetProgression();
         // Notify UI of initial state
         OnXPUpdated?.Invoke();
         OnCoinsUpdated?.Invoke();

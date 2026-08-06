@@ -12,12 +12,7 @@ public class EnemyAI : MonoBehaviour
     [Header("Collision Damage")]
     public bool canDamageOnCollision = false;
     public int collisionDamage = 10;
-
-    [Header("XP Drop")]
-    public int expDrop = 10;
-    public GameObject XpOrbPrefab;
-    // ******************************
-
+    
     private Transform target;
     public NavMeshAgent agent { get; private set; }
     private HealthSystem health;
@@ -80,20 +75,10 @@ public class EnemyAI : MonoBehaviour
 
                 // Enemy dies after successfully hitting the player
                 health.Die();
-                SpawnXp();
             }
         }
     }
-
-    public void SpawnXp()
-    {
-        if (XpOrbPrefab == null) return;
-
-        GameObject xpOrb = Instantiate(XpOrbPrefab, transform.position, Quaternion.identity);
-        XpDrop orb = xpOrb.GetComponent<XpDrop>();
-        if (orb != null)
-            orb.xpAmount = expDrop;
-    }
+    
 
     public void Freeze(float freezeTime)
     {

@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 3960886808154332643}
   - component: {fileID: 118058094996581986}
   - component: {fileID: -8148535137859067340}
+  - component: {fileID: 348943127778562455}
   m_Layer: 6
   m_Name: MutatedRat
   m_TagString: Enemy
@@ -267,6 +268,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 723c2d0164fdb9e4392bb0b1b67be326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthSystem: {fileID: 0}
   spawnOffset: {x: 0, y: 1, z: 0}
   DamageNumber: {fileID: 2670166825863091454, guid: 1a573924e6a21a946afc737c3a50381a, type: 3}
+--- !u!114 &348943127778562455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7677058516892065867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 410176578d912fe4f817ba06a6bc0f19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xpAmount: 1
+  dropRadius: 1
