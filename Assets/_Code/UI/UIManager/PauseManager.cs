@@ -38,10 +38,20 @@ public class PauseManager : MonoBehaviour
 
     public bool isPaused;
 
+
+    private HealthSystem PlayerHealth;
+    private StatManager StatManager;
+    
     private void Awake()
     {
         if (instance == null)
             instance = this;
+    }
+
+    private void Start()
+    {
+        PlayerHealth = SM.Instance.Player.GetComponent<HealthSystem>();
+        StatManager = SM.Instance.Player.GetComponent<StatManager>();
     }
 
     private void Update()
@@ -80,16 +90,39 @@ public class PauseManager : MonoBehaviour
     public void UpdatePauseStats()
     {
         var stats = GameStatManager.instance.gameStats;
-
-        damageText.text = stats.damage.ToString();
-        totalHealthText.text = stats.totalHealth.ToString();
-        healthRegenText.text = stats.healthRegen.ToString();
-        cooldownText.text = stats.cooldown.ToString();
-        aoeText.text = stats.areaOfEffect.ToString();
-        speedOfWeaponText.text = stats.projectileSpeed.ToString();
-        durationText.text = stats.duration.ToString();
-        numOfProjectilesText.text = stats.numberOfProjectiles.ToString();
-        moveSpeedText.text = stats.moveSpeed.ToString();
+        if (PlayerHealth != null)
+        {
+            totalHealthText.text = PlayerHealth.currentHealth.ToString();
+        }
+        if (StatManager != null)
+        {
+            if((StatManager.GetStat(EStatType.Damage)!=null))
+                damageText.text = (StatManager.GetStat(EStatType.Damage).currentValue).ToString();
+            
+            
+            if(StatManager.GetStat(EStatType.HealthRegen)!=null)
+                healthRegenText.text = (StatManager.GetStat(EStatType.HealthRegen).currentValue).ToString();
+        
+            if((StatManager.GetStat(EStatType.MoveSpeed)!=null))
+                moveSpeedText.text = ((StatManager.GetStat(EStatType.MoveSpeed).currentValue)).ToString();
+            
+            if((StatManager.GetStat(EStatType.AOESize)!=null))
+                aoeText.text = (StatManager.GetStat(EStatType.AOESize).currentValue).ToString();
+            
+            if(StatManager.GetStat(EStatType.ProjectileSpeed)!=null)
+                speedOfWeaponText.text = (StatManager.GetStat(EStatType.ProjectileSpeed).currentValue).ToString();
+            
+            if((StatManager.GetStat(EStatType.ProjectileCount)!=null))
+                numOfProjectilesText.text = (StatManager.GetStat(EStatType.ProjectileCount)).currentValue.ToString();
+            
+            if((StatManager.GetStat(EStatType.AttackCooldown)!=null))
+                cooldownText.text = (StatManager.GetStat(EStatType.AttackCooldown)).currentValue.ToString();  
+            
+            if((StatManager.GetStat(EStatType.ActiveDuration)!=null))
+                durationText.text = (StatManager.GetStat(EStatType.ActiveDuration)).currentValue.ToString();
+            
+            
+        }
     }
 
     //========================================================
