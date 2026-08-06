@@ -1,26 +1,32 @@
-using UnityEngine;
 
+using UnityEngine;
 public interface IAttractable
 {
     void AttractTo(Transform target);
 }
 
+
 [RequireComponent(typeof(Collider2D))]
 public class XpDrop : MonoBehaviour, IAttractable
 {
-    [SerializeField] private float attractionSpeed = 12f;
+    [Header("Movement")]
+    [SerializeField] private float maxSpeed = 18f;
+    [SerializeField] private float accelerationTime = 0.35f;
     [SerializeField] private float collectDistance = 0.1f;
 
     private Transform target;
     private Collider2D col;
+
     private bool isTravelling;
+    private float currentSpeed;
+    private float acceleration;
     private int xpAmount;
 
-    private XpManager XpManager;
     private void Awake()
     {
         col = GetComponent<Collider2D>();
-        XpManager = SM.Instance.XPManager;
+
+        acceleration = maxSpeed / Mathf.Max(0.01f, accelerationTime);
     }
 
     private void Update()
@@ -28,12 +34,17 @@ public class XpDrop : MonoBehaviour, IAttractable
         if (!isTravelling || target == null)
             return;
 
+        currentSpeed = Mathf.MoveTowards(
+            currentSpeed,
+            maxSpeed,
+            acceleration * Time.deltaTime);
+
         transform.position = Vector3.MoveTowards(
             transform.position,
             target.position,
-            attractionSpeed * Time.deltaTime);
+            currentSpeed * Time.deltaTime);
 
-        if (Vector3.SqrMagnitude(transform.position - target.position) <= collectDistance * collectDistance)
+        if ((transform.position - target.position).sqrMagnitude <= collectDistance * collectDistance)
         {
             XpCollected();
         }
@@ -46,6 +57,7 @@ public class XpDrop : MonoBehaviour, IAttractable
 
         target = targetTransform;
         isTravelling = true;
+        currentSpeed = 0f;
 
         if (col != null)
             col.enabled = false;
@@ -58,8 +70,10 @@ public class XpDrop : MonoBehaviour, IAttractable
 
     private void XpCollected()
     {
-        XpManager.AddXP(xpAmount);
         Debug.Log($"Collected {xpAmount} XP");
+
+        // PlayerXpManager.AddXp(xpAmount);
+
         Destroy(gameObject);
     }
 }

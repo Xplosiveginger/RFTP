@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8138649920697950733}
   - component: {fileID: 5582874462130580986}
+  - component: {fileID: 332250386693766094}
   m_Layer: 14
   m_Name: XpDrop
   m_TagString: Untagged
@@ -69,6 +70,21 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.32
+--- !u!114 &332250386693766094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6835560325603651991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17333abb3cb75564ab8e401e53844832, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 7.5
+  accelerationTime: 0.35
+  collectDistance: 0.1
 --- !u!1001 &428939934361114961
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -123,7 +139,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6358910504782404853, guid: c8d39ba04f02626409e5db9ebb6fa89c, type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6358910504782404853, guid: c8d39ba04f02626409e5db9ebb6fa89c, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a

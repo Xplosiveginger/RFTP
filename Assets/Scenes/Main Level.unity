@@ -50365,10 +50365,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1373663195}
     m_Modifications:
-    - target: {fileID: 2667337726576851600, guid: a31d3eda6d885544789a234488df2c25, type: 3}
-      propertyPath: DamageNumber
-      value: 
-      objectReference: {fileID: 2670166825863091454, guid: 8de4c122c5b5ea74291a360b5ec83d5b, type: 3}
     - target: {fileID: 2945827086528751042, guid: a31d3eda6d885544789a234488df2c25, type: 3}
       propertyPath: m_LocalPosition.x
       value: 243
@@ -50412,10 +50408,6 @@ PrefabInstance:
     - target: {fileID: 7174557516275297522, guid: a31d3eda6d885544789a234488df2c25, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7664751407247831055, guid: a31d3eda6d885544789a234488df2c25, type: 3}
-      propertyPath: maxHealth
-      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7664751407247831055, guid: a31d3eda6d885544789a234488df2c25, type: 3}
       propertyPath: healthSlider
