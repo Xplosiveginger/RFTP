@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -3153848889844271207}
   - component: {fileID: -4183431948116384970}
   - component: {fileID: 2416280875617552997}
+  - component: {fileID: 6637138222991403923}
   m_Layer: 6
   m_Name: Skeleton
   m_TagString: Enemy
@@ -233,8 +234,6 @@ MonoBehaviour:
   statManager: {fileID: -4183431948116384970}
   DiesOnContactWithPlayer: 0
   DoesDamageOnContact: 0
-  XpOrbPrefab: {fileID: 0}
-  expDrop: 0
   boneProjectilePrefab: {fileID: 4378682058645906929, guid: 928b57ab7bc594d4d91f9949ac698da1, type: 3}
   attackRange: 5
   attackCooldown: 2
@@ -269,9 +268,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 723c2d0164fdb9e4392bb0b1b67be326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthSystem: {fileID: 0}
   spawnOffset: {x: 0, y: 1, z: 0}
   DamageNumber: {fileID: 2670166825863091454, guid: 1a573924e6a21a946afc737c3a50381a, type: 3}
+--- !u!114 &6637138222991403923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 12792752347874169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 410176578d912fe4f817ba06a6bc0f19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xpAmount: 5
+  dropRadius: 1
 --- !u!1 &6001087531730801353
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,8 +386,6 @@ MonoBehaviour:
   moveSpeed: 3
   canDamageOnCollision: 0
   collisionDamage: 0
-  expDrop: 10
-  XpOrbPrefab: {fileID: 0}
 --- !u!212 &1129240058524930666
 SpriteRenderer:
   m_ObjectHideFlags: 0
