@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector.Editor.StateUpdaters;
 using UnityEngine;
 
 public class StatManager : MonoBehaviour
@@ -108,6 +109,11 @@ public class StatManager : MonoBehaviour
     {
         foreach (Stat stat in statList)
         {
+            if (stat.statName == EStatType.Health)
+            {
+                stat.ApplyHealthModifier(modifier);
+                //break;
+            }
             if(stat.statName == statName)
             {
                 stat.ApplyModifier(modifier);

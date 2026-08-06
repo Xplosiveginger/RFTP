@@ -47,7 +47,7 @@ public class Stat
         currentValue += valueToAdd;
         OnCurrentValueChanged?.Invoke(this);
         maxValue += valueToAdd;
-        OnMaxValueChanged.Invoke();
+        OnMaxValueChanged?.Invoke();
         currentMultiplier += tempMultiplier;
     }
 

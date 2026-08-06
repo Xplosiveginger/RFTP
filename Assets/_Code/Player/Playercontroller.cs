@@ -161,9 +161,9 @@ public class PlayerController2D : MonoBehaviour
                 AddWeapon(card.weaponToAdd);
                 break;
             case ECardType.AffectsPlayer:
-                //itemManager.AddItem(card.item);
-                itemManager.AddItem(card.itemSO);
                 statManager.ModifyStat(card.affectedPlayerStat, card.playerStatModifier);
+                itemManager.AddCurrentItems(card);
+                itemManager.AddItem(card.itemSO);
                 break;
             case ECardType.AffectsWeaponLevel:
                 weaponManager.LevelUpWeapon(card.weaponName);

@@ -76433,7 +76433,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5487039481332363179, guid: 8947e827853c613448b4480768677859, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5622934046020792985, guid: 8947e827853c613448b4480768677859, type: 3}
       propertyPath: m_Name
@@ -144652,6 +144652,7 @@ MonoBehaviour:
   - cardCategory: 0
     cardDataList:
     - {fileID: 11400000, guid: ff95bae0c3c11af44ac78d6c6e74918d, type: 2}
+    - {fileID: 11400000, guid: ecb46dddbd0d585438be7ba564879b97, type: 2}
   - cardCategory: 1
     cardDataList:
     - {fileID: 11400000, guid: cfe9211f9e2ac844eae5f09d14a72de5, type: 2}
