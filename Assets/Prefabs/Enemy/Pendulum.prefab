@@ -202,8 +202,6 @@ MonoBehaviour:
   statManager: {fileID: -7171792425800454507}
   DiesOnContactWithPlayer: 0
   DoesDamageOnContact: 0
-  XpOrbPrefab: {fileID: 0}
-  expDrop: 0
 --- !u!114 &-7171792425800454507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,7 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 410176578d912fe4f817ba06a6bc0f19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xpAmount: 1
+  xpAmount: 5
   dropRadius: 1
 --- !u!1 &8033702345953058883
 GameObject:

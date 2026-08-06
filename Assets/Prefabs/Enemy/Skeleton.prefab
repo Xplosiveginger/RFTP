@@ -234,8 +234,6 @@ MonoBehaviour:
   statManager: {fileID: -4183431948116384970}
   DiesOnContactWithPlayer: 0
   DoesDamageOnContact: 0
-  XpOrbPrefab: {fileID: 0}
-  expDrop: 0
   boneProjectilePrefab: {fileID: 4378682058645906929, guid: 928b57ab7bc594d4d91f9949ac698da1, type: 3}
   attackRange: 5
   attackCooldown: 2
@@ -284,7 +282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 410176578d912fe4f817ba06a6bc0f19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xpAmount: 1
+  xpAmount: 5
   dropRadius: 1
 --- !u!1 &6001087531730801353
 GameObject:
@@ -388,8 +386,6 @@ MonoBehaviour:
   moveSpeed: 3
   canDamageOnCollision: 0
   collisionDamage: 0
-  expDrop: 10
-  XpOrbPrefab: {fileID: 0}
 --- !u!212 &1129240058524930666
 SpriteRenderer:
   m_ObjectHideFlags: 0
