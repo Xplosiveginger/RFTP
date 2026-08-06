@@ -175,14 +175,12 @@ public class ReworkedWeaponManager : MonoBehaviour
             weapon.LevelUpWeapon();
             OnWeaponLeveledUp?.Invoke(weaponName);
             
-            // Update GameStatSO with new stats after level up
             UpdateWeaponInGameStat(weaponName);
         }
     }
 
     private void UpdateWeaponInGameStat(EWeaponName weaponName)
     {
-        // Find the weapon slot in GameStatSO and update it
         for (int i = 1; i <= 4; i++)
         {
             try
@@ -213,14 +211,11 @@ public class ReworkedWeaponManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        // Reset weapon data in GameStatSO when this object is destroyed
         if (gameStatSO != null)
         {
-            gameStatSO.ResetWeaponData();
+            //gameStatSO.ResetWeaponData();                               //If necessary uncomment this line, 
             Debug.Log("WeaponManager destroyed - weapon data reset");
         }
-        
-        // Clear active weapons list
         if (activeWeapons != null)
         {
             activeWeapons.Clear();
