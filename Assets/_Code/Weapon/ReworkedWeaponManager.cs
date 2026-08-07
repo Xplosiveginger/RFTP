@@ -71,14 +71,18 @@ public class ReworkedWeaponManager : MonoBehaviour
         if (weapon != null)
         {
             // Wait for stat manager to initialize, then register
-            StartCoroutine(RegisterWeaponAfterFrame(weaponDataSO, weapon, slotIndex));
+            if (weapon != null && weapon.statManager != null)
+            {
+                gameStatSO.SetWeaponData(slotIndex, weaponDataSO, weapon.statManager);
+            }
+            //StartCoroutine(RegisterWeaponAfterFrame(weaponDataSO, weapon, slotIndex));
         }
     }
 
     private IEnumerator RegisterWeaponAfterFrame(WeaponDataSO weaponDataSO, WeaponBase weapon, int slotIndex)
     {
         // Wait one frame to ensure stat manager is initialized
-        yield return null;
+        //yield return null;
         
         if (weapon != null && weapon.statManager != null)
         {
@@ -88,6 +92,7 @@ public class ReworkedWeaponManager : MonoBehaviour
         {
             Debug.LogError($"Failed to register weapon {weaponDataSO.weaponName} - StatManager is null");
         }
+        yield return null;
     }
 
     private WeaponBase SpawnWeapon(WeaponDataSO weaponDataSO)
