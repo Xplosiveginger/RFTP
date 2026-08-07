@@ -10,26 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 781b090621e04b44ab0b2e52cc84c23d, type: 3}
-  m_Name: PlayerMovementIncrease
+  m_Name: ActiveDuration Increase Item
   m_EditorClassIdentifier: 
   levelImages:
-  - {fileID: 21300000, guid: b6cb32d8e9ded1a4b9ace1b42e60d654, type: 3}
-  - {fileID: 21300000, guid: 0d5fef4fa14e5bc409705f4eea23394b, type: 3}
-  - {fileID: 21300000, guid: dc9e36bbd351cbb43b9ebe6e84c2eb04, type: 3}
-  - {fileID: 21300000, guid: 79453649262db8b499852d7945d4c1bd, type: 3}
-  - {fileID: 21300000, guid: cc08863846d41124596ea8ee3757756d, type: 3}
+  - {fileID: 21300000, guid: bbe362ff498d80e4ca1e46eac91d51a9, type: 3}
+  - {fileID: 21300000, guid: 4d03dc1d4b1f0e243be801b0988883c7, type: 3}
+  - {fileID: 21300000, guid: 65dab79503969db48ad50c0803346bca, type: 3}
+  - {fileID: 21300000, guid: deabed503edf7e046bff56cb23dd9260, type: 3}
+  - {fileID: 21300000, guid: 1ddf128a43f718c4c941e6691956e092, type: 3}
   cardPriority: 3
   cardType: 1
-  itemSO: {fileID: 11400000, guid: 565aadbdccb650342a442593afb53088, type: 2}
+  itemSO: {fileID: 11400000, guid: f9774822f53571d4d81f50b3178cfff8, type: 2}
   item:
-    displayName: Move Speed Increase
+    displayName: 'Active Time Increase '
     description: 
-    cardSprite: {fileID: 21300000, guid: b6cb32d8e9ded1a4b9ace1b42e60d654, type: 3}
-    affectedStat: 0
+    cardSprite: {fileID: 21300000, guid: bbe362ff498d80e4ca1e46eac91d51a9, type: 3}
+    affectedStat: 4
     modifierAmount: 10
     isPercent: 1
   affectsPlayer: 1
-  affectedPlayerStat: 0
+  affectedPlayerStat: 4
   playerStatModifier: 10
   affectsEnemy: 0
   affectedEnemyStat: 0

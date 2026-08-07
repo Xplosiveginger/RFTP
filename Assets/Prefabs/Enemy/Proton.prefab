@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: -2680935512240805102}
   - component: {fileID: -8978186440762551885}
   - component: {fileID: -8290234182166473130}
+  - component: {fileID: 6716085750393491166}
   m_Layer: 6
   m_Name: Proton
   m_TagString: Enemy
@@ -232,8 +233,6 @@ MonoBehaviour:
   statManager: {fileID: -2680935512240805102}
   DiesOnContactWithPlayer: 0
   DoesDamageOnContact: 0
-  XpOrbPrefab: {fileID: 0}
-  expDrop: 0
   Type: 1
   combineRadius: 1.61
   gizmoColor: {r: 0, g: 1, b: 1, a: 0.25}
@@ -282,6 +281,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 723c2d0164fdb9e4392bb0b1b67be326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthSystem: {fileID: 0}
   spawnOffset: {x: 0, y: 1, z: 0}
   DamageNumber: {fileID: 2670166825863091454, guid: 1a573924e6a21a946afc737c3a50381a, type: 3}
+--- !u!114 &6716085750393491166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7117651411527206627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 410176578d912fe4f817ba06a6bc0f19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xpAmount: 5
+  dropRadius: 1

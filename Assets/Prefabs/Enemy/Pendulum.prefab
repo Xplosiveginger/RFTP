@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: -7171792425800454507}
   - component: {fileID: 1210522729364390921}
   - component: {fileID: -5551151500942068956}
+  - component: {fileID: 6926468862527863757}
   m_Layer: 6
   m_Name: Pendulum
   m_TagString: Enemy
@@ -201,8 +202,6 @@ MonoBehaviour:
   statManager: {fileID: -7171792425800454507}
   DiesOnContactWithPlayer: 0
   DoesDamageOnContact: 0
-  XpOrbPrefab: {fileID: 0}
-  expDrop: 0
 --- !u!114 &-7171792425800454507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,9 +246,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 723c2d0164fdb9e4392bb0b1b67be326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthSystem: {fileID: 0}
   spawnOffset: {x: 0, y: 1, z: 0}
   DamageNumber: {fileID: 2670166825863091454, guid: 1a573924e6a21a946afc737c3a50381a, type: 3}
+--- !u!114 &6926468862527863757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2148986130981883437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 410176578d912fe4f817ba06a6bc0f19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xpAmount: 5
+  dropRadius: 1
 --- !u!1 &8033702345953058883
 GameObject:
   m_ObjectHideFlags: 0

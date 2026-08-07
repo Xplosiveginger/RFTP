@@ -21,10 +21,6 @@ public class BaseEnemyRefactor : MonoBehaviour
     [SerializeField] protected bool DiesOnContactWithPlayer;
     [SerializeField] protected bool DoesDamageOnContact;
 
-    // to be removed later
-    [SerializeField] GameObject XpOrbPrefab;
-    [SerializeField] int expDrop;
-    // ********************
 
     public StatManager StatManager => statManager;
 
@@ -77,8 +73,6 @@ public class BaseEnemyRefactor : MonoBehaviour
         if (agent != null)
             agent.ResetPath();
 
-        SpawnXp();
-        //statManager.ResetHealthStatOnDeath();
         EnemyManager.Instance.DespawnEnemy(this);
     }
 
@@ -112,17 +106,7 @@ public class BaseEnemyRefactor : MonoBehaviour
     {
         health = statManager.GetStat(EStatType.Health).currentValue;
     }
-
-    public void SpawnXp()
-    {
-        if (XpOrbPrefab == null) return;
-
-        GameObject xpOrb = Instantiate(XpOrbPrefab, transform.position, Quaternion.identity);
-        XpDrop orb = xpOrb.GetComponent<XpDrop>();
-        if (orb != null)
-            orb.xpAmount = expDrop;
-    }
-
+    
     public void Freeze(float time)
     {
         StartCoroutine(FreezeMovement(time));

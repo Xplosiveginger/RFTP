@@ -22,6 +22,8 @@ public class ItemManager : MonoBehaviour
     [Header("Starting Items (Shop / Meta)")]
     public List<ItemSO> startingItems;
 
+    public List<CardDataSO> currentItems = new List<CardDataSO>();
+    
     private readonly List<ActiveItem> activeItems = new();
     
     public event Action<ItemSO, int> OnItemAddedOrUpgraded;
@@ -57,6 +59,8 @@ public class ItemManager : MonoBehaviour
         // Apply permanent shop/meta items at run start
         foreach (var itemSO in startingItems)
             AddItemFromSO(itemSO, 0);
+        
+        currentItems.Clear();
     }
 
 
@@ -141,10 +145,23 @@ public class ItemManager : MonoBehaviour
     /// </summary>
     public void AddItem(ItemSO itemSO)
     {
+        if (itemSO == null)
+        {
+            Debug.LogError("ItemSO is null. Cannot add item.");
+            return;
+        }
+
         if (HasItem(itemSO))
             UpgradeItem(itemSO);
         else
             AddItemFromSO(itemSO, 0);
+    }
+
+    public void AddCurrentItems(CardDataSO cardDataSO)
+    {
+        if (currentItems.Contains(cardDataSO))
+            return;
+        currentItems.Add(cardDataSO);
     }
 
     public bool HasItem(ItemSO itemSO) =>

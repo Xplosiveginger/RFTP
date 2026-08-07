@@ -14,8 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelImages:
   - {fileID: 21300000, guid: 3702fe1baff4bc44b9b417d901462c28, type: 3}
+  - {fileID: 21300000, guid: 8cb509702141af84f8562eb78ade3106, type: 3}
+  - {fileID: 21300000, guid: 81324486757978a4e97aff9e844711df, type: 3}
+  - {fileID: 21300000, guid: ed113d971b99b174096c89968cf1da16, type: 3}
+  - {fileID: 21300000, guid: 8b61f10e66bbcff408611a12331418c4, type: 3}
+  - {fileID: 21300000, guid: 7282b984b5ccbd14a844cac6b7764542, type: 3}
+  - {fileID: 21300000, guid: bec494571a4f7cb4da8f7445363488b5, type: 3}
+  - {fileID: 21300000, guid: b9110a0b69032a7478bdba04604e8bc8, type: 3}
   cardPriority: 1
   cardType: 0
+  itemSO: {fileID: 0}
+  item:
+    displayName: 
+    description: 
+    cardSprite: {fileID: 0}
+    affectedStat: 0
+    modifierAmount: 0
+    isPercent: 0
   affectsPlayer: 0
   affectedPlayerStat: 0
   playerStatModifier: 0

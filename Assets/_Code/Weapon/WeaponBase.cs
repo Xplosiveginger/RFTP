@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,7 +12,11 @@ public abstract class WeaponBase : MonoBehaviour
     public WeaponDataSO weaponData;
     public EnemyDetection enemyDetector;
 
-    protected int level = 1;
+    [ReadOnly] public int level = 1;
+    public int GetLevel
+    {
+        get { return level; }
+    }
 
     protected float damage;
     protected float projectileSpeed;

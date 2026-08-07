@@ -71,14 +71,18 @@ public class ReworkedWeaponManager : MonoBehaviour
         if (weapon != null)
         {
             // Wait for stat manager to initialize, then register
-            StartCoroutine(RegisterWeaponAfterFrame(weaponDataSO, weapon, slotIndex));
+            if (weapon != null && weapon.statManager != null)
+            {
+                gameStatSO.SetWeaponData(slotIndex, weaponDataSO, weapon.statManager);
+            }
+            //StartCoroutine(RegisterWeaponAfterFrame(weaponDataSO, weapon, slotIndex));
         }
     }
 
     private IEnumerator RegisterWeaponAfterFrame(WeaponDataSO weaponDataSO, WeaponBase weapon, int slotIndex)
     {
         // Wait one frame to ensure stat manager is initialized
-        yield return null;
+        //yield return null;
         
         if (weapon != null && weapon.statManager != null)
         {
@@ -88,6 +92,7 @@ public class ReworkedWeaponManager : MonoBehaviour
         {
             Debug.LogError($"Failed to register weapon {weaponDataSO.weaponName} - StatManager is null");
         }
+        yield return null;
     }
 
     private WeaponBase SpawnWeapon(WeaponDataSO weaponDataSO)
@@ -175,14 +180,12 @@ public class ReworkedWeaponManager : MonoBehaviour
             weapon.LevelUpWeapon();
             OnWeaponLeveledUp?.Invoke(weaponName);
             
-            // Update GameStatSO with new stats after level up
             UpdateWeaponInGameStat(weaponName);
         }
     }
 
     private void UpdateWeaponInGameStat(EWeaponName weaponName)
     {
-        // Find the weapon slot in GameStatSO and update it
         for (int i = 1; i <= 4; i++)
         {
             try
@@ -213,14 +216,11 @@ public class ReworkedWeaponManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        // Reset weapon data in GameStatSO when this object is destroyed
         if (gameStatSO != null)
         {
-            gameStatSO.ResetWeaponData();
+            //gameStatSO.ResetWeaponData();                               //If necessary uncomment this line, 
             Debug.Log("WeaponManager destroyed - weapon data reset");
         }
-        
-        // Clear active weapons list
         if (activeWeapons != null)
         {
             activeWeapons.Clear();

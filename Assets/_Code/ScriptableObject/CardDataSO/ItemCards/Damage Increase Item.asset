@@ -10,26 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 781b090621e04b44ab0b2e52cc84c23d, type: 3}
-  m_Name: PlayerMovementIncrease
+  m_Name: Damage Increase Item
   m_EditorClassIdentifier: 
   levelImages:
-  - {fileID: 21300000, guid: b6cb32d8e9ded1a4b9ace1b42e60d654, type: 3}
-  - {fileID: 21300000, guid: 0d5fef4fa14e5bc409705f4eea23394b, type: 3}
-  - {fileID: 21300000, guid: dc9e36bbd351cbb43b9ebe6e84c2eb04, type: 3}
-  - {fileID: 21300000, guid: 79453649262db8b499852d7945d4c1bd, type: 3}
-  - {fileID: 21300000, guid: cc08863846d41124596ea8ee3757756d, type: 3}
+  - {fileID: 21300000, guid: 14e6a90a9dd5d29479a5d98d67d5302b, type: 3}
+  - {fileID: 21300000, guid: 4ce06ec81b1be974cac82a91b010ce12, type: 3}
+  - {fileID: 21300000, guid: a7aad61588a247848bffe2cb563af8a4, type: 3}
+  - {fileID: 21300000, guid: 5c48c9efc5a311e48b9f58b87f8895b9, type: 3}
+  - {fileID: 21300000, guid: 1a7cc1bb63f8b6f4c8488b54265dfa7c, type: 3}
   cardPriority: 3
   cardType: 1
-  itemSO: {fileID: 11400000, guid: 565aadbdccb650342a442593afb53088, type: 2}
+  itemSO: {fileID: 11400000, guid: 82316e0e52d6a6c4aa8bb492d39f2508, type: 2}
   item:
-    displayName: Move Speed Increase
+    displayName: 'Damage Increase '
     description: 
-    cardSprite: {fileID: 21300000, guid: b6cb32d8e9ded1a4b9ace1b42e60d654, type: 3}
-    affectedStat: 0
+    cardSprite: {fileID: 21300000, guid: 14e6a90a9dd5d29479a5d98d67d5302b, type: 3}
+    affectedStat: 7
     modifierAmount: 10
     isPercent: 1
   affectsPlayer: 1
-  affectedPlayerStat: 0
+  affectedPlayerStat: 7
   playerStatModifier: 10
   affectsEnemy: 0
   affectedEnemyStat: 0

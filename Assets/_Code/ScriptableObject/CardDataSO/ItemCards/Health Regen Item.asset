@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 781b090621e04b44ab0b2e52cc84c23d, type: 3}
+  m_Name: Health Regen Item
+  m_EditorClassIdentifier: 
+  levelImages:
+  - {fileID: 21300000, guid: 2e7c67b1e2a07b648844a16579cfe52d, type: 3}
+  - {fileID: 21300000, guid: 2e7c67b1e2a07b648844a16579cfe52d, type: 3}
+  - {fileID: 21300000, guid: 0064c8896122a064990fcbc49ec97657, type: 3}
+  - {fileID: 21300000, guid: 533e84af39ad9e14588e4525ff674855, type: 3}
+  - {fileID: 21300000, guid: aff495bda8d01524a8b30e0cc27f2b7d, type: 3}
+  - {fileID: 21300000, guid: c197d67ad698dba4c88dd449a47eead3, type: 3}
+  cardPriority: 3
+  cardType: 1
+  itemSO: {fileID: 11400000, guid: 94d684f0097a89344a046e55e1d25440, type: 2}
+  item:
+    displayName: 'Health Regen Increase '
+    description: 
+    cardSprite: {fileID: 21300000, guid: 2e7c67b1e2a07b648844a16579cfe52d, type: 3}
+    affectedStat: 2
+    modifierAmount: 15
+    isPercent: 1
+  affectsPlayer: 1
+  affectedPlayerStat: 2
+  playerStatModifier: 15
+  affectsEnemy: 0
+  affectedEnemyStat: 0
+  enemyStatModifier: 0
+  affectsWeaponLevel: 0
+  weaponName: 0
+  affectsWeaponStat: 0
+  affectedWeaponStat: 0
+  weaponStatModifier: 0
+  weaponToAdd: {fileID: 0}
+  isBuffDebuff: 0
+  time: 0
