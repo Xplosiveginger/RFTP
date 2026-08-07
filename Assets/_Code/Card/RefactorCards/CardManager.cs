@@ -15,7 +15,12 @@ public class CardManager : MonoBehaviour
 {
     [Header("Status Panel")]
     [SerializeField] private GameObject statusPanel;
+    [Header("Level Up Image")]
     [SerializeField] private GameObject levelUpImage;
+
+    [Header("Level Up Animation")]
+    [SerializeField] private Animator levelUpImageAnimator;
+    [SerializeField] private string levelUpAnimation = "LevelUp";
 
     [Header("Status Panel Animation")]
     [SerializeField] private Animator statusPanelAnimator;
@@ -69,6 +74,24 @@ public class CardManager : MonoBehaviour
             gameStatSO.OnEquippedWeaponNamesUpdated += OnEquippedWeaponNamesUpdatedHandler;
         }
     }
+    private void PlayLevelUpAnimation()
+    {
+        if (levelUpImageAnimator == null)
+            return;
+
+        if (string.IsNullOrEmpty(levelUpAnimation))
+            return;
+
+        // Make sure the Animator is reset before replaying
+        levelUpImageAnimator.Rebind();
+        levelUpImageAnimator.Update(0f);
+
+        levelUpImageAnimator.Play(
+            levelUpAnimation,
+            0,
+            0f
+        );
+    }
     
     private void OnEquippedWeaponNamesUpdatedHandler(List<EWeaponName> weaponNames)
     {
@@ -94,16 +117,30 @@ public class CardManager : MonoBehaviour
     
     private void CardInitializer()
     {
+        // Stop any previous status animation
+        if (statusPanelRoutine != null)
+        {
+            StopCoroutine(statusPanelRoutine);
+            statusPanelRoutine = null;
+        }
+
         Time.timeScale = 0f;
 
         currentSelectionCards.Clear();
 
         IDCardManager.instance.ShowPauseUI();
 
+        // Show status panel
         ShowStatusPanel();
 
+        // Show level-up image
         if (levelUpImage != null)
+        {
             levelUpImage.SetActive(true);
+
+            // Play the one-shot animation from the beginning
+            PlayLevelUpAnimation();
+        }
 
         PopulateCards();
 
@@ -310,13 +347,14 @@ public class CardManager : MonoBehaviour
         CardSelected?.Invoke(selectedData);
         CardClicked?.Invoke();
 
-        // Slide out status panel, then resume the game
         if (statusPanelRoutine != null)
         {
             StopCoroutine(statusPanelRoutine);
         }
 
-        statusPanelRoutine = StartCoroutine(HideStatusAndResumeRoutine());
+        statusPanelRoutine = StartCoroutine(
+            HideStatusAndResumeRoutine()
+        );
     }
     private IEnumerator HideStatusAndResumeRoutine()
     {
