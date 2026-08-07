@@ -8,7 +8,7 @@
   - Layers:
     - Default, TransparentFX, Ignore Raycast, Ground , Water, UI, Enemy, Items, assets, Player Collision, Obstacle, Player, Projectile, Weapon, XP, death report
 - Active game object:
-  - Name: GameScreenIDCard
+  - Name: Card_Mid
   - Tag: Untagged
   - Layer: UI
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

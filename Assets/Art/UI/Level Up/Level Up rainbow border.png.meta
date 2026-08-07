@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6190c666a6e7e6f4ab5abc23f6e35bf9
+guid: 7ca9f1f24c858ec43a2303d957c03cee
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,111 +97,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: XP bar_0
+      name: Level Up rainbow border_0
       rect:
         serializedVersion: 2
-        x: 189
-        y: 664
-        width: 455
-        height: 87
+        x: 0
+        y: 0
+        width: 1920
+        height: 1080
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd65ecae3ae1ff14a96c5321c4fe8811
-      internalID: -975174327
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: XP bar_2
-      rect:
-        serializedVersion: 2
-        x: 184
-        y: 361
-        width: 1536
-        height: 84
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7c605dbdc13c26a40a67c64732297af2
-      internalID: -563028196
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: XP bar_3
-      rect:
-        serializedVersion: 2
-        x: 203
-        y: 495
-        width: 387
-        height: 83
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c8c5373a711680d458632a4c7abf9f10
-      internalID: -187943259
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: XP bar_5
-      rect:
-        serializedVersion: 2
-        x: 1386
-        y: 449
-        width: 12
-        height: 4
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5e7c69a5de3f40f42bf1c65b708e5d84
-      internalID: -1435546863
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: XP bar_8
-      rect:
-        serializedVersion: 2
-        x: 105
-        y: 58
-        width: 1714
-        height: 244
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 781, y: 90, z: 742, w: 49}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3a02d03b47932f64e92ad1d5a824782d
-      internalID: 661459839
+      spriteID: 517e99145295f1b48adf8f77d3ed1b7d
+      internalID: 1685908257
       vertices: []
       indices: 
       edges: []
@@ -210,7 +122,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: beb20d7ee9bb1cd4280eebc5c7e66029
     internalID: 0
     vertices: []
     indices: 
@@ -220,15 +132,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      XP bar_0: -975174327
-      XP bar_1: 376614952
-      XP bar_2: -563028196
-      XP bar_3: -187943259
-      XP bar_4: -2091169783
-      XP bar_5: -1435546863
-      XP bar_6: -208318325
-      XP bar_7: -2085442859
-      XP bar_8: 661459839
+      Level Up rainbow border_0: 1685908257
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

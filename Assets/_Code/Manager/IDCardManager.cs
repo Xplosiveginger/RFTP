@@ -62,23 +62,54 @@ public class IDCardManager : MonoBehaviour
     }
     public void UpdatePlayerPortrait()
     {
-        float healthPercent = (HealthSystem.Instance.CurrentHealth / (float)HealthSystem.Instance.MaxHealth) * 100f;
+        if (HealthSystem.Instance == null)
+            return;
+
+        float maxHealth = HealthSystem.Instance.MaxHealth;
+        float currentHealth = HealthSystem.Instance.CurrentHealth;
+
+        // Prevent division by zero
+        if (maxHealth <= 0f)
+        {
+            playerImage.sprite = health0Sprite;
+            return;
+        }
+
+        // Clamp health between 0 and max health
+        currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
+
+        // Calculate percentage
+        float healthPercent = (currentHealth / maxHealth) * 100f;
 
         if (healthPercent >= 87.5f)
+        {
             playerImage.sprite = health100Sprite;
+        }
         else if (healthPercent >= 62.5f)
+        {
             playerImage.sprite = health75Sprite;
+        }
         else if (healthPercent >= 37.5f)
+        {
             playerImage.sprite = health50Sprite;
+        }
         else if (healthPercent >= 15f)
+        {
             playerImage.sprite = health25Sprite;
+        }
         else if (healthPercent > 0f)
+        {
             playerImage.sprite = health5Sprite;
+        }
         else
+        {
             playerImage.sprite = health0Sprite;
+        }
     }
     public void RefreshAll()
     {
+        UpdatePlayerPortrait();
+
         PopulateWeapons(screenWeaponsContainer, screenWeaponItemPrefab);
         PopulateSkills(screenSkillsContainer, screenSkillItemPrefab);
 

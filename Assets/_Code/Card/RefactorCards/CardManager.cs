@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
@@ -12,6 +13,26 @@ public struct CardCategoryData
 
 public class CardManager : MonoBehaviour
 {
+    [Header("Status Panel")]
+    [SerializeField] private GameObject statusPanel;
+    [SerializeField] private GameObject levelUpImage;
+
+    [Header("Status Panel Animation")]
+    [SerializeField] private Animator statusPanelAnimator;
+    [SerializeField] private float statusAnimationDuration = 0.5f;
+
+    private Coroutine statusPanelRoutine;
+    [Header("Status Panel Stats")]
+    [SerializeField] private TMPro.TextMeshProUGUI damageText;
+    [SerializeField] private TMPro.TextMeshProUGUI totalHealthText;
+    [SerializeField] private TMPro.TextMeshProUGUI healthRegenText;
+    [SerializeField] private TMPro.TextMeshProUGUI cooldownText;
+    [SerializeField] private TMPro.TextMeshProUGUI aoeText;
+    [SerializeField] private TMPro.TextMeshProUGUI speedOfWeaponText;
+    [SerializeField] private TMPro.TextMeshProUGUI durationText;
+    [SerializeField] private TMPro.TextMeshProUGUI numOfProjectilesText;
+    [SerializeField] private TMPro.TextMeshProUGUI moveSpeedText;
+    
     [Header("Card Categories")]
     [SerializeField] protected List<CardCategoryData> cardCategories;
     
@@ -31,6 +52,13 @@ public class CardManager : MonoBehaviour
     public static event Action<CardDataSO> CardSelected;
     public static event Action CardClicked;
 
+    private void Awake()
+    {
+        if (statusPanelAnimator != null)
+        {
+            statusPanelAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
+        }
+    }
     private void OnEnable()
     {
         XpManager.OnPlayerLeveledUp += CardInitializer;
@@ -46,14 +74,37 @@ public class CardManager : MonoBehaviour
     {
         Debug.Log($"CardManager notified of weapon name update: [{string.Join(", ", weaponNames)}]");
     }
+    private void UpdateStatusPanelStats()
+    {
+        if (gameStatSO == null)
+            return;
+
+        // Replace these with the actual stat references
+        // exposed by your GameStat_SO.
+        totalHealthText.text = gameStatSO.totalHealth.ToString();
+        damageText.text = gameStatSO.damage.ToString();
+        aoeText.text = gameStatSO.areaOfEffect.ToString();
+        healthRegenText.text = gameStatSO.healthRegen.ToString();
+        moveSpeedText.text = gameStatSO.moveSpeed.ToString();
+        speedOfWeaponText.text = gameStatSO.projectileSpeed.ToString();
+        numOfProjectilesText.text = gameStatSO.numberOfProjectiles.ToString();
+        cooldownText.text = gameStatSO.cooldown.ToString();  
+        durationText.text = gameStatSO.duration.ToString();
+    }
     
     private void CardInitializer()
     {
         Time.timeScale = 0f;
-        
-        // Clear the current selection tracking
+
         currentSelectionCards.Clear();
-        
+
+        IDCardManager.instance.ShowPauseUI();
+
+        ShowStatusPanel();
+
+        if (levelUpImage != null)
+            levelUpImage.SetActive(true);
+
         PopulateCards();
 
         foreach (var card in cards)
@@ -61,7 +112,6 @@ public class CardManager : MonoBehaviour
             card.gameObject.SetActive(true);
         }
     }
-
     private void PopulateCards()
     {
         // Step 1: Accumulate all qualified candidates from all categories with relevancy filtering
@@ -245,20 +295,50 @@ public class CardManager : MonoBehaviour
     // Called by RefactorCardUi when a card is picked
     public void OnCardSelected(CardDataSO selectedData)
     {
-        // Remove the selected card from its category
         RemoveCardFromCategories(selectedData);
 
-        Time.timeScale = 1f; // Resume game
+        IDCardManager.instance.ShowGameplayUI();
+
+        if (levelUpImage != null)
+            levelUpImage.SetActive(false);
 
         foreach (var card in cards)
         {
             card.gameObject.SetActive(false);
         }
-        
+
         CardSelected?.Invoke(selectedData);
         CardClicked?.Invoke();
-    }
 
+        // Slide out status panel, then resume the game
+        if (statusPanelRoutine != null)
+        {
+            StopCoroutine(statusPanelRoutine);
+        }
+
+        statusPanelRoutine = StartCoroutine(HideStatusAndResumeRoutine());
+    }
+    private IEnumerator HideStatusAndResumeRoutine()
+    {
+        if (statusPanel != null && statusPanelAnimator != null)
+        {
+            statusPanelAnimator.Play("SlideOut", 0, 0f);
+
+            yield return new WaitForSecondsRealtime(
+                statusAnimationDuration
+            );
+
+            statusPanel.SetActive(false);
+        }
+        else if (statusPanel != null)
+        {
+            statusPanel.SetActive(false);
+        }
+
+        Time.timeScale = 1f;
+
+        statusPanelRoutine = null;
+    }
     // Remove a card from all categories
     private void RemoveCardFromCategories(CardDataSO cardToRemove)
     {
@@ -294,15 +374,40 @@ public class CardManager : MonoBehaviour
         
         cardCategories.Add(newCategory);
     }
+    private void ShowStatusPanel()
+    {
+        if (statusPanelRoutine != null)
+        {
+            StopCoroutine(statusPanelRoutine);
+            statusPanelRoutine = null;
+        }
 
+        if (statusPanel == null)
+            return;
+
+        UpdateStatusPanelStats();
+
+        statusPanel.SetActive(true);
+
+        if (statusPanelAnimator != null)
+        {
+            statusPanelAnimator.Play("SlideIn", 0, 0f);
+        }
+    }
     private void OnDisable()
     {
+        if (statusPanelRoutine != null)
+        {
+            StopCoroutine(statusPanelRoutine);
+            statusPanelRoutine = null;
+        }
+
         XpManager.OnPlayerLeveledUp -= CardInitializer;
-        
-        // Unsubscribe from weapon name updates
+
         if (gameStatSO != null)
         {
-            gameStatSO.OnEquippedWeaponNamesUpdated -= OnEquippedWeaponNamesUpdatedHandler;
+            gameStatSO.OnEquippedWeaponNamesUpdated -=
+                OnEquippedWeaponNamesUpdatedHandler;
         }
     }
 }

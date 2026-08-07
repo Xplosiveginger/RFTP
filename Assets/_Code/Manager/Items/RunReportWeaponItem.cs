@@ -14,9 +14,23 @@ public class RunReportWeaponItem : MonoBehaviour
         weaponLogo.sprite = weaponData.weaponDataSO.weaponLogo;
         weaponNameText.text = weaponData.weaponDataSO.weaponName.ToString();
 
-        // Temporary
-        weaponLevelText.text = "Lv. 1";
+        // Get weapon level
+        int weaponLevel = 1;
 
+        if (weaponData.statManager != null)
+        {
+            WeaponBase weaponBase = weaponData.statManager.gameObject.GetComponent<WeaponBase>();
+
+            if (weaponBase != null)
+            {
+                weaponLevel = weaponBase.GetLevel;
+                Debug.Log(weaponLevel +" Level");
+            }
+        }
+
+        weaponLevelText.text = $"Lv. {weaponLevel}";
+
+        // Get weapon damage
         float damage = 0;
 
         if (weaponData.statManager != null)
