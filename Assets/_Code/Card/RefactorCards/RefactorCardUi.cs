@@ -30,28 +30,6 @@ public class RefactorCardUi : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    public void OnCardclicked()
-    {
-        if (cardData != null && cardManager != null)
-        {
-            if (cardData.affectsWeaponLevel)
-            {
-                if(cardData.levelImages.Count > 0)
-                {
-
-                }
-                    //weaponManager.LevelUpWeaponHandled(cardData.weaponName);
-                //else if(cardData.levelImages.Count == 0)
-
-            }
-            else if (cardData.affectsWeaponStat)
-            {
-                //weaponManager.UpdateWeaponStat(cardData.affectedWeaponStat, cardData.weaponStatModifier);
-            }
-            cardManager.OnCardSelected(cardData);
-        }
-    }
-
     public void OnPointerClick(PointerEventData eventData)
     {
         cardManager.OnCardSelected(cardData);
