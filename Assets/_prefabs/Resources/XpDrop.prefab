@@ -85,6 +85,7 @@ MonoBehaviour:
   maxSpeed: 12
   accelerationTime: 0.4
   collectDistance: 0.1
+  expCollectSound: {fileID: 8300000, guid: 37d23b1e0ad45a442aa260e8d51430ca, type: 3}
 --- !u!1001 &428939934361114961
 PrefabInstance:
   m_ObjectHideFlags: 0

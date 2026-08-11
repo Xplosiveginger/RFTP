@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 1210522729364390921}
   - component: {fileID: -5551151500942068956}
   - component: {fileID: 6926468862527863757}
+  - component: {fileID: 498317626971799752}
   m_Layer: 6
   m_Name: Pendulum
   m_TagString: Enemy
@@ -262,6 +263,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xpAmount: 5
   dropRadius: 1
+--- !u!114 &498317626971799752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2148986130981883437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7c4c8b0d7666f24086f1d03a2747111, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 3d93f5957cda4874eb0cb7c9cf36c5f5, type: 3}
 --- !u!1 &8033702345953058883
 GameObject:
   m_ObjectHideFlags: 0

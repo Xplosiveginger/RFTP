@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: -6722925433350841161}
   - component: {fileID: -8590481374319888289}
   - component: {fileID: 4142875989192245542}
+  - component: {fileID: -329570605743709325}
   m_Layer: 6
   m_Name: LitmusPaper
   m_TagString: Enemy
@@ -335,3 +336,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xpAmount: 5
   dropRadius: 1
+--- !u!114 &-329570605743709325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2913699253501788760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7c4c8b0d7666f24086f1d03a2747111, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 3d93f5957cda4874eb0cb7c9cf36c5f5, type: 3}

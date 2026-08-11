@@ -13,6 +13,11 @@ public struct CardCategoryData
 
 public class CardManager : MonoBehaviour
 {
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip levelUpSound;
+    public AudioClip cardSelectionSound;
+    
     [Header("Status Panel")]
     [SerializeField] private GameObject statusPanel;
     [Header("Level Up Image")]
@@ -123,7 +128,7 @@ public class CardManager : MonoBehaviour
             StopCoroutine(statusPanelRoutine);
             statusPanelRoutine = null;
         }
-
+        audioSource.PlayOneShot(levelUpSound);
         Time.timeScale = 0f;
 
         currentSelectionCards.Clear();
@@ -345,6 +350,7 @@ public class CardManager : MonoBehaviour
         }
 
         CardSelected?.Invoke(selectedData);
+        audioSource.PlayOneShot(cardSelectionSound);
         CardClicked?.Invoke();
 
         if (statusPanelRoutine != null)

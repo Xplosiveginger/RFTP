@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class MainMenuManager : MonoBehaviour
 {
+    public static MainMenuManager instance;
     public GameObject startPanel;
     public GameObject settingsPanel;
     public GameObject shopPanel;
@@ -13,6 +14,18 @@ public class MainMenuManager : MonoBehaviour
     public GameObject audioSettingsPanel;
     public GameObject graphicsSettingsPanel;
 
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip buttonClick;
+    public AudioClip buyButtonClick;
+    public AudioClip refundButtonClick;
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+    }
+
     private void Start()
     {
         startPanel.SetActive(true);
@@ -20,27 +33,39 @@ public class MainMenuManager : MonoBehaviour
         settingsPanel.SetActive(false);
     }
 
+    public void OnClickPlaySound()
+    {
+        audioSource.PlayOneShot(buttonClick);
+    }
+    public void PlaySound(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
+    }
     public void OnClickedSettingButton()
     {
         startPanel.SetActive(false);
         settingsPanel.SetActive(true);
+        PlaySound(buttonClick);
     }
 
     public void OnClickedShopButton()
     {
         startPanel.SetActive(false);
         shopPanel.SetActive(true);
+        PlaySound(buttonClick);
     }
 
     public void OnClickedShopCloseButton()
     {
         startPanel.SetActive(true);
         shopPanel.SetActive(false);
+        PlaySound(buttonClick);
     }
     public void OnClickedSettingExitButton()
     {
         settingsPanel.SetActive(false);
         startPanel.SetActive(true);
+        PlaySound(buttonClick);
     }
 
     public void OnClickedDisplaySettingButton()
@@ -49,6 +74,8 @@ public class MainMenuManager : MonoBehaviour
         gameSettingsPanel.SetActive(false);
         audioSettingsPanel.SetActive(false);
         graphicsSettingsPanel.SetActive(false);
+        PlaySound(buttonClick);
+
     }
     public void OnClickedGameSettingButton()
     {
@@ -56,6 +83,8 @@ public class MainMenuManager : MonoBehaviour
         gameSettingsPanel.SetActive(true);
         audioSettingsPanel.SetActive(false);
         graphicsSettingsPanel.SetActive(false);
+        PlaySound(buttonClick);
+
     }
     public void OnClickedAudioSettingButton()
     {
@@ -63,6 +92,8 @@ public class MainMenuManager : MonoBehaviour
         gameSettingsPanel.SetActive(false);
         audioSettingsPanel.SetActive(true);
         graphicsSettingsPanel.SetActive(false);
+        PlaySound(buttonClick);
+
     }
     public void OnClickedGraphicsSettingButton()
     {
@@ -70,6 +101,8 @@ public class MainMenuManager : MonoBehaviour
         gameSettingsPanel.SetActive(false);
         audioSettingsPanel.SetActive(false);
         graphicsSettingsPanel.SetActive(true);
+        PlaySound(buttonClick);
+
     }
     
     

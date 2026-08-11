@@ -21,3 +21,10 @@ AudioImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 358502
+  packageName: Audio Adjust (Trim, Fade, Volume)
+  packageVersion: 
+  assetPath: Assets/IntuitiveCreative/Demos/IntuitiveAudioAdjust/outputs_processed/IntuitiveAudioAdjust_sine_trim_normalized_fade.wav
+  uploadId: 0

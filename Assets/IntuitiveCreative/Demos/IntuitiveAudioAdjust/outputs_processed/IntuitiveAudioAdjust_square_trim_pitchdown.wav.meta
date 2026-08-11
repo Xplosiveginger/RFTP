@@ -21,3 +21,10 @@ AudioImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 358502
+  packageName: Audio Adjust (Trim, Fade, Volume)
+  packageVersion: 
+  assetPath: Assets/IntuitiveCreative/Demos/IntuitiveAudioAdjust/outputs_processed/IntuitiveAudioAdjust_square_trim_pitchdown.wav
+  uploadId: 0

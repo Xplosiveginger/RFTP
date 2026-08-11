@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: -5977556805228686777}
   - component: {fileID: 8469915852507674504}
   - component: {fileID: 2757194766695689339}
+  - component: {fileID: -8456249491367458805}
   m_Layer: 6
   m_Name: Neutron
   m_TagString: Enemy
@@ -297,3 +298,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xpAmount: 5
   dropRadius: 1
+--- !u!114 &-8456249491367458805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7117651411527206627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7c4c8b0d7666f24086f1d03a2747111, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 3d93f5957cda4874eb0cb7c9cf36c5f5, type: 3}

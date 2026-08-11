@@ -7,6 +7,11 @@ public class PauseManager : MonoBehaviour
 {
     public static PauseManager instance;
 
+    [Header("Sound")]
+    public AudioSource  audioSource;
+    public AudioClip pauseSound;
+    public AudioClip buttonClickSound;
+    
     [Header("Pause UI")]
     public GameObject gameScreenCanvas;
 
@@ -82,11 +87,10 @@ public class PauseManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            runReportPanel.SetActive(!runReportPanel.activeSelf);
-            RunReportManager.Instance.UpdateRunReportStats();
-        }
+        // if (Input.GetKeyDown(KeyCode.R))
+        // {
+        //     runReportPanel.SetActive(!runReportPanel.activeSelf);
+        // }
     }
 
     //========================================================
@@ -103,7 +107,7 @@ public class PauseManager : MonoBehaviour
         }
 
         isPaused = true;
-
+        PlaySoundForPause(pauseSound);
         UpdatePauseStats();
 
         // Enable pause UI
@@ -133,6 +137,11 @@ public class PauseManager : MonoBehaviour
         Time.timeScale = 0f;
     }
 
+    private void PlaySoundForPause(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
+    }
+
     public void Resume()
     {
         // Stop any currently running animation
@@ -141,9 +150,8 @@ public class PauseManager : MonoBehaviour
             StopCoroutine(statusPanelRoutine);
             statusPanelRoutine = null;
         }
-
+        PlaySoundForPause(pauseSound);
         isPaused = false;
-
         // Start resume animation
         statusPanelRoutine = StartCoroutine(ResumeRoutine());
     }
@@ -216,13 +224,15 @@ public class PauseManager : MonoBehaviour
     {
         pauseBoxPanel.SetActive(false);
         settingsMenuPanel.SetActive(true);
-
+        PlaySoundForPause(buttonClickSound);
         displaySettingsPanel.SetActive(false);
         audioSettingsPanel.SetActive(false);
     }
 
     public void ExitGame()
     {
+        PlaySoundForPause(buttonClickSound);
+
         Application.Quit();
     }
 
@@ -232,18 +242,24 @@ public class PauseManager : MonoBehaviour
 
     public void OpenDisplaySettings()
     {
+        PlaySoundForPause(buttonClickSound);
+
         settingsMenuPanel.SetActive(false);
         displaySettingsPanel.SetActive(true);
     }
 
     public void OpenAudioSettings()
     {
+        PlaySoundForPause(buttonClickSound);
+
         settingsMenuPanel.SetActive(false);
         audioSettingsPanel.SetActive(true);
     }
 
     public void BackToPauseMenu()
     {
+        PlaySoundForPause(buttonClickSound);
+
         settingsMenuPanel.SetActive(false);
 
         displaySettingsPanel.SetActive(false);
@@ -258,6 +274,8 @@ public class PauseManager : MonoBehaviour
 
     public void CloseDisplaySettings()
     {
+        PlaySoundForPause(buttonClickSound);
+
         displaySettingsPanel.SetActive(false);
         settingsMenuPanel.SetActive(true);
     }
@@ -268,6 +286,8 @@ public class PauseManager : MonoBehaviour
 
     public void CloseAudioSettings()
     {
+        PlaySoundForPause(buttonClickSound);
+
         audioSettingsPanel.SetActive(false);
         settingsMenuPanel.SetActive(true);
     }
