@@ -244,6 +244,9 @@ MonoBehaviour:
   damageArea:
     serializedVersion: 2
     m_Bits: 2048
+  AlkalineStateDamageInterval: 1
+  NeutralStateDamageInterval: 0.5
+  AcidicStateDamageInterval: 0.3
 --- !u!114 &4718403573189803202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,14 +311,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 28436043897c2c24a91b33015f54d11f, type: 2}
   - {fileID: 11400000, guid: e46498aa1b1ce2d42ac3fd466d5e63da, type: 2}
   - {fileID: 11400000, guid: bf8fd70a462fa844cad460a7a0c18fe9, type: 2}
-  statList:
-  - statName: 1
-    baseValue: 0
-    maxValue: 0
-    startValue: 0
-    startMultiplier: 0
-    currentMultiplier: 0
-    currentValue: 0
+  statList: []
 --- !u!114 &-8590481374319888289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,5 +352,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caa4aaaef5ca8f14289e9c5f919e3f2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 2
+  DamageAmount: 10
   damageInterval: 1

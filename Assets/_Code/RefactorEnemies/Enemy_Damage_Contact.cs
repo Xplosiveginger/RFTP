@@ -41,6 +41,11 @@ public class Enemy_Damage_Contact : MonoBehaviour
         DamageAmount = StatManager.GetStat(EStatType.Damage).currentValue;
     }
 
+    public void ModifyDamageInterval(float amount)
+    {
+        if(amount>0)
+            damageInterval=amount;
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))

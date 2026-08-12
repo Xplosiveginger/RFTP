@@ -23,12 +23,12 @@ public class Dustbin : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            var healthSys = other.GetComponent<HealthSystem>();
+            /*var healthSys = other.GetComponent<HealthSystem>();
 
             if (healthSys != null)
             {
                 healthSys.Damage(damageAmount);
-            }
+            }*/
 
             // Decide based on chance if prefab should spawn
             if (prefabToSpawn != null && Random.value < spawnChance)
