@@ -254,6 +254,7 @@ MonoBehaviour:
   statDataList:
   - {fileID: 11400000, guid: 78eca0b0aa1b5194a994d98be91f0c46, type: 2}
   - {fileID: 11400000, guid: 7acfa2a143e8ec44f98adf5cebe2b116, type: 2}
+  - {fileID: 11400000, guid: e25605a89ebb1ca459d981976f0bff5b, type: 2}
   statList: []
 --- !u!114 &-8978186440762551885
 MonoBehaviour:
@@ -267,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caa4aaaef5ca8f14289e9c5f919e3f2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 2
+  DamageAmount: 10
   damageInterval: 1
 --- !u!114 &-8290234182166473130
 MonoBehaviour:
@@ -295,5 +296,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 410176578d912fe4f817ba06a6bc0f19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xpAmount: 5
+  xpAmount: 1
   dropRadius: 1

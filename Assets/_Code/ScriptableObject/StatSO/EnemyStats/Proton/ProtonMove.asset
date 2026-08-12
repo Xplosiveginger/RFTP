@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ProtonMove
   m_EditorClassIdentifier: 
   statName: 0
-  baseValue: 3.5
-  maxValue: 3.5
+  baseValue: 2
+  maxValue: 2
   startValue: 0
   startMultiplier: 1

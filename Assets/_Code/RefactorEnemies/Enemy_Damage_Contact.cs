@@ -1,16 +1,45 @@
+using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
+using Sirenix.Serialization;
 
+[RequireComponent(typeof(StatManager))]
 public class Enemy_Damage_Contact : MonoBehaviour
 {
     [Header("Damage Settings")]
     [Tooltip("Amount of damage dealt per tick.")]
-    [SerializeField] private int damageAmount = 10;
+    [SerializeField,ReadOnly] private float  DamageAmount = 10;
 
     [Tooltip("Time between damage ticks in seconds.")]
     [SerializeField] private float damageInterval = 1f;
 
+    private StatManager StatManager;
     private HealthSystem playerHealth;
     private float damageTimer;
+
+    private void Start()
+    {
+        StatManager = GetComponent<StatManager>();
+        if (StatManager == null)
+        {
+            Debug.LogError("StatManager is missing");
+        }
+        else
+        {
+            StatManager.OnStatChanged += () =>
+            {
+                UpdateStats();
+            };
+        }
+
+        DamageAmount = StatManager.GetStat(EStatType.Damage).currentValue;
+
+    }
+
+    void UpdateStats()
+    {
+        DamageAmount = StatManager.GetStat(EStatType.Damage).currentValue;
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -29,7 +58,7 @@ public class Enemy_Damage_Contact : MonoBehaviour
 
             if (damageTimer >= damageInterval)
             {
-                playerHealth.Damage(damageAmount);
+                playerHealth.Damage((int)DamageAmount);
                 damageTimer = 0f;
             }
         }

@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: -6722925433350841161}
   - component: {fileID: -8590481374319888289}
   - component: {fileID: 4142875989192245542}
+  - component: {fileID: 5149624937084333658}
   m_Layer: 6
   m_Name: LitmusPaper
   m_TagString: Enemy
@@ -175,7 +176,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -306,7 +307,15 @@ MonoBehaviour:
   statDataList:
   - {fileID: 11400000, guid: 28436043897c2c24a91b33015f54d11f, type: 2}
   - {fileID: 11400000, guid: e46498aa1b1ce2d42ac3fd466d5e63da, type: 2}
-  statList: []
+  - {fileID: 11400000, guid: bf8fd70a462fa844cad460a7a0c18fe9, type: 2}
+  statList:
+  - statName: 1
+    baseValue: 0
+    maxValue: 0
+    startValue: 0
+    startMultiplier: 0
+    currentMultiplier: 0
+    currentValue: 0
 --- !u!114 &-8590481374319888289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,3 +344,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xpAmount: 5
   dropRadius: 1
+--- !u!114 &5149624937084333658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2913699253501788760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caa4aaaef5ca8f14289e9c5f919e3f2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 2
+  damageInterval: 1
