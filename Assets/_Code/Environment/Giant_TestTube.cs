@@ -51,6 +51,8 @@ public class InteractiveTiltingItem : MonoBehaviour
     private bool playerInsidePrevFrame = false;
     private Vector3 dynamicTiltEuler;
 
+    [Header("Sound Settings")] 
+    public AudioClip tiltSound;
     private void Awake()
     {
         originalRotation = transform.localRotation;
@@ -133,6 +135,7 @@ public class InteractiveTiltingItem : MonoBehaviour
         Vector3 tiltEuler = useDynamicTiltDirection ? dynamicTiltEuler : targetRotationEuler;
 
         // Tilt animation (optional: can comment out if you only want droplet, not tilt)
+        GlobalAudioPlayer.Instance.PlayAudio(tiltSound);
         transform.DOLocalRotate(tiltEuler, tiltDuration).SetEase(Ease.OutSine).OnComplete(() =>
         {
             StartCoroutine(StartDropletFall());

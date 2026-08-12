@@ -3326,6 +3326,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 10
   slowDuration: 3
+  smokeSound: {fileID: 0}
 --- !u!212 &88810288
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3820,6 +3821,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 10
   slowDuration: 3
+  smokeSound: {fileID: 0}
 --- !u!212 &110853655
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5685,6 +5687,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 10
   slowDuration: 3
+  smokeSound: {fileID: 8300000, guid: 4667c7e7603245a46bf4d57358120bfa, type: 3}
 --- !u!212 &166171337
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6367,6 +6370,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 10
   slowDuration: 3
+  smokeSound: {fileID: 8300000, guid: 4667c7e7603245a46bf4d57358120bfa, type: 3}
 --- !u!212 &178441467
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9656,6 +9660,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 10
   slowDuration: 3
+  smokeSound: {fileID: 8300000, guid: 4667c7e7603245a46bf4d57358120bfa, type: 3}
 --- !u!212 &186684607
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12398,6 +12403,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 0.5
   slowDuration: 1
+  smokeSound: {fileID: 0}
 --- !u!212 &233435441
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14522,6 +14528,8 @@ MonoBehaviour:
   damage: 10
   damageRadius: 0.4
   destroyOnFall: 1
+  testTubeFallingAudio: {fileID: 0}
+  fireSound: {fileID: 0}
 --- !u!61 &299982938
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16002,6 +16010,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 0.5
   slowDuration: 1
+  smokeSound: {fileID: 0}
 --- !u!212 &324148505
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16402,6 +16411,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 10
   slowDuration: 3
+  smokeSound: {fileID: 0}
 --- !u!212 &332375231
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17815,6 +17825,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 0.5
   slowDuration: 1
+  smokeSound: {fileID: 0}
 --- !u!212 &353194433
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20810,6 +20821,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 10
   slowDuration: 3
+  smokeSound: {fileID: 8300000, guid: 4667c7e7603245a46bf4d57358120bfa, type: 3}
 --- !u!212 &364792200
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -21427,6 +21439,8 @@ MonoBehaviour:
   damage: 10
   damageRadius: 0.4
   destroyOnFall: 1
+  testTubeFallingAudio: {fileID: 0}
+  fireSound: {fileID: 0}
 --- !u!61 &375866841
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -39611,6 +39625,8 @@ MonoBehaviour:
   damage: 10
   damageRadius: 0.4
   destroyOnFall: 1
+  testTubeFallingAudio: {fileID: 0}
+  fireSound: {fileID: 0}
 --- !u!61 &422862089
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -40467,6 +40483,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 10
   slowDuration: 3
+  smokeSound: {fileID: 0}
 --- !u!212 &452446089
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -44683,6 +44700,7 @@ MonoBehaviour:
   destroyOnTilt: 0
   resetInterval: 30
   spriteOnPlayerEnter: {fileID: 21300000, guid: 4046f72c90184cf45a4815c479252701, type: 3}
+  tiltSound: {fileID: 0}
 --- !u!212 &531902681
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -45913,6 +45931,8 @@ MonoBehaviour:
   damage: 8
   damageRadius: 0.4
   destroyOnFall: 1
+  testTubeFallingAudio: {fileID: 0}
+  fireSound: {fileID: 0}
 --- !u!61 &564218487
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -46848,6 +46868,8 @@ MonoBehaviour:
   damage: 10
   damageRadius: 0.4
   destroyOnFall: 1
+  testTubeFallingAudio: {fileID: 0}
+  fireSound: {fileID: 0}
 --- !u!61 &582864332
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -47171,6 +47193,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 10
   slowDuration: 3
+  smokeSound: {fileID: 0}
 --- !u!212 &586437305
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -48415,6 +48438,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 10
   slowDuration: 3
+  smokeSound: {fileID: 8300000, guid: 4667c7e7603245a46bf4d57358120bfa, type: 3}
 --- !u!212 &602670736
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -50855,6 +50879,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 0.5
   slowDuration: 1
+  smokeSound: {fileID: 0}
 --- !u!212 &639028255
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -51884,6 +51909,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 10
   slowDuration: 3
+  smokeSound: {fileID: 0}
 --- !u!212 &668104837
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -53779,6 +53805,8 @@ MonoBehaviour:
   damage: 10
   damageRadius: 0.4
   destroyOnFall: 1
+  testTubeFallingAudio: {fileID: 0}
+  fireSound: {fileID: 0}
 --- !u!61 &716789370
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -54499,6 +54527,8 @@ MonoBehaviour:
   damage: 8
   damageRadius: 0.4
   destroyOnFall: 1
+  testTubeFallingAudio: {fileID: 0}
+  fireSound: {fileID: 0}
 --- !u!61 &730287453
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -55197,6 +55227,8 @@ MonoBehaviour:
   damage: 10
   damageRadius: 0.4
   destroyOnFall: 1
+  testTubeFallingAudio: {fileID: 0}
+  fireSound: {fileID: 0}
 --- !u!61 &767747013
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -64741,6 +64773,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 10
   slowDuration: 3
+  smokeSound: {fileID: 8300000, guid: 4667c7e7603245a46bf4d57358120bfa, type: 3}
 --- !u!212 &868439200
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -66453,6 +66486,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 0.5
   slowDuration: 1
+  smokeSound: {fileID: 0}
 --- !u!212 &901842838
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -67488,6 +67522,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 0.5
   slowDuration: 1
+  smokeSound: {fileID: 0}
 --- !u!212 &907586562
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -71100,6 +71135,8 @@ MonoBehaviour:
   damage: 8
   damageRadius: 0.4
   destroyOnFall: 1
+  testTubeFallingAudio: {fileID: 0}
+  fireSound: {fileID: 0}
 --- !u!61 &927231161
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -72705,6 +72742,8 @@ MonoBehaviour:
   damage: 10
   damageRadius: 0.4
   destroyOnFall: 1
+  testTubeFallingAudio: {fileID: 0}
+  fireSound: {fileID: 0}
 --- !u!61 &977086346
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -73282,6 +73321,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 10
   slowDuration: 3
+  smokeSound: {fileID: 8300000, guid: 4667c7e7603245a46bf4d57358120bfa, type: 3}
 --- !u!212 &1011458864
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -73635,6 +73675,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 10
   slowDuration: 3
+  smokeSound: {fileID: 8300000, guid: 4667c7e7603245a46bf4d57358120bfa, type: 3}
 --- !u!212 &1016853506
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -77337,6 +77378,8 @@ MonoBehaviour:
   damage: 10
   damageRadius: 0.4
   destroyOnFall: 1
+  testTubeFallingAudio: {fileID: 0}
+  fireSound: {fileID: 0}
 --- !u!61 &1107228983
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -77674,6 +77717,8 @@ MonoBehaviour:
   damage: 10
   damageRadius: 0.4
   destroyOnFall: 1
+  testTubeFallingAudio: {fileID: 0}
+  fireSound: {fileID: 0}
 --- !u!61 &1121399053
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -78215,6 +78260,8 @@ MonoBehaviour:
   damage: 10
   damageRadius: 0.4
   destroyOnFall: 1
+  testTubeFallingAudio: {fileID: 0}
+  fireSound: {fileID: 0}
 --- !u!61 &1126604649
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -79157,6 +79204,8 @@ MonoBehaviour:
   damage: 8
   damageRadius: 0.4
   destroyOnFall: 1
+  testTubeFallingAudio: {fileID: 0}
+  fireSound: {fileID: 0}
 --- !u!61 &1159342101
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -79521,6 +79570,7 @@ MonoBehaviour:
   destroyOnTilt: 0
   resetInterval: 30
   spriteOnPlayerEnter: {fileID: 21300000, guid: 932e0490ab2c1d542ab6776345b20026, type: 3}
+  tiltSound: {fileID: 0}
 --- !u!212 &1160749703
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -80580,6 +80630,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 0.5
   slowDuration: 1
+  smokeSound: {fileID: 0}
 --- !u!212 &1164311605
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -80784,6 +80835,8 @@ MonoBehaviour:
   damage: 8
   damageRadius: 0.4
   destroyOnFall: 1
+  testTubeFallingAudio: {fileID: 0}
+  fireSound: {fileID: 0}
 --- !u!61 &1166155700
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -82089,6 +82142,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 0.5
   slowDuration: 1
+  smokeSound: {fileID: 0}
 --- !u!212 &1180498753
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -82380,6 +82434,8 @@ MonoBehaviour:
   damage: 8
   damageRadius: 0.4
   destroyOnFall: 1
+  testTubeFallingAudio: {fileID: 0}
+  fireSound: {fileID: 0}
 --- !u!61 &1196712302
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -82541,6 +82597,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 10
   slowDuration: 3
+  smokeSound: {fileID: 0}
 --- !u!212 &1198989252
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -84812,6 +84869,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 10
   slowDuration: 3
+  smokeSound: {fileID: 8300000, guid: 4667c7e7603245a46bf4d57358120bfa, type: 3}
 --- !u!212 &1258038556
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -85722,6 +85780,8 @@ MonoBehaviour:
   damage: 10
   damageRadius: 0.4
   destroyOnFall: 1
+  testTubeFallingAudio: {fileID: 0}
+  fireSound: {fileID: 0}
 --- !u!61 &1288406257
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -85885,6 +85945,8 @@ MonoBehaviour:
   damage: 8
   damageRadius: 0.4
   destroyOnFall: 1
+  testTubeFallingAudio: {fileID: 0}
+  fireSound: {fileID: 0}
 --- !u!61 &1288776063
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -86660,6 +86722,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 10
   slowDuration: 3
+  smokeSound: {fileID: 0}
 --- !u!212 &1305450671
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -87556,6 +87619,8 @@ MonoBehaviour:
   damage: 10
   damageRadius: 0.4
   destroyOnFall: 1
+  testTubeFallingAudio: {fileID: 0}
+  fireSound: {fileID: 0}
 --- !u!61 &1327647421
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -89517,6 +89582,8 @@ MonoBehaviour:
   damage: 8
   damageRadius: 0.4
   destroyOnFall: 1
+  testTubeFallingAudio: {fileID: 0}
+  fireSound: {fileID: 0}
 --- !u!61 &1372387109
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -90144,6 +90211,8 @@ MonoBehaviour:
   damage: 10
   damageRadius: 0.4
   destroyOnFall: 1
+  testTubeFallingAudio: {fileID: 0}
+  fireSound: {fileID: 0}
 --- !u!61 &1385713669
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -90305,6 +90374,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 10
   slowDuration: 3
+  smokeSound: {fileID: 8300000, guid: 4667c7e7603245a46bf4d57358120bfa, type: 3}
 --- !u!212 &1389201689
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -90834,6 +90904,7 @@ MonoBehaviour:
   destroyOnTilt: 0
   resetInterval: 30
   spriteOnPlayerEnter: {fileID: 21300000, guid: 4046f72c90184cf45a4815c479252701, type: 3}
+  tiltSound: {fileID: 0}
 --- !u!212 &1396719622
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -109197,6 +109268,8 @@ MonoBehaviour:
   damage: 8
   damageRadius: 0.4
   destroyOnFall: 1
+  testTubeFallingAudio: {fileID: 0}
+  fireSound: {fileID: 0}
 --- !u!61 &1445464940
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -110741,6 +110814,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 0.5
   slowDuration: 1
+  smokeSound: {fileID: 0}
 --- !u!212 &1455063549
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -112012,6 +112086,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 10
   slowDuration: 3
+  smokeSound: {fileID: 0}
 --- !u!212 &1484625489
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -113016,6 +113091,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 0.5
   slowDuration: 1
+  smokeSound: {fileID: 0}
 --- !u!212 &1486626329
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -114067,6 +114143,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 10
   slowDuration: 3
+  smokeSound: {fileID: 0}
 --- !u!212 &1512068083
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -114358,6 +114435,8 @@ MonoBehaviour:
   damage: 10
   damageRadius: 0.4
   destroyOnFall: 1
+  testTubeFallingAudio: {fileID: 0}
+  fireSound: {fileID: 0}
 --- !u!61 &1526567502
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -132569,6 +132648,8 @@ MonoBehaviour:
   damage: 8
   damageRadius: 0.4
   destroyOnFall: 1
+  testTubeFallingAudio: {fileID: 0}
+  fireSound: {fileID: 0}
 --- !u!61 &1546463974
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -133209,6 +133290,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 10
   slowDuration: 3
+  smokeSound: {fileID: 0}
 --- !u!212 &1555049895
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -136846,6 +136928,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 0.5
   slowDuration: 1
+  smokeSound: {fileID: 0}
 --- !u!212 &1584238773
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -137756,6 +137839,8 @@ MonoBehaviour:
   damage: 10
   damageRadius: 0.4
   destroyOnFall: 1
+  testTubeFallingAudio: {fileID: 0}
+  fireSound: {fileID: 0}
 --- !u!61 &1596594464
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -139757,6 +139842,8 @@ MonoBehaviour:
   damage: 10
   damageRadius: 0.4
   destroyOnFall: 1
+  testTubeFallingAudio: {fileID: 0}
+  fireSound: {fileID: 0}
 --- !u!61 &1657904002
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -142730,6 +142817,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 0.5
   slowDuration: 1
+  smokeSound: {fileID: 0}
 --- !u!212 &1715028451
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -143696,6 +143784,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 10
   slowDuration: 3
+  smokeSound: {fileID: 8300000, guid: 4667c7e7603245a46bf4d57358120bfa, type: 3}
 --- !u!212 &1766182439
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -145025,6 +145114,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 0.5
   slowDuration: 1
+  smokeSound: {fileID: 0}
 --- !u!212 &1779868767
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -145140,6 +145230,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 10
   slowDuration: 3
+  smokeSound: {fileID: 0}
 --- !u!212 &1781616274
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -146718,6 +146809,8 @@ MonoBehaviour:
   damage: 10
   damageRadius: 0.4
   destroyOnFall: 1
+  testTubeFallingAudio: {fileID: 0}
+  fireSound: {fileID: 0}
 --- !u!61 &1828318193
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -147295,6 +147388,8 @@ MonoBehaviour:
   damage: 10
   damageRadius: 0.4
   destroyOnFall: 1
+  testTubeFallingAudio: {fileID: 0}
+  fireSound: {fileID: 0}
 --- !u!61 &1835538520
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -148360,6 +148455,8 @@ MonoBehaviour:
   damage: 8
   damageRadius: 0.4
   destroyOnFall: 1
+  testTubeFallingAudio: {fileID: 0}
+  fireSound: {fileID: 0}
 --- !u!61 &1855979587
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -148523,6 +148620,8 @@ MonoBehaviour:
   damage: 10
   damageRadius: 0.4
   destroyOnFall: 1
+  testTubeFallingAudio: {fileID: 8300000, guid: 95cc10cca27f35d46ae1b1949f70f192, type: 3}
+  fireSound: {fileID: 0}
 --- !u!61 &1857196290
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -149260,6 +149359,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 10
   slowDuration: 3
+  smokeSound: {fileID: 8300000, guid: 4667c7e7603245a46bf4d57358120bfa, type: 3}
 --- !u!212 &1879354294
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -150223,6 +150323,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 10
   slowDuration: 3
+  smokeSound: {fileID: 8300000, guid: 4667c7e7603245a46bf4d57358120bfa, type: 3}
 --- !u!212 &1903150857
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -151291,6 +151392,8 @@ MonoBehaviour:
   damage: 8
   damageRadius: 0.4
   destroyOnFall: 1
+  testTubeFallingAudio: {fileID: 0}
+  fireSound: {fileID: 0}
 --- !u!61 &1922769235
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -152707,6 +152810,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 10
   slowDuration: 3
+  smokeSound: {fileID: 8300000, guid: 4667c7e7603245a46bf4d57358120bfa, type: 3}
 --- !u!212 &1959231596
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -172375,6 +172479,8 @@ MonoBehaviour:
   damage: 10
   damageRadius: 0.4
   destroyOnFall: 1
+  testTubeFallingAudio: {fileID: 0}
+  fireSound: {fileID: 0}
 --- !u!61 &2022920769
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -173290,6 +173396,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 10
   slowDuration: 3
+  smokeSound: {fileID: 0}
 --- !u!212 &2045636610
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -173407,6 +173514,8 @@ MonoBehaviour:
   damage: 8
   damageRadius: 0.4
   destroyOnFall: 1
+  testTubeFallingAudio: {fileID: 0}
+  fireSound: {fileID: 0}
 --- !u!61 &2048254209
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -173962,6 +174071,8 @@ MonoBehaviour:
   damage: 10
   damageRadius: 0.4
   destroyOnFall: 1
+  testTubeFallingAudio: {fileID: 0}
+  fireSound: {fileID: 0}
 --- !u!61 &2056869647
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -176131,6 +176242,7 @@ MonoBehaviour:
   destroyOnTilt: 0
   resetInterval: 30
   spriteOnPlayerEnter: {fileID: 21300000, guid: 932e0490ab2c1d542ab6776345b20026, type: 3}
+  tiltSound: {fileID: 0}
 --- !u!212 &2109002490
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -178568,6 +178680,7 @@ MonoBehaviour:
   chanceMultiplier: 0.05
   slowMultiplier: 10
   slowDuration: 3
+  smokeSound: {fileID: 0}
 --- !u!212 &2134182730
 SpriteRenderer:
   m_ObjectHideFlags: 0

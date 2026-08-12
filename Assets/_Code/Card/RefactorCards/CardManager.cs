@@ -57,7 +57,8 @@ public class CardManager : MonoBehaviour
     
     // Track which cards have been shown in the current selection
     private HashSet<CardDataSO> currentSelectionCards = new HashSet<CardDataSO>();
-
+    private HealthSystem PlayerHealth;
+    private StatManager StatManager;
     public event Action OnCardsInitialized;
     public static event Action<CardDataSO> CardSelected;
     public static event Action CardClicked;
@@ -68,6 +69,9 @@ public class CardManager : MonoBehaviour
         {
             statusPanelAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
         }
+        
+        PlayerHealth = SM.Instance.Player.GetComponent<HealthSystem>();
+        StatManager = SM.Instance.Player.GetComponent<StatManager>();
     }
     private void OnEnable()
     {
@@ -109,15 +113,35 @@ public class CardManager : MonoBehaviour
 
         // Replace these with the actual stat references
         // exposed by your GameStat_SO.
-        totalHealthText.text = gameStatSO.totalHealth.ToString();
-        damageText.text = gameStatSO.damage.ToString();
-        aoeText.text = gameStatSO.areaOfEffect.ToString();
-        healthRegenText.text = gameStatSO.healthRegen.ToString();
-        moveSpeedText.text = gameStatSO.moveSpeed.ToString();
-        speedOfWeaponText.text = gameStatSO.projectileSpeed.ToString();
-        numOfProjectilesText.text = gameStatSO.numberOfProjectiles.ToString();
-        cooldownText.text = gameStatSO.cooldown.ToString();  
-        durationText.text = gameStatSO.duration.ToString();
+        if (StatManager != null)
+        {
+            if((StatManager.GetStat(EStatType.Damage)!=null))
+                damageText.text = (StatManager.GetStat(EStatType.Damage).currentValue).ToString();
+            
+            
+            if(StatManager.GetStat(EStatType.HealthRegen)!=null)
+                healthRegenText.text = (StatManager.GetStat(EStatType.HealthRegen).currentValue).ToString();
+        
+            if((StatManager.GetStat(EStatType.MoveSpeed)!=null))
+                moveSpeedText.text = ((StatManager.GetStat(EStatType.MoveSpeed).currentValue)).ToString();
+            
+            if((StatManager.GetStat(EStatType.AOESize)!=null))
+                aoeText.text = (StatManager.GetStat(EStatType.AOESize).currentValue).ToString();
+            
+            if(StatManager.GetStat(EStatType.ProjectileSpeed)!=null)
+                speedOfWeaponText.text = (StatManager.GetStat(EStatType.ProjectileSpeed).currentValue).ToString();
+            
+            if((StatManager.GetStat(EStatType.ProjectileCount)!=null))
+                numOfProjectilesText.text = (StatManager.GetStat(EStatType.ProjectileCount)).currentValue.ToString();
+            
+            if((StatManager.GetStat(EStatType.AttackCooldown)!=null))
+                cooldownText.text = (StatManager.GetStat(EStatType.AttackCooldown)).currentValue.ToString();  
+            
+            if((StatManager.GetStat(EStatType.ActiveDuration)!=null))
+                durationText.text = (StatManager.GetStat(EStatType.ActiveDuration)).currentValue.ToString();
+            
+            
+        }
     }
     
     private void CardInitializer()

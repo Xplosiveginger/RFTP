@@ -52,6 +52,9 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -114,6 +117,7 @@ MonoBehaviour:
   destroyOnTilt: 0
   resetInterval: 0.3
   spriteOnPlayerEnter: {fileID: 21300000, guid: 932e0490ab2c1d542ab6776345b20026, type: 3}
+  tiltSound: {fileID: 8300000, guid: a3f3aad0efde15f4eba99e3765b3ce5a, type: 3}
 --- !u!70 &6745528212391919144
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -122,6 +126,7 @@ CapsuleCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2972764583300703140}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -145,7 +150,8 @@ CapsuleCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0.17961805, y: 0.095854655}
   m_Size: {x: 5.010239, y: 9.553804}
   m_Direction: 0

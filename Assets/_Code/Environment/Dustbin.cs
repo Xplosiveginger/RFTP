@@ -13,6 +13,7 @@ public class Dustbin : MonoBehaviour
 
     public GameObject prefabToSpawn;
 
+    public AudioClip furnitureSound;
     private GameStat_SO GameStat_SO;
     private void Start()
     {
@@ -38,6 +39,7 @@ public class Dustbin : MonoBehaviour
             }
 
             GameStat_SO.RegisterBreakablesDestroyed();
+            GlobalAudioPlayer.Instance.PlayAudio(furnitureSound);
             Destroy(gameObject);
         }
     }

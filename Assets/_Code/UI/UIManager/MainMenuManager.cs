@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class MainMenuManager : MonoBehaviour
     public GameObject audioSettingsPanel;
     public GameObject graphicsSettingsPanel;
 
+    [Header("Shop")] 
+    public Button shopBuyButton;
+    public Button shopRefundButton;
     [Header("Audio")]
     public AudioSource audioSource;
     public AudioClip buttonClick;
@@ -31,6 +35,9 @@ public class MainMenuManager : MonoBehaviour
         startPanel.SetActive(true);
         shopPanel.SetActive(false);
         settingsPanel.SetActive(false);
+        
+        shopBuyButton.onClick.AddListener(OnClickedShopBuyButton);
+        shopRefundButton.onClick.AddListener(OnClickedShopRefundButton);
     }
 
     public void OnClickPlaySound()
@@ -53,6 +60,14 @@ public class MainMenuManager : MonoBehaviour
         startPanel.SetActive(false);
         shopPanel.SetActive(true);
         PlaySound(buttonClick);
+    }
+    public void OnClickedShopBuyButton()
+    {
+        PlaySound(buyButtonClick);
+    }
+    public void OnClickedShopRefundButton()
+    {
+        PlaySound(refundButtonClick);
     }
 
     public void OnClickedShopCloseButton()

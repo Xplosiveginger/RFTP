@@ -42,6 +42,8 @@ public class ShakeAndSpawnDamage : MonoBehaviour
     private bool hasSpawned = false;
     private Sequence shakeSequence;
 
+    [Header("Sound")]
+    public AudioClip smokeSound;
     void Awake()
     {
         currentChance = initialChance;
@@ -97,6 +99,7 @@ public class ShakeAndSpawnDamage : MonoBehaviour
         shakeSequence.OnComplete(() =>
         {
             SpawnDamageParticle();
+            GlobalAudioPlayer.Instance.PlayAudio(smokeSound);
         });
     }
 
