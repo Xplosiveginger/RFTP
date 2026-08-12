@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 1210522729364390921}
   - component: {fileID: -5551151500942068956}
   - component: {fileID: 6926468862527863757}
+  - component: {fileID: 697214626437301691}
   m_Layer: 6
   m_Name: Pendulum
   m_TagString: Enemy
@@ -191,7 +192,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2148986130981883437}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0f560ce9db0a2d94683de833c56153c0, type: 3}
   m_Name: 
@@ -263,6 +264,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xpAmount: 2
   dropRadius: 1
+--- !u!114 &697214626437301691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2148986130981883437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00024d1d946c50441b8481604c70c2de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stoppingDistance: 5
+  moveSpeed: 3.5
+  frequencyWaveParticles: {fileID: 0}
+  attackCooldown: 3
 --- !u!1 &8033702345953058883
 GameObject:
   m_ObjectHideFlags: 0
