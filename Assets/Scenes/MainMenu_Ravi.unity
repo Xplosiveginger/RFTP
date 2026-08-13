@@ -16570,7 +16570,7 @@ MonoBehaviour:
   shopRefundButton: {fileID: 1671959431}
   audioSource: {fileID: 1370161238}
   buttonClick: {fileID: 8300000, guid: 866a8db713e8a6a43b4005bfb8f228d9, type: 3}
-  buyButtonClick: {fileID: 8300000, guid: de26b0afd35db0d40b1ee51c72c36468, type: 3}
+  buyButtonClick: {fileID: 8300000, guid: e4695ec860eeaf645adb1811922d1b1c, type: 3}
   refundButtonClick: {fileID: 8300000, guid: 8132a17e3cd792c4385b1df0e1377fcc, type: 3}
 --- !u!82 &1370161238
 AudioSource:

@@ -11,6 +11,8 @@ public class RunReport_UI : MonoBehaviour
 
     private GameStat_SO gameStat;
 
+    [Header("Audio")]
+    public AudioClip runOverSound;
     [Header("Stats")]
     public TextMeshProUGUI timeSurvivedText;
     public TextMeshProUGUI moneyEarnedText;
@@ -46,7 +48,9 @@ public class RunReport_UI : MonoBehaviour
     {
         if (gameStat == null)
             return;
-
+        Time.timeScale = 0;
+        GlobalAudioPlayer.Instance.isGameOver = true;
+        GlobalAudioPlayer.Instance.PlayAudio(runOverSound, transform);
         UpdateRunReportStats();
     }
 
