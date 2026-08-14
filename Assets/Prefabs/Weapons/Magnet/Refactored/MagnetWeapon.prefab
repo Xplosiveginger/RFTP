@@ -50,6 +50,7 @@ MonoBehaviour:
   gfx: {fileID: 9121690177814540391}
   weaponData: {fileID: 11400000, guid: 2d034c0d9dc1d2a45a4736256411c5f9, type: 2}
   enemyDetector: {fileID: 0}
+  level: 1
   isActive: 0
   inCooldown: 0
 --- !u!114 &6021260224375037781
@@ -115,6 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2e31246725d42946b940d8c0bb047fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  magnetObj: {fileID: 0}
   radius: 2.67
   damage: 8
   damageInterval: 0.5
@@ -134,8 +136,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
-  size: 0
-  damageInterval: 0
+  aoeSize: {x: 7, y: 3}
+  size: 1
+  damageInterval: 1
   magnet: {fileID: 6851178415755960992}
   damageLM:
     serializedVersion: 2
@@ -158,6 +161,9 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -203,7 +209,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 6aa4d42fbaf2b3945a11276e8e70322d, type: 3}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 6aa4d42fbaf2b3945a11276e8e70322d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1

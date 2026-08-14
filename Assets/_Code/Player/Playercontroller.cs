@@ -36,6 +36,8 @@ public class PlayerController2D : MonoBehaviour
     {
         statManager.OnMoveSpeedChanged -= GetModifiedSpeed;
         statManager.OnHealthChanged -= GetModifiedHealth;
+        CardManager.CardSelected -= OnCardSelectedHandled;
+
     }
 
     private void Awake()
@@ -73,17 +75,6 @@ public class PlayerController2D : MonoBehaviour
         animator.SetFloat("facing", lastHorizontalDir);
 
         inflicted = health.takingDOT;
-
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            AddWeapon();
-        }
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            statManager.ModifyStat(EStatType.MoveSpeed, 20);
-            //weaponManager.GetWeapon(EWeaponName.Magnet).statManager.ModifyStat(EStatType.AOESize, 20);
-        }
     }
 
     private void FixedUpdate()
@@ -106,18 +97,6 @@ public class PlayerController2D : MonoBehaviour
         speedModifier = 1f;
         speedCoroutine = null;
     }
-
-    // Testing *****************************
-    private void AddWeapon()
-    {
-        GetComponent<ReworkedWeaponManager>().AddNewWeapon(weaponToAdd);
-    }
-
-    private void ApplySpeedModif()
-    {
-        statManager.ModifyStat(EStatType.MoveSpeed, 10);
-    }
-    //**********************************
 
     private void GetModifiedSpeed()
     {

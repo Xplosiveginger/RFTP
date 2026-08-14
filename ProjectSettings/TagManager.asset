@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Ground
   - Missile
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX
@@ -25,7 +26,7 @@ TagManager:
   - Weapon
   - XP
   - death report
-  - 
+  - Ignore Collision
   - 
   - 
   - 

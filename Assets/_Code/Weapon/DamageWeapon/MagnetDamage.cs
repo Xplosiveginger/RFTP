@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class MagnetDamage : MonoBehaviour
 {
+    public MagnetRefactored magnetObj;
+
     [Header("Magnet Settings")]
     public float radius = 3f;              // detection radius
     public int damage = 10;                // damage to enemies
@@ -15,6 +17,8 @@ public class MagnetDamage : MonoBehaviour
 
     private void OnEnable()
     {
+        damage = (int)magnetObj.statManager.TryGetStat(EStatType.Damage).currentValue;
+        radius = radius * magnetObj.statManager.TryGetStat(EStatType.AOESize).currentValue;
         // Start damaging enemies when enabled
         damageRoutine = StartCoroutine(DamageEnemiesRoutine());
     }
@@ -37,13 +41,13 @@ public class MagnetDamage : MonoBehaviour
 
             foreach (var enemyCol in enemies)
             {
-                EnemyAI enemy = enemyCol.GetComponent<EnemyAI>();
+                BaseEnemyRefactor enemy = enemyCol.GetComponent<BaseEnemyRefactor>();
                 if (enemy != null)
                 {
                     HealthSystem hs = enemyCol.GetComponent<HealthSystem>();
                     if (hs != null)
                     {
-                        hs.Damage(DamageItems.GetModifiedDamage(damage));
+                        hs.Damage(damage);
                     }
                 }
             }
