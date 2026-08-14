@@ -17,8 +17,13 @@ public class CardDataSOEditor : Editor
 
     public override void OnInspectorGUI()
     {
+        
         serializedObject.Update();
         CardDataSO cardData = (CardDataSO)target;
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("Icon"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("Name"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("Description"));
+        
 
         EditorGUILayout.PropertyField(serializedObject.FindProperty("cardPriority"));
         EditorGUILayout.PropertyField(cardType);

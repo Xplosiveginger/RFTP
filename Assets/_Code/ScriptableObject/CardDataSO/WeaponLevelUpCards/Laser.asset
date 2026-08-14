@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 781b090621e04b44ab0b2e52cc84c23d, type: 3}
   m_Name: Laser
   m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: 56c662f5c2c1a2844a57994057f49a66, type: 3}
+  Name: 
+  Description: 
   levelImages:
   - {fileID: 21300000, guid: 4a80fa867afc4a84eb888af2e9887a92, type: 3}
   - {fileID: 21300000, guid: 333a633961dc58a44b9afd7a86d618c5, type: 3}
@@ -22,6 +25,14 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 106b7491efb094640a7cd52720949f92, type: 3}
   cardPriority: 5
   cardType: 3
+  itemSO: {fileID: 0}
+  item:
+    displayName: 
+    description: 
+    cardSprite: {fileID: 0}
+    affectedStat: 0
+    modifierAmount: 0
+    isPercent: 0
   affectsPlayer: 0
   affectedPlayerStat: 0
   playerStatModifier: 0

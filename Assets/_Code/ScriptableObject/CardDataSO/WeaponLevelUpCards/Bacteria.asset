@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 781b090621e04b44ab0b2e52cc84c23d, type: 3}
   m_Name: Bacteria
   m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: f913b32fa03e78742a124d583b971995, type: 3}
+  Name: Bacteria
+  Description: 
   levelImages:
   - {fileID: 21300000, guid: 8cb509702141af84f8562eb78ade3106, type: 3}
   - {fileID: 21300000, guid: 81324486757978a4e97aff9e844711df, type: 3}
@@ -22,6 +25,14 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b9110a0b69032a7478bdba04604e8bc8, type: 3}
   cardPriority: 5
   cardType: 3
+  itemSO: {fileID: 0}
+  item:
+    displayName: 
+    description: 
+    cardSprite: {fileID: 0}
+    affectedStat: 0
+    modifierAmount: 0
+    isPercent: 0
   affectsPlayer: 0
   affectedPlayerStat: 0
   playerStatModifier: 0
