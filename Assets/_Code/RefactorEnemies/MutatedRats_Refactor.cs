@@ -38,7 +38,7 @@ public class MutatedRats_Refactor : BaseEnemyRefactor
 
     private void SpawnAcidPrefabs(Vector3 spawnPos)
     {
-        float lifetime = 2f;
+        /*float lifetime = 2f;                          //Removed the Rate spawning puddles, instead it will also damage on Contact
 
         if (acidParticlePrefab != null)
         {
@@ -50,6 +50,6 @@ public class MutatedRats_Refactor : BaseEnemyRefactor
         {
             GameObject spriteObj = GameObject.Instantiate(acidSpritePrefab, spawnPos, Quaternion.identity);
             Destroy(spriteObj, lifetime);
-        }
+        }*/
     }
 }

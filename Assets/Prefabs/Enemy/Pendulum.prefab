@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 1210522729364390921}
   - component: {fileID: -5551151500942068956}
   - component: {fileID: 6926468862527863757}
-  - component: {fileID: 498317626971799752}
+  - component: {fileID: 697214626437301691}
   m_Layer: 6
   m_Name: Pendulum
   m_TagString: Enemy
@@ -192,7 +192,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2148986130981883437}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0f560ce9db0a2d94683de833c56153c0, type: 3}
   m_Name: 
@@ -220,6 +220,7 @@ MonoBehaviour:
   statDataList:
   - {fileID: 11400000, guid: 27a27764d2594e34f814944d8997b974, type: 2}
   - {fileID: 11400000, guid: e140431c760b81d46b73c84d66d52688, type: 2}
+  - {fileID: 11400000, guid: f4b06b68e246e7442aa1895b0d311e20, type: 2}
   statList: []
 --- !u!114 &1210522729364390921
 MonoBehaviour:
@@ -233,7 +234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caa4aaaef5ca8f14289e9c5f919e3f2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 2
+  DamageAmount: 10
   damageInterval: 1
 --- !u!114 &-5551151500942068956
 MonoBehaviour:
@@ -261,9 +262,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 410176578d912fe4f817ba06a6bc0f19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xpAmount: 5
+  xpAmount: 2
   dropRadius: 1
---- !u!114 &498317626971799752
+--- !u!114 &697214626437301691
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -272,10 +273,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2148986130981883437}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7c4c8b0d7666f24086f1d03a2747111, type: 3}
+  m_Script: {fileID: 11500000, guid: 00024d1d946c50441b8481604c70c2de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: 3d93f5957cda4874eb0cb7c9cf36c5f5, type: 3}
+  stoppingDistance: 5
+  moveSpeed: 3.5
+  frequencyWaveParticles: {fileID: 0}
+  attackCooldown: 3
 --- !u!1 &8033702345953058883
 GameObject:
   m_ObjectHideFlags: 0

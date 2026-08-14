@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Enemy_Damage_Contact))]
 public class LitmusPaper_Refactor : BaseEnemyRefactor
 {
     [Header("Litmus States Sprites")]
@@ -16,14 +17,23 @@ public class LitmusPaper_Refactor : BaseEnemyRefactor
     public float moveSpeedIncreaser = 0.5f;
     public LayerMask damageArea;
 
+    [Header("DamageInterval per Second")]
+    public float AlkalineStateDamageInterval = 1;
+    public float NeutralStateDamageInterval = 1;
+    public float AcidicStateDamageInterval = 1;
+
+    
     private SpriteRenderer spriteRenderer;
     private bool exploded = false;
+
+    private Enemy_Damage_Contact Enemy_Damage_Contact;
 
     protected override void Awake()
     {
         base.Awake();
         spriteRenderer = GetComponent<SpriteRenderer>();
-
+        Enemy_Damage_Contact = GetComponent<Enemy_Damage_Contact>();
+        
         if (changingSprites != null && changingSprites.Count > 0)
             spriteRenderer.sprite = changingSprites[0];
 
@@ -35,29 +45,34 @@ public class LitmusPaper_Refactor : BaseEnemyRefactor
         float hpPercent = (health/ maxHealth);
         Debug.Log(hpPercent+("IS Damageing"));
 
-        if (hpPercent <= 0.25f && !exploded)
+        /*if (hpPercent <= 0.25f && !exploded)
         {
             exploded = true;
             EnterAcidicBurst();
             return;
         }
+        */
 
-        if (hpPercent <= 0.25f)
+        if (hpPercent <= 0.5f)
         {
             // Stage 3 → Acidic (Red)
             IncreaseSpeedOnce();
             SetSprite(2);
+            Enemy_Damage_Contact.ModifyDamageInterval(AcidicStateDamageInterval);
         }
         else if (hpPercent <= 0.75f)
         {
             // Stage 2 → Neutral (Green)
             IncreaseSpeedOnce();
             SetSprite(1);
+            Enemy_Damage_Contact.ModifyDamageInterval(NeutralStateDamageInterval);
+            
         }
         else if (hpPercent <= 1f)
         {
             // Stage 1 → Alkaline shifting
             SetSprite(0);
+            Enemy_Damage_Contact.ModifyDamageInterval(AlkalineStateDamageInterval);
         }
     }
 
