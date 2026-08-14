@@ -60707,7 +60707,7 @@ GameObject:
   m_Component:
   - component: {fileID: 699948635}
   - component: {fileID: 699948636}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: cinemachine_confiner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206280,7 +206280,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 51.90008, y: 0}
+  m_AnchoredPosition: {x: 51.900024, y: 0}
   m_SizeDelta: {x: -103.79984, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &1834763706825410817
@@ -206349,7 +206349,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2.392517, y: 0}
+  m_AnchoredPosition: {x: -2.3925781, y: 0}
   m_SizeDelta: {x: -180.18, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1933009586753873349
@@ -207359,8 +207359,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardImageRenderer: {fileID: 0}
-  cardAnimator: {fileID: 2789786710307374436}
-  initializeAnimation: CardSlideUp
   cardManager: {fileID: 0}
 --- !u!224 &2789786710307374435
 RectTransform:
@@ -207561,7 +207559,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: -4.999939, y: 0}
+  m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &3146834998162912567
@@ -210637,7 +210635,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: 0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &7079161128407247807
@@ -211117,8 +211115,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardImageRenderer: {fileID: 0}
-  cardAnimator: {fileID: 7643484956032714792}
-  initializeAnimation: RightCardSlideUp
   cardManager: {fileID: 1867656242}
 --- !u!95 &7643484956032714792
 Animator:
@@ -212511,8 +212507,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardImageRenderer: {fileID: 0}
-  cardAnimator: {fileID: 9221536795400129437}
-  initializeAnimation: MiddleCardSlideUp
   cardManager: {fileID: 0}
 --- !u!95 &9221536795400129437
 Animator:
