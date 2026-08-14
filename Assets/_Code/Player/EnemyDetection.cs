@@ -8,22 +8,65 @@ public class EnemyDetection : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Enemy"))
-            enemyList.Add(collision.gameObject.GetComponent<BaseEnemyRefactor>());
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            BaseEnemyRefactor enemy = collision.gameObject.GetComponent<BaseEnemyRefactor>();
+
+            if (enemy != null && !enemyList.Contains(enemy))
+            {
+                enemyList.Add(enemy);
+            }
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            if(enemyList.Contains(collision.gameObject.GetComponent<BaseEnemyRefactor>()))
-                enemyList.Remove(collision.gameObject.GetComponent<BaseEnemyRefactor>());
+            BaseEnemyRefactor enemy = collision.gameObject.GetComponent<BaseEnemyRefactor>();
+
+            if (enemy != null)
+            {
+                enemyList.Remove(enemy);
+            }
         }
     }
 
     public Vector3 GetPositionOfRandomEnemy()
     {
-        if (enemyList.Count == 0) return Vector3.zero;
-        return enemyList[Random.Range(0, enemyList.Count)].gameObject.transform.position;
+        if (enemyList.Count == 0)
+            return Vector3.zero;
+
+        return enemyList[Random.Range(0, enemyList.Count)].transform.position;
+    }
+
+    public Vector3 GetPositionOfNearestEnemy()
+    {
+        if (enemyList.Count == 0)
+            return Vector3.zero;
+
+        Vector3 playerPosition = transform.position;
+
+        float closestSqrDistance = float.MaxValue;
+        Vector3 nearestEnemyPosition = Vector3.zero;
+
+        for (int i = 0; i < enemyList.Count; i++)
+        {
+            BaseEnemyRefactor enemy = enemyList[i];
+
+            if (enemy == null)
+                continue;
+
+            Vector3 enemyPosition = enemy.transform.position;
+            float sqrDistance = (enemyPosition - playerPosition).sqrMagnitude;
+
+            if (sqrDistance < closestSqrDistance)
+            {
+                closestSqrDistance = sqrDistance;
+                nearestEnemyPosition = enemyPosition;
+            }
+        }
+
+        return nearestEnemyPosition;
     }
 }
