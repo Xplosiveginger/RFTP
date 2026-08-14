@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6009629421795607409}
   - component: {fileID: 2481400965008513846}
+  - component: {fileID: -4244700752474966703}
+  - component: {fileID: 9034226690324689794}
   m_Layer: 0
   m_Name: Level 1
   m_TagString: Untagged
@@ -39,7 +41,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 939387012340278055}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74d109f15449b3c4485981d431207bc7, type: 3}
   m_Name: 
@@ -47,3 +49,42 @@ MonoBehaviour:
   projectilePrefab: {fileID: 6799434797546762654, guid: fd84a25e73fed4c41b7a8bc5ae2c13ef, type: 3}
   projectileCount: 5
   spawnOnEnable: 1
+--- !u!114 &-4244700752474966703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939387012340278055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1ec656ad71c31b46b5cd50c3df4e58c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statManager: {fileID: 9034226690324689794}
+  gfx: {fileID: 0}
+  weaponData: {fileID: 0}
+  enemyDetector: {fileID: 0}
+  level: 1
+  isActive: 0
+  inCooldown: 0
+  boxLength: 5
+  boxBreadth: 3
+  projectilePrefab: {fileID: 0}
+  spawnOnEnable: 1
+--- !u!114 &9034226690324689794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939387012340278055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6db34c11c33b97e48bfc69a589427d90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDamagable: 0
+  health: {fileID: 0}
+  statDataList: []
+  statList: []

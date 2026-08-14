@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5648d6fdc02a4514794796024044aed3, type: 3}
-  m_Name: Projectile Count
+  m_Script: {fileID: 11500000, guid: 02361c39e6e4db440a898fa7ae5786a6, type: 3}
+  m_Name: Acid Rain
   m_EditorClassIdentifier: 
-  statName: 5
-  baseValue: 2
-  maxValue: 2
-  startValue: 0
-  startMultiplier: 1
+  weaponName: 0
+  weaponLogo: {fileID: 502462042, guid: 266a3c010f34a044db1090dac2f2caca, type: 3}
+  weaponStatData: []
+  weaponPrefab: {fileID: 0}

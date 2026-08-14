@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-     public float damage;
+    public float damage;
+    public bool isDOT = false;
+    public float dotDuration = 2f;
 
     //private void OnCollisionEnter2D(Collision2D collision)
     //{
@@ -21,7 +23,14 @@ public class Projectile : MonoBehaviour
 
         BaseEnemyRefactor enemy = collision.gameObject.GetComponent<BaseEnemyRefactor>();
         if (enemy != null)
-            enemy.GetComponent<HealthSystem>().Damage((int)damage);
+        {
+            if (isDOT)
+            {
+                enemy.GetComponent<HealthSystem>().TakeDamageOverTime(dotDuration, 1f, (int)damage);
+            }
+            else
+                enemy.GetComponent<HealthSystem>().Damage((int)damage);
+        }
 
         Destroy(gameObject);
     }
