@@ -19,7 +19,7 @@ public class RunReport_UI : MonoBehaviour
     public TextMeshProUGUI enemyKilledText;
     public TextMeshProUGUI damageTakenText;
     public TextMeshProUGUI damageGivenText;
-    public TextMeshProUGUI breakableDestroyedText;
+    public TextMeshProUGUI highestLevelText;
 
     public GameObject weaponItemContainer;
     public GameObject weaponItemPrefab;
@@ -27,7 +27,7 @@ public class RunReport_UI : MonoBehaviour
     public GameObject skillItemContainer;
     public GameObject skillItemPrefab;
 
-
+    public ScrollViewController scrollViewController;
     private void Awake()
     {
         if (runReportManager == null)
@@ -48,9 +48,10 @@ public class RunReport_UI : MonoBehaviour
     {
         if (gameStat == null)
             return;
-        Time.timeScale = 0;
+        Time.timeScale = 1;
         GlobalAudioPlayer.Instance.isGameOver = true;
         GlobalAudioPlayer.Instance.PlayAudio(runOverSound, transform);
+        scrollViewController?.UpdateScrollState();
         UpdateRunReportStats();
     }
 
@@ -88,10 +89,10 @@ public class RunReport_UI : MonoBehaviour
             return;
 
         timeSurvivedText.text =
-            "Time Survived : " + gameStat.runTime.ToString("F2");
+            gameStat.runTime.ToString("F2");
 
         moneyEarnedText.text =
-            "Money Earned : " + gameStat.AllowanceMoney.ToString("F2");
+            gameStat.AllowanceMoney.ToString("F2");
 
         enemyKilledText.text =
             gameStat.EnemiesKilled.ToString("F2");
@@ -102,8 +103,8 @@ public class RunReport_UI : MonoBehaviour
         damageGivenText.text =
             gameStat.damageGiven.ToString("F2");
 
-        breakableDestroyedText.text =
-            gameStat.breakablesDestroyed.ToString("F2");
+        highestLevelText.text =
+            gameStat.highestLevel.ToString("F2");
 
         PopulateWeapons();
         PopulateSkills();

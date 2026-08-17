@@ -24,6 +24,9 @@ public class GameStat_SO : ScriptableObject
 
     [BoxGroup("Stats/Offense")]
     public float areaOfEffect = 100f;
+    
+    [BoxGroup("Highest Level Reached For Run Report")]
+    public float highestLevel = 100f;
 
     [BoxGroup("Stats/Offense")]
     public float projectileSpeed = 100f;
