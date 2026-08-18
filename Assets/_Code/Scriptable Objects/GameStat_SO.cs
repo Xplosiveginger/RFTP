@@ -84,28 +84,24 @@ public class GameStat_SO : ScriptableObject
 
     #endregion
 
-
-    #region ===== SKILL DATA =====
+    #region ===== ITEM DATA =====
 
     [System.Serializable]
-    public struct SkillData
+    public struct ItemData
     {
-        public Sprite image;
+        public CardDataSO cardDataSO;
         public int level;
+
+        public ItemData(CardDataSO cardDataSO, int level)
+        {
+            this.cardDataSO = cardDataSO;
+            this.level = level;
+        }
     }
 
-    [Title("Skills")]
-    [BoxGroup("Loadout/Skills")]
-    public SkillData skill1;
-
-    [BoxGroup("Loadout/Skills")]
-    public SkillData skill2;
-
-    [BoxGroup("Loadout/Skills")]
-    public SkillData skill3;
-
-    [BoxGroup("Loadout/Skills")]
-    public SkillData skill4;
+    [Title("Items")]
+    [BoxGroup("Loadout/Items")]
+    public List<ItemData> items = new List<ItemData>();
 
     #endregion
 
@@ -246,36 +242,66 @@ public class GameStat_SO : ScriptableObject
     #endregion
 
 
-    #region ===== SKILL FUNCTIONS =====
+    #region ===== ITEM FUNCTIONS =====
 
-    public void SetSkillData(int index, Sprite image, int level)
+    /// <summary>
+    /// Updates GameStat_SO item data from ItemManager.
+    /// GameStat_SO mirrors ItemManager.currentItems.
+    /// </summary>
+    public void UpdateItemsFromItemManager(List<ItemManager.CurrentItem> currentItems)
     {
-        SkillData data = new SkillData { image = image, level = level };
+        items.Clear();
 
-        switch (index)
+        foreach (ItemManager.CurrentItem currentItem in currentItems)
         {
-            case 1: skill1 = data; break;
-            case 2: skill2 = data; break;
-            case 3: skill3 = data; break;
-            case 4: skill4 = data; break;
-            default:
-                Debug.LogError("Invalid Skill Index");
-                return;
+            if (currentItem.cardData == null)
+                continue;
+
+            items.Add(new ItemData(
+                currentItem.cardData,
+                currentItem.level
+            ));
         }
-        
-        OnSkillUpdated?.Invoke(index);
+
+        Debug.Log($"GameStat_SO updated. Current items: {items.Count}");
     }
 
-    public SkillData GetSkillData(int index)
+    /// <summary>
+    /// Clears all item data.
+    /// </summary>
+    public void ResetItemData()
     {
-        return index switch
+        items.Clear();
+
+        Debug.Log("GameStat_SO item data has been reset.");
+    }
+
+    /// <summary>
+    /// Gets the data for a specific item.
+    /// </summary>
+    public ItemData GetItemData(CardDataSO cardDataSO)
+    {
+        foreach (ItemData item in items)
         {
-            1 => skill1,
-            2 => skill2,
-            3 => skill3,
-            4 => skill4,
-            _ => throw new System.IndexOutOfRangeException("Invalid Skill Index")
-        };
+            if (item.cardDataSO == cardDataSO)
+                return item;
+        }
+
+        return default;
+    }
+
+    /// <summary>
+    /// Checks if an item is currently owned.
+    /// </summary>
+    public bool IsItemOwned(CardDataSO cardDataSO)
+    {
+        foreach (ItemData item in items)
+        {
+            if (item.cardDataSO == cardDataSO)
+                return true;
+        }
+
+        return false;
     }
 
     #endregion
@@ -343,19 +369,14 @@ public class GameStat_SO : ScriptableObject
 
         // Weapons
         ResetWeaponData();
-
-        // Skills
-        skill1 = default;
-        skill2 = default;
-        skill3 = default;
-        skill4 = default;
-
+        
         runTime = 0f;
         damageGiven = 0f;
         damageTaken = 0f;
         EnemiesKilled = 0;
         breakablesDestroyed = 0;
         
+        ResetItemData();
         Debug.Log("All data has been reset");
     }
 

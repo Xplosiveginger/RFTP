@@ -298,7 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ed6093fce4755489c4786815c923bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillIcon: {fileID: 5563669249769996075}
+  itemIcon: {fileID: 5563669249769996075}
   showLevelIcons: 0
   borderImage: {fileID: 672518261286467056}
   defaultBorderSprite: {fileID: 21909155, guid: e495da66f04e030478bdf6c4c5c26913, type: 3}

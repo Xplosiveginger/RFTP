@@ -22,10 +22,23 @@ public class ItemManager : MonoBehaviour
     [Header("Starting Items (Shop / Meta)")]
     public List<ItemSO> startingItems;
 
-    public List<CardDataSO> currentItems = new List<CardDataSO>();
-    
+    [Serializable]
+    public struct CurrentItem
+    {
+        public CardDataSO cardData;
+        public int level;
+
+        public CurrentItem(CardDataSO cardData, int level)
+        {
+            this.cardData = cardData;
+            this.level = level;
+        }
+    }
+    public List<CurrentItem> currentItems = new List<CurrentItem>();
     private readonly List<ActiveItem> activeItems = new();
     
+    [Header("Game Data")]
+    [SerializeField] private GameStat_SO gameStatSO;
     public event Action<ItemSO, int> OnItemAddedOrUpgraded;
 
     /// <summary>
@@ -139,7 +152,30 @@ public class ItemManager : MonoBehaviour
         itemSO.StatModify(statManager, nextLevel);
         OnItemAddedOrUpgraded?.Invoke(itemSO, nextLevel);
     }
+    private void ApplyCardEffect(CardDataSO cardDataSO)
+    {
+        if (cardDataSO == null)
+            return;
 
+        if (!cardDataSO.affectsPlayer)
+            return;
+
+        if (statManager == null)
+        {
+            Debug.LogError("StatManager is missing from ItemManager.");
+            return;
+        }
+
+        statManager.ModifyStat(
+            cardDataSO.affectedPlayerStat,
+            cardDataSO.playerStatModifier
+        );
+
+        Debug.Log(
+            $"Applied {cardDataSO.cardName}: " +
+            $"{cardDataSO.affectedPlayerStat} +{cardDataSO.playerStatModifier}%"
+        );
+    }
     /// <summary>
     /// Entry point used by GameItem pickup.
     /// </summary>
@@ -156,14 +192,94 @@ public class ItemManager : MonoBehaviour
         else
             AddItemFromSO(itemSO, 0);
     }
-
     public void AddCurrentItems(CardDataSO cardDataSO)
     {
-        if (currentItems.Contains(cardDataSO))
+        if (cardDataSO == null)
+        {
+            Debug.LogError("CardDataSO is null. Cannot add item.");
             return;
-        currentItems.Add(cardDataSO);
-    }
+        }
 
+        // Check if item already exists
+        for (int i = 0; i < currentItems.Count; i++)
+        {
+            if (currentItems[i].cardData == cardDataSO)
+            {
+                CurrentItem currentItem = currentItems[i];
+
+                int maxLevel = cardDataSO.levelImages != null &&
+                               cardDataSO.levelImages.Count > 0
+                    ? cardDataSO.levelImages.Count
+                    : int.MaxValue;
+
+                // Already max level
+                if (currentItem.level >= maxLevel)
+                {
+                    Debug.Log(
+                        $"{cardDataSO.cardName} is already at max level."
+                    );
+
+                    return;
+                }
+
+                currentItem.level++;
+                currentItems[i] = currentItem;
+
+                Debug.Log(
+                    $"Upgraded {cardDataSO.cardName} to Level {currentItem.level}"
+                );
+
+                ApplyCardEffect(cardDataSO);
+                UpdateGameStatItems();
+
+                return;
+            }
+        }
+
+        // New item
+        currentItems.Add(new CurrentItem(cardDataSO, 1));
+
+        Debug.Log(
+            $"Added {cardDataSO.cardName} at Level 1"
+        );
+
+        // Apply the effect for the first time
+        ApplyCardEffect(cardDataSO);
+
+        UpdateGameStatItems();
+    }
+    private void UpdateGameStatItems()
+    {
+        if (gameStatSO == null)
+        {
+            Debug.LogWarning("GameStat_SO reference is missing from ItemManager.");
+            return;
+        }
+
+        gameStatSO.UpdateItemsFromItemManager(currentItems);
+    }
+    
+    public void RemoveCurrentItem(CardDataSO cardDataSO)
+    {
+        if (cardDataSO == null)
+            return;
+
+        for (int i = currentItems.Count - 1; i >= 0; i--)
+        {
+            if (currentItems[i].cardData == cardDataSO)
+            {
+                currentItems.RemoveAt(i);
+
+                Debug.Log(
+                    $"Removed current item: {cardDataSO.cardName}"
+                );
+
+                UpdateGameStatItems();
+
+                return;
+            }
+        }
+    }
     public bool HasItem(ItemSO itemSO) =>
         activeItems.Exists(i => i.itemSO == itemSO);
 
@@ -197,6 +313,9 @@ public class ItemManager : MonoBehaviour
         }
 
         activeItems.RemoveAll(i => i.itemSO.itemType == ItemType.Game);
+        currentItems.Clear();
+
+        UpdateGameStatItems();
     }
 
     private void AddItemToStartingItems(ItemSO itemSO)

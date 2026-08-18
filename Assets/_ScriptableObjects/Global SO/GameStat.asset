@@ -15,6 +15,7 @@ MonoBehaviour:
   AllowanceMoney: 0
   damage: 100
   areaOfEffect: 100
+  highestLevel: 100
   projectileSpeed: 100
   numberOfProjectiles: 100
   duration: 100
@@ -35,17 +36,14 @@ MonoBehaviour:
     weaponDataSO: {fileID: 0}
     statManager: {fileID: 0}
   equippedWeaponNames: 
-  skill1:
-    image: {fileID: 0}
+  items:
+  - cardDataSO: {fileID: 0}
     level: 0
-  skill2:
-    image: {fileID: 0}
+  - cardDataSO: {fileID: 0}
     level: 0
-  skill3:
-    image: {fileID: 0}
+  - cardDataSO: {fileID: 0}
     level: 0
-  skill4:
-    image: {fileID: 0}
+  - cardDataSO: {fileID: 0}
     level: 0
   runTime: 0
   damageGiven: 0

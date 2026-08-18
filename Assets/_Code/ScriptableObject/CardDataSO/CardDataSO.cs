@@ -4,7 +4,12 @@ using System.Collections.Generic;
 [CreateAssetMenu(fileName = "CardData", menuName = "CardDataSO")]
 public class CardDataSO : ScriptableObject
 {
-    public List<Sprite> levelImages; 
+    [Header("Card Info")]
+    public Sprite cardSprite;
+    public string cardName;
+
+    [Header("Level Images")]
+    public List<Sprite> levelImages;
 
     [Header("Priority (1 = common, 5 = rare)")]
     public EPriority cardPriority = EPriority.One;

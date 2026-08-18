@@ -1,11 +1,11 @@
-using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class IDCardManager : MonoBehaviour
 {
     public static IDCardManager instance;
+
     [Header("Game Data")]
     public GameStat_SO gameStat;
 
@@ -15,12 +15,13 @@ public class IDCardManager : MonoBehaviour
     public Transform screenWeaponsContainer;
     public GameObject screenWeaponItemPrefab;
 
-    public Transform screenSkillsContainer;
-    public GameObject screenSkillItemPrefab;
-    
+    public Transform screenItemsContainer;
+    public GameObject screenItemPrefab;
+
     [Header("Pause Animation")]
     public Animator pauseUIAnimator;
     public float riseAnimationDuration = 0.5f;
+
     private Coroutine hideRoutine;
 
     [Header("Pause UI")]
@@ -29,8 +30,8 @@ public class IDCardManager : MonoBehaviour
     public Transform pauseWeaponsContainer;
     public GameObject pauseWeaponItemPrefab;
 
-    public Transform pauseSkillsContainer;
-    public GameObject pauseSkillItemPrefab;
+    public Transform pauseItemsContainer;
+    public GameObject pauseItemPrefab;
 
     [Header("Player Portrait")]
     public Image playerImage;
@@ -41,17 +42,22 @@ public class IDCardManager : MonoBehaviour
     public Sprite health25Sprite;
     public Sprite health5Sprite;
     public Sprite health0Sprite;
-    
+
+
     private void Awake()
     {
         if (instance == null)
             instance = this;
+        else
+            Destroy(gameObject);
     }
+
 
     private void Start()
     {
         RefreshAll();
     }
+
 
     private void Update()
     {
@@ -60,6 +66,12 @@ public class IDCardManager : MonoBehaviour
             RefreshAll();
         }
     }
+
+
+    // =========================================================
+    // PLAYER PORTRAIT
+    // =========================================================
+
     public void UpdatePlayerPortrait()
     {
         if (HealthSystem.Instance == null)
@@ -68,18 +80,20 @@ public class IDCardManager : MonoBehaviour
         float maxHealth = HealthSystem.Instance.MaxHealth;
         float currentHealth = HealthSystem.Instance.CurrentHealth;
 
-        // Prevent division by zero
         if (maxHealth <= 0f)
         {
             playerImage.sprite = health0Sprite;
             return;
         }
 
-        // Clamp health between 0 and max health
-        currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
+        currentHealth = Mathf.Clamp(
+            currentHealth,
+            0f,
+            maxHealth
+        );
 
-        // Calculate percentage
-        float healthPercent = (currentHealth / maxHealth) * 100f;
+        float healthPercent =
+            (currentHealth / maxHealth) * 100f;
 
         if (healthPercent >= 87.5f)
         {
@@ -106,16 +120,50 @@ public class IDCardManager : MonoBehaviour
             playerImage.sprite = health0Sprite;
         }
     }
+
+
+    // =========================================================
+    // REFRESH
+    // =========================================================
+
     public void RefreshAll()
     {
+        if (gameStat == null)
+        {
+            Debug.LogError("IDCardManager: GameStat_SO is not assigned.");
+            return;
+        }
+
         UpdatePlayerPortrait();
 
-        PopulateWeapons(screenWeaponsContainer, screenWeaponItemPrefab);
-        PopulateSkills(screenSkillsContainer, screenSkillItemPrefab);
+        // Gameplay UI
+        PopulateWeapons(
+            screenWeaponsContainer,
+            screenWeaponItemPrefab
+        );
 
-        PopulateWeapons(pauseWeaponsContainer, pauseWeaponItemPrefab);
-        PopulateSkills(pauseSkillsContainer, pauseSkillItemPrefab);
+        PopulateItems(
+            screenItemsContainer,
+            screenItemPrefab
+        );
+
+        // Pause UI
+        PopulateWeapons(
+            pauseWeaponsContainer,
+            pauseWeaponItemPrefab
+        );
+
+        PopulateItems(
+            pauseItemsContainer,
+            pauseItemPrefab
+        );
     }
+
+
+    // =========================================================
+    // PAUSE UI
+    // =========================================================
+
     public void ShowPauseUI()
     {
         if (hideRoutine != null)
@@ -131,8 +179,12 @@ public class IDCardManager : MonoBehaviour
         idPanel.SetActive(false);
         pauseUIIDCard.SetActive(true);
 
+        // Make sure the information is current
+        RefreshAll();
+
         pauseUIAnimator.Play("Drop", 0, 0f);
     }
+
 
     public void ShowGameplayUI()
     {
@@ -144,13 +196,19 @@ public class IDCardManager : MonoBehaviour
 
         pauseUIAnimator.StopPlayback();
 
-        hideRoutine = StartCoroutine(HidePauseCardRoutine());
+        hideRoutine = StartCoroutine(
+            HidePauseCardRoutine()
+        );
     }
+
+
     private IEnumerator HidePauseCardRoutine()
     {
         pauseUIAnimator.Play("Rise", 0, 0f);
 
-        yield return new WaitForSecondsRealtime(riseAnimationDuration);
+        yield return new WaitForSecondsRealtime(
+            riseAnimationDuration
+        );
 
         pauseUIAnimator.Rebind();
         pauseUIAnimator.Update(0f);
@@ -158,10 +216,24 @@ public class IDCardManager : MonoBehaviour
         pauseUIIDCard.SetActive(false);
         idPanel.SetActive(true);
 
+        // Refresh gameplay card after returning
+        RefreshAll();
+
         hideRoutine = null;
     }
-    private void PopulateWeapons(Transform container, GameObject prefab)
+
+
+    // =========================================================
+    // WEAPONS
+    // =========================================================
+
+    private void PopulateWeapons(
+        Transform container,
+        GameObject prefab)
     {
+        if (container == null || prefab == null)
+            return;
+
         foreach (Transform child in container)
         {
             Destroy(child.gameObject);
@@ -171,33 +243,75 @@ public class IDCardManager : MonoBehaviour
 
         foreach (var weapon in weapons)
         {
-            GameObject item = Instantiate(prefab, container);
-            item.GetComponent<IDCardWeaponItem>().Setup(weapon);
+            GameObject item = Instantiate(
+                prefab,
+                container
+            );
+
+            IDCardWeaponItem weaponItem =
+                item.GetComponent<IDCardWeaponItem>();
+
+            if (weaponItem != null)
+            {
+                weaponItem.Setup(weapon);
+            }
         }
     }
 
-    private void PopulateSkills(Transform container, GameObject prefab)
+
+    // =========================================================
+    // ITEMS
+    // =========================================================
+
+    private void PopulateItems(
+        Transform container,
+        GameObject prefab)
     {
+        if (container == null || prefab == null)
+            return;
+
+        // Remove old UI entries
         foreach (Transform child in container)
         {
             Destroy(child.gameObject);
         }
 
-        GameStat_SO.SkillData[] skills =
+        if (gameStat.items == null)
         {
-            gameStat.skill1,
-            gameStat.skill2,
-            gameStat.skill3,
-            gameStat.skill4
-        };
+            Debug.LogWarning(
+                "GameStat_SO items list is null."
+            );
 
-        foreach (var skill in skills)
+            return;
+        }
+
+        Debug.Log(
+            $"Populating {gameStat.items.Count} items."
+        );
+
+        foreach (GameStat_SO.ItemData itemData in gameStat.items)
         {
-            if (skill.image == null)
+            if (itemData.cardDataSO == null)
                 continue;
 
-            GameObject item = Instantiate(prefab, container);
-            item.GetComponent<IDCardSkillItem>().Setup(skill);
+            GameObject item = Instantiate(
+                prefab,
+                container
+            );
+
+            IDCardItem itemUI =
+                item.GetComponent<IDCardItem>();
+
+            if (itemUI != null)
+            {
+                itemUI.Setup(itemData);
+            }
+            else
+            {
+                Debug.LogError(
+                    $"The item prefab {prefab.name} does not have an IDCardItem component."
+                );
+            }
         }
     }
 }

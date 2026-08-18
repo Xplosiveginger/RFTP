@@ -31,12 +31,12 @@ public class Stat
         float tempMultiplier = modifier / 100f;
 
         float valueToAdd = baseValue * tempMultiplier;
+
         currentValue += valueToAdd;
         currentMultiplier += tempMultiplier;
 
         OnCurrentValueChanged?.Invoke(this);
     }
-
     public void ApplyHealthModifier(float modifier)
     {
         if (statName != EStatType.Health) return;

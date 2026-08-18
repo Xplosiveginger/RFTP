@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 
@@ -13,6 +12,7 @@ public class RunReport_UI : MonoBehaviour
 
     [Header("Audio")]
     public AudioClip runOverSound;
+
     [Header("Stats")]
     public TextMeshProUGUI timeSurvivedText;
     public TextMeshProUGUI moneyEarnedText;
@@ -21,13 +21,19 @@ public class RunReport_UI : MonoBehaviour
     public TextMeshProUGUI damageGivenText;
     public TextMeshProUGUI highestLevelText;
 
+    [Header("Weapons")]
     public GameObject weaponItemContainer;
     public GameObject weaponItemPrefab;
 
-    public GameObject skillItemContainer;
-    public GameObject skillItemPrefab;
+    [Header("Items")]
+    public GameObject itemItemContainer;
+    public GameObject itemItemPrefab;
 
-    public ScrollViewController scrollViewController;
+    [Header("Scroll Views")]
+    public ScrollViewController scrollViewControllerWeapon;
+    public ScrollViewController scrollViewControllerItems;
+
+
     private void Awake()
     {
         if (runReportManager == null)
@@ -48,10 +54,18 @@ public class RunReport_UI : MonoBehaviour
     {
         if (gameStat == null)
             return;
+
         Time.timeScale = 1;
-        GlobalAudioPlayer.Instance.isGameOver = true;
-        GlobalAudioPlayer.Instance.PlayAudio(runOverSound, transform);
-        scrollViewController?.UpdateScrollState();
+
+        if (GlobalAudioPlayer.Instance != null)
+        {
+            GlobalAudioPlayer.Instance.isGameOver = true;
+            GlobalAudioPlayer.Instance.PlayAudio(runOverSound, transform);
+        }
+
+        scrollViewControllerWeapon?.UpdateScrollState();
+        scrollViewControllerItems?.UpdateScrollState();
+
         UpdateRunReportStats();
     }
 
@@ -106,13 +120,22 @@ public class RunReport_UI : MonoBehaviour
         highestLevelText.text =
             gameStat.highestLevel.ToString("F2");
 
+
         PopulateWeapons();
-        PopulateSkills();
+        PopulateItems();
     }
 
 
+    // ============================================================
+    // WEAPONS
+    // ============================================================
+
     private void PopulateWeapons()
     {
+        if (weaponItemContainer == null || weaponItemPrefab == null)
+            return;
+
+        // Clear existing UI
         foreach (Transform child in weaponItemContainer.transform)
         {
             Destroy(child.gameObject);
@@ -130,40 +153,62 @@ public class RunReport_UI : MonoBehaviour
             RunReportWeaponItem ui =
                 item.GetComponent<RunReportWeaponItem>();
 
-            ui.Setup(weapon);
+            if (ui != null)
+            {
+                ui.Setup(weapon);
+            }
+            else
+            {
+                Debug.LogError(
+                    "RunReport_UI: weaponItemPrefab does not have a RunReportWeaponItem component.",
+                    item
+                );
+            }
         }
     }
 
 
-    private void PopulateSkills()
+    // ============================================================
+    // ITEMS
+    // ============================================================
+
+    private void PopulateItems()
     {
-        foreach (Transform child in skillItemContainer.transform)
+        if (itemItemContainer == null || itemItemPrefab == null)
+            return;
+
+        // Clear existing UI
+        foreach (Transform child in itemItemContainer.transform)
         {
             Destroy(child.gameObject);
         }
 
-        GameStat_SO.SkillData[] skills =
+        // Get items stored in GameStat_SO
+        foreach (GameStat_SO.ItemData itemData in gameStat.items)
         {
-            gameStat.skill1,
-            gameStat.skill2,
-            gameStat.skill3,
-            gameStat.skill4
-        };
-
-        foreach (var skill in skills)
-        {
-            if (skill.image == null)
+            // Safety check
+            if (itemData.cardDataSO == null)
                 continue;
 
             GameObject item = Instantiate(
-                skillItemPrefab,
-                skillItemContainer.transform
+                itemItemPrefab,
+                itemItemContainer.transform
             );
 
-            RunReportSkillItem ui =
-                item.GetComponent<RunReportSkillItem>();
+            RunReportItemItem ui =
+                item.GetComponent<RunReportItemItem>();
 
-            ui.Setup(skill);
+            if (ui != null)
+            {
+                ui.Setup(itemData);
+            }
+            else
+            {
+                Debug.LogError(
+                    "RunReport_UI: itemItemPrefab does not have a RunReportItemItem component.",
+                    item
+                );
+            }
         }
     }
 }
