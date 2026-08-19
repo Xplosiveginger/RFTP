@@ -8,7 +8,7 @@
   - Layers:
     - Default, TransparentFX, Ignore Raycast, Ground , Water, UI, Enemy, Items, assets, Player Collision, Obstacle, Player, Projectile, Weapon, XP, death report, Ignore Collision
 - Active game object:
-  - Name: Player
-  - Tag: Player
-  - Layer: Player
+  - Name: XP Manager
+  - Tag: Untagged
+  - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

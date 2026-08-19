@@ -73,9 +73,16 @@ public class StatManager : MonoBehaviour
 
         if (statDataList == null || statDataList.Count == 0)
         {
-            Debug.LogWarning($"No StatDataSO entries found on {gameObject.name}.");
+            Debug.LogWarning(
+                $"No StatDataSO entries found on {gameObject.name}."
+            );
+
             return;
         }
+
+        // ==========================================
+        // CREATE BASE STATS
+        // ==========================================
 
         foreach (StatDataSO statData in statDataList)
         {
@@ -90,7 +97,53 @@ public class StatManager : MonoBehaviour
             }
         }
 
+        // ==========================================
+        // APPLY PERMANENT SHOP MODIFIERS
+        // ==========================================
+
+        ApplySavedShopModifiers();
+
+        // ==========================================
+        // SUBSCRIBE
+        // ==========================================
+
         SubscribeToStatEvents();
+    }
+    private void ApplySavedShopModifiers()
+    {
+        if (GameSaveSystem.instance == null)
+        {
+            Debug.Log("No GameSaveSystem found. Using base stats.");
+            return;
+        }
+
+        foreach (GameSaveSystem.SavedShopItem savedItem
+                 in GameSaveSystem.instance.GetSavedShopItems())
+        {
+            Stat stat = GetStat(savedItem.affectedStat);
+
+            if (stat == null)
+            {
+                Debug.LogWarning(
+                    $"Saved shop item affects {savedItem.affectedStat}, " +
+                    $"but that stat does not exist on {gameObject.name}."
+                );
+
+                continue;
+            }
+
+            Debug.Log(
+                $"Applying shop modifier: " +
+                $"{savedItem.affectedStat} +" +
+                $"{savedItem.modifier}" +
+                (savedItem.isPercentage ? "%" : "")
+            );
+
+            stat.ApplyStartModifier(
+                savedItem.modifier,
+                savedItem.isPercentage
+            );
+        }
     }
 
 

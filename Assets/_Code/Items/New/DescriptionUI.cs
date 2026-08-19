@@ -1,5 +1,4 @@
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class DescriptionUI : MonoBehaviour
@@ -18,17 +17,17 @@ public class DescriptionUI : MonoBehaviour
     {
         if (level >= item.levels.Count)
         {
-            nameText.text = item.name;
+            nameText.text = item.name + " - Level " + item.levels.Count;
             descriptionText.text = "MAX LEVEL REACHED";
             return;
         }
 
         var levelData = item.levels[level];
 
-       // nameText.text = item.name + " Lv." + (level + 1);
-        nameText.text = levelData.levelName;
+        nameText.text = item.name + " - Level " + (level + 1);
         descriptionText.text = levelData.description;
     }
+
     public void ClearDescription()
     {
         nameText.text = "Level";

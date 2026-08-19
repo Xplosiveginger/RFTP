@@ -10,18 +10,21 @@ public class ShopItemUI : MonoBehaviour, IPointerClickHandler
     public TextMeshProUGUI buttonText;
     public ShopItemSO item;
 
-    public GameObject[] grayDots;   // Only gray dots needed
+    [Header("Levels")]
+    public GameObject[] grayDots;
 
     private bool selected;
     private int currentLevel = 0;
 
-    public static event Action<ShopItemSO> OnItemAdded;
+    public static event Action<ShopItemSO, int, int> OnItemAdded;
 
-    void Start()
+    private void Start()
     {
         buyBtn.onClick.AddListener(AddItem);
 
         Shop.OnRefundAll += ResetItem;
+
+        LoadSavedLevel();
 
         UpdateDots();
         SetSelected(false);
@@ -29,8 +32,32 @@ public class ShopItemUI : MonoBehaviour, IPointerClickHandler
 
     private void OnDestroy()
     {
+        buyBtn.onClick.RemoveListener(AddItem);
         Shop.OnRefundAll -= ResetItem;
     }
+
+    // =========================================================
+    // LOAD SAVED LEVEL
+    // =========================================================
+
+    private void LoadSavedLevel()
+    {
+        if (GameSaveSystem.instance == null)
+        {
+            currentLevel = 0;
+            return;
+        }
+
+        currentLevel = GameSaveSystem.instance.GetItemLevel(item);
+
+        Debug.Log(
+            $"Loaded {item.itemName} at level {currentLevel}"
+        );
+    }
+
+    // =========================================================
+    // SELECT
+    // =========================================================
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -40,15 +67,22 @@ public class ShopItemUI : MonoBehaviour, IPointerClickHandler
 
         if (selected)
         {
-            DescriptionUI.instance.ShowItem(item, currentLevel);
+            DescriptionUI.instance.ShowItem(
+                item,
+                currentLevel
+            );
         }
     }
+
+    // =========================================================
+    // SELECTION / BUTTON
+    // =========================================================
 
     public void SetSelected(bool state)
     {
         selected = state;
 
-        int maxLevel = item.levels.Count;
+        int maxLevel = grayDots.Length;
 
         if (currentLevel >= maxLevel)
         {
@@ -61,64 +95,126 @@ public class ShopItemUI : MonoBehaviour, IPointerClickHandler
 
         if (selected)
         {
-            buttonText.text = currentLevel == 0 ? "BUY $" + cost : "UPGRADE $" + cost;
-            buyBtn.interactable = Shop.instance.playerMoney >= cost;
+            buttonText.text =
+                currentLevel == 0
+                    ? "BUY $" + cost
+                    : "UPGRADE $" + cost;
+
+            buyBtn.interactable =
+                Shop.instance.playerMoney >= cost;
         }
         else
         {
-            buttonText.text = currentLevel == 0 ? "BUY" : "UPGRADE";
+            buttonText.text =
+                currentLevel == 0
+                    ? "BUY"
+                    : "UPGRADE";
+
             buyBtn.interactable = true;
         }
     }
+
+    // =========================================================
+    // BUY / UPGRADE
+    // =========================================================
 
     public void AddItem()
     {
         if (!selected)
             return;
 
-        if (currentLevel >= item.levels.Count)
+        // Gray dots define maximum level
+        if (currentLevel >= grayDots.Length)
             return;
+
+        // Make sure the ItemSO has data for this level
+        if (currentLevel >= item.levels.Count)
+        {
+            Debug.LogError(
+                $"{item.itemName} has {grayDots.Length} shop levels " +
+                $"but only {item.levels.Count} ItemLevel entries."
+            );
+
+            return;
+        }
 
         int cost = item.unlockCost * (currentLevel + 1);
 
         if (Shop.instance.playerMoney < cost)
             return;
 
+        // Index of the level being purchased
+        int purchasedLevel = currentLevel;
+
+        // Get the actual ItemLevel from ItemSO
+        ItemLevel levelData = item.levels[purchasedLevel];
+
+        // Unlock next level
         currentLevel++;
 
         UpdateDots();
 
-        OnItemAdded?.Invoke(item);
+        // =====================================================
+        // SAVE PURCHASE DATA
+        // =====================================================
+
+        if (GameSaveSystem.instance != null)
+        {
+            GameSaveSystem.instance.SaveShopItem(
+                item,
+                currentLevel,
+                levelData.modifierAmount,
+                levelData.targetStat,
+                levelData.isPercentage
+            );
+        }
+
+        // =====================================================
+        // TELL SHOP ABOUT PURCHASE
+        // =====================================================
+
+        OnItemAdded?.Invoke(
+            item,
+            purchasedLevel,
+            cost
+        );
 
         SetSelected(true);
 
-        DescriptionUI.instance.ShowItem(item, currentLevel);
+        DescriptionUI.instance.ShowItem(
+            item,
+            currentLevel
+        );
     }
 
-    void UpdateDots()
+    // =========================================================
+    // UPDATE LEVEL DOTS
+    // =========================================================
+
+    private void UpdateDots()
     {
         for (int i = 0; i < grayDots.Length; i++)
         {
+            // Purchased levels are hidden
+            // Remaining levels stay visible
             grayDots[i].SetActive(i >= currentLevel);
         }
     }
 
+    // =========================================================
+    // REFUND
+    // =========================================================
+
     private void ResetItem()
     {
         currentLevel = 0;
-
-        bool wasSelected = selected; // store before resetting
         selected = false;
 
-        foreach (GameObject dot in grayDots)
-        {
-            dot.SetActive(true);
-        }
+        UpdateDots();
 
         buttonText.text = "BUY";
         buyBtn.interactable = true;
 
-        // ONLY update description if this item was selected
         if (DescriptionUI.instance != null)
         {
             DescriptionUI.instance.ClearDescription();
