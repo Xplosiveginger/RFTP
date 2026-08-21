@@ -11,6 +11,8 @@ public abstract class WeaponBase : MonoBehaviour
 
     public WeaponDataSO weaponData;
     public EnemyDetection enemyDetector;
+    [Header("Weapon Debuff")]
+    public float debuffCooldownAdditionDuration=0f;
 
     [ReadOnly] public int level = 1;
     public int GetLevel
@@ -92,7 +94,7 @@ public abstract class WeaponBase : MonoBehaviour
         }
         else
         {
-            coolDownTimer = cooldown;
+            coolDownTimer = cooldown+ debuffCooldownAdditionDuration;
             ToggleGFXVisibility(false);
             isActive = false;
             inCooldown = true;
@@ -124,5 +126,15 @@ public abstract class WeaponBase : MonoBehaviour
     public virtual void LevelUpWeapon()
     {
         level++;
+    }
+
+    public virtual void AddCooldownDebuff(float debuffDuration)
+    {
+        coolDownTimer += debuffDuration;
+        debuffCooldownAdditionDuration += debuffDuration;
+    }
+    public virtual void RemoveCooldownDebuff(float removalDuration)
+    {
+        debuffCooldownAdditionDuration -= 0f;
     }
 }

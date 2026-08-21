@@ -214,6 +214,17 @@ public class ReworkedWeaponManager : MonoBehaviour
         return weaponData.statManager;
     }
 
+    #region  Equipped Weapon Updates
+
+    public void ReduceCoolodwnOfFirstWeapon(float reductionValue, float debuffDuration)
+    {
+        if (activeWeapons.Count <= 0) return;
+        CooldownDebuff appliedDebuff =  activeWeapons[0].gameObject.AddComponent<CooldownDebuff>();
+        appliedDebuff.Init(reductionValue, debuffDuration);
+    }
+
+    #endregion
+    
     private void OnDestroy()
     {
         if (gameStatSO != null)

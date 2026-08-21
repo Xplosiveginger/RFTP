@@ -14,12 +14,10 @@ GameObject:
   - component: {fileID: -1017736596779775944}
   - component: {fileID: 6501894726412244800}
   - component: {fileID: 4189684448977457385}
-  - component: {fileID: -5984972142892319199}
   - component: {fileID: -7171792425800454507}
-  - component: {fileID: 1210522729364390921}
   - component: {fileID: -5551151500942068956}
   - component: {fileID: 6926468862527863757}
-  - component: {fileID: 697214626437301691}
+  - component: {fileID: 7795124148558781589}
   m_Layer: 6
   m_Name: Pendulum
   m_TagString: Enemy
@@ -79,7 +77,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 2148986130981883437}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1.1100984
+  m_Radius: 0.47
   m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -185,24 +183,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &-5984972142892319199
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2148986130981883437}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f560ce9db0a2d94683de833c56153c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultFacingLeft: 1
-  moveSpeed: 3.5
-  moveSpeedMultiplier: 0
-  statManager: {fileID: -7171792425800454507}
-  DiesOnContactWithPlayer: 0
-  DoesDamageOnContact: 0
 --- !u!114 &-7171792425800454507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,20 +202,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e140431c760b81d46b73c84d66d52688, type: 2}
   - {fileID: 11400000, guid: f4b06b68e246e7442aa1895b0d311e20, type: 2}
   statList: []
---- !u!114 &1210522729364390921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2148986130981883437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caa4aaaef5ca8f14289e9c5f919e3f2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DamageAmount: 10
-  damageInterval: 1
 --- !u!114 &-5551151500942068956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,7 +230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xpAmount: 2
   dropRadius: 1
---- !u!114 &697214626437301691
+--- !u!114 &7795124148558781589
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -276,10 +242,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00024d1d946c50441b8481604c70c2de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stoppingDistance: 5
-  moveSpeed: 3.5
-  frequencyWaveParticles: {fileID: 0}
+  defaultFacingLeft: 1
+  moveSpeed: 4
+  moveSpeedMultiplier: 0
+  statManager: {fileID: -7171792425800454507}
+  DiesOnContactWithPlayer: 0
+  DoesDamageOnContact: 0
+  stoppingDistance: 0.5
   attackCooldown: 3
+  damageWavePrefab: {fileID: -1057187080929024079, guid: 59b1f0342102d35459320f4ceeaa20cb, type: 3}
+  DamageAmount: 0
+  wavePrefab: {fileID: 7058418551612159453, guid: 1f6248a521a63df418755f055498ffd8, type: 3}
+  waveSpawnPoint: {fileID: 8200705173164664287}
+  CooldownIncrease: 2
+  waveProjectileCount: 1
+  CooldownDebuffDuration: 10
 --- !u!1 &8033702345953058883
 GameObject:
   m_ObjectHideFlags: 0
