@@ -10,19 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 781b090621e04b44ab0b2e52cc84c23d, type: 3}
-  m_Name: SO_AddBacteriaCard
+  m_Name: SO_Solar System
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: f913b32fa03e78742a124d583b971995, type: 3}
-  Name: Bacteria
+  Icon: {fileID: 21300000, guid: a0a0eabb217e07049bfc3b7bee957963, type: 3}
+  Name: Planets
   Description:
-  - A set of bacteria is released which starts Damaging the enemy over time.
-  - The cooldown is reduced by 0.3 seconds
-  - The total damage of the weapon is increased by 5.
-  - Another bacteria is added to the party
-  - The damage is increased by 5. The cooldown of the weapon is reduced by 0.3 secs.
-  - Another bacteria is added to the party
-  - The damage of the weapon is increased by 5.
-  - The damage is increased by 5. The cooldown of the weapon is reduced by 0.3 secs.
+  - Planets will revolve around Russ. The first planet is Mercury with a damage of
+    8
+  - Venus joins the team wiith a damage of 9
+  - Earth joins the team wiith a damage of 10
+  - Mars joins the team wiith a damage of 11
+  - Jupiter joins the team wiith a damage of 12
+  - Saturn joins the team wiith a damage of 13
+  - Uranus joins the team wiith a damage of 14
+  - Neptune joins the team wiith a damage of 15
   levelImages:
   - {fileID: 21300000, guid: 3702fe1baff4bc44b9b417d901462c28, type: 3}
   - {fileID: 21300000, guid: 8cb509702141af84f8562eb78ade3106, type: 3}
@@ -53,6 +54,6 @@ MonoBehaviour:
   affectsWeaponStat: 0
   affectedWeaponStat: 0
   weaponStatModifier: 0
-  weaponToAdd: {fileID: 11400000, guid: e668b5821adb649409fb0dc1c7bd15bc, type: 2}
+  weaponToAdd: {fileID: 11400000, guid: 700676270b2607c41b06a8a62fbe1cbd, type: 2}
   isBuffDebuff: 0
   time: 0

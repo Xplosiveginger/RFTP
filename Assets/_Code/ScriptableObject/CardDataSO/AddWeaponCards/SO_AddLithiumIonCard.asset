@@ -14,7 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 617544ebdc58c4d4cb06dea61c4ee100, type: 3}
   Name: LIthium Ion Battery
-  Description: 
+  Description:
+  - A battrery that explodes! Sounds like a grenade
+  - The damage is increased by 3
+  - The damage is increased by 3
+  - The damage is increased by 3
+  - The damage is increased by 3 and the AOE is increased by 5%
+  - The damage is increased by 3
+  - The damage is increased by 3 and the AOE is increased by 5%
+  - The damage is increased by 3
   levelImages:
   - {fileID: 21300000, guid: c08323c809ba2b24a97a268afba77d24, type: 3}
   - {fileID: 21300000, guid: 8dd63e017ac30214a8a72c95454c2482, type: 3}

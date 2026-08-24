@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 02824405cc5f0924ea4df69b7666a397, type: 3}
   Name: Max Health
-  Description: 
+  Description:
+  - Increase the max health of the player by 15%
+  - Increase the max health of the player by 15%
+  - Increase the max health of the player by 15%
+  - Increase the max health of the player by 15%
+  - Increase the max health of the player by 15%
   levelImages:
   - {fileID: 21300000, guid: 9abfdad0c92a24d4f943820d97c825a4, type: 3}
   - {fileID: 21300000, guid: 9abfdad0c92a24d4f943820d97c825a4, type: 3}

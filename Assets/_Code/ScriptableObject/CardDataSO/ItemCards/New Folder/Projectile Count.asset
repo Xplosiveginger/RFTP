@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 781b090621e04b44ab0b2e52cc84c23d, type: 3}
-  m_Name: ActiveDuration Increase Item
+  m_Name: Projectile Count
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 07f5a89b4c4dc4e4cac3d7ed4a42ec46, type: 3}
-  Name: Active Duration
+  Icon: {fileID: 21300000, guid: 631829685e9cc44448dccda5c9464443, type: 3}
+  Name: Projectile Speed
   Description:
-  - Increases the duration of the weapons by 10%
-  - Increases the duration of the weapons by 10%
-  - Increases the duration of the weapons by 10%
-  - Increases the duration of the weapons by 10%
-  - Increases the duration of the weapons by 10%
+  - Increases the projectile speed for all the weapons by 6%
+  - Increases the projectile speed for all the weapons by 6%
+  - Increases the projectile speed for all the weapons by 6%
+  - Increases the projectile speed for all the weapons by 6%
+  - Increases the projectile speed for all the weapons by 6%
   levelImages:
   - {fileID: 21300000, guid: bbe362ff498d80e4ca1e46eac91d51a9, type: 3}
   - {fileID: 21300000, guid: 4d03dc1d4b1f0e243be801b0988883c7, type: 3}
@@ -28,17 +28,17 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1ddf128a43f718c4c941e6691956e092, type: 3}
   cardPriority: 3
   cardType: 1
-  itemSO: {fileID: 11400000, guid: f9774822f53571d4d81f50b3178cfff8, type: 2}
+  itemSO: {fileID: 0}
   item:
     displayName: 'Active Time Increase '
     description: 
     cardSprite: {fileID: 21300000, guid: bbe362ff498d80e4ca1e46eac91d51a9, type: 3}
-    affectedStat: 4
+    affectedStat: 6
     modifierAmount: 10
     isPercent: 1
   affectsPlayer: 1
-  affectedPlayerStat: 4
-  playerStatModifier: 10
+  affectedPlayerStat: 6
+  playerStatModifier: 2
   affectsEnemy: 0
   affectedEnemyStat: 0
   enemyStatModifier: 0

@@ -10,12 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 781b090621e04b44ab0b2e52cc84c23d, type: 3}
-  m_Name: Bacteria
+  m_Name: SO_Add_Prism
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: f913b32fa03e78742a124d583b971995, type: 3}
-  Name: Bacteria
-  Description: 
+  Icon: {fileID: 21300000, guid: b8554db9d3c60eb4bb2a9f83115c0491, type: 3}
+  Name: Prism
+  Description:
+  - That's a machine gun disguised as a prism! The first colour that you get is violet
+  - Next colour joining the game will be indigo and the damage is increased by 3
+  - Next colour joining the game will be blue and the damage is increased by 4
+  - Next colour joining the game will be green and the damage is increased by 5.
+    The duration is increased by 0.5 seconds
+  - Next colour joining the game will be yellow and the damage is increased by 6
+  - Next colour joining the game will be orange and the damage is increased by 7.
+    The duration is increased by 0.5 seconds
+  - Next colour joining the game will be red and the damage is increased by 8
   levelImages:
+  - {fileID: 21300000, guid: 3702fe1baff4bc44b9b417d901462c28, type: 3}
   - {fileID: 21300000, guid: 8cb509702141af84f8562eb78ade3106, type: 3}
   - {fileID: 21300000, guid: 81324486757978a4e97aff9e844711df, type: 3}
   - {fileID: 21300000, guid: ed113d971b99b174096c89968cf1da16, type: 3}
@@ -23,8 +33,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7282b984b5ccbd14a844cac6b7764542, type: 3}
   - {fileID: 21300000, guid: bec494571a4f7cb4da8f7445363488b5, type: 3}
   - {fileID: 21300000, guid: b9110a0b69032a7478bdba04604e8bc8, type: 3}
-  cardPriority: 5
-  cardType: 3
+  cardPriority: 1
+  cardType: 0
   itemSO: {fileID: 0}
   item:
     displayName: 
@@ -40,10 +50,10 @@ MonoBehaviour:
   affectedEnemyStat: 0
   enemyStatModifier: 0
   affectsWeaponLevel: 0
-  weaponName: 1
+  weaponName: 0
   affectsWeaponStat: 0
   affectedWeaponStat: 0
   weaponStatModifier: 0
-  weaponToAdd: {fileID: 0}
+  weaponToAdd: {fileID: 11400000, guid: eaeb09f8a6d44e444adf8fd89575af3f, type: 2}
   isBuffDebuff: 0
   time: 0

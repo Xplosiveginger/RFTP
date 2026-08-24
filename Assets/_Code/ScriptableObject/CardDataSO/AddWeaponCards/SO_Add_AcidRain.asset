@@ -10,19 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 781b090621e04b44ab0b2e52cc84c23d, type: 3}
-  m_Name: SO_AddBacteriaCard
+  m_Name: SO_Add_AcidRain
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: f913b32fa03e78742a124d583b971995, type: 3}
-  Name: Bacteria
+  Icon: {fileID: 21300000, guid: 99e0bb58b88c7324daf105b6391f2173, type: 3}
+  Name: Acid Rain Cloud
   Description:
-  - A set of bacteria is released which starts Damaging the enemy over time.
-  - The cooldown is reduced by 0.3 seconds
-  - The total damage of the weapon is increased by 5.
-  - Another bacteria is added to the party
-  - The damage is increased by 5. The cooldown of the weapon is reduced by 0.3 secs.
-  - Another bacteria is added to the party
-  - The damage of the weapon is increased by 5.
-  - The damage is increased by 5. The cooldown of the weapon is reduced by 0.3 secs.
+  - Acid Rain puddles are going to be a nightmare for the enemies if they enter the
+    zones
+  - Area of Effect of the weapon is increased by 10%
+  - 'The total damage of the weapon is increased by 10. The duration of the weapon
+    is reduction by 0.5 seconds '
+  - 'Area of Effect of the weapon is increased by 10%. One more cloud is added to
+    the roster '
+  - 'The total damage of the weapon is increased by 10. The duration of the weapon
+    is reduction by 0.5 seconds '
+  - 'Area of Effect of the weapon is increased by 10%. One more cloud is added to
+    the roster '
+  - 'The total damage of the weapon is increased by 10. The duration of the weapon
+    is reduction by 0.5 seconds '
+  - 'Area of Effect of the weapon is increased by 10%. '
   levelImages:
   - {fileID: 21300000, guid: 3702fe1baff4bc44b9b417d901462c28, type: 3}
   - {fileID: 21300000, guid: 8cb509702141af84f8562eb78ade3106, type: 3}
@@ -53,6 +59,6 @@ MonoBehaviour:
   affectsWeaponStat: 0
   affectedWeaponStat: 0
   weaponStatModifier: 0
-  weaponToAdd: {fileID: 11400000, guid: e668b5821adb649409fb0dc1c7bd15bc, type: 2}
+  weaponToAdd: {fileID: 11400000, guid: d4f9cb0d5a6db9d4999a2ae31bbcbf42, type: 2}
   isBuffDebuff: 0
   time: 0
