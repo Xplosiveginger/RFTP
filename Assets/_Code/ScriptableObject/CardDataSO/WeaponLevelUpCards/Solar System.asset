@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 781b090621e04b44ab0b2e52cc84c23d, type: 3}
+  m_Name: Solar System
+  m_EditorClassIdentifier: 
+  levelImages:
+  - {fileID: 21300000, guid: 3525e5a8d1d972d4b8ad6756c34fb514, type: 3}
+  - {fileID: 21300000, guid: 9ad438b265f9efd4099667dc35c34b83, type: 3}
+  - {fileID: 21300000, guid: 90ff2646725cc384893e819d43f9c1dd, type: 3}
+  - {fileID: 21300000, guid: ed30359402f402f4a84d39190e71ddce, type: 3}
+  - {fileID: 21300000, guid: ff01878f3b675d047ac8871b976eec71, type: 3}
+  - {fileID: 21300000, guid: ea04236e00bc39646ac51c00581cbcaa, type: 3}
+  - {fileID: 21300000, guid: 18a4ad3d777ad4d4d9d08280b9931b12, type: 3}
+  - {fileID: 21300000, guid: 3240b509e0d22d54e837e3dfa3d999ce, type: 3}
+  cardPriority: 1
+  cardType: 3
+  itemSO: {fileID: 0}
+  item:
+    displayName: 
+    description: 
+    cardSprite: {fileID: 0}
+    affectedStat: 0
+    modifierAmount: 0
+    isPercent: 0
+  affectsPlayer: 0
+  affectedPlayerStat: 0
+  playerStatModifier: 0
+  affectsEnemy: 0
+  affectedEnemyStat: 0
+  enemyStatModifier: 0
+  affectsWeaponLevel: 0
+  weaponName: 6
+  affectsWeaponStat: 0
+  affectedWeaponStat: 0
+  weaponStatModifier: 0
+  weaponToAdd: {fileID: 0}
+  isBuffDebuff: 0
+  time: 0

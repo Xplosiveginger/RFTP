@@ -15,13 +15,11 @@ public class AcidRainRefactored : WeaponBase
     [Header("Spawn Timing")]
     public bool spawnOnEnable = true;
 
+    private List<GameObject> puddles = new List<GameObject>();
+
     protected override void OnEnable()
     {
-        base.OnEnable();
-        if (spawnOnEnable)
-        {
-            SpawnProjectiles();
-        }
+
     }
 
     protected override void Awake()
@@ -32,6 +30,7 @@ public class AcidRainRefactored : WeaponBase
         projectileCount = statManager.GetStat(EStatType.ProjectileCount).currentValue;
         duration = statManager.GetStat(EStatType.ActiveDuration).currentValue;
         cooldown = statManager.GetStat(EStatType.AttackCooldown).currentValue;
+        AOESize = statManager.GetStat(EStatType.AOESize).currentValue;
     }
 
     protected override void Start()
@@ -54,7 +53,9 @@ public class AcidRainRefactored : WeaponBase
 
             Vector3 spawnPos = transform.position + new Vector3(randX, randY, 0f);
 
-            Instantiate(projectilePrefab, spawnPos, Quaternion.identity);
+            GameObject go = Instantiate(projectilePrefab, spawnPos, Quaternion.identity);
+            go.GetComponent<PreSecDamage>().Initialize(damage, AOESize);
+            puddles.Add(go);
         }
     }
 
@@ -67,9 +68,91 @@ public class AcidRainRefactored : WeaponBase
 
     public override void ToggleGFXVisibility(bool b)
     {
-        //foreach (var laser in activeLasers)
-        //{
-        //    laser.SetActive(b);
-        //}
+        if(b == false)
+        {
+            foreach(GameObject puddle in puddles)
+            {
+                Destroy(puddle);
+            }
+
+            puddles.Clear();
+        }
+        else
+        {
+            SpawnProjectiles();
+        }
+    }
+
+    public override void SpawnWeapon(Transform parent)
+    {
+        base.SpawnWeapon(parent);
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+    }
+
+    public override void UpdateWeapon()
+    {
+        base.UpdateWeapon();
+    }
+
+    public override void UpdateWeaponDamage()
+    {
+        base.UpdateWeaponDamage();
+    }
+
+    protected override void UpdateStatsHandled()
+    {
+        damage = statManager.GetStat(EStatType.Damage).currentValue;
+        projectileCount = statManager.GetStat(EStatType.ProjectileCount).currentValue;
+        duration = statManager.GetStat(EStatType.ActiveDuration).currentValue;
+        cooldown = statManager.GetStat(EStatType.AttackCooldown).currentValue;
+        AOESize = statManager.GetStat(EStatType.AOESize).currentValue;
+    }
+
+    public override void LevelUpWeapon()
+    {
+        base.LevelUpWeapon();
+        UpgradeAcidRain();
+    }
+
+    private void UpgradeAcidRain()
+    {
+        switch (level)
+        {
+            case 1:
+                break;
+            case 2:
+                statManager.ModifyStat(EStatType.AOESize, 10);
+                break;
+            case 3:
+                statManager.ModifyStatValue(EStatType.Damage, 10);
+                statManager.ModifyStatValue(EStatType.ActiveDuration, 0.5f);
+                break;
+            case 4:
+                statManager.ModifyStatValue(EStatType.ProjectileCount, 1);
+                statManager.ModifyStat(EStatType.AOESize, 10);
+                break;
+            case 5:
+                statManager.ModifyStatValue(EStatType.Damage, 10);
+                statManager.ModifyStatValue(EStatType.ActiveDuration, 0.5f);
+                break;
+            case 6:
+                statManager.ModifyStatValue(EStatType.ProjectileCount, 1);
+                statManager.ModifyStat(EStatType.AOESize, 10);
+                break;
+            case 7:
+                statManager.ModifyStatValue(EStatType.Damage, 10);
+                statManager.ModifyStatValue(EStatType.ActiveDuration, 0.5f);
+                break;
+            case 8:
+                statManager.ModifyStat(EStatType.AOESize, 10);
+                break;
+            default:
+                Debug.Log($"Max Level Reached for {weaponData.weaponName}");
+                break;
+        }
     }
 }

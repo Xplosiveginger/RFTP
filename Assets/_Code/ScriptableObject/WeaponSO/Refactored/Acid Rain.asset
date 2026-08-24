@@ -16,7 +16,9 @@ MonoBehaviour:
   weaponLogo: {fileID: 502462042, guid: 266a3c010f34a044db1090dac2f2caca, type: 3}
   weaponStatData:
   - {fileID: 11400000, guid: ea5f482f7716c5942864aaf69b582096, type: 2}
+  - {fileID: 11400000, guid: 08aaea8fd41ba714bb099de63599b4b4, type: 2}
   - {fileID: 11400000, guid: c03b7dd222c006343b7db3d4a9d39cd4, type: 2}
   - {fileID: 11400000, guid: fb02286f460066c489e78077cbcbd417, type: 2}
   - {fileID: 11400000, guid: ea16b95307268c749b6fc508de51ee7f, type: 2}
-  weaponPrefab: {fileID: 0}
+  - {fileID: 11400000, guid: ea5f482f7716c5942864aaf69b582096, type: 2}
+  weaponPrefab: {fileID: 939387012340278055, guid: 1023f4fbc32d9be48b1ccc463831d4e9, type: 3}
