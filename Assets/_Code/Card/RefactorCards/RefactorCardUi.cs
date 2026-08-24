@@ -11,7 +11,7 @@ public class RefactorCardUi : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField, ReadOnly] private CardManager cardManager;
     private ReworkedWeaponManager weaponManager;
-    private CardDataSO cardData;
+    [SerializeField] private CardDataSO cardData;
 
     [Header("UIs")] 
     public Image icon;
@@ -34,14 +34,26 @@ public class RefactorCardUi : MonoBehaviour, IPointerClickHandler
     
     public void OnPointerClick(PointerEventData eventData)
     {
-        cardManager.OnCardSelected(cardData);
+        //cardManager.OnCardSelected(cardData);
+    }
+    public void OnCardSelected()
+    {
+        cardManager.OnCardSelected(cardData); 
     }
 
     public void UpdateCardUI(CardDataSO data)
     {
         icon.sprite = data.Icon;
         NameTxt.text = data.Name;
-        DescriptionTxt.text = data.Description[0];
-        LevelTxt.text = "Lvl."+"/n1";
+        LevelTxt.text = "Lvl."+ "\n" + "1";
+        if (data.Description.Length > 0)
+        {
+            DescriptionTxt.text = data.Description[0];
+        }
+        else
+        {
+            DescriptionTxt.text = "No Description!";
+
+        }
     }
 }

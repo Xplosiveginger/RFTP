@@ -45,9 +45,12 @@ public class CardManager : MonoBehaviour
     
     [Header("Card Categories")]
     [SerializeField] protected List<CardCategoryData> cardCategories;
-    
+
     [Header("Card UI References")]
-    [SerializeField] protected List<RefactorCardUi> cards;
+    public Transform cardParent;
+    public RefactorCardUi Weapon_cardPrefab;
+    public RefactorCardUi item_cardPrefab;
+    public int totalCardsToSpawn = 3;
     
     [Header("Game Data")]
     [SerializeField] private GameStat_SO gameStatSO;
@@ -82,6 +85,7 @@ public class CardManager : MonoBehaviour
         {
             gameStatSO.OnEquippedWeaponNamesUpdated += OnEquippedWeaponNamesUpdatedHandler;
         }
+        ClearCards();
     }
     private void PlayLevelUpAnimation()
     {
@@ -170,49 +174,64 @@ public class CardManager : MonoBehaviour
             // Play the one-shot animation from the beginning
             PlayLevelUpAnimation();
         }
-
+        ClearCards();
         PopulateCards();
 
-        foreach (var card in cards)
+        /*foreach (var card in cards)
         {
             card.gameObject.SetActive(true);
-        }
+        }*/
     }
     private void PopulateCards()
     {
-        // Step 1: Accumulate all qualified candidates from all categories with relevancy filtering
         List<CardDataSO> qualifiedCandidates = GetAllQualifiedCandidates();
-        
-        // Step 2: Randomize the qualified candidates list
         Shuffle(qualifiedCandidates);
-        
-        // Step 3: Determine how many cards to show
-        int cardCount = Mathf.Min(cards.Count, qualifiedCandidates.Count);
-        
-        // Clear current selection tracking
+
+        int cardCount = Mathf.Min(totalCardsToSpawn, qualifiedCandidates.Count);
+
         currentSelectionCards.Clear();
-        
+
         Debug.Log($"Populating {cardCount} cards from {qualifiedCandidates.Count} qualified candidates");
-        
-        // Step 4: Select cards from the randomized list
+
         for (int i = 0; i < cardCount; i++)
         {
             if (qualifiedCandidates.Count == 0) break;
 
-            // Get a unique random card from the qualified candidates
             CardDataSO selectedCard = GetUniqueRandomCard(qualifiedCandidates);
 
             if (selectedCard != null)
             {
                 // Track this card as selected for this round
                 currentSelectionCards.Add(selectedCard);
-                
-                // Initialize the card UI
-                cards[i].Initialize(selectedCard, this, weaponManager);
 
-                // Remove the selected card from the candidates to prevent duplicates
+                SpawnCard(selectedCard);
+                //cards[i].Initialize(selectedCard, this, weaponManager);
+
                 qualifiedCandidates.RemoveAll(c => c == selectedCard);
             }
+        }
+    }
+
+    public void SpawnCard(CardDataSO card)
+    {
+        RefactorCardUi spawnedCard=null;
+        switch(card.cardType)
+        {
+            case ECardType.AffectsPlayer:
+                spawnedCard = Instantiate(item_cardPrefab, cardParent);
+                spawnedCard.Initialize(card, this, weaponManager);
+                break;
+            default:
+                spawnedCard = Instantiate(Weapon_cardPrefab, cardParent);
+                spawnedCard.Initialize(card, this, weaponManager);
+                break;
+        }
+    }
+    void ClearCards()
+    {
+        for(int i=0;i<cardParent.transform.childCount;i++)
+        {
+            Destroy(cardParent.transform.GetChild(i).gameObject);
         }
     }
 
@@ -368,10 +387,7 @@ public class CardManager : MonoBehaviour
         if (levelUpImage != null)
             levelUpImage.SetActive(false);
 
-        foreach (var card in cards)
-        {
-            card.gameObject.SetActive(false);
-        }
+        ClearCards();
 
         CardSelected?.Invoke(selectedData);
         audioSource.PlayOneShot(cardSelectionSound);
