@@ -7,18 +7,29 @@ public class PendulumEnemy2D : MonoBehaviour
     public float stoppingDistance = 5f;
     public float moveSpeed = 3.5f;
 
+    [Header("Face")]
+    [SerializeField] private GameObject faceObject;
+    [SerializeField] private Sprite normalFaceSprite;
+    [SerializeField] private Sprite waveFaceSprite;
+
     [Header("Wave Effect")]
-    public GameObject frequencyWaveParticles;   // Particle system GameObject (child or prefab)
+    public GameObject frequencyWaveParticles;
     public float attackCooldown = 3f;
 
     private NavMeshAgent agent;
     private Transform playerTarget;
+    private SpriteRenderer faceSpriteRenderer;
+
     private float attackTimer;
     private bool isDead = false;
+
+    // Counts attacks
+    private int attackCount = 0;
 
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+
         if (agent != null)
         {
             agent.speed = moveSpeed;
@@ -28,8 +39,17 @@ public class PendulumEnemy2D : MonoBehaviour
         }
 
         playerTarget = GameObject.FindGameObjectWithTag("Player")?.transform;
+
         attackTimer = attackCooldown;
 
+        // Get SpriteRenderer from the child face object
+        if (faceObject != null)
+        {
+            faceSpriteRenderer = faceObject.GetComponent<SpriteRenderer>();
+        }
+
+        // Start with normal face
+        SetNormalFace();
     }
 
     private void Update()
@@ -37,14 +57,16 @@ public class PendulumEnemy2D : MonoBehaviour
         if (isDead || playerTarget == null || agent == null)
             return;
 
-        float distanceToPlayer = Vector3.Distance(transform.position, playerTarget.position);
+        float distanceToPlayer = Vector3.Distance(
+            transform.position,
+            playerTarget.position
+        );
 
         if (distanceToPlayer > stoppingDistance)
         {
             agent.isStopped = false;
             agent.SetDestination(playerTarget.position);
 
-            // Disable wave particle while moving
             if (frequencyWaveParticles != null)
                 frequencyWaveParticles.SetActive(true);
         }
@@ -53,9 +75,25 @@ public class PendulumEnemy2D : MonoBehaviour
             agent.isStopped = true;
 
             attackTimer -= Time.deltaTime;
+
             if (attackTimer <= 0f)
             {
-                SpawnWave();
+                attackCount++;
+
+                if (attackCount >= 5)
+                {
+                    // 5th attack = wave attack
+                    SpawnWave();
+
+                    // Reset attack count
+                    attackCount = 0;
+                }
+                else
+                {
+                    // Normal attack
+                    SetNormalFace();
+                }
+
                 attackTimer = attackCooldown;
             }
         }
@@ -63,14 +101,21 @@ public class PendulumEnemy2D : MonoBehaviour
 
     private void SpawnWave()
     {
+        // Change face to wave face
+        SetWaveFace();
+
         if (frequencyWaveParticles != null)
         {
-            Quaternion rotation = Quaternion.Euler(0f, 0f, 90f);  // Rotate 90 degrees around z-axis
+            Quaternion rotation = Quaternion.Euler(0f, 0f, 90f);
 
-            // Instantiate the particle effect at Pendulum's position with z = 90 rotation
-            GameObject psObj = Instantiate(frequencyWaveParticles, transform.position, rotation);
+            GameObject psObj = Instantiate(
+                frequencyWaveParticles,
+                transform.position,
+                rotation
+            );
 
             ParticleSystem ps = psObj.GetComponent<ParticleSystem>();
+
             if (ps != null)
             {
                 Destroy(psObj, ps.main.duration);
@@ -81,17 +126,35 @@ public class PendulumEnemy2D : MonoBehaviour
             }
         }
 
-        // TODO: Add debuff logic here if needed, e.g., increase weapon cooldown
+        // Return to normal face after spawning the wave
+        SetNormalFace();
+
+        // TODO: Add debuff logic here if needed.
     }
 
+    private void SetNormalFace()
+    {
+        if (faceSpriteRenderer != null && normalFaceSprite != null)
+        {
+            faceSpriteRenderer.sprite = normalFaceSprite;
+        }
+    }
 
-
-
+    private void SetWaveFace()
+    {
+        if (faceSpriteRenderer != null && waveFaceSprite != null)
+        {
+            faceSpriteRenderer.sprite = waveFaceSprite;
+        }
+    }
 
     public void Die()
     {
         isDead = true;
-        agent.isStopped = true;
+
+        if (agent != null)
+            agent.isStopped = true;
+
         gameObject.SetActive(false);
     }
 }

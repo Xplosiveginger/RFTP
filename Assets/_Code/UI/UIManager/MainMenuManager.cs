@@ -5,19 +5,16 @@ using UnityEngine.UI;
 public class MainMenuManager : MonoBehaviour
 {
     public static MainMenuManager instance;
+
+    [Header("Panels")]
     public GameObject startPanel;
     public GameObject settingsPanel;
     public GameObject shopPanel;
-    
-    [Header("Setting Sub Menus")] 
-    public GameObject displaySettingPanel;
-    public GameObject gameSettingsPanel;
-    public GameObject audioSettingsPanel;
-    public GameObject graphicsSettingsPanel;
 
-    [Header("Shop")] 
+    [Header("Shop")]
     public Button shopBuyButton;
     public Button shopRefundButton;
+
     [Header("Audio")]
     public AudioSource audioSource;
     public AudioClip buttonClick;
@@ -28,43 +25,68 @@ public class MainMenuManager : MonoBehaviour
     {
         if (instance == null)
             instance = this;
+        else
+            Destroy(gameObject);
     }
 
     private void Start()
     {
         startPanel.SetActive(true);
-        shopPanel.SetActive(false);
         settingsPanel.SetActive(false);
-        
+        shopPanel.SetActive(false);
+
         shopBuyButton.onClick.AddListener(OnClickedShopBuyButton);
         shopRefundButton.onClick.AddListener(OnClickedShopRefundButton);
     }
 
     public void OnClickPlaySound()
     {
-        audioSource.PlayOneShot(buttonClick);
+        PlaySound(buttonClick);
     }
+
     public void PlaySound(AudioClip clip)
     {
-        audioSource.PlayOneShot(clip);
+        if (audioSource != null && clip != null)
+            audioSource.PlayOneShot(clip);
     }
+
+    // -------------------------
+    // SETTINGS
+    // -------------------------
+
     public void OnClickedSettingButton()
     {
         startPanel.SetActive(false);
         settingsPanel.SetActive(true);
+
         PlaySound(buttonClick);
     }
+
+    public void OnClickedSettingExitButton()
+    {
+        settingsPanel.SetActive(false);
+        startPanel.SetActive(true);
+
+        PlaySound(buttonClick);
+    }
+
+    // -------------------------
+    // SHOP
+    // -------------------------
 
     public void OnClickedShopButton()
     {
         startPanel.SetActive(false);
         shopPanel.SetActive(true);
+
         PlaySound(buttonClick);
     }
+
     public void OnClickedShopBuyButton()
     {
         PlaySound(buyButtonClick);
     }
+
     public void OnClickedShopRefundButton()
     {
         PlaySound(refundButtonClick);
@@ -72,58 +94,16 @@ public class MainMenuManager : MonoBehaviour
 
     public void OnClickedShopCloseButton()
     {
-        startPanel.SetActive(true);
         shopPanel.SetActive(false);
-        PlaySound(buttonClick);
-    }
-    public void OnClickedSettingExitButton()
-    {
-        settingsPanel.SetActive(false);
         startPanel.SetActive(true);
+
         PlaySound(buttonClick);
     }
 
-    public void OnClickedDisplaySettingButton()
-    {
-        displaySettingPanel.SetActive(true);
-        gameSettingsPanel.SetActive(false);
-        audioSettingsPanel.SetActive(false);
-        graphicsSettingsPanel.SetActive(false);
-        PlaySound(buttonClick);
+    // -------------------------
+    // EXIT GAME
+    // -------------------------
 
-    }
-    public void OnClickedGameSettingButton()
-    {
-        displaySettingPanel.SetActive(false);
-        gameSettingsPanel.SetActive(true);
-        audioSettingsPanel.SetActive(false);
-        graphicsSettingsPanel.SetActive(false);
-        PlaySound(buttonClick);
-
-    }
-    public void OnClickedAudioSettingButton()
-    {
-        displaySettingPanel.SetActive(false);
-        gameSettingsPanel.SetActive(false);
-        audioSettingsPanel.SetActive(true);
-        graphicsSettingsPanel.SetActive(false);
-        PlaySound(buttonClick);
-
-    }
-    public void OnClickedGraphicsSettingButton()
-    {
-        displaySettingPanel.SetActive(false);
-        gameSettingsPanel.SetActive(false);
-        audioSettingsPanel.SetActive(false);
-        graphicsSettingsPanel.SetActive(true);
-        PlaySound(buttonClick);
-
-    }
-    
-    
-    
-    
-    
     public void OnClickedExitButton()
     {
         Application.Quit();

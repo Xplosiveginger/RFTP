@@ -200,7 +200,7 @@ public class PauseManager : MonoBehaviour
     {
         if (PlayerHealth != null)
         {
-            totalHealthText.text = PlayerHealth.currentHealth.ToString();
+            totalHealthText.text = PlayerHealth.maxHealth.ToString();
         }
 
         if (gameStatSO == null)
