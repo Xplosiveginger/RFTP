@@ -111,45 +111,75 @@ public class CardManager : MonoBehaviour
         Debug.Log($"CardManager notified of weapon name update: [{string.Join(", ", weaponNames)}]");
     }
     private void UpdateStatusPanelStats()
+{
+    if (StatManager == null)
     {
-        if (gameStatSO == null)
-            return;
-
-        // Replace these with the actual stat references
-        // exposed by your GameStat_SO.
-        if (StatManager != null)
-        {
-            if((StatManager.GetStat(EStatType.Damage)!=null))
-                damageText.text = (StatManager.GetStat(EStatType.Damage).currentValue).ToString();
-            
-            
-            if(StatManager.GetStat(EStatType.HealthRegen)!=null)
-                healthRegenText.text = (StatManager.GetStat(EStatType.HealthRegen).currentValue).ToString();
-        
-            if((StatManager.GetStat(EStatType.MoveSpeed)!=null))
-                moveSpeedText.text = ((StatManager.GetStat(EStatType.MoveSpeed).currentValue)).ToString();
-            
-            if((StatManager.GetStat(EStatType.AOESize)!=null))
-                aoeText.text = (StatManager.GetStat(EStatType.AOESize).currentValue).ToString();
-            
-            if(StatManager.GetStat(EStatType.ProjectileSpeed)!=null)
-                speedOfWeaponText.text = (StatManager.GetStat(EStatType.ProjectileSpeed).currentValue).ToString();
-            
-            if((StatManager.GetStat(EStatType.ProjectileCount)!=null))
-                numOfProjectilesText.text = (StatManager.GetStat(EStatType.ProjectileCount)).currentValue.ToString();
-            
-            if((StatManager.GetStat(EStatType.AttackCooldown)!=null))
-                cooldownText.text = (StatManager.GetStat(EStatType.AttackCooldown)).currentValue.ToString();  
-            
-            if((StatManager.GetStat(EStatType.ActiveDuration)!=null))
-                durationText.text = (StatManager.GetStat(EStatType.ActiveDuration)).currentValue.ToString();
-            
-            
-        }
+        Debug.LogError("CardManager: StatManager reference is NULL.");
+        return;
     }
+
+
+    Stat damage = StatManager.GetStat(EStatType.Damage);
+    Stat health = StatManager.GetStat(EStatType.Health);
+    Stat healthRegen = StatManager.GetStat(EStatType.HealthRegen);
+    Stat cooldown = StatManager.GetStat(EStatType.AttackCooldown);
+    Stat aoe = StatManager.GetStat(EStatType.AOESize);
+    Stat projectileSpeed = StatManager.GetStat(EStatType.ProjectileSpeed);
+    Stat projectileCount = StatManager.GetStat(EStatType.ProjectileCount);
+    Stat duration = StatManager.GetStat(EStatType.ActiveDuration);
+    Stat moveSpeed = StatManager.GetStat(EStatType.MoveSpeed);
+
+    if (damage != null)
+    {
+        damageText.text = damage.currentValue.ToString();
+    }
+
+    if (health != null)
+    {
+        totalHealthText.text = health.maxValue.ToString();
+    }
+
+    if (healthRegen != null)
+    {
+        healthRegenText.text = healthRegen.currentValue.ToString();
+    }
+
+    if (cooldown != null)
+    {
+        cooldownText.text = cooldown.currentValue.ToString();
+    }
+
+    if (aoe != null)
+    {
+        aoeText.text = aoe.currentValue.ToString();
+    }
+
+    if (projectileSpeed != null)
+    {
+        speedOfWeaponText.text = projectileSpeed.currentValue.ToString();
+    }
+
+    if (projectileCount != null)
+    {
+        numOfProjectilesText.text = projectileCount.currentValue.ToString();
+        Debug.Log($"Projectile Count: {projectileCount.currentValue}");
+    }
+
+    if (duration != null)
+    {
+        durationText.text = duration.currentValue.ToString();
+    }
+
+    if (moveSpeed != null)
+    {
+        moveSpeedText.text = moveSpeed.currentValue.ToString();
+    }
+
+}
     
     private void CardInitializer()
     {
+
         // Stop any previous status animation
         if (statusPanelRoutine != null)
         {

@@ -111,7 +111,7 @@ public class LaserWeaponRefactored : WeaponBase
     {
         foreach(var laser in activeLasers)
         {
-            laser.transform.GetChild(4).GetComponent<Damage>().damage = damage;
+            laser.transform.GetChild(2).GetComponent<Damage>().damage = damage;
         }
     }
 
