@@ -8,7 +8,7 @@
   - Layers:
     - Default, TransparentFX, Ignore Raycast, Ground , Water, UI, Enemy, Items, assets, Player Collision, Obstacle, Player, Projectile, Weapon, XP, death report, Ignore Collision
 - Active game object:
-  - Name: Item  1
+  - Name: LoadingPanel
   - Tag: Untagged
   - Layer: UI
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

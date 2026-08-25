@@ -2042,6 +2042,7 @@ MonoBehaviour:
   startingMoney: 1000000
   playerMoney: 1200000
   moneyText: {fileID: 93063277}
+  refundText: {fileID: 544051971}
 --- !u!114 &146042149
 MonoBehaviour:
   m_ObjectHideFlags: 0
