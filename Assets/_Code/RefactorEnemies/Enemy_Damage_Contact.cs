@@ -16,7 +16,7 @@ public class Enemy_Damage_Contact : MonoBehaviour
     private StatManager StatManager;
     private HealthSystem playerHealth;
     private float damageTimer;
-
+    public bool IsPlayerInContact => playerHealth != null && !playerHealth.IsDead;
     private void Start()
     {
         StatManager = GetComponent<StatManager>();

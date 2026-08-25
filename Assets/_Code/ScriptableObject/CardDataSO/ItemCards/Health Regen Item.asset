@@ -12,22 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 781b090621e04b44ab0b2e52cc84c23d, type: 3}
   m_Name: Health Regen Item
   m_EditorClassIdentifier: 
-  cardSprite: {fileID: 21300000, guid: 62e1dee70fe1986408d70694bfe2af25, type: 3}
+  cardSprite: {fileID: 21300000, guid: 450abf93cc5ebad479fb758cc5ffd316, type: 3}
   cardName: Regen
   levelImages:
-  - {fileID: 21300000, guid: 2e7c67b1e2a07b648844a16579cfe52d, type: 3}
-  - {fileID: 21300000, guid: 2e7c67b1e2a07b648844a16579cfe52d, type: 3}
-  - {fileID: 21300000, guid: 0064c8896122a064990fcbc49ec97657, type: 3}
-  - {fileID: 21300000, guid: 533e84af39ad9e14588e4525ff674855, type: 3}
-  - {fileID: 21300000, guid: aff495bda8d01524a8b30e0cc27f2b7d, type: 3}
-  - {fileID: 21300000, guid: c197d67ad698dba4c88dd449a47eead3, type: 3}
+  - {fileID: 21300000, guid: 450abf93cc5ebad479fb758cc5ffd316, type: 3}
+  - {fileID: 21300000, guid: 450abf93cc5ebad479fb758cc5ffd316, type: 3}
+  - {fileID: 21300000, guid: 450abf93cc5ebad479fb758cc5ffd316, type: 3}
+  - {fileID: 21300000, guid: 450abf93cc5ebad479fb758cc5ffd316, type: 3}
+  - {fileID: 21300000, guid: 450abf93cc5ebad479fb758cc5ffd316, type: 3}
   cardPriority: 3
   cardType: 1
   itemSO: {fileID: 11400000, guid: 94d684f0097a89344a046e55e1d25440, type: 2}
   item:
     displayName: 'Health Regen Increase '
     description: 
-    cardSprite: {fileID: 21300000, guid: 2e7c67b1e2a07b648844a16579cfe52d, type: 3}
+    cardSprite: {fileID: 21300000, guid: 450abf93cc5ebad479fb758cc5ffd316, type: 3}
     affectedStat: 2
     modifierAmount: 15
     isPercent: 1

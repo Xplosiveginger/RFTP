@@ -4,6 +4,10 @@ using UnityEngine;
 [RequireComponent(typeof(Enemy_Damage_Contact))]
 public class LitmusPaper_Refactor : BaseEnemyRefactor
 {
+    [Header("Litmus Visual")]
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Animator animator;
+
     [Header("Litmus States Sprites")]
     public List<Sprite> changingSprites;
 
@@ -18,100 +22,199 @@ public class LitmusPaper_Refactor : BaseEnemyRefactor
     public LayerMask damageArea;
 
     [Header("DamageInterval per Second")]
-    public float AlkalineStateDamageInterval = 1;
-    public float NeutralStateDamageInterval = 1;
-    public float AcidicStateDamageInterval = 1;
+    public float AlkalineStateDamageInterval = 1f;
+    public float NeutralStateDamageInterval = 1f;
+    public float AcidicStateDamageInterval = 1f;
 
-    
-    private SpriteRenderer spriteRenderer;
-    private bool exploded = false;
+    private Enemy_Damage_Contact enemyDamageContact;
 
-    private Enemy_Damage_Contact Enemy_Damage_Contact;
+    private LitmusPhase currentPhase;
+
+    private enum LitmusPhase
+    {
+        Purple,
+        Green,
+        Red
+    }
 
     protected override void Awake()
     {
         base.Awake();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        Enemy_Damage_Contact = GetComponent<Enemy_Damage_Contact>();
-        
-        if (changingSprites != null && changingSprites.Count > 0)
-            spriteRenderer.sprite = changingSprites[0];
+
+        enemyDamageContact = GetComponent<Enemy_Damage_Contact>();
 
         EnemyManager.Instance.RegisterEnemy(this);
+
+        // Start in Purple phase
+        SetPhase(LitmusPhase.Purple);
     }
+
+    private void Update()
+    {
+        UpdateAnimation();
+    }
+
+    private void UpdateAnimation()
+    {
+        if (animator == null)
+            return;
+
+        bool isAttacking = enemyDamageContact != null &&
+                           enemyDamageContact.IsPlayerInContact;
+
+        // 0 = walking / idle
+        // 1 = attacking
+        float animationParameter = isAttacking ? 1f : 0f;
+
+        // Make sure only the current phase is active.
+        animator.SetBool("Purple", currentPhase == LitmusPhase.Purple);
+        animator.SetBool("Green", currentPhase == LitmusPhase.Green);
+        animator.SetBool("Red", currentPhase == LitmusPhase.Red);
+
+        // Set the parameter for the current phase.
+        animator.SetFloat(
+            "PurplePara",
+            currentPhase == LitmusPhase.Purple ? animationParameter : 0f
+        );
+
+        animator.SetFloat(
+            "GreenPara",
+            currentPhase == LitmusPhase.Green ? animationParameter : 0f
+        );
+
+        animator.SetFloat(
+            "RedPara",
+            currentPhase == LitmusPhase.Red ? animationParameter : 0f
+        );
+    }
+
     public void CheckHealthState()
     {
-
-        float hpPercent = (health/ maxHealth);
-        Debug.Log(hpPercent+("IS Damageing"));
-
-        /*if (hpPercent <= 0.25f && !exploded)
-        {
-            exploded = true;
-            EnterAcidicBurst();
-            return;
-        }
-        */
+        float hpPercent = health / maxHealth;
 
         if (hpPercent <= 0.5f)
         {
-            // Stage 3 → Acidic (Red)
+            // Red phase
+            SetPhase(LitmusPhase.Red);
+
             IncreaseSpeedOnce();
-            SetSprite(2);
-            Enemy_Damage_Contact.ModifyDamageInterval(AcidicStateDamageInterval);
+
+            enemyDamageContact.ModifyDamageInterval(
+                AcidicStateDamageInterval
+            );
         }
         else if (hpPercent <= 0.75f)
         {
-            // Stage 2 → Neutral (Green)
+            // Green phase
+            SetPhase(LitmusPhase.Green);
+
             IncreaseSpeedOnce();
-            SetSprite(1);
-            Enemy_Damage_Contact.ModifyDamageInterval(NeutralStateDamageInterval);
-            
+
+            enemyDamageContact.ModifyDamageInterval(
+                NeutralStateDamageInterval
+            );
         }
-        else if (hpPercent <= 1f)
+        else
         {
-            // Stage 1 → Alkaline shifting
-            SetSprite(0);
-            Enemy_Damage_Contact.ModifyDamageInterval(AlkalineStateDamageInterval);
+            // Purple phase
+            SetPhase(LitmusPhase.Purple);
+
+            enemyDamageContact.ModifyDamageInterval(
+                AlkalineStateDamageInterval
+            );
+        }
+    }
+
+    private void SetPhase(LitmusPhase phase)
+    {
+        // Don't repeatedly change the sprite/phase every health update.
+        if (currentPhase == phase)
+            return;
+
+        currentPhase = phase;
+
+        switch (currentPhase)
+        {
+            case LitmusPhase.Purple:
+                SetSprite(0);
+                break;
+
+            case LitmusPhase.Green:
+                SetSprite(1);
+                break;
+
+            case LitmusPhase.Red:
+                SetSprite(2);
+                break;
         }
     }
 
     private void SetSprite(int index)
     {
-        if (changingSprites == null || index >= changingSprites.Count) return;
-        if (spriteRenderer.sprite == changingSprites[index]) return; // avoid spam
+        if (spriteRenderer == null)
+            return;
+
+        if (changingSprites == null ||
+            index < 0 ||
+            index >= changingSprites.Count)
+            return;
+
+        if (spriteRenderer.sprite == changingSprites[index])
+            return;
 
         spriteRenderer.sprite = changingSprites[index];
     }
-    private void EnterAcidicBurst()
-    {
 
-        ApplyBlastDamage();
-        Die();
+    protected override void UpdateStatsHandled()
+    {
+        base.UpdateStatsHandled();
+    }
+
+    public override void UpdateHealth()
+    {
+        base.UpdateHealth();
+        CheckHealthState();
+    }
+
+    private void IncreaseSpeedOnce()
+    {
+        statManager.ModifyStat(
+            EStatType.MoveSpeed,
+            moveSpeedIncreaser
+        );
     }
 
     protected virtual void ApplyBlastDamage()
     {
-        // Ensure we operate on the 2D plane (Z = 0)
-        Vector3 blastPos = new Vector3(transform.position.x, transform.position.y, 0f);
+        Vector3 blastPos = new Vector3(
+            transform.position.x,
+            transform.position.y,
+            0f
+        );
 
-        // Overlap search
-        Collider2D[] hits = Physics2D.OverlapCircleAll(blastPos, radius, damageArea);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(
+            blastPos,
+            radius,
+            damageArea
+        );
 
-        // Band thresholds
-        float innerRadius = radius * 0.33f; // 0–33%
-        float midRadius = radius * 0.66f;   // 33–66%
+        float innerRadius = radius * 0.33f;
+        float midRadius = radius * 0.66f;
 
         foreach (Collider2D hit in hits)
         {
-            // Try to find HealthSystem on the collider or its parents
             HealthSystem health = hit.GetComponent<HealthSystem>();
+
             if (health == null)
                 health = hit.GetComponentInParent<HealthSystem>();
 
             if (health != null)
             {
-                float distance = Vector2.Distance(new Vector2(blastPos.x, blastPos.y), hit.transform.position);
+                float distance = Vector2.Distance(
+                    new Vector2(blastPos.x, blastPos.y),
+                    hit.transform.position
+                );
+
                 int damageToDeal;
 
                 if (distance <= innerRadius)
@@ -127,36 +230,37 @@ public class LitmusPaper_Refactor : BaseEnemyRefactor
                     damageToDeal = minDamage;
                 }
 
-                // Call the existing HealthSystem method
-                health.Damage(DamageItems.GetModifiedDamage(damageToDeal));
+                health.Damage(
+                    DamageItems.GetModifiedDamage(damageToDeal)
+                );
             }
         }
     }
 
-    protected override void UpdateStatsHandled()
+    private void EnterAcidicBurst()
     {
-        base.UpdateStatsHandled();
-    }
-    public override void UpdateHealth()
-    {
-        base.UpdateHealth();
-        CheckHealthState();
+        ApplyBlastDamage();
+        Die();
     }
 
-    private void IncreaseSpeedOnce()
-    {
-       statManager.ModifyStat(EStatType.MoveSpeed, moveSpeedIncreaser);
-    }
     private void OnDrawGizmos()
     {
-        // Draw outer -> mid -> inner with colors similar to your old script
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, radius);
+        Gizmos.DrawWireSphere(
+            transform.position,
+            radius
+        );
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, radius * 0.66f);
+        Gizmos.DrawWireSphere(
+            transform.position,
+            radius * 0.66f
+        );
 
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, radius * 0.33f);
+        Gizmos.DrawWireSphere(
+            transform.position,
+            radius * 0.33f
+        );
     }
 }

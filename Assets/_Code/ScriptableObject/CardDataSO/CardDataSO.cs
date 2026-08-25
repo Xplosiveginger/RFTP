@@ -7,7 +7,6 @@ public class CardDataSO : ScriptableObject
     [Header("Card Info")]
     public Sprite cardSprite;
     public string cardName;
-
     [Header("Level Images")]
     public List<Sprite> levelImages;
 

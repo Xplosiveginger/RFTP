@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Tuning Fork
   m_EditorClassIdentifier: 
   weaponName: 7
-  weaponLogo: {fileID: 21300000, guid: 5e3b5bafe86d6b9449c481c0c4c42e0f, type: 3}
+  weaponLogo: {fileID: 21300000, guid: d22fe0e9940e5064eadfc58a22849f80, type: 3}
   weaponStatData: []
   weaponPrefab: {fileID: 6319129144428016273, guid: ea618545724ac7d458c1fa4ee5e7e904, type: 3}
+  maxLevel: 8

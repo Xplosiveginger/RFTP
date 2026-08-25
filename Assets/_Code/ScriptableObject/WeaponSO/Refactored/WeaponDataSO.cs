@@ -11,7 +11,7 @@ public class WeaponDataSO : ScriptableObject
     public List<StatDataSO> weaponStatData;
     private List<Stat> weaponStats;
     public GameObject weaponPrefab;
-
+    public int maxLevel;
     public List<StatDataSO> GetAllWeaponStatDatas()
     {
         return weaponStatData;

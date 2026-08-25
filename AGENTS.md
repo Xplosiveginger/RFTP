@@ -2,7 +2,7 @@
 - Project name: RFTP
 - Unity version: Unity 6000.0.63f1
 - Active scene:
-  - Name: Main Level
+  - Name: Main Level - Animations
   - Tags:
     - Untagged, Respawn, Finish, EditorOnly, MainCamera, Player, GameController, Folder, Enemy, Ground, Missile, FxTemporaire
   - Layers:

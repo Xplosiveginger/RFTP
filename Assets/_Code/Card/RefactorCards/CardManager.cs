@@ -132,7 +132,7 @@ public class CardManager : MonoBehaviour
 
     if (health != null)
     {
-        totalHealthText.text = health.currentValue.ToString();
+        totalHealthText.text = health.maxValue.ToString();
     }
 
     if (healthRegen != null)
