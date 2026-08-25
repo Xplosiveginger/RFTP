@@ -40,7 +40,6 @@ public class ShopItemUI : MonoBehaviour, IPointerClickHandler
 {
     public Button buyBtn;
     public TextMeshProUGUI buttonText;
-    public TextMeshProUGUI costText;
 
     public ShopItemSO item;
 
@@ -50,7 +49,13 @@ public class ShopItemUI : MonoBehaviour, IPointerClickHandler
     private bool selected;
     private int currentLevel = 0;
 
+    public int CurrentLevel => currentLevel;
+
     public static event Action<ShopItemSO, int, int> OnItemAdded;
+
+    // ===============================
+    // START
+    // ===============================
 
     private void Start()
     {
@@ -69,12 +74,13 @@ public class ShopItemUI : MonoBehaviour, IPointerClickHandler
     private void OnDestroy()
     {
         buyBtn.onClick.RemoveListener(AddItem);
+
         Shop.OnRefundAll -= ResetItem;
     }
 
-    // =========================================================
+    // ===============================
     // LOAD SAVED LEVEL
-    // =========================================================
+    // ===============================
 
     private void LoadSavedLevel()
     {
@@ -84,35 +90,32 @@ public class ShopItemUI : MonoBehaviour, IPointerClickHandler
             return;
         }
 
-        currentLevel = GameSaveSystem.instance.GetItemLevel(item);
+        currentLevel =
+            GameSaveSystem.instance.GetItemLevel(item);
 
         Debug.Log(
             $"Loaded {item.itemName} at level {currentLevel}"
         );
     }
 
-    // =========================================================
+    // ===============================
     // SELECT
-    // =========================================================
+    // ===============================
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void OnPointerClick(
+        PointerEventData eventData)
     {
         selected = !selected;
 
-        Shop.instance.SelectItem(this, selected);
-
-        if (selected)
-        {
-            DescriptionUI.instance.ShowItem(
-                item,
-                currentLevel
-            );
-        }
+        Shop.instance.SelectItem(
+            this,
+            selected
+        );
     }
 
-    // =========================================================
+    // ===============================
     // SELECTION / BUTTON
-    // =========================================================
+    // ===============================
 
     public void SetSelected(bool state)
     {
@@ -128,10 +131,11 @@ public class ShopItemUI : MonoBehaviour, IPointerClickHandler
         {
             buttonText.text = "MAX";
 
-            // Don't show cost for maxed item
-            costText.text = "";
-
             buyBtn.interactable = false;
+
+            if (Shop.instance != null)
+                Shop.instance.UpdateSelectionUI();
+
             return;
         }
 
@@ -146,10 +150,8 @@ public class ShopItemUI : MonoBehaviour, IPointerClickHandler
                     ? "BUY"
                     : "UPGRADE";
 
-            // Hide cost until this item is selected
-            costText.text = "";
-
             buyBtn.interactable = true;
+
             return;
         }
 
@@ -157,23 +159,22 @@ public class ShopItemUI : MonoBehaviour, IPointerClickHandler
         // SELECTED
         // =====================================================
 
-        int cost = item.unlockCost * (currentLevel + 1);
+        int cost =
+            item.unlockCost *
+            (currentLevel + 1);
 
         buttonText.text =
             currentLevel == 0
                 ? "BUY"
                 : "UPGRADE";
 
-        costText.text =
-            "$" + CurrencyFormatter.Format(cost, 2);
-
         buyBtn.interactable =
             Shop.instance.playerMoney >= cost;
     }
 
-    // =========================================================
+    // ===============================
     // BUY / UPGRADE
-    // =========================================================
+    // ===============================
 
     public void AddItem()
     {
@@ -193,14 +194,17 @@ public class ShopItemUI : MonoBehaviour, IPointerClickHandler
             return;
         }
 
-        int cost = item.unlockCost * (currentLevel + 1);
+        int cost =
+            item.unlockCost *
+            (currentLevel + 1);
 
         if (Shop.instance.playerMoney < cost)
             return;
 
         int purchasedLevel = currentLevel;
 
-        ItemLevel levelData = item.levels[purchasedLevel];
+        ItemLevel levelData =
+            item.levels[purchasedLevel];
 
         currentLevel++;
 
@@ -233,27 +237,28 @@ public class ShopItemUI : MonoBehaviour, IPointerClickHandler
 
         SetSelected(true);
 
-        DescriptionUI.instance.ShowItem(
-            item,
-            currentLevel
-        );
+        // Update central Shop UI
+        if (Shop.instance != null)
+            Shop.instance.UpdateSelectionUI();
     }
 
-    // =========================================================
+    // ===============================
     // UPDATE LEVEL DOTS
-    // =========================================================
+    // ===============================
 
     private void UpdateDots()
     {
         for (int i = 0; i < grayDots.Length; i++)
         {
-            grayDots[i].SetActive(i >= currentLevel);
+            grayDots[i].SetActive(
+                i >= currentLevel
+            );
         }
     }
 
-    // =========================================================
+    // ===============================
     // REFUND RESET
-    // =========================================================
+    // ===============================
 
     private void ResetItem()
     {
@@ -264,14 +269,6 @@ public class ShopItemUI : MonoBehaviour, IPointerClickHandler
 
         buttonText.text = "BUY";
 
-        // Nothing selected after refund
-        costText.text = "";
-
         buyBtn.interactable = true;
-
-        if (DescriptionUI.instance != null)
-        {
-            DescriptionUI.instance.ClearDescription();
-        }
     }
 }

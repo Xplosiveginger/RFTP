@@ -5,32 +5,57 @@ public class DescriptionUI : MonoBehaviour
 {
     public static DescriptionUI instance;
 
+    [Header("Description UI")]
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI descriptionText;
 
-    void Awake()
+    private void Awake()
     {
         instance = this;
     }
 
+    private void Start()
+    {
+        ClearDescription();
+    }
+
     public void ShowItem(ShopItemSO item, int level)
     {
+        ShowUI();
+
         if (level >= item.levels.Count)
         {
-            nameText.text = "Level - " + item.levels.Count + " " + item.itemName;
+            nameText.text =
+                "Level - " + item.levels.Count + " " + item.itemName;
+
             descriptionText.text = "MAX LEVEL REACHED";
             return;
         }
 
         var levelData = item.levels[level];
 
-        nameText.text =  "Level - " + (level + 1) + " " + item.itemName;
-        descriptionText.text = levelData.description;
+        nameText.text =
+            "Level - " + (level + 1) + " " + item.itemName;
+
+        descriptionText.text =
+            levelData.description;
+    }
+
+    public void ShowUI()
+    {
+        if (nameText != null)
+            nameText.gameObject.SetActive(true);
+
+        if (descriptionText != null)
+            descriptionText.gameObject.SetActive(true);
     }
 
     public void ClearDescription()
     {
-        nameText.text = "Level";
-        descriptionText.text = "Description";
+        if (nameText != null)
+            nameText.gameObject.SetActive(false);
+
+        if (descriptionText != null)
+            descriptionText.gameObject.SetActive(false);
     }
 }
