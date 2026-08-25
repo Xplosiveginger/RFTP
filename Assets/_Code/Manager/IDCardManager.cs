@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class IDCardManager : MonoBehaviour
 {
@@ -14,9 +15,11 @@ public class IDCardManager : MonoBehaviour
 
     public Transform screenWeaponsContainer;
     public GameObject screenWeaponItemPrefab;
+    public GameObject screenWeaponPlaceholderPrefab;
 
     public Transform screenItemsContainer;
     public GameObject screenItemPrefab;
+    public GameObject screenItemPlaceholderPrefab;
 
     [Header("Pause Animation")]
     public Animator pauseUIAnimator;
@@ -29,9 +32,11 @@ public class IDCardManager : MonoBehaviour
 
     public Transform pauseWeaponsContainer;
     public GameObject pauseWeaponItemPrefab;
+    public GameObject pauseWeaponPlaceholderPrefab;
 
     public Transform pauseItemsContainer;
     public GameObject pauseItemPrefab;
+    public GameObject pauseItemPlaceholderPrefab;
 
     [Header("Player Portrait")]
     public Image playerImage;
@@ -42,6 +47,26 @@ public class IDCardManager : MonoBehaviour
     public Sprite health25Sprite;
     public Sprite health5Sprite;
     public Sprite health0Sprite;
+
+
+    // =========================================================
+    // UI SLOT REFERENCES
+    // =========================================================
+
+    private const int MAX_WEAPON_SLOTS = 4;
+    private const int MAX_ITEM_SLOTS = 4;
+
+    private List<GameObject> screenWeaponSlots =
+        new List<GameObject>();
+
+    private List<GameObject> screenItemSlots =
+        new List<GameObject>();
+
+    private List<GameObject> pauseWeaponSlots =
+        new List<GameObject>();
+
+    private List<GameObject> pauseItemSlots =
+        new List<GameObject>();
 
 
     private void Awake()
@@ -55,6 +80,9 @@ public class IDCardManager : MonoBehaviour
 
     private void Start()
     {
+        // Spawn all placeholder slots once.
+        InitializeSlots();
+
         RefreshAll();
     }
 
@@ -64,6 +92,67 @@ public class IDCardManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
         {
             RefreshAll();
+        }
+    }
+
+
+    // =========================================================
+    // INITIALIZE SLOTS
+    // =========================================================
+
+    private void InitializeSlots()
+    {
+        CreatePlaceholderSlots(
+            screenWeaponsContainer,
+            screenWeaponPlaceholderPrefab,
+            screenWeaponSlots,
+            MAX_WEAPON_SLOTS
+        );
+
+        CreatePlaceholderSlots(
+            screenItemsContainer,
+            screenItemPlaceholderPrefab,
+            screenItemSlots,
+            MAX_ITEM_SLOTS
+        );
+
+        CreatePlaceholderSlots(
+            pauseWeaponsContainer,
+            pauseWeaponPlaceholderPrefab,
+            pauseWeaponSlots,
+            MAX_WEAPON_SLOTS
+        );
+
+        CreatePlaceholderSlots(
+            pauseItemsContainer,
+            pauseItemPlaceholderPrefab,
+            pauseItemSlots,
+            MAX_ITEM_SLOTS
+        );
+    }
+
+
+    private void CreatePlaceholderSlots(
+        Transform container,
+        GameObject placeholderPrefab,
+        List<GameObject> slotList,
+        int slotCount)
+    {
+        if (container == null || placeholderPrefab == null)
+            return;
+
+        slotList.Clear();
+
+        for (int i = 0; i < slotCount; i++)
+        {
+            GameObject placeholder = Instantiate(
+                placeholderPrefab,
+                container
+            );
+
+            placeholder.transform.SetSiblingIndex(i);
+
+            slotList.Add(placeholder);
         }
     }
 
@@ -130,7 +219,10 @@ public class IDCardManager : MonoBehaviour
     {
         if (gameStat == null)
         {
-            Debug.LogError("IDCardManager: GameStat_SO is not assigned.");
+            Debug.LogError(
+                "IDCardManager: GameStat_SO is not assigned."
+            );
+
             return;
         }
 
@@ -139,23 +231,31 @@ public class IDCardManager : MonoBehaviour
         // Gameplay UI
         PopulateWeapons(
             screenWeaponsContainer,
-            screenWeaponItemPrefab
+            screenWeaponItemPrefab,
+            screenWeaponPlaceholderPrefab,
+            screenWeaponSlots
         );
 
         PopulateItems(
             screenItemsContainer,
-            screenItemPrefab
+            screenItemPrefab,
+            screenItemPlaceholderPrefab,
+            screenItemSlots
         );
 
         // Pause UI
         PopulateWeapons(
             pauseWeaponsContainer,
-            pauseWeaponItemPrefab
+            pauseWeaponItemPrefab,
+            pauseWeaponPlaceholderPrefab,
+            pauseWeaponSlots
         );
 
         PopulateItems(
             pauseItemsContainer,
-            pauseItemPrefab
+            pauseItemPrefab,
+            pauseItemPlaceholderPrefab,
+            pauseItemSlots
         );
     }
 
@@ -179,7 +279,6 @@ public class IDCardManager : MonoBehaviour
         idPanel.SetActive(false);
         pauseUIIDCard.SetActive(true);
 
-        // Make sure the information is current
         RefreshAll();
 
         pauseUIAnimator.Play("Drop", 0, 0f);
@@ -216,7 +315,6 @@ public class IDCardManager : MonoBehaviour
         pauseUIIDCard.SetActive(false);
         idPanel.SetActive(true);
 
-        // Refresh gameplay card after returning
         RefreshAll();
 
         hideRoutine = null;
@@ -229,31 +327,94 @@ public class IDCardManager : MonoBehaviour
 
     private void PopulateWeapons(
         Transform container,
-        GameObject prefab)
+        GameObject prefab,
+        GameObject placeholderPrefab,
+        List<GameObject> slots)
     {
-        if (container == null || prefab == null)
+        if (container == null ||
+            prefab == null ||
+            placeholderPrefab == null)
             return;
-
-        foreach (Transform child in container)
-        {
-            Destroy(child.gameObject);
-        }
 
         var weapons = gameStat.GetAllActiveWeapons();
 
-        foreach (var weapon in weapons)
+        int weaponCount = Mathf.Min(
+            weapons.Count,
+            MAX_WEAPON_SLOTS
+        );
+
+        for (int i = 0; i < MAX_WEAPON_SLOTS; i++)
         {
-            GameObject item = Instantiate(
-                prefab,
-                container
-            );
+            // -------------------------------------------------
+            // SLOT HAS A WEAPON
+            // -------------------------------------------------
 
-            IDCardWeaponItem weaponItem =
-                item.GetComponent<IDCardWeaponItem>();
-
-            if (weaponItem != null)
+            if (i < weaponCount)
             {
-                weaponItem.Setup(weapon);
+                GameStat_SO.WeaponData weapon = weapons[i];
+
+                // If this slot is still a placeholder,
+                // replace it with the real weapon UI.
+                if (slots[i] == null ||
+                    slots[i].GetComponent<IDCardWeaponItem>() == null)
+                {
+                    if (slots[i] != null)
+                    {
+                        Destroy(slots[i]);
+                    }
+
+                    GameObject item = Instantiate(
+                        prefab,
+                        container
+                    );
+
+                    item.transform.SetSiblingIndex(i);
+
+                    slots[i] = item;
+
+                    IDCardWeaponItem weaponItem =
+                        item.GetComponent<IDCardWeaponItem>();
+
+                    if (weaponItem != null)
+                    {
+                        weaponItem.Setup(weapon);
+                    }
+                }
+                else
+                {
+                    // Already a weapon slot.
+                    IDCardWeaponItem weaponItem =
+                        slots[i].GetComponent<IDCardWeaponItem>();
+
+                    if (weaponItem != null)
+                    {
+                        weaponItem.Setup(weapon);
+                    }
+                }
+            }
+
+            // -------------------------------------------------
+            // SLOT IS EMPTY
+            // -------------------------------------------------
+
+            else
+            {
+                // If somehow a real weapon is in this slot,
+                // replace it with the placeholder.
+                if (slots[i] != null &&
+                    slots[i].GetComponent<IDCardWeaponItem>() != null)
+                {
+                    Destroy(slots[i]);
+
+                    GameObject placeholder = Instantiate(
+                        placeholderPrefab,
+                        container
+                    );
+
+                    placeholder.transform.SetSiblingIndex(i);
+
+                    slots[i] = placeholder;
+                }
             }
         }
     }
@@ -265,16 +426,14 @@ public class IDCardManager : MonoBehaviour
 
     private void PopulateItems(
         Transform container,
-        GameObject prefab)
+        GameObject prefab,
+        GameObject placeholderPrefab,
+        List<GameObject> slots)
     {
-        if (container == null || prefab == null)
+        if (container == null ||
+            prefab == null ||
+            placeholderPrefab == null)
             return;
-
-        // Remove old UI entries
-        foreach (Transform child in container)
-        {
-            Destroy(child.gameObject);
-        }
 
         if (gameStat.items == null)
         {
@@ -285,32 +444,80 @@ public class IDCardManager : MonoBehaviour
             return;
         }
 
-        Debug.Log(
-            $"Populating {gameStat.items.Count} items."
-        );
+        int itemIndex = 0;
 
         foreach (GameStat_SO.ItemData itemData in gameStat.items)
         {
             if (itemData.cardDataSO == null)
                 continue;
 
-            GameObject item = Instantiate(
-                prefab,
-                container
-            );
+            // We only have 4 item slots.
+            if (itemIndex >= MAX_ITEM_SLOTS)
+                break;
 
-            IDCardItem itemUI =
-                item.GetComponent<IDCardItem>();
+            // -------------------------------------------------
+            // REPLACE PLACEHOLDER AT THIS INDEX
+            // -------------------------------------------------
 
-            if (itemUI != null)
+            if (slots[itemIndex] == null ||
+                slots[itemIndex].GetComponent<IDCardItem>() == null)
             {
-                itemUI.Setup(itemData);
+                if (slots[itemIndex] != null)
+                {
+                    Destroy(slots[itemIndex]);
+                }
+
+                GameObject item = Instantiate(
+                    prefab,
+                    container
+                );
+
+                item.transform.SetSiblingIndex(itemIndex);
+
+                slots[itemIndex] = item;
+
+                IDCardItem itemUI =
+                    item.GetComponent<IDCardItem>();
+
+                if (itemUI != null)
+                {
+                    itemUI.Setup(itemData);
+                }
             }
             else
             {
-                Debug.LogError(
-                    $"The item prefab {prefab.name} does not have an IDCardItem component."
+                // Already an item in this slot.
+                IDCardItem itemUI =
+                    slots[itemIndex].GetComponent<IDCardItem>();
+
+                if (itemUI != null)
+                {
+                    itemUI.Setup(itemData);
+                }
+            }
+
+            itemIndex++;
+        }
+
+        // -----------------------------------------------------
+        // RESTORE PLACEHOLDERS FOR EMPTY SLOTS
+        // -----------------------------------------------------
+
+        for (int i = itemIndex; i < MAX_ITEM_SLOTS; i++)
+        {
+            if (slots[i] != null &&
+                slots[i].GetComponent<IDCardItem>() != null)
+            {
+                Destroy(slots[i]);
+
+                GameObject placeholder = Instantiate(
+                    placeholderPrefab,
+                    container
                 );
+
+                placeholder.transform.SetSiblingIndex(i);
+
+                slots[i] = placeholder;
             }
         }
     }

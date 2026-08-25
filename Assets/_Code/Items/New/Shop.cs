@@ -22,6 +22,7 @@ public class Shop : MonoBehaviour
 
     public TextMeshProUGUI moneyText;
 
+    public TextMeshProUGUI refundText;
     // Track how much was spent
     private int spentMoney = 0;
 
@@ -73,6 +74,7 @@ public class Shop : MonoBehaviour
     {
         LoadSavedMoney();
         UpdateMoneyUI();
+        UpdateRefundUI();
     }
     private void LoadSavedMoney()
     {
@@ -91,6 +93,36 @@ public class Shop : MonoBehaviour
             Debug.Log(
                 $"No GameSaveSystem found. Using starting money: {playerMoney}"
             );
+        }
+    }
+    private void UpdateRefundUI()
+    {
+        int refundAmount = 0;
+
+        if (GameSaveSystem.instance != null)
+        {
+            foreach (GameSaveSystem.SavedShopItem savedItem
+                     in GameSaveSystem.instance.GetSavedShopItems())
+            {
+                ShopItemSO shopItem = FindShopItemByID(savedItem.itemID);
+
+                if (shopItem == null)
+                    continue;
+
+                for (int level = 0; level < savedItem.level; level++)
+                {
+                    refundAmount +=
+                        shopItem.unlockCost * (level + 1);
+                }
+            }
+        }
+
+        if (refundText != null)
+        {
+            refundText.text =
+                refundAmount > 0
+                    ? "$" + CurrencyFormatter.Format(refundAmount, 2)
+                    : "";
         }
     }
     // ===============================
@@ -148,7 +180,6 @@ public class Shop : MonoBehaviour
     // ===============================
     // BUY
     // ===============================
-
     public void AddStartingItem(
         ShopItemSO item,
         int level,
@@ -160,16 +191,18 @@ public class Shop : MonoBehaviour
             return;
         }
 
+        // Subtract purchase cost ONCE
         playerMoney -= cost;
         spentMoney += cost;
 
-        // Save the remaining money
+        // Save remaining money
         if (GameSaveSystem.instance != null)
         {
             GameSaveSystem.instance.SetMoney(playerMoney);
         }
 
         UpdateMoneyUI();
+        UpdateRefundUI();
 
         if (!startingItems.Contains(item))
         {
@@ -179,7 +212,8 @@ public class Shop : MonoBehaviour
         }
 
         Debug.Log(
-            $"Purchased {item.name} at level {level}"
+            $"Purchased {item.name} at level {level} for ${cost}. " +
+            $"Remaining money: ${playerMoney}"
         );
     }
 
@@ -244,7 +278,7 @@ public class Shop : MonoBehaviour
         spentMoney = 0;
 
         UpdateMoneyUI();
-
+        UpdateRefundUI();
         // Tell all ShopItemUI elements to reset
         OnRefundAll?.Invoke();
 
