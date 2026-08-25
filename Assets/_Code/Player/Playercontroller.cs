@@ -117,39 +117,35 @@ public class PlayerController2D : MonoBehaviour
 
     private void OnCardSelectedHandled(CardDataSO card)
     {
-        //if (card.affectsEnemy) return;
-
-        //if (card.affectsPlayer)
-        //{
-        //    statManager.ModifyStat(card.affectedPlayerStat, card.playerStatModifier);
-        //}
-
-        //if (card.affectsWeaponLevel)
-        //{
-        //    weaponManager.LevelUpWeapon(card.weaponName);
-        //}
-
-        //if (card.affectsWeaponStat)
-        //{
-        //    weaponManager.UpdateWeaponStat(card.weaponName, card.affectedWeaponStat, card.weaponStatModifier);
-        //}
+        if (card == null)
+            return;
 
         switch (card.cardType)
         {
             case ECardType.AddsWeapon:
                 AddWeapon(card.weaponToAdd);
                 break;
+
             case ECardType.AffectsPlayer:
-                statManager.ModifyStat(card.affectedPlayerStat, card.playerStatModifier);
+                // ItemManager handles:
+                // 1. Adding/upgrading the item
+                // 2. Applying the item's stat effect
+                // 3. Updating GameStat_SO
                 itemManager.AddCurrentItems(card);
-                itemManager.AddItem(card.itemSO);
                 break;
+
             case ECardType.AffectsWeaponLevel:
                 weaponManager.LevelUpWeapon(card.weaponName);
                 break;
+
             case ECardType.AffectsSpecificWeaponStat:
-                weaponManager.UpdateWeaponStat(card.weaponName, card.affectedWeaponStat, card.weaponStatModifier);
+                weaponManager.UpdateWeaponStat(
+                    card.weaponName,
+                    card.affectedWeaponStat,
+                    card.weaponStatModifier
+                );
                 break;
+
             default:
                 break;
         }

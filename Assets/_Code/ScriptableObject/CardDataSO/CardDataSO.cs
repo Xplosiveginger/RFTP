@@ -1,9 +1,14 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 
 [CreateAssetMenu(fileName = "CardData", menuName = "CardDataSO")]
 public class CardDataSO : ScriptableObject
 {
+   [PreviewField(50f)] public Sprite Icon;
+    public string Name;
+    [TextArea] public string[] Description;
+    
     public List<Sprite> levelImages; 
 
     [Header("Priority (1 = common, 5 = rare)")]

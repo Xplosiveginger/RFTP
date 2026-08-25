@@ -17,9 +17,22 @@ public class CardDataSOEditor : Editor
 
     public override void OnInspectorGUI()
     {
+        
         serializedObject.Update();
         CardDataSO cardData = (CardDataSO)target;
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("Icon"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("Name"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("Description"));
+        
 
+        // Card Info
+        EditorGUILayout.LabelField("Card Info", EditorStyles.boldLabel);
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("cardSprite"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("cardName"));
+
+        EditorGUILayout.Space();
+
+        // Priority / Type
         EditorGUILayout.PropertyField(serializedObject.FindProperty("cardPriority"));
         EditorGUILayout.PropertyField(cardType);
 
@@ -30,13 +43,16 @@ public class CardDataSOEditor : Editor
         EditorGUI.indentLevel--;
 
         EditorGUILayout.PropertyField(isBuffDebuff);
-        if(!isBuffDebuff.boolValue)
+
+        if (!isBuffDebuff.boolValue)
         {
             GUI.enabled = false;
         }
+
         EditorGUILayout.PropertyField(serializedObject.FindProperty("time"));
         GUI.enabled = true;
 
+        // Level Images
         EditorGUILayout.PropertyField(serializedObject.FindProperty("levelImages"));
 
         serializedObject.ApplyModifiedProperties();
@@ -51,23 +67,27 @@ public class CardDataSOEditor : Editor
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("playerStatModifier"));
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("itemSO"));
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("item"));
-                
                 break;
+
             case ECardType.AddsWeapon:
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("weaponToAdd"));
                 break;
+
             case ECardType.AffectsEnemy:
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("affectedEnemyStat"));
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("enemyStatModifier"));
                 break;
+
             case ECardType.AffectsWeaponLevel:
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("weaponName"));
                 break;
+
             case ECardType.AffectsSpecificWeaponStat:
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("weaponName"));
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("affectedWeaponStat"));
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("weaponStatModifier"));
                 break;
+
             case ECardType.AffectsAllWeaponsStat:
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("affectedWeaponStat"));
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("weaponStatModifier"));

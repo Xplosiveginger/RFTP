@@ -12,6 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 781b090621e04b44ab0b2e52cc84c23d, type: 3}
   m_Name: ActiveDuration Increase Item
   m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: 07f5a89b4c4dc4e4cac3d7ed4a42ec46, type: 3}
+  Name: Active Duration
+  Description:
+  - Increases the duration of the weapons by 10%
+  - Increases the duration of the weapons by 10%
+  - Increases the duration of the weapons by 10%
+  - Increases the duration of the weapons by 10%
+  - Increases the duration of the weapons by 10%
   levelImages:
   - {fileID: 21300000, guid: bbe362ff498d80e4ca1e46eac91d51a9, type: 3}
   - {fileID: 21300000, guid: 4d03dc1d4b1f0e243be801b0988883c7, type: 3}

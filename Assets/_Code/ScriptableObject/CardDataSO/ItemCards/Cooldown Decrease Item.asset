@@ -12,6 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 781b090621e04b44ab0b2e52cc84c23d, type: 3}
   m_Name: Cooldown Decrease Item
   m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: e1acafb561db28443a950cef1f13ff82, type: 3}
+  Name: Cooldown Decrease
+  Description:
+  - Decreases the cooldown of all the weapons by 6%
+  - Decreases the cooldown of all the weapons by 6%
+  - Decreases the cooldown of all the weapons by 6%
+  - Decreases the cooldown of all the weapons by 6%
+  - Decreases the cooldown of all the weapons by 6%
   levelImages:
   - {fileID: 21300000, guid: c26283908367ac7408509e67e03f50b3, type: 3}
   - {fileID: 21300000, guid: ac99680f1e094a048afdfd0936371935, type: 3}

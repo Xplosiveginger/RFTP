@@ -14,10 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statName: 7
   baseValue: 8
-  maxValue: 9
+  maxValue: 8
   startValue: 0
   startMultiplier: 1
-  currentMultiplier: 1
-  currentValue: 12
-  customMaxValue: 0
-  showCurrentValues: 0
