@@ -21,10 +21,10 @@ public class RunReportItemItem : MonoBehaviour
         CardDataSO cardData = itemData.cardDataSO;
 
         // Image
-        itemImage.sprite = cardData.cardSprite;
+        itemImage.sprite = cardData.Icon;
 
         // Name
-        itemNameText.text = cardData.cardName;
+        itemNameText.text = cardData.Name;
 
         // Level
         itemLevelText.text = "Lv. " + itemData.level;

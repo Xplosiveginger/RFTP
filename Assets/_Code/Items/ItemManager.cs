@@ -172,7 +172,7 @@ public class ItemManager : MonoBehaviour
         );
 
         Debug.Log(
-            $"Applied {cardDataSO.cardName}: " +
+            $"Applied {cardDataSO.Name}: " +
             $"{cardDataSO.affectedPlayerStat} +{cardDataSO.playerStatModifier}%"
         );
     }
@@ -216,7 +216,7 @@ public class ItemManager : MonoBehaviour
                 if (currentItem.level >= maxLevel)
                 {
                     Debug.Log(
-                        $"{cardDataSO.cardName} is already at max level."
+                        $"{cardDataSO.Name} is already at max level."
                     );
 
                     return;
@@ -226,7 +226,7 @@ public class ItemManager : MonoBehaviour
                 currentItems[i] = currentItem;
 
                 Debug.Log(
-                    $"Upgraded {cardDataSO.cardName} to Level {currentItem.level}"
+                    $"Upgraded {cardDataSO.Name} to Level {currentItem.level}"
                 );
 
                 ApplyCardEffect(cardDataSO);
@@ -240,7 +240,7 @@ public class ItemManager : MonoBehaviour
         currentItems.Add(new CurrentItem(cardDataSO, 1));
 
         Debug.Log(
-            $"Added {cardDataSO.cardName} at Level 1"
+            $"Added {cardDataSO.Name} at Level 1"
         );
 
         // Apply the effect for the first time
@@ -271,7 +271,7 @@ public class ItemManager : MonoBehaviour
                 currentItems.RemoveAt(i);
 
                 Debug.Log(
-                    $"Removed current item: {cardDataSO.cardName}"
+                    $"Removed current item: {cardDataSO.Name}"
                 );
 
                 UpdateGameStatItems();
