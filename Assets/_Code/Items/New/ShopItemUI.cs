@@ -4,10 +4,44 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 
+public static class CurrencyFormatter
+{
+    public static string Format(double amount, int decimalPlaces = 2)
+    {
+        double absAmount = Math.Abs(amount);
+
+        string suffix = "";
+        double value = amount;
+
+        if (absAmount >= 1_000_000_000)
+        {
+            value = amount / 1_000_000_000d;
+            suffix = "B";
+        }
+        else if (absAmount >= 1_000_000)
+        {
+            value = amount / 1_000_000d;
+            suffix = "M";
+        }
+        else if (absAmount >= 1_000)
+        {
+            value = amount / 1_000d;
+            suffix = "K";
+        }
+
+        return value.ToString($"F{decimalPlaces}")
+                   .TrimEnd('0')
+                   .TrimEnd('.')
+               + suffix;
+    }
+}
+
 public class ShopItemUI : MonoBehaviour, IPointerClickHandler
 {
     public Button buyBtn;
     public TextMeshProUGUI buttonText;
+    public TextMeshProUGUI costText;
+
     public ShopItemSO item;
 
     [Header("Levels")]
@@ -27,6 +61,8 @@ public class ShopItemUI : MonoBehaviour, IPointerClickHandler
         LoadSavedLevel();
 
         UpdateDots();
+
+        // Nothing selected at game start
         SetSelected(false);
     }
 
@@ -84,34 +120,55 @@ public class ShopItemUI : MonoBehaviour, IPointerClickHandler
 
         int maxLevel = grayDots.Length;
 
+        // =====================================================
+        // MAX LEVEL
+        // =====================================================
+
         if (currentLevel >= maxLevel)
         {
             buttonText.text = "MAX";
+
+            // Don't show cost for maxed item
+            costText.text = "";
+
             buyBtn.interactable = false;
             return;
         }
 
-        int cost = item.unlockCost * (currentLevel + 1);
+        // =====================================================
+        // NOTHING SELECTED
+        // =====================================================
 
-        if (selected)
-        {
-            buttonText.text =
-                currentLevel == 0
-                    ? "BUY $" + cost
-                    : "UPGRADE $" + cost;
-
-            buyBtn.interactable =
-                Shop.instance.playerMoney >= cost;
-        }
-        else
+        if (!selected)
         {
             buttonText.text =
                 currentLevel == 0
                     ? "BUY"
                     : "UPGRADE";
 
+            // Hide cost until this item is selected
+            costText.text = "";
+
             buyBtn.interactable = true;
+            return;
         }
+
+        // =====================================================
+        // SELECTED
+        // =====================================================
+
+        int cost = item.unlockCost * (currentLevel + 1);
+
+        buttonText.text =
+            currentLevel == 0
+                ? "BUY"
+                : "UPGRADE";
+
+        costText.text =
+            "$" + CurrencyFormatter.Format(cost, 2);
+
+        buyBtn.interactable =
+            Shop.instance.playerMoney >= cost;
     }
 
     // =========================================================
@@ -123,11 +180,9 @@ public class ShopItemUI : MonoBehaviour, IPointerClickHandler
         if (!selected)
             return;
 
-        // Gray dots define maximum level
         if (currentLevel >= grayDots.Length)
             return;
 
-        // Make sure the ItemSO has data for this level
         if (currentLevel >= item.levels.Count)
         {
             Debug.LogError(
@@ -143,13 +198,10 @@ public class ShopItemUI : MonoBehaviour, IPointerClickHandler
         if (Shop.instance.playerMoney < cost)
             return;
 
-        // Index of the level being purchased
         int purchasedLevel = currentLevel;
 
-        // Get the actual ItemLevel from ItemSO
         ItemLevel levelData = item.levels[purchasedLevel];
 
-        // Unlock next level
         currentLevel++;
 
         UpdateDots();
@@ -195,14 +247,12 @@ public class ShopItemUI : MonoBehaviour, IPointerClickHandler
     {
         for (int i = 0; i < grayDots.Length; i++)
         {
-            // Purchased levels are hidden
-            // Remaining levels stay visible
             grayDots[i].SetActive(i >= currentLevel);
         }
     }
 
     // =========================================================
-    // REFUND
+    // REFUND RESET
     // =========================================================
 
     private void ResetItem()
@@ -213,6 +263,10 @@ public class ShopItemUI : MonoBehaviour, IPointerClickHandler
         UpdateDots();
 
         buttonText.text = "BUY";
+
+        // Nothing selected after refund
+        costText.text = "";
+
         buyBtn.interactable = true;
 
         if (DescriptionUI.instance != null)

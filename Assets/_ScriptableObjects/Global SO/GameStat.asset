@@ -36,15 +36,7 @@ MonoBehaviour:
     weaponDataSO: {fileID: 0}
     statManager: {fileID: 0}
   equippedWeaponNames: 
-  items:
-  - cardDataSO: {fileID: 0}
-    level: 0
-  - cardDataSO: {fileID: 0}
-    level: 0
-  - cardDataSO: {fileID: 0}
-    level: 0
-  - cardDataSO: {fileID: 0}
-    level: 0
+  items: []
   runTime: 0
   damageGiven: 0
   damageTaken: 0

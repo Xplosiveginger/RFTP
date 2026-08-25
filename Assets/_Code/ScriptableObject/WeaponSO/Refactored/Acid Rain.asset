@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Acid Rain
   m_EditorClassIdentifier: 
   weaponName: 0
-  weaponLogo: {fileID: 502462042, guid: 266a3c010f34a044db1090dac2f2caca, type: 3}
+  weaponLogo: {fileID: 21300000, guid: 434f4cef943d56341b7fd225f7b12cdf, type: 3}
   weaponStatData: []
   weaponPrefab: {fileID: 0}
+  maxLevel: 8

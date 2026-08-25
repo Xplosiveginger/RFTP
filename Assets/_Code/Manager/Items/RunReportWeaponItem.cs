@@ -5,6 +5,11 @@ using UnityEngine.UI;
 public class RunReportWeaponItem : MonoBehaviour
 {
     public Image weaponLogo;
+    public Image weaponBorder;
+
+    public Sprite normalBorder;
+    public Sprite maxLevelBorder;
+
     public TextMeshProUGUI weaponNameText;
     public TextMeshProUGUI weaponLevelText;
     public TextMeshProUGUI weaponDamageText;
@@ -14,21 +19,29 @@ public class RunReportWeaponItem : MonoBehaviour
         weaponLogo.sprite = weaponData.weaponDataSO.weaponLogo;
         weaponNameText.text = weaponData.weaponDataSO.weaponName.ToString();
 
-        // Get weapon level
-        int weaponLevel = 1;
+        // Get weapon
+        WeaponBase weaponBase = null;
 
         if (weaponData.statManager != null)
         {
-            WeaponBase weaponBase = weaponData.statManager.gameObject.GetComponent<WeaponBase>();
+            weaponBase = weaponData.statManager.gameObject.GetComponent<WeaponBase>();
+        }
 
-            if (weaponBase != null)
-            {
-                weaponLevel = weaponBase.GetLevel;
-                Debug.Log(weaponLevel +" Level");
-            }
+        // Get weapon level
+        int weaponLevel = 1;
+
+        if (weaponBase != null)
+        {
+            weaponLevel = weaponBase.GetLevel;
         }
 
         weaponLevelText.text = $"Lv. {weaponLevel}";
+
+        // Set border
+        if (weaponBase != null && weaponLevel >= weaponBase.weaponData.maxLevel)
+            weaponBorder.sprite = maxLevelBorder;
+        else
+            weaponBorder.sprite = normalBorder;
 
         // Get weapon damage
         float damage = 0;

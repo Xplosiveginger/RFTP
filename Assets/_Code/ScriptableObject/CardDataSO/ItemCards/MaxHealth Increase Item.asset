@@ -12,23 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 781b090621e04b44ab0b2e52cc84c23d, type: 3}
   m_Name: MaxHealth Increase Item
   m_EditorClassIdentifier: 
-  cardSprite: {fileID: 21300000, guid: 02824405cc5f0924ea4df69b7666a397, type: 3}
+  cardSprite: {fileID: 21300000, guid: d8b8b327b7dd1b948a4649d724d0e16c, type: 3}
   cardName: Health
-  level: 1
   levelImages:
-  - {fileID: 21300000, guid: 9abfdad0c92a24d4f943820d97c825a4, type: 3}
-  - {fileID: 21300000, guid: 9abfdad0c92a24d4f943820d97c825a4, type: 3}
-  - {fileID: 21300000, guid: 03a134e676ea34f43bdd5494af580d8b, type: 3}
-  - {fileID: 21300000, guid: aa24f4be0a3e6d245a3608a7ffebe981, type: 3}
-  - {fileID: 21300000, guid: a6bff96c95e197f46a6f6b17d6b60b1d, type: 3}
-  - {fileID: 21300000, guid: 7c4793dd155047745aa6aabc8425f0a9, type: 3}
+  - {fileID: 21300000, guid: d8b8b327b7dd1b948a4649d724d0e16c, type: 3}
+  - {fileID: 21300000, guid: d8b8b327b7dd1b948a4649d724d0e16c, type: 3}
+  - {fileID: 21300000, guid: d8b8b327b7dd1b948a4649d724d0e16c, type: 3}
+  - {fileID: 21300000, guid: d8b8b327b7dd1b948a4649d724d0e16c, type: 3}
+  - {fileID: 21300000, guid: d8b8b327b7dd1b948a4649d724d0e16c, type: 3}
   cardPriority: 3
   cardType: 1
   itemSO: {fileID: 11400000, guid: 004d9deb98b995948b50d21f11f2bdea, type: 2}
   item:
     displayName: 'Max Health Increase '
     description: 
-    cardSprite: {fileID: 21300000, guid: 9abfdad0c92a24d4f943820d97c825a4, type: 3}
+    cardSprite: {fileID: 21300000, guid: d8b8b327b7dd1b948a4649d724d0e16c, type: 3}
     affectedStat: 1
     modifierAmount: 15
     isPercent: 1

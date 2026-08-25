@@ -98,7 +98,7 @@ public class GameStat_SO : ScriptableObject
             this.level = level;
         }
     }
-
+    
     [Title("Items")]
     [BoxGroup("Loadout/Items")]
     public List<ItemData> items = new List<ItemData>();

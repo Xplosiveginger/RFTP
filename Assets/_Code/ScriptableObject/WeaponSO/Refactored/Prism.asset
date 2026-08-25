@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Prism
   m_EditorClassIdentifier: 
   weaponName: 5
-  weaponLogo: {fileID: 21300000, guid: 7132088a6be26e44a9bf2e443255e8f3, type: 3}
+  weaponLogo: {fileID: 21300000, guid: 22017a54966b42f4290fba8b5d8bcb65, type: 3}
   weaponStatData:
   - {fileID: 11400000, guid: c941650ec687636439e254609a7ac76b, type: 2}
   - {fileID: 11400000, guid: 5a508b870fdf47640a198c593e652f13, type: 2}
@@ -21,3 +21,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5dcc5a0b2f51daa4b813980bd23cb1f0, type: 2}
   - {fileID: 11400000, guid: ec747ff8d0677704982d49ecce7705c1, type: 2}
   weaponPrefab: {fileID: 0}
+  maxLevel: 8
