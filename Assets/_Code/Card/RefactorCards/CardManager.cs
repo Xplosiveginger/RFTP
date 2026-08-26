@@ -182,9 +182,8 @@ public class CardManager : MonoBehaviour
     if (healthRegen != null && healthRegenText != null)
     {
         healthRegenText.text =
-            FormatPercentageModifier(healthRegen);
+            healthRegen.currentValue.ToString("0.##");
     }
-
 
     // =====================================================
     // COOLDOWN

@@ -26,7 +26,6 @@ public class CardDataSO : ScriptableObject
     // =========================================================
     // PLAYER
     // =========================================================
-
     [Header("Affects Player")]
     public ItemSO itemSO;
     public Item item;
@@ -37,6 +36,11 @@ public class CardDataSO : ScriptableObject
 
     public float playerStatModifier;
 
+    [Tooltip(
+        "If enabled, playerStatModifier is treated as a percentage. " +
+        "If disabled, it is treated as a flat value."
+    )]
+    public bool playerStatIsPercentage = true;
 
     // =========================================================
     // ENEMY

@@ -13,14 +13,18 @@ public class CardDataSOEditor : Editor
     private SerializedProperty cardPriority;
     private SerializedProperty levelImages;
 
+    // Player
     private SerializedProperty affectedPlayerStat;
     private SerializedProperty playerStatModifier;
+    private SerializedProperty playerStatIsPercentage;
     private SerializedProperty itemSO;
     private SerializedProperty item;
 
+    // Enemy
     private SerializedProperty affectedEnemyStat;
     private SerializedProperty enemyStatModifier;
 
+    // Weapon
     private SerializedProperty weaponName;
     private SerializedProperty weaponToAdd;
 
@@ -47,12 +51,18 @@ public class CardDataSOEditor : Editor
             serializedObject.FindProperty("levelImages");
 
 
-        // Player
+        // =====================================================
+        // PLAYER
+        // =====================================================
+
         affectedPlayerStat =
             serializedObject.FindProperty("affectedPlayerStat");
 
         playerStatModifier =
             serializedObject.FindProperty("playerStatModifier");
+
+        playerStatIsPercentage =
+            serializedObject.FindProperty("playerStatIsPercentage");
 
         itemSO =
             serializedObject.FindProperty("itemSO");
@@ -61,7 +71,10 @@ public class CardDataSOEditor : Editor
             serializedObject.FindProperty("item");
 
 
-        // Enemy
+        // =====================================================
+        // ENEMY
+        // =====================================================
+
         affectedEnemyStat =
             serializedObject.FindProperty("affectedEnemyStat");
 
@@ -69,7 +82,10 @@ public class CardDataSOEditor : Editor
             serializedObject.FindProperty("enemyStatModifier");
 
 
-        // Weapon
+        // =====================================================
+        // WEAPON
+        // =====================================================
+
         weaponName =
             serializedObject.FindProperty("weaponName");
 
@@ -86,7 +102,10 @@ public class CardDataSOEditor : Editor
             serializedObject.FindProperty("weaponStatIsPercentage");
 
 
-        // Buff / Debuff
+        // =====================================================
+        // BUFF / DEBUFF
+        // =====================================================
+
         isBuffDebuff =
             serializedObject.FindProperty("isBuffDebuff");
 
@@ -220,6 +239,10 @@ public class CardDataSOEditor : Editor
 
                 EditorGUILayout.PropertyField(
                     playerStatModifier
+                );
+
+                EditorGUILayout.PropertyField(
+                    playerStatIsPercentage
                 );
 
                 EditorGUILayout.Space();

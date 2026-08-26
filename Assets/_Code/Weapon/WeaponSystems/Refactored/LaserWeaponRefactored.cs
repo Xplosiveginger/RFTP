@@ -380,7 +380,6 @@ public class LaserWeaponRefactored : WeaponBase
                     EStatType.AttackCooldown,
                     -0.5f
                 );
-
                 break;
 
 

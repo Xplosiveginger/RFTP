@@ -358,16 +358,41 @@ public class ItemManager : MonoBehaviour
             return;
         }
 
-        statManager.ModifyStat(
-            cardDataSO.affectedPlayerStat,
-            cardDataSO.playerStatModifier
-        );
+        // =====================================================
+        // PERCENTAGE MODIFIER
+        // =====================================================
 
-        Debug.Log(
-            $"Applied PLAYER card '{cardDataSO.Name}': " +
-            $"{cardDataSO.affectedPlayerStat} " +
-            $"+{cardDataSO.playerStatModifier}%"
-        );
+        if (cardDataSO.playerStatIsPercentage)
+        {
+            statManager.ModifyStat(
+                cardDataSO.affectedPlayerStat,
+                cardDataSO.playerStatModifier
+            );
+
+            Debug.Log(
+                $"Applied PLAYER card '{cardDataSO.Name}': " +
+                $"{cardDataSO.affectedPlayerStat} " +
+                $"+{cardDataSO.playerStatModifier}%"
+            );
+        }
+
+        // =====================================================
+        // FLAT MODIFIER
+        // =====================================================
+
+        else
+        {
+            statManager.ModifyStatValue(
+                cardDataSO.affectedPlayerStat,
+                cardDataSO.playerStatModifier
+            );
+
+            Debug.Log(
+                $"Applied PLAYER card '{cardDataSO.Name}': " +
+                $"{cardDataSO.affectedPlayerStat} " +
+                $"+{cardDataSO.playerStatModifier} flat"
+            );
+        }
     }
 
 

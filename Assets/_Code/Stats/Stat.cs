@@ -162,17 +162,53 @@ public class Stat
     // RUNTIME PERCENTAGE MODIFIER
     // =========================================================
 
+    // =========================================================
+// RUNTIME PERCENTAGE MODIFIER
+// =========================================================
+
     public void ApplyModifier(float modifier)
     {
-        float tempMultiplier =
-            modifier / 100f;
+        float tempMultiplier = modifier / 100f;
 
+        float valueToAdd = baseValue * tempMultiplier;
+
+        // -----------------------------------------------------
+        // HEALTH
+        // -----------------------------------------------------
+        // A health modifier increases BOTH:
+        // - Current Health
+        // - Maximum Health
+        //
+        // Example:
+        // Base Health = 100
+        // +20% Health
+        //
+        // Current Health += 20
+        // Max Health     += 20
+        // -----------------------------------------------------
+
+        if (statName == EStatType.Health)
+        {
+            currentValue += valueToAdd;
+            maxValue += valueToAdd;
+
+            currentMultiplier += tempMultiplier;
+
+            OnCurrentValueChanged?.Invoke(this);
+            OnMaxValueChanged?.Invoke();
+
+            return;
+        }
+
+        // -----------------------------------------------------
+        // NORMAL STATS
+        // -----------------------------------------------------
+
+        currentValue += valueToAdd;
         currentMultiplier += tempMultiplier;
 
-        RecalculateValue();
+        OnCurrentValueChanged?.Invoke(this);
     }
-
-
     // =========================================================
     // HEALTH MODIFIER
     // =========================================================
