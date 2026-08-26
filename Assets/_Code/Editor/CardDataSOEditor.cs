@@ -27,8 +27,8 @@ public class CardDataSOEditor : Editor
 
         // Card Info
         EditorGUILayout.LabelField("Card Info", EditorStyles.boldLabel);
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("cardSprite"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("cardName"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("Icon"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("Name"));
 
         EditorGUILayout.Space();
 
