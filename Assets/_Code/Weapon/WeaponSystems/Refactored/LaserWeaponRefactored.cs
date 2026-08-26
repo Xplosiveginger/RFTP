@@ -435,12 +435,6 @@ public class LaserWeaponRefactored : WeaponBase
                     EStatType.Damage,
                     5f
                 );
-
-                statManager.ModifyStatValue(
-                    EStatType.ProjectileCount,
-                    1f
-                );
-
                 break;
 
 

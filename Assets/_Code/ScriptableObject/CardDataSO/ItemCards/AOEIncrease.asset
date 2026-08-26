@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: AOEIncrease
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: e6fd5a47189845d4aa5b99da8e537f8e, type: 3}
-  Name: 
+  Name: AOE
   Description:
-  - Increaes Area of Effect
+  - Increaes Area of Effect by 10%
   levelImages:
   - {fileID: 21300000, guid: e6fd5a47189845d4aa5b99da8e537f8e, type: 3}
   - {fileID: 21300000, guid: e6fd5a47189845d4aa5b99da8e537f8e, type: 3}
@@ -33,6 +33,7 @@ MonoBehaviour:
   affectsPlayer: 1
   affectedPlayerStat: 8
   playerStatModifier: 10
+  playerStatIsPercentage: 1
   affectsEnemy: 0
   affectedEnemyStat: 0
   enemyStatModifier: 0
