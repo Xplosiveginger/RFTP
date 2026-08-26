@@ -196,47 +196,188 @@ public class PauseManager : MonoBehaviour
     // Stats
     //========================================================
 
-    public void UpdatePauseStats()
+   //========================================================
+// Stats
+//========================================================
+
+public void UpdatePauseStats()
+{
+    // -----------------------------------------------------
+    // HEALTH
+    // -----------------------------------------------------
+    // Health is the exception.
+    // We want to show the actual maximum health value.
+    // -----------------------------------------------------
+
+    if (PlayerHealth != null && totalHealthText != null)
     {
-        if (PlayerHealth != null)
-        {
-            totalHealthText.text = PlayerHealth.maxHealth.ToString();
-        }
-
-        if (gameStatSO == null)
-            return;
-
-        if (StatManager != null)
-        {
-            if((StatManager.GetStat(EStatType.Damage)!=null))
-                damageText.text = (StatManager.GetStat(EStatType.Damage).currentValue).ToString();
-            
-            
-            if(StatManager.GetStat(EStatType.HealthRegen)!=null)
-                healthRegenText.text = (StatManager.GetStat(EStatType.HealthRegen).currentValue).ToString();
-        
-            if((StatManager.GetStat(EStatType.MoveSpeed)!=null))
-                moveSpeedText.text = ((StatManager.GetStat(EStatType.MoveSpeed).currentValue)).ToString();
-            
-            if((StatManager.GetStat(EStatType.AOESize)!=null))
-                aoeText.text = (StatManager.GetStat(EStatType.AOESize).currentValue).ToString();
-            
-            if(StatManager.GetStat(EStatType.ProjectileSpeed)!=null)
-                speedOfWeaponText.text = (StatManager.GetStat(EStatType.ProjectileSpeed).currentValue).ToString();
-            
-            if((StatManager.GetStat(EStatType.ProjectileCount)!=null))
-                numOfProjectilesText.text = (StatManager.GetStat(EStatType.ProjectileCount)).currentValue.ToString();
-            
-            if((StatManager.GetStat(EStatType.AttackCooldown)!=null))
-                cooldownText.text = (StatManager.GetStat(EStatType.AttackCooldown)).currentValue.ToString();  
-            
-            if((StatManager.GetStat(EStatType.ActiveDuration)!=null))
-                durationText.text = (StatManager.GetStat(EStatType.ActiveDuration)).currentValue.ToString();
-            
-            
-        }
+        totalHealthText.text =
+            Mathf.RoundToInt(PlayerHealth.maxHealth).ToString();
     }
 
+    if (StatManager == null)
+        return;
+
+
+    // -----------------------------------------------------
+    // DAMAGE
+    // -----------------------------------------------------
+
+    Stat damage = StatManager.GetStat(EStatType.Damage);
+
+    if (damage != null && damageText != null)
+    {
+        damageText.text =
+            FormatPercentageModifier(damage);
+    }
+
+
+    // -----------------------------------------------------
+    // HEALTH REGEN
+    // -----------------------------------------------------
+
+    Stat healthRegen =
+        StatManager.GetStat(EStatType.HealthRegen);
+
+    if (healthRegen != null && healthRegenText != null)
+    {
+        healthRegenText.text =
+            FormatPercentageModifier(healthRegen);
+    }
+
+
+    // -----------------------------------------------------
+    // MOVE SPEED
+    // -----------------------------------------------------
+
+    Stat moveSpeed =
+        StatManager.GetStat(EStatType.MoveSpeed);
+
+    if (moveSpeed != null && moveSpeedText != null)
+    {
+        moveSpeedText.text =
+            FormatPercentageModifier(moveSpeed);
+    }
+
+
+    // -----------------------------------------------------
+    // AOE SIZE
+    // -----------------------------------------------------
+
+    Stat aoeSize =
+        StatManager.GetStat(EStatType.AOESize);
+
+    if (aoeSize != null && aoeText != null)
+    {
+        aoeText.text =
+            FormatPercentageModifier(aoeSize);
+    }
+
+
+    // -----------------------------------------------------
+    // PROJECTILE SPEED
+    // -----------------------------------------------------
+
+    Stat projectileSpeed =
+        StatManager.GetStat(EStatType.ProjectileSpeed);
+
+    if (projectileSpeed != null && speedOfWeaponText != null)
+    {
+        speedOfWeaponText.text =
+            FormatPercentageModifier(projectileSpeed);
+    }
+
+
+    // -----------------------------------------------------
+    // PROJECTILE COUNT
+    // -----------------------------------------------------
+    // Projectile count is different because it uses flat
+    // modifiers (+1 projectile, +2 projectiles, etc.).
+    //
+    // Show the actual whole-number value.
+    // -----------------------------------------------------
+
+    Stat projectileCount =
+        StatManager.GetStat(EStatType.ProjectileCount);
+
+    if (projectileCount != null && numOfProjectilesText != null)
+    {
+        numOfProjectilesText.text =
+            Mathf.RoundToInt(projectileCount.currentValue).ToString();
+    }
+
+
+    // -----------------------------------------------------
+    // COOLDOWN
+    // -----------------------------------------------------
+
+    Stat cooldown =
+        StatManager.GetStat(EStatType.AttackCooldown);
+
+    if (cooldown != null && cooldownText != null)
+    {
+        cooldownText.text =
+            FormatPercentageModifier(cooldown);
+    }
+
+
+    // -----------------------------------------------------
+    // ACTIVE DURATION
+    // -----------------------------------------------------
+
+    Stat duration =
+        StatManager.GetStat(EStatType.ActiveDuration);
+
+    if (duration != null && durationText != null)
+    {
+        durationText.text =
+            FormatPercentageModifier(duration);
+    }
+}
+
+
+//========================================================
+// STAT UI HELPERS
+//========================================================
+
+private string FormatPercentageModifier(Stat stat)
+{
+    if (stat == null)
+        return "0%";
+
+
+    /*
+     * currentMultiplier represents the total multiplier.
+     *
+     * Example:
+     *
+     * 1.00 = 0%
+     * 1.10 = +10%
+     * 1.20 = +20%
+     * 0.90 = -10%
+     *
+     * We compare against the stat's starting multiplier
+     * rather than assuming it is always exactly 1.
+     */
+
+    float percentage =
+        ((stat.currentMultiplier /
+          Mathf.Max(stat.startMultiplier, 0.0001f)) - 1f)
+        * 100f;
+
+
+    // Avoid displaying things like +9.999998%
+    percentage = Mathf.Round(percentage);
+
+
+    if (percentage > 0f)
+        return $"+{percentage:0}%";
+
+    if (percentage < 0f)
+        return $"{percentage:0}%";
+
+    return "0%";
+}
     //========================================================
     // Pause Menu
     //========================================================

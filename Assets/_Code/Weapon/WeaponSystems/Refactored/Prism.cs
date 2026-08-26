@@ -69,16 +69,7 @@ public class Prism : WeaponBase
         projectileCount = statManager.GetStat(EStatType.ProjectileCount).currentValue;
         projectileSpeed = statManager.GetStat(EStatType.ProjectileSpeed).currentValue;
     }
-
-    protected override void OnDisable()
-    {
-        base.OnDisable();
-    }
-
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-    }
+    
 
     protected override void Start()
     {
