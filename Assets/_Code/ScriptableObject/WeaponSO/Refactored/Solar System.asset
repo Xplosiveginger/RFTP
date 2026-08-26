@@ -13,14 +13,11 @@ MonoBehaviour:
   m_Name: Solar System
   m_EditorClassIdentifier: 
   weaponName: 6
-  weaponLogo: {fileID: 21300000, guid: dacf30302891ec64bbff34d583579ad5, type: 3}
+  weaponLogo: {fileID: 21300000, guid: a0a0eabb217e07049bfc3b7bee957963, type: 3}
   weaponStatData:
   - {fileID: 11400000, guid: 39516d146b5990f43be06b8f6e589df8, type: 2}
-  - {fileID: 11400000, guid: 15c1c825c46b66f429e9228967af868e, type: 2}
   - {fileID: 11400000, guid: 6bb1b446ad393f8408e3d482fb680ac2, type: 2}
-  - {fileID: 11400000, guid: 08039a0e5c577284da3051921e53b8d0, type: 2}
   - {fileID: 11400000, guid: 4658791f27e1a9a43a3944f207608995, type: 2}
   - {fileID: 11400000, guid: 68a6654adc0b1614c8b115bd0d9265e1, type: 2}
   - {fileID: 11400000, guid: e9be503c4b655b24695141dcf26155b1, type: 2}
-  weaponPrefab: {fileID: 0}
-  maxLevel: 8
+  weaponPrefab: {fileID: 2201000893742412666, guid: 663c24ff9b10edd4f950f7ac9a1e78ff, type: 3}

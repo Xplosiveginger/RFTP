@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 using TMPro;
 
 public class Shop : MonoBehaviour
@@ -13,17 +12,18 @@ public class Shop : MonoBehaviour
     [Header("Owned Items")]
     public List<ShopItemSO> startingItems = new List<ShopItemSO>();
 
-    [Header("Animation")]
-    public float btnScaleTime = 0.25f;
-
     [Header("Money")]
     public int startingMoney = 1000;
     public int playerMoney;
 
     public TextMeshProUGUI moneyText;
-
     public TextMeshProUGUI refundText;
-    // Track how much was spent
+
+    [Header("Shop UI")]
+    public GameObject buyButton;
+    public GameObject refundButton;
+    public TextMeshProUGUI buyCostText;
+
     private int spentMoney = 0;
 
     public static event Action<ItemSO> OnItemSelected;
@@ -45,37 +45,41 @@ public class Shop : MonoBehaviour
             return;
         }
     }
+
     private void OnEnable()
     {
         ShopItemUI.OnItemAdded += AddStartingItem;
         GameSaveSystem.OnMoneyChanged += OnSavedMoneyChanged;
     }
+
     private void OnDisable()
     {
         ShopItemUI.OnItemAdded -= AddStartingItem;
         GameSaveSystem.OnMoneyChanged -= OnSavedMoneyChanged;
     }
-    private void OnSavedMoneyChanged(int newMoney)
-    {
-        playerMoney = newMoney;
 
-        UpdateMoneyUI();
-
-        RefreshSelectedItem();
-    }
-    private void RefreshSelectedItem()
-    {
-        if (currentSelected != null)
-        {
-            currentSelected.SetSelected(true);
-        }
-    }
     private void Start()
     {
         LoadSavedMoney();
         UpdateMoneyUI();
         UpdateRefundUI();
+
+        // Nothing selected at start
+        UpdateSelectionUI();
     }
+
+    // ===============================
+    // MONEY
+    // ===============================
+
+    private void OnSavedMoneyChanged(int newMoney)
+    {
+        playerMoney = newMoney;
+
+        UpdateMoneyUI();
+        RefreshSelectedItem();
+    }
+
     private void LoadSavedMoney()
     {
         if (GameSaveSystem.instance != null)
@@ -95,91 +99,137 @@ public class Shop : MonoBehaviour
             );
         }
     }
-    private void UpdateRefundUI()
+
+    private void RefreshSelectedItem()
     {
-        int refundAmount = 0;
-
-        if (GameSaveSystem.instance != null)
+        if (currentSelected != null)
         {
-            foreach (GameSaveSystem.SavedShopItem savedItem
-                     in GameSaveSystem.instance.GetSavedShopItems())
-            {
-                ShopItemSO shopItem = FindShopItemByID(savedItem.itemID);
-
-                if (shopItem == null)
-                    continue;
-
-                for (int level = 0; level < savedItem.level; level++)
-                {
-                    refundAmount +=
-                        shopItem.unlockCost * (level + 1);
-                }
-            }
-        }
-
-        if (refundText != null)
-        {
-            refundText.text =
-                refundAmount > 0
-                    ? "$" + CurrencyFormatter.Format(refundAmount, 2)
-                    : "";
+            currentSelected.SetSelected(true);
         }
     }
-    // ===============================
-    // EVENTS
-    // ===============================
-    
+
     // ===============================
     // SELECTION
     // ===============================
 
     public void SelectItem(ShopItemUI itemUI, bool selected)
     {
+        // Unselect previous item
         if (currentSelected != null && currentSelected != itemUI)
         {
             currentSelected.SetSelected(false);
-
-            AnimateUnselect(currentSelected);
 
             OnItemUnSelected?.Invoke(currentSelected.item);
         }
 
         currentSelected = selected ? itemUI : null;
 
-        itemUI.SetSelected(selected);
+        // Nothing selected
+        if (currentSelected == null)
+        {
+            UpdateSelectionUI();
+            return;
+        }
+
+        currentSelected.SetSelected(true);
 
         if (selected)
         {
-            AnimateSelect(itemUI);
-
-            OnItemSelected?.Invoke(itemUI.item);
+            OnItemSelected?.Invoke(currentSelected.item);
         }
-        else
+
+        UpdateSelectionUI();
+    }
+
+    // ===============================
+    // SHOP UI
+    // ===============================
+    public void UpdateSelectionUI()
+    {
+        bool hasSelection = currentSelected != null;
+
+        // ---------------------------------
+        // BUY BUTTON
+        // ---------------------------------
+
+        if (buyButton != null)
+            buyButton.SetActive(hasSelection);
+
+        // ---------------------------------
+        // REFUND BUTTON
+        // ---------------------------------
+
+        if (refundButton != null)
+            refundButton.SetActive(hasSelection);
+
+        // ---------------------------------
+        // BUY COST
+        // ---------------------------------
+
+        if (buyCostText != null)
         {
-            AnimateUnselect(itemUI);
+            if (hasSelection)
+            {
+                buyCostText.gameObject.SetActive(true);
+
+                int cost =
+                    currentSelected.item.unlockCost *
+                    (currentSelected.CurrentLevel + 1);
+
+                buyCostText.text =
+                    "$" + CurrencyFormatter.Format(cost, 2);
+            }
+            else
+            {
+                buyCostText.gameObject.SetActive(false);
+                buyCostText.text = "";
+            }
+        }
+
+        // ---------------------------------
+        // REFUND AMOUNT
+        // ---------------------------------
+
+        if (refundText != null)
+        {
+            if (hasSelection)
+            {
+                refundText.gameObject.SetActive(true);
+
+                // IMPORTANT:
+                // Restore the refund amount after re-selecting
+                UpdateRefundUI();
+            }
+            else
+            {
+                refundText.gameObject.SetActive(false);
+                refundText.text = "";
+            }
+        }
+
+        // ---------------------------------
+        // DESCRIPTION
+        // ---------------------------------
+
+        if (DescriptionUI.instance != null)
+        {
+            if (hasSelection)
+            {
+                DescriptionUI.instance.ShowItem(
+                    currentSelected.item,
+                    currentSelected.CurrentLevel
+                );
+            }
+            else
+            {
+                DescriptionUI.instance.ClearDescription();
+            }
         }
     }
-
-    // ===============================
-    // ANIMATIONS
-    // ===============================
-
-    private void AnimateSelect(ShopItemUI itemUI)
-    {
-        itemUI.buyBtn.transform
-            .DOScale(1.2f, btnScaleTime)
-            .SetEase(Ease.OutBack);
-    }
-
-    private void AnimateUnselect(ShopItemUI itemUI)
-    {
-        itemUI.buyBtn.transform
-            .DOScale(1f, btnScaleTime);
-    }
-
     // ===============================
     // BUY
     // ===============================
+
     public void AddStartingItem(
         ShopItemSO item,
         int level,
@@ -191,11 +241,9 @@ public class Shop : MonoBehaviour
             return;
         }
 
-        // Subtract purchase cost ONCE
         playerMoney -= cost;
         spentMoney += cost;
 
-        // Save remaining money
         if (GameSaveSystem.instance != null)
         {
             GameSaveSystem.instance.SetMoney(playerMoney);
@@ -236,7 +284,6 @@ public class Shop : MonoBehaviour
 
         int refundAmount = 0;
 
-        // Calculate total money spent from saved shop levels
         foreach (GameSaveSystem.SavedShopItem savedItem
                  in GameSaveSystem.instance.GetSavedShopItems())
         {
@@ -264,31 +311,70 @@ public class Shop : MonoBehaviour
             return;
         }
 
-        // Refund money
         playerMoney += refundAmount;
 
-        // Reset all saved shop data
         GameSaveSystem.instance.ClearShopData();
 
-        // Save refunded money
         GameSaveSystem.instance.SetMoney(playerMoney);
 
-        // Reset runtime shop data
         startingItems.Clear();
         spentMoney = 0;
 
         UpdateMoneyUI();
         UpdateRefundUI();
-        // Tell all ShopItemUI elements to reset
+
+        // Clear selection and hide all selection UI
+        currentSelected = null;
+        UpdateSelectionUI();
+
+        // Reset all ShopItemUI elements
         OnRefundAll?.Invoke();
 
         Debug.Log(
             $"All purchases refunded! Refunded: ${refundAmount}"
         );
     }
+
+    // ===============================
+    // REFUND UI
+    // ===============================
+
+    private void UpdateRefundUI()
+    {
+        int refundAmount = 0;
+
+        if (GameSaveSystem.instance != null)
+        {
+            foreach (GameSaveSystem.SavedShopItem savedItem
+                     in GameSaveSystem.instance.GetSavedShopItems())
+            {
+                ShopItemSO shopItem =
+                    FindShopItemByID(savedItem.itemID);
+
+                if (shopItem == null)
+                    continue;
+
+                for (int level = 0; level < savedItem.level; level++)
+                {
+                    refundAmount +=
+                        shopItem.unlockCost * (level + 1);
+                }
+            }
+        }
+
+        if (refundText != null)
+        {
+            refundText.text =
+                refundAmount > 0
+                    ? "$" + CurrencyFormatter.Format(refundAmount, 2)
+                    : "";
+        }
+    }
+
     private ShopItemSO FindShopItemByID(string itemID)
     {
-        ShopItemUI[] shopItems = FindObjectsOfType<ShopItemUI>();
+        ShopItemUI[] shopItems =
+            FindObjectsOfType<ShopItemUI>();
 
         foreach (ShopItemUI shopItemUI in shopItems)
         {
@@ -301,6 +387,7 @@ public class Shop : MonoBehaviour
 
         return null;
     }
+
     // ===============================
     // UI
     // ===============================

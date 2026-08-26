@@ -10,8 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 781b090621e04b44ab0b2e52cc84c23d, type: 3}
-  m_Name: TunningFork
+  m_Name: SO_AcidRain Cloud
   m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: 99e0bb58b88c7324daf105b6391f2173, type: 3}
+  Name: Acid Rain Cloud
+  Description:
+  - Acid Rain puddles are going to be a nightmare for the enemies if they enter the
+    zones
+  - Area of Effect of the weapon is increased by 10%
+  - 'The total damage of the weapon is increased by 10. The duration of the weapon
+    is reduction by 0.5 seconds '
+  - 'Area of Effect of the weapon is increased by 10%. One more cloud is added to
+    the roster '
+  - 'The total damage of the weapon is increased by 10. The duration of the weapon
+    is reduction by 0.5 seconds '
+  - 'Area of Effect of the weapon is increased by 10%. One more cloud is added to
+    the roster '
+  - 'The total damage of the weapon is increased by 10. The duration of the weapon
+    is reduction by 0.5 seconds '
+  - 'Area of Effect of the weapon is increased by 10%. '
   levelImages:
   - {fileID: 21300000, guid: 6dbcbc395401b2d4b99ce411b690be0a, type: 3}
   - {fileID: 21300000, guid: 24808e6e4094058428cd8af8f92079e3, type: 3}
@@ -22,6 +39,14 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1b572ae2199539246a96946e7a0569fe, type: 3}
   cardPriority: 5
   cardType: 3
+  itemSO: {fileID: 0}
+  item:
+    displayName: 
+    description: 
+    cardSprite: {fileID: 0}
+    affectedStat: 0
+    modifierAmount: 0
+    isPercent: 0
   affectsPlayer: 0
   affectedPlayerStat: 0
   playerStatModifier: 0
@@ -29,7 +54,7 @@ MonoBehaviour:
   affectedEnemyStat: 0
   enemyStatModifier: 0
   affectsWeaponLevel: 0
-  weaponName: 7
+  weaponName: 0
   affectsWeaponStat: 0
   affectedWeaponStat: 0
   weaponStatModifier: 0
