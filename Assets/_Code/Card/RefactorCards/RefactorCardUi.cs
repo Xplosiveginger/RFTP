@@ -46,8 +46,9 @@ public class RefactorCardUi : MonoBehaviour, IPointerClickHandler
         icon.sprite = data.Icon;
         NameTxt.text = data.Name;
         LevelTxt.text = "Lvl."+ "\n" + "1";
-        if (data.Description.Length > 0)
+        if (data.Description.Length > 0)  //this needs to be the value of the level in item
         {
+            int max = Mathf.Min(data.Description.Length, 0);
             DescriptionTxt.text = data.Description[0];
         }
         else
