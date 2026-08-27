@@ -583,6 +583,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardManager: {fileID: 0}
   cardData: {fileID: 0}
+  gameStatSO: {fileID: 11400000, guid: c0e4e38e7c16edc4b8aece16cfd8078c, type: 2}
   icon: {fileID: 8610447499281952945}
   NameTxt: {fileID: 3739197998347776950}
   DescriptionTxt: {fileID: 1212543304542827721}

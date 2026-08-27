@@ -15,7 +15,7 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: 775de83e6f9def742a5ce277016daa5d, type: 3}
   Name: Extra Health
   Description:
-  - Extra Health
+  - Get 10 Extra Health
   levelImages:
   - {fileID: 21300000, guid: 3702fe1baff4bc44b9b417d901462c28, type: 3}
   - {fileID: 21300000, guid: 8cb509702141af84f8562eb78ade3106, type: 3}

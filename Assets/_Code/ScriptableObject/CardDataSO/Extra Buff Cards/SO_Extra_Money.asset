@@ -15,7 +15,7 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: d3c207db64d79ad4e865d68279acd0be, type: 3}
   Name: Extra Money
   Description:
-  - Extra Money
+  - Get 50 Extra Money
   levelImages:
   - {fileID: 21300000, guid: 3702fe1baff4bc44b9b417d901462c28, type: 3}
   - {fileID: 21300000, guid: 8cb509702141af84f8562eb78ade3106, type: 3}
