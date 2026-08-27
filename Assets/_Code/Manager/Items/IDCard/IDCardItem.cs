@@ -38,7 +38,7 @@ public class IDCardItem : MonoBehaviour
         // ICON
         // =====================================================
 
-        itemIcon.sprite = itemData.cardDataSO.cardSprite;
+        itemIcon.sprite = itemData.cardDataSO.Icon;
 
 
         // =====================================================

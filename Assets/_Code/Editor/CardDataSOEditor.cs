@@ -1,91 +1,349 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(CardDataSO))]
 public class CardDataSOEditor : Editor
 {
-    SerializedProperty cardType;
-    SerializedProperty isBuffDebuff;
+    private SerializedProperty cardType;
+    private SerializedProperty isBuffDebuff;
+
+    private SerializedProperty icon;
+    private SerializedProperty cardName;
+    private SerializedProperty description;
+    private SerializedProperty cardPriority;
+    private SerializedProperty levelImages;
+
+    // Player
+    private SerializedProperty affectedPlayerStat;
+    private SerializedProperty playerStatModifier;
+    private SerializedProperty playerStatIsPercentage;
+    private SerializedProperty itemSO;
+    private SerializedProperty item;
+
+    // Enemy
+    private SerializedProperty affectedEnemyStat;
+    private SerializedProperty enemyStatModifier;
+
+    // Weapon
+    private SerializedProperty weaponName;
+    private SerializedProperty weaponToAdd;
+
+    private SerializedProperty affectedWeaponStat;
+    private SerializedProperty weaponStatModifier;
+    private SerializedProperty weaponStatIsPercentage;
+
+    private SerializedProperty time;
+
 
     private void OnEnable()
     {
-        cardType = serializedObject.FindProperty("cardType");
-        isBuffDebuff = serializedObject.FindProperty("isBuffDebuff");
+        icon = serializedObject.FindProperty("Icon");
+        cardName = serializedObject.FindProperty("Name");
+        description = serializedObject.FindProperty("Description");
+
+        cardPriority =
+            serializedObject.FindProperty("cardPriority");
+
+        cardType =
+            serializedObject.FindProperty("cardType");
+
+        levelImages =
+            serializedObject.FindProperty("levelImages");
+
+
+        // =====================================================
+        // PLAYER
+        // =====================================================
+
+        affectedPlayerStat =
+            serializedObject.FindProperty("affectedPlayerStat");
+
+        playerStatModifier =
+            serializedObject.FindProperty("playerStatModifier");
+
+        playerStatIsPercentage =
+            serializedObject.FindProperty("playerStatIsPercentage");
+
+        itemSO =
+            serializedObject.FindProperty("itemSO");
+
+        item =
+            serializedObject.FindProperty("item");
+
+
+        // =====================================================
+        // ENEMY
+        // =====================================================
+
+        affectedEnemyStat =
+            serializedObject.FindProperty("affectedEnemyStat");
+
+        enemyStatModifier =
+            serializedObject.FindProperty("enemyStatModifier");
+
+
+        // =====================================================
+        // WEAPON
+        // =====================================================
+
+        weaponName =
+            serializedObject.FindProperty("weaponName");
+
+        weaponToAdd =
+            serializedObject.FindProperty("weaponToAdd");
+
+        affectedWeaponStat =
+            serializedObject.FindProperty("affectedWeaponStat");
+
+        weaponStatModifier =
+            serializedObject.FindProperty("weaponStatModifier");
+
+        weaponStatIsPercentage =
+            serializedObject.FindProperty("weaponStatIsPercentage");
+
+
+        // =====================================================
+        // BUFF / DEBUFF
+        // =====================================================
+
+        isBuffDebuff =
+            serializedObject.FindProperty("isBuffDebuff");
+
+        time =
+            serializedObject.FindProperty("time");
     }
+
 
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
-        CardDataSO cardData = (CardDataSO)target;
 
-        // Card Info
-        EditorGUILayout.LabelField("Card Info", EditorStyles.boldLabel);
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("cardSprite"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("cardName"));
+
+        // =====================================================
+        // CARD INFO
+        // =====================================================
+
+        EditorGUILayout.LabelField(
+            "Card Info",
+            EditorStyles.boldLabel
+        );
+
+        EditorGUILayout.PropertyField(icon);
+
+        EditorGUILayout.PropertyField(cardName);
+
+        EditorGUILayout.PropertyField(description);
+
 
         EditorGUILayout.Space();
 
-        // Priority / Type
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("cardPriority"));
-        EditorGUILayout.PropertyField(cardType);
 
-        EditorGUI.indentLevel++;
+        // =====================================================
+        // CARD TYPE
+        // =====================================================
+
+        EditorGUILayout.LabelField(
+            "Card Settings",
+            EditorStyles.boldLabel
+        );
+
+        EditorGUILayout.PropertyField(
+            cardPriority
+        );
+
+        EditorGUILayout.PropertyField(
+            cardType
+        );
+
+
+        EditorGUILayout.Space();
+
+
+        // =====================================================
+        // TYPE-SPECIFIC SETTINGS
+        // =====================================================
+
+        EditorGUILayout.LabelField(
+            "Effect Settings",
+            EditorStyles.boldLabel
+        );
+
         EditorGUILayout.BeginVertical("box");
+
         ShowDifferentProperties();
+
         EditorGUILayout.EndVertical();
-        EditorGUI.indentLevel--;
 
-        EditorGUILayout.PropertyField(isBuffDebuff);
 
-        if (!isBuffDebuff.boolValue)
-        {
-            GUI.enabled = false;
-        }
+        EditorGUILayout.Space();
 
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("time"));
-        GUI.enabled = true;
 
-        // Level Images
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("levelImages"));
+        // =====================================================
+        // BUFF / DEBUFF
+        // =====================================================
+
+        EditorGUILayout.PropertyField(
+            isBuffDebuff
+        );
+
+
+        EditorGUI.BeginDisabledGroup(
+            !isBuffDebuff.boolValue
+        );
+
+        EditorGUILayout.PropertyField(
+            time
+        );
+
+        EditorGUI.EndDisabledGroup();
+
+
+        EditorGUILayout.Space();
+
+
+        // =====================================================
+        // LEVEL IMAGES
+        // =====================================================
+
+        EditorGUILayout.LabelField(
+            "Level Images",
+            EditorStyles.boldLabel
+        );
+
+        EditorGUILayout.PropertyField(
+            levelImages
+        );
+
 
         serializedObject.ApplyModifiedProperties();
     }
 
+
     private void ShowDifferentProperties()
     {
-        switch ((ECardType)cardType.enumValueIndex)
+        ECardType type =
+            (ECardType)cardType.enumValueIndex;
+
+
+        switch (type)
         {
+            // =================================================
+            // PLAYER
+            // =================================================
+
             case ECardType.AffectsPlayer:
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("affectedPlayerStat"));
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("playerStatModifier"));
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("itemSO"));
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("item"));
+
+                EditorGUILayout.PropertyField(
+                    affectedPlayerStat
+                );
+
+                EditorGUILayout.PropertyField(
+                    playerStatModifier
+                );
+
+                EditorGUILayout.PropertyField(
+                    playerStatIsPercentage
+                );
+
+                EditorGUILayout.Space();
+
+                EditorGUILayout.PropertyField(
+                    itemSO
+                );
+
+                EditorGUILayout.PropertyField(
+                    item
+                );
+
                 break;
+
+
+            // =================================================
+            // ADD WEAPON
+            // =================================================
 
             case ECardType.AddsWeapon:
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("weaponToAdd"));
+
+                EditorGUILayout.PropertyField(
+                    weaponToAdd
+                );
+
                 break;
+
+
+            // =================================================
+            // ENEMY
+            // =================================================
 
             case ECardType.AffectsEnemy:
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("affectedEnemyStat"));
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("enemyStatModifier"));
+
+                EditorGUILayout.PropertyField(
+                    affectedEnemyStat
+                );
+
+                EditorGUILayout.PropertyField(
+                    enemyStatModifier
+                );
+
                 break;
+
+
+            // =================================================
+            // WEAPON LEVEL
+            // =================================================
 
             case ECardType.AffectsWeaponLevel:
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("weaponName"));
+
+                EditorGUILayout.PropertyField(
+                    weaponName
+                );
+
                 break;
+
+
+            // =================================================
+            // SPECIFIC WEAPON STAT
+            // =================================================
 
             case ECardType.AffectsSpecificWeaponStat:
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("weaponName"));
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("affectedWeaponStat"));
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("weaponStatModifier"));
+
+                EditorGUILayout.PropertyField(
+                    weaponName
+                );
+
+                EditorGUILayout.PropertyField(
+                    affectedWeaponStat
+                );
+
+                EditorGUILayout.PropertyField(
+                    weaponStatModifier
+                );
+
+                EditorGUILayout.PropertyField(
+                    weaponStatIsPercentage
+                );
+
                 break;
 
+
+            // =================================================
+            // ALL WEAPONS STAT
+            // =================================================
+
             case ECardType.AffectsAllWeaponsStat:
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("affectedWeaponStat"));
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("weaponStatModifier"));
+
+                EditorGUILayout.PropertyField(
+                    affectedWeaponStat
+                );
+
+                EditorGUILayout.PropertyField(
+                    weaponStatModifier
+                );
+
+                EditorGUILayout.PropertyField(
+                    weaponStatIsPercentage
+                );
+
                 break;
         }
     }

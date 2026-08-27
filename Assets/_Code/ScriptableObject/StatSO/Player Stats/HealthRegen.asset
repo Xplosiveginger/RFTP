@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HealthRegen
   m_EditorClassIdentifier: 
   statName: 2
-  baseValue: 8
+  baseValue: 0.2
   maxValue: 3
   startValue: 0
   startMultiplier: 1

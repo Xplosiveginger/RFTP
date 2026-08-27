@@ -59,7 +59,7 @@ public class GameSaveSystem : MonoBehaviour
 
     public void SetMoney(int money)
     {
-        saveData.playerMoney = money;
+        saveData.playerMoney = Mathf.Max(0, money);
 
         SaveGame();
 

@@ -1,49 +1,46 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PreSecDamage : MonoBehaviour
 {
     [Header("Damage Settings")]
-    public float damagePerFrame = 1f; // Damage applied every frame
-    [Tooltip("Debug or display only: equivalent damage per second")]
-    public float damagePerSecond => damagePerFrame / Time.deltaTime;
+    public float damage = 1f; // Damage applied every frame
+    public float damageInterval = 1f;
 
     public float deathAfterSec = 3f;
+    public Vector2 aoeSize;
+    public float size;
+    [SerializeField] private LayerMask damageLM;
+    private float lastSize;
 
     private readonly List<HealthSystem> enemiesInRange = new List<HealthSystem>();
     private Dictionary<HealthSystem, float> damageBuffer = new Dictionary<HealthSystem, float>();
 
-    void Start()
+    public void Initialize(float damage, float size)
     {
-        //Destroy(gameObject, deathAfterSec);
+        this.damage = damage;
+        this.size = size;
+
+        Vector2 scale = transform.localScale;
+
+        scale = scale * size;
+
+        transform.localScale = scale;
+
+        StartCoroutine(DamageEnemies());
     }
 
-    void Update()
+    IEnumerator DamageEnemies()
     {
-        float damageThisFrame = damagePerFrame;
-
-        for (int i = enemiesInRange.Count - 1; i >= 0; i--)
+        while (true)
         {
-            HealthSystem enemy = enemiesInRange[i];
-            if (enemy == null)
+            foreach (HealthSystem hs in enemiesInRange)
             {
-                enemiesInRange.RemoveAt(i);
-                continue;
+                hs.Damage((int)damage);
             }
 
-            // Accumulate fractional damage
-            if (!damageBuffer.ContainsKey(enemy))
-                damageBuffer[enemy] = 0f;
-
-            damageBuffer[enemy] += damageThisFrame;
-
-            // Apply only whole number damage
-            int intDamage = Mathf.FloorToInt(damageBuffer[enemy]);
-            if (intDamage > 0)
-            {
-                enemy.Damage(DamageItems.GetModifiedDamage(intDamage));
-                damageBuffer[enemy] -= intDamage;
-            }
+            yield return new WaitForSeconds(damageInterval);
         }
     }
 

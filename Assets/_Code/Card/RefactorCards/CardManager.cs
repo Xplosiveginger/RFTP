@@ -45,9 +45,12 @@ public class CardManager : MonoBehaviour
     
     [Header("Card Categories")]
     [SerializeField] protected List<CardCategoryData> cardCategories;
-    
+
     [Header("Card UI References")]
-    [SerializeField] protected List<RefactorCardUi> cards;
+    public Transform cardParent;
+    public RefactorCardUi Weapon_cardPrefab;
+    public RefactorCardUi item_cardPrefab;
+    public int totalCardsToSpawn = 3;
     
     [Header("Game Data")]
     [SerializeField] private GameStat_SO gameStatSO;
@@ -82,6 +85,7 @@ public class CardManager : MonoBehaviour
         {
             gameStatSO.OnEquippedWeaponNamesUpdated += OnEquippedWeaponNamesUpdatedHandler;
         }
+        ClearCards();
     }
     private void PlayLevelUpAnimation()
     {
@@ -114,63 +118,208 @@ public class CardManager : MonoBehaviour
         return;
     }
 
+    // =====================================================
+    // GET STATS
+    // =====================================================
 
-    Stat damage = StatManager.GetStat(EStatType.Damage);
-    Stat health = StatManager.GetStat(EStatType.Health);
-    Stat healthRegen = StatManager.GetStat(EStatType.HealthRegen);
-    Stat cooldown = StatManager.GetStat(EStatType.AttackCooldown);
-    Stat aoe = StatManager.GetStat(EStatType.AOESize);
-    Stat projectileSpeed = StatManager.GetStat(EStatType.ProjectileSpeed);
-    Stat projectileCount = StatManager.GetStat(EStatType.ProjectileCount);
-    Stat duration = StatManager.GetStat(EStatType.ActiveDuration);
-    Stat moveSpeed = StatManager.GetStat(EStatType.MoveSpeed);
+    Stat damage =
+        StatManager.GetStat(EStatType.Damage);
 
-    if (damage != null)
+    Stat health =
+        StatManager.GetStat(EStatType.Health);
+
+    Stat healthRegen =
+        StatManager.GetStat(EStatType.HealthRegen);
+
+    Stat cooldown =
+        StatManager.GetStat(EStatType.AttackCooldown);
+
+    Stat aoe =
+        StatManager.GetStat(EStatType.AOESize);
+
+    Stat projectileSpeed =
+        StatManager.GetStat(EStatType.ProjectileSpeed);
+
+    Stat projectileCount =
+        StatManager.GetStat(EStatType.ProjectileCount);
+
+    Stat duration =
+        StatManager.GetStat(EStatType.ActiveDuration);
+
+    Stat moveSpeed =
+        StatManager.GetStat(EStatType.MoveSpeed);
+
+
+    // =====================================================
+    // DAMAGE
+    // =====================================================
+
+    if (damage != null && damageText != null)
     {
-        damageText.text = damage.currentValue.ToString();
+        damageText.text =
+            FormatPercentageModifier(damage);
     }
 
-    if (health != null)
+
+    // =====================================================
+    // HEALTH
+    // =====================================================
+    // Health is the exception.
+    // Show the actual maximum health.
+    // =====================================================
+
+    if (health != null && totalHealthText != null)
     {
-        totalHealthText.text = health.maxValue.ToString();
+        totalHealthText.text =
+            Mathf.RoundToInt(health.maxValue).ToString();
     }
 
-    if (healthRegen != null)
+
+    // =====================================================
+    // HEALTH REGEN
+    // =====================================================
+
+    if (healthRegen != null && healthRegenText != null)
     {
-        healthRegenText.text = healthRegen.currentValue.ToString();
+        healthRegenText.text =
+            healthRegen.currentValue.ToString("0.##");
     }
 
-    if (cooldown != null)
+    // =====================================================
+    // COOLDOWN
+    // =====================================================
+
+    if (cooldown != null && cooldownText != null)
     {
-        cooldownText.text = cooldown.currentValue.ToString();
+        cooldownText.text =
+            FormatPercentageModifier(cooldown);
     }
 
-    if (aoe != null)
+
+    // =====================================================
+    // AOE SIZE
+    // =====================================================
+
+    if (aoe != null && aoeText != null)
     {
-        aoeText.text = aoe.currentValue.ToString();
+        aoeText.text =
+            FormatPercentageModifier(aoe);
     }
 
-    if (projectileSpeed != null)
+
+    // =====================================================
+    // PROJECTILE SPEED
+    // =====================================================
+
+    if (projectileSpeed != null &&
+        speedOfWeaponText != null)
     {
-        speedOfWeaponText.text = projectileSpeed.currentValue.ToString();
+        speedOfWeaponText.text =
+            FormatPercentageModifier(projectileSpeed);
     }
 
-    if (projectileCount != null)
+
+    // =====================================================
+    // PROJECTILE COUNT
+    // =====================================================
+    // Projectile count is a FLAT stat.
+    // Always display it as a whole number.
+    // =====================================================
+
+    if (projectileCount != null &&
+        numOfProjectilesText != null)
     {
-        numOfProjectilesText.text = projectileCount.currentValue.ToString();
-        Debug.Log($"Projectile Count: {projectileCount.currentValue}");
+        numOfProjectilesText.text =
+            Mathf.RoundToInt(
+                projectileCount.currentValue
+            ).ToString();
+
+        Debug.Log(
+            $"Projectile Count: " +
+            $"{Mathf.RoundToInt(projectileCount.currentValue)}"
+        );
     }
 
-    if (duration != null)
+
+    // =====================================================
+    // ACTIVE DURATION
+    // =====================================================
+
+    if (duration != null && durationText != null)
     {
-        durationText.text = duration.currentValue.ToString();
+        durationText.text =
+            FormatPercentageModifier(duration);
     }
 
-    if (moveSpeed != null)
-    {
-        moveSpeedText.text = moveSpeed.currentValue.ToString();
-    }
 
+    // =====================================================
+    // MOVE SPEED
+    // =====================================================
+
+    if (moveSpeed != null && moveSpeedText != null)
+    {
+        moveSpeedText.text =
+            FormatPercentageModifier(moveSpeed);
+    }
+}
+
+
+// =========================================================
+// FORMAT PLAYER STAT MODIFIER
+// =========================================================
+
+private string FormatPercentageModifier(Stat stat)
+{
+    if (stat == null)
+        return "0%";
+
+
+    /*
+     * Player stats are now treated as modifiers rather
+     * than actual gameplay values.
+     *
+     * Examples:
+     *
+     * currentMultiplier = 1.00
+     * => 0%
+     *
+     * currentMultiplier = 1.10
+     * => +10%
+     *
+     * currentMultiplier = 1.20
+     * => +20%
+     *
+     * currentMultiplier = 0.90
+     * => -10%
+     *
+     * We compare against startMultiplier so this also
+     * works if the starting multiplier isn't exactly 1.
+     */
+
+    float percentage =
+        (
+            stat.currentMultiplier /
+            Mathf.Max(
+                stat.startMultiplier,
+                0.0001f
+            )
+            - 1f
+        ) * 100f;
+
+
+    // Prevent values such as 9.999998%
+    percentage = Mathf.Round(percentage);
+
+
+    if (percentage > 0f)
+        return $"+{percentage:0}%";
+
+
+    if (percentage < 0f)
+        return $"{percentage:0}%";
+
+
+    return "0%";
 }
     
     private void CardInitializer()
@@ -200,49 +349,64 @@ public class CardManager : MonoBehaviour
             // Play the one-shot animation from the beginning
             PlayLevelUpAnimation();
         }
-
+        ClearCards();
         PopulateCards();
 
-        foreach (var card in cards)
+        /*foreach (var card in cards)
         {
             card.gameObject.SetActive(true);
-        }
+        }*/
     }
     private void PopulateCards()
     {
-        // Step 1: Accumulate all qualified candidates from all categories with relevancy filtering
         List<CardDataSO> qualifiedCandidates = GetAllQualifiedCandidates();
-        
-        // Step 2: Randomize the qualified candidates list
         Shuffle(qualifiedCandidates);
-        
-        // Step 3: Determine how many cards to show
-        int cardCount = Mathf.Min(cards.Count, qualifiedCandidates.Count);
-        
-        // Clear current selection tracking
+
+        int cardCount = Mathf.Min(totalCardsToSpawn, qualifiedCandidates.Count);
+
         currentSelectionCards.Clear();
-        
+
         Debug.Log($"Populating {cardCount} cards from {qualifiedCandidates.Count} qualified candidates");
-        
-        // Step 4: Select cards from the randomized list
+
         for (int i = 0; i < cardCount; i++)
         {
             if (qualifiedCandidates.Count == 0) break;
 
-            // Get a unique random card from the qualified candidates
             CardDataSO selectedCard = GetUniqueRandomCard(qualifiedCandidates);
 
             if (selectedCard != null)
             {
                 // Track this card as selected for this round
                 currentSelectionCards.Add(selectedCard);
-                
-                // Initialize the card UI
-                cards[i].Initialize(selectedCard, this, weaponManager);
 
-                // Remove the selected card from the candidates to prevent duplicates
+                SpawnCard(selectedCard);
+                //cards[i].Initialize(selectedCard, this, weaponManager);
+
                 qualifiedCandidates.RemoveAll(c => c == selectedCard);
             }
+        }
+    }
+
+    public void SpawnCard(CardDataSO card)
+    {
+        RefactorCardUi spawnedCard=null;
+        switch(card.cardType)
+        {
+            case ECardType.AffectsPlayer:
+                spawnedCard = Instantiate(item_cardPrefab, cardParent);
+                spawnedCard.Initialize(card, this, weaponManager);
+                break;
+            default:
+                spawnedCard = Instantiate(Weapon_cardPrefab, cardParent);
+                spawnedCard.Initialize(card, this, weaponManager);
+                break;
+        }
+    }
+    void ClearCards()
+    {
+        for(int i=0;i<cardParent.transform.childCount;i++)
+        {
+            Destroy(cardParent.transform.GetChild(i).gameObject);
         }
     }
 
@@ -398,10 +562,7 @@ public class CardManager : MonoBehaviour
         if (levelUpImage != null)
             levelUpImage.SetActive(false);
 
-        foreach (var card in cards)
-        {
-            card.gameObject.SetActive(false);
-        }
+        ClearCards();
 
         CardSelected?.Invoke(selectedData);
         audioSource.PlayOneShot(cardSelectionSound);

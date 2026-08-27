@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ProjectileCount
   m_EditorClassIdentifier: 
   statName: 5
-  baseValue: 8
+  baseValue: 1
   maxValue: 3
   startValue: 0
   startMultiplier: 1

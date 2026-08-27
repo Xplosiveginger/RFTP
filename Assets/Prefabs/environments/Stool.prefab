@@ -47,8 +47,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 10
-  spawnChance: 0.1
-  prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
+  spawnItems:
+  - prefab: {fileID: 0}
+    probability: 60
+  - prefab: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
+    probability: 5
+  - prefab: {fileID: 8604245700193426791, guid: e9cacfcab1e6ef547b4d98d745a4c5bc, type: 3}
+    probability: 20
+  - prefab: {fileID: 8604245700193426791, guid: 4450b63a995e010408304e66774b9933, type: 3}
+    probability: 15
   furnitureSound: {fileID: 8300000, guid: 28815e8d5b2ef974cbc6930f93385d23, type: 3}
 --- !u!212 &3416709864345201847
 SpriteRenderer:
