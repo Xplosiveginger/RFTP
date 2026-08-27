@@ -107,7 +107,9 @@ public class PlayerController2D : MonoBehaviour
     private void GetModifiedHealth()
     {
         Stat stat = statManager.GetStat(EStatType.Health);
-        health.currentHealth = (int)stat.currentValue;
+        health.maxHealth= (int)stat.maxValue;
+        health.currentHealth= (int)stat.currentValue;
+
     }
 
     private void AddWeapon(WeaponDataSO weapon)
