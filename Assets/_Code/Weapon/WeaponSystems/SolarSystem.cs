@@ -401,10 +401,10 @@ public class SolarSystem : WeaponBase
             1f
         );
 
-        statManager.ModifyStatValue(
+        /*statManager.ModifyStatValue(
             EStatType.AOESize,
             1f
-        );
+        );*/
     }
 
 

@@ -92,9 +92,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7115125608951513314, guid: 23aeec6c9f0efca41a407a790444b926, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c77024b39ea87cb4aaef77b546cd87c0, type: 3}
     - target: {fileID: 7782821906513690359, guid: 23aeec6c9f0efca41a407a790444b926, type: 3}
       propertyPath: m_Name
-      value: Card_prefab Variant
+      value: Item Card
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
