@@ -53,6 +53,7 @@ public class CardManager : MonoBehaviour
     public Transform cardParent;
     public RefactorCardUi Weapon_cardPrefab;
     public RefactorCardUi item_cardPrefab;
+    public RefactorCardUi extra_buff_cardPrefab;
     public int totalCardsToSpawn = 3;
     
     [Header("Game Data")]
@@ -424,6 +425,16 @@ private string FormatPercentageModifier(Stat stat)
                 spawnedCard.Initialize(card, this, weaponManager);
                 break;
 
+
+            case ECardType.ExtraCard_Health:
+                spawnedCard = Instantiate(extra_buff_cardPrefab, cardParent);
+                spawnedCard.Initialize(card, this, weaponManager);
+                break;
+            
+            case ECardType.ExtraCard_Money:
+                spawnedCard = Instantiate(extra_buff_cardPrefab, cardParent);
+                spawnedCard.Initialize(card, this, weaponManager);
+                break;
 
             default:
                 spawnedCard = Instantiate(item_cardPrefab, cardParent);

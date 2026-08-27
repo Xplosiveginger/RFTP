@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 781b090621e04b44ab0b2e52cc84c23d, type: 3}
   m_Name: SO_Extra_Health
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 99e0bb58b88c7324daf105b6391f2173, type: 3}
+  Icon: {fileID: 21300000, guid: 775de83e6f9def742a5ce277016daa5d, type: 3}
   Name: Extra Health
   Description:
   - Extra Health
