@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 781b090621e04b44ab0b2e52cc84c23d, type: 3}
   m_Name: ProjectileNumberIncrease
   m_EditorClassIdentifier: 
-  cardSprite: {fileID: 21300000, guid: 21b6b9b86f615454b8c148ed943f72f3, type: 3}
-  cardName: Movement
+  Icon: {fileID: 21300000, guid: 21b6b9b86f615454b8c148ed943f72f3, type: 3}
+  Name: Projectile Count
+  Description:
+  - Increases Projectile Count by 1
   levelImages:
   - {fileID: 21300000, guid: 21b6b9b86f615454b8c148ed943f72f3, type: 3}
   - {fileID: 21300000, guid: 21b6b9b86f615454b8c148ed943f72f3, type: 3}
@@ -28,11 +30,12 @@ MonoBehaviour:
     description: 
     cardSprite: {fileID: 21300000, guid: 21b6b9b86f615454b8c148ed943f72f3, type: 3}
     affectedStat: 5
-    modifierAmount: 10
-    isPercent: 1
+    modifierAmount: 1
+    isPercent: 0
   affectsPlayer: 1
   affectedPlayerStat: 5
-  playerStatModifier: 10
+  playerStatModifier: 1
+  playerStatIsPercentage: 0
   affectsEnemy: 0
   affectedEnemyStat: 0
   enemyStatModifier: 0
@@ -41,6 +44,7 @@ MonoBehaviour:
   affectsWeaponStat: 0
   affectedWeaponStat: 0
   weaponStatModifier: 0
+  weaponStatIsPercentage: 1
   weaponToAdd: {fileID: 0}
   isBuffDebuff: 0
   time: 0
