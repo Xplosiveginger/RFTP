@@ -22,7 +22,7 @@ public class Dustbin : MonoBehaviour
     public List<SpawnItem> spawnItems = new List<SpawnItem>();
 
     public AudioClip furnitureSound;
-
+    public ParticleSystem destroyFx;
     private GameStat_SO GameStat_SO;
 
     private void Start()
@@ -38,6 +38,12 @@ public class Dustbin : MonoBehaviour
         SpawnRandomItem();
 
         GameStat_SO.RegisterBreakablesDestroyed();
+        GlobalAudioPlayer.Instance.PlayAudio(furnitureSound);
+        if (destroyFx != null)
+        {
+            GlobalParticleFxPlayer.Instance.PlayParticle(destroyFx, transform.position);
+        }
+        Destroy(gameObject);
         GlobalAudioPlayer.Instance.PlayAudio(furnitureSound);
 
         Destroy(gameObject);
