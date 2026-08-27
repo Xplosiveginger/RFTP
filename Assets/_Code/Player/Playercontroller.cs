@@ -146,6 +146,17 @@ public class PlayerController2D : MonoBehaviour
                 );
                 break;
 
+            case ECardType.ExtraCard_Health:
+                //AddsHealth();
+                Debug.Log("Health added");
+                break;
+            case ECardType.ExtraCard_Money:
+                //Adds money 
+                Debug.Log("Moeny added");
+
+                break;
+
+
             default:
                 break;
         }

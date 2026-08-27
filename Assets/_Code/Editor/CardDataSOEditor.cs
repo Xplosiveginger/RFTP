@@ -33,6 +33,9 @@ public class CardDataSOEditor : Editor
     private SerializedProperty weaponStatIsPercentage;
 
     private SerializedProperty time;
+    
+    private SerializedProperty extraHealth;
+    private SerializedProperty extraMoney;
 
 
     private void OnEnable()
@@ -111,6 +114,9 @@ public class CardDataSOEditor : Editor
 
         time =
             serializedObject.FindProperty("time");
+
+        extraHealth = serializedObject.FindProperty("healthToAdd");
+        extraMoney = serializedObject.FindProperty("moneyToAdd");
     }
 
 
@@ -345,6 +351,23 @@ public class CardDataSOEditor : Editor
                 );
 
                 break;
+
+            case ECardType.ExtraCard_Health:
+
+                EditorGUILayout.PropertyField(
+                    extraHealth
+                );
+
+                break;
+
+            case ECardType.ExtraCard_Money:
+
+                EditorGUILayout.PropertyField(
+                    extraMoney
+                );
+                break;
+
+
         }
     }
 }

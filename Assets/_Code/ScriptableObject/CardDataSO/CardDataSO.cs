@@ -89,6 +89,22 @@ public class CardDataSO : ScriptableObject
     [Header("Adds Weapon")]
     public WeaponDataSO weaponToAdd;
 
+    // =========================================================
+    // Extra Health
+    // =========================================================
+
+    [Header("Extrea Haelth")]
+    public float healthToAdd;
+
+
+    // =========================================================
+    // Extra Money
+    // =========================================================
+
+    [Header("Extrea Haelth")]
+    public int moneyToAdd;
+
+
 
     // =========================================================
     // BUFF / DEBUFF

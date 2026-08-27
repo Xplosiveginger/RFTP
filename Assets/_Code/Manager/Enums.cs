@@ -45,7 +45,8 @@ public enum ECardType
     AffectsWeaponLevel,
     AffectsSpecificWeaponStat,
     AffectsAllWeaponsStat,
-    ExtraBuffs,
+    ExtraCard_Health,
+    ExtraCard_Money,
 }
 
 // Add this to your existing enums file

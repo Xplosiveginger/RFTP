@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Sirenix.OdinInspector;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using Sirenix.OdinInspector;
 
 [System.Serializable]
 public struct CardCategoryData
@@ -45,6 +46,8 @@ public class CardManager : MonoBehaviour
     
     [Header("Card Categories")]
     [SerializeField] protected List<CardCategoryData> cardCategories;
+    [SerializeField] protected List<CardDataSO> extraBuffCards;
+
 
     [Header("Card UI References")]
     public Transform cardParent;
@@ -370,19 +373,33 @@ private string FormatPercentageModifier(Stat stat)
 
         for (int i = 0; i < cardCount; i++)
         {
-            if (qualifiedCandidates.Count == 0) break;
-
             CardDataSO selectedCard = GetUniqueRandomCard(qualifiedCandidates);
 
             if (selectedCard != null)
             {
-                // Track this card as selected for this round
                 currentSelectionCards.Add(selectedCard);
-
                 SpawnCard(selectedCard);
-                //cards[i].Initialize(selectedCard, this, weaponManager);
+            }
+        }
+        int remainingCards = totalCardsToSpawn - cardCount;
 
-                qualifiedCandidates.RemoveAll(c => c == selectedCard);
+        if (remainingCards > 0)
+        {
+            List<CardDataSO> availableExtraBuffCards = extraBuffCards
+                .Where(card => card != null && !currentSelectionCards.Contains(card))
+                .Distinct()
+                .ToList();
+
+            Shuffle(availableExtraBuffCards);
+
+            int extraCardsToSpawn = Mathf.Min(remainingCards, availableExtraBuffCards.Count);
+
+            for (int i = 0; i < extraCardsToSpawn; i++)
+            {
+                CardDataSO card = availableExtraBuffCards[i];
+
+                currentSelectionCards.Add(card);
+                SpawnCard(card);
             }
         }
     }
@@ -396,8 +413,20 @@ private string FormatPercentageModifier(Stat stat)
                 spawnedCard = Instantiate(item_cardPrefab, cardParent);
                 spawnedCard.Initialize(card, this, weaponManager);
                 break;
-            default:
+
+            case ECardType.AffectsWeaponLevel:
                 spawnedCard = Instantiate(Weapon_cardPrefab, cardParent);
+                spawnedCard.Initialize(card, this, weaponManager);
+                break;
+
+            case ECardType.AddsWeapon:
+                spawnedCard = Instantiate(Weapon_cardPrefab, cardParent);
+                spawnedCard.Initialize(card, this, weaponManager);
+                break;
+
+
+            default:
+                spawnedCard = Instantiate(item_cardPrefab, cardParent);
                 spawnedCard.Initialize(card, this, weaponManager);
                 break;
         }
@@ -555,7 +584,7 @@ private string FormatPercentageModifier(Stat stat)
     // Called by RefactorCardUi when a card is picked
     public void OnCardSelected(CardDataSO selectedData)
     {
-        RemoveCardFromCategories(selectedData);
+        //RemoveCardFromCategories(selectedData);
 
         IDCardManager.instance.ShowGameplayUI();
 
