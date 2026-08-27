@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class EconomyManager : MonoBehaviour
 {
+
+    public static EconomyManager Instance;
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+    }
     public GameStat_SO GameStat_SO;
     
     [Title("Economy")]

@@ -49,5 +49,7 @@ MonoBehaviour:
   weaponStatModifier: 0
   weaponStatIsPercentage: 1
   weaponToAdd: {fileID: 11400000, guid: d4f9cb0d5a6db9d4999a2ae31bbcbf42, type: 2}
+  healthToAdd: 10
+  moneyToAdd: 100
   isBuffDebuff: 0
   time: 0
