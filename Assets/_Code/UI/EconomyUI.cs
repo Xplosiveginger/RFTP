@@ -13,24 +13,25 @@ public class EconomyUI : MonoBehaviour
 
         if (economyManager == null)
         {
-            Debug.LogError("EconomyManager not found in the scene.");
+            Debug.LogError("EconomyManager not found in PersistentObject.");
             enabled = false;
             return;
         }
 
-        UpdateAllowanceMoneyUI(economyManager.AllowanceMoney);
+        // Show current run money immediately.
+        UpdateRunMoneyUI(economyManager.CurrentRunMoney);
 
-        economyManager.OnAllowanceMoneyChanged += UpdateAllowanceMoneyUI;
+        economyManager.OnRunMoneyChanged += UpdateRunMoneyUI;
     }
 
     private void OnDestroy()
     {
         if (economyManager != null)
-            economyManager.OnAllowanceMoneyChanged -= UpdateAllowanceMoneyUI;
+            economyManager.OnRunMoneyChanged -= UpdateRunMoneyUI;
     }
 
-    private void UpdateAllowanceMoneyUI(long amount)
+    private void UpdateRunMoneyUI(long amount)
     {
-        allowanceMoneyText.text = economyManager.GetFormattedMoney();
+        allowanceMoneyText.text = economyManager.GetFormattedRunMoney();
     }
 }
