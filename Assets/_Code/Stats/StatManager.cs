@@ -109,6 +109,8 @@ public class StatManager : MonoBehaviour
 
         SubscribeToStatEvents();
     }
+
+
     private void ApplySavedShopModifiers()
     {
         if (GameSaveSystem.instance == null)
@@ -227,9 +229,10 @@ public class StatManager : MonoBehaviour
 
     /// <summary>
     /// Adds a flat value to a stat.
+    ///
     /// Example:
-    /// Damage +10
-    /// MoveSpeed +2
+    /// Damage +5
+    /// ProjectileCount +1
     /// </summary>
     public void ModifyStatValue(EStatType statName, float value)
     {
@@ -244,7 +247,7 @@ public class StatManager : MonoBehaviour
             return;
         }
 
-        stat.currentValue += value;
+        stat.AddFlat(value);
 
         OnValueChanged?.Invoke(stat);
         OnStatChanged?.Invoke();
@@ -253,6 +256,7 @@ public class StatManager : MonoBehaviour
 
     /// <summary>
     /// Applies a percentage modifier to a stat.
+    ///
     /// Example:
     /// Damage +20%
     /// Health +30%
@@ -277,7 +281,16 @@ public class StatManager : MonoBehaviour
             $"Modifier = {modifier}%"
         );
 
-        stat.ApplyModifier(modifier);
+        // Special handling for cooldown because a positive
+        // modifier represents a reduction in cooldown.
+        if (statName == EStatType.AttackCooldown)
+        {
+            stat.ApplyCooldownModifier(modifier);
+        }
+        else
+        {
+            stat.ApplyModifier(modifier);
+        }
 
         Debug.Log(
             $"Modifying {statName}: " +
@@ -315,7 +328,14 @@ public class StatManager : MonoBehaviour
         if (stat == null)
             yield break;
 
-        stat.ApplyModifier(modifier);
+        if (statName == EStatType.AttackCooldown)
+        {
+            stat.ApplyCooldownModifier(modifier);
+        }
+        else
+        {
+            stat.ApplyModifier(modifier);
+        }
 
         yield return new WaitForSeconds(time);
 

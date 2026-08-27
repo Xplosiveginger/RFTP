@@ -26,7 +26,7 @@ public class DescriptionUI : MonoBehaviour
         if (level >= item.levels.Count)
         {
             nameText.text =
-                "Level - " + item.levels.Count + " " + item.itemName;
+                "Level " + item.levels.Count + " - " + item.itemName;
 
             descriptionText.text = "MAX LEVEL REACHED";
             return;
@@ -35,7 +35,7 @@ public class DescriptionUI : MonoBehaviour
         var levelData = item.levels[level];
 
         nameText.text =
-            "Level - " + (level + 1) + " " + item.itemName;
+            "Level " + (level + 1) + " - " + item.itemName;
 
         descriptionText.text =
             levelData.description;

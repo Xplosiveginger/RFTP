@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Sirenix.OdinInspector;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using Sirenix.OdinInspector;
 
 [System.Serializable]
 public struct CardCategoryData
@@ -45,11 +46,14 @@ public class CardManager : MonoBehaviour
     
     [Header("Card Categories")]
     [SerializeField] protected List<CardCategoryData> cardCategories;
+    [SerializeField] protected List<CardDataSO> extraBuffCards;
+
 
     [Header("Card UI References")]
     public Transform cardParent;
     public RefactorCardUi Weapon_cardPrefab;
     public RefactorCardUi item_cardPrefab;
+    public RefactorCardUi extra_buff_cardPrefab;
     public int totalCardsToSpawn = 3;
     
     [Header("Game Data")]
@@ -118,63 +122,208 @@ public class CardManager : MonoBehaviour
         return;
     }
 
+    // =====================================================
+    // GET STATS
+    // =====================================================
 
-    Stat damage = StatManager.GetStat(EStatType.Damage);
-    Stat health = StatManager.GetStat(EStatType.Health);
-    Stat healthRegen = StatManager.GetStat(EStatType.HealthRegen);
-    Stat cooldown = StatManager.GetStat(EStatType.AttackCooldown);
-    Stat aoe = StatManager.GetStat(EStatType.AOESize);
-    Stat projectileSpeed = StatManager.GetStat(EStatType.ProjectileSpeed);
-    Stat projectileCount = StatManager.GetStat(EStatType.ProjectileCount);
-    Stat duration = StatManager.GetStat(EStatType.ActiveDuration);
-    Stat moveSpeed = StatManager.GetStat(EStatType.MoveSpeed);
+    Stat damage =
+        StatManager.GetStat(EStatType.Damage);
 
-    if (damage != null)
+    Stat health =
+        StatManager.GetStat(EStatType.Health);
+
+    Stat healthRegen =
+        StatManager.GetStat(EStatType.HealthRegen);
+
+    Stat cooldown =
+        StatManager.GetStat(EStatType.AttackCooldown);
+
+    Stat aoe =
+        StatManager.GetStat(EStatType.AOESize);
+
+    Stat projectileSpeed =
+        StatManager.GetStat(EStatType.ProjectileSpeed);
+
+    Stat projectileCount =
+        StatManager.GetStat(EStatType.ProjectileCount);
+
+    Stat duration =
+        StatManager.GetStat(EStatType.ActiveDuration);
+
+    Stat moveSpeed =
+        StatManager.GetStat(EStatType.MoveSpeed);
+
+
+    // =====================================================
+    // DAMAGE
+    // =====================================================
+
+    if (damage != null && damageText != null)
     {
-        damageText.text = damage.currentValue.ToString();
+        damageText.text =
+            FormatPercentageModifier(damage);
     }
 
-    if (health != null)
+
+    // =====================================================
+    // HEALTH
+    // =====================================================
+    // Health is the exception.
+    // Show the actual maximum health.
+    // =====================================================
+
+    if (health != null && totalHealthText != null)
     {
-        totalHealthText.text = health.maxValue.ToString();
+        totalHealthText.text =
+            Mathf.RoundToInt(health.maxValue).ToString();
     }
 
-    if (healthRegen != null)
+
+    // =====================================================
+    // HEALTH REGEN
+    // =====================================================
+
+    if (healthRegen != null && healthRegenText != null)
     {
-        healthRegenText.text = healthRegen.currentValue.ToString();
+        healthRegenText.text =
+            healthRegen.currentValue.ToString("0.##");
     }
 
-    if (cooldown != null)
+    // =====================================================
+    // COOLDOWN
+    // =====================================================
+
+    if (cooldown != null && cooldownText != null)
     {
-        cooldownText.text = cooldown.currentValue.ToString();
+        cooldownText.text =
+            FormatPercentageModifier(cooldown);
     }
 
-    if (aoe != null)
+
+    // =====================================================
+    // AOE SIZE
+    // =====================================================
+
+    if (aoe != null && aoeText != null)
     {
-        aoeText.text = aoe.currentValue.ToString();
+        aoeText.text =
+            FormatPercentageModifier(aoe);
     }
 
-    if (projectileSpeed != null)
+
+    // =====================================================
+    // PROJECTILE SPEED
+    // =====================================================
+
+    if (projectileSpeed != null &&
+        speedOfWeaponText != null)
     {
-        speedOfWeaponText.text = projectileSpeed.currentValue.ToString();
+        speedOfWeaponText.text =
+            FormatPercentageModifier(projectileSpeed);
     }
 
-    if (projectileCount != null)
+
+    // =====================================================
+    // PROJECTILE COUNT
+    // =====================================================
+    // Projectile count is a FLAT stat.
+    // Always display it as a whole number.
+    // =====================================================
+
+    if (projectileCount != null &&
+        numOfProjectilesText != null)
     {
-        numOfProjectilesText.text = projectileCount.currentValue.ToString();
-        Debug.Log($"Projectile Count: {projectileCount.currentValue}");
+        numOfProjectilesText.text =
+            Mathf.RoundToInt(
+                projectileCount.currentValue
+            ).ToString();
+
+        Debug.Log(
+            $"Projectile Count: " +
+            $"{Mathf.RoundToInt(projectileCount.currentValue)}"
+        );
     }
 
-    if (duration != null)
+
+    // =====================================================
+    // ACTIVE DURATION
+    // =====================================================
+
+    if (duration != null && durationText != null)
     {
-        durationText.text = duration.currentValue.ToString();
+        durationText.text =
+            FormatPercentageModifier(duration);
     }
 
-    if (moveSpeed != null)
-    {
-        moveSpeedText.text = moveSpeed.currentValue.ToString();
-    }
 
+    // =====================================================
+    // MOVE SPEED
+    // =====================================================
+
+    if (moveSpeed != null && moveSpeedText != null)
+    {
+        moveSpeedText.text =
+            FormatPercentageModifier(moveSpeed);
+    }
+}
+
+
+// =========================================================
+// FORMAT PLAYER STAT MODIFIER
+// =========================================================
+
+private string FormatPercentageModifier(Stat stat)
+{
+    if (stat == null)
+        return "0%";
+
+
+    /*
+     * Player stats are now treated as modifiers rather
+     * than actual gameplay values.
+     *
+     * Examples:
+     *
+     * currentMultiplier = 1.00
+     * => 0%
+     *
+     * currentMultiplier = 1.10
+     * => +10%
+     *
+     * currentMultiplier = 1.20
+     * => +20%
+     *
+     * currentMultiplier = 0.90
+     * => -10%
+     *
+     * We compare against startMultiplier so this also
+     * works if the starting multiplier isn't exactly 1.
+     */
+
+    float percentage =
+        (
+            stat.currentMultiplier /
+            Mathf.Max(
+                stat.startMultiplier,
+                0.0001f
+            )
+            - 1f
+        ) * 100f;
+
+
+    // Prevent values such as 9.999998%
+    percentage = Mathf.Round(percentage);
+
+
+    if (percentage > 0f)
+        return $"+{percentage:0}%";
+
+
+    if (percentage < 0f)
+        return $"{percentage:0}%";
+
+
+    return "0%";
 }
     
     private void CardInitializer()
@@ -225,19 +374,33 @@ public class CardManager : MonoBehaviour
 
         for (int i = 0; i < cardCount; i++)
         {
-            if (qualifiedCandidates.Count == 0) break;
-
             CardDataSO selectedCard = GetUniqueRandomCard(qualifiedCandidates);
 
             if (selectedCard != null)
             {
-                // Track this card as selected for this round
                 currentSelectionCards.Add(selectedCard);
-
                 SpawnCard(selectedCard);
-                //cards[i].Initialize(selectedCard, this, weaponManager);
+            }
+        }
+        int remainingCards = totalCardsToSpawn - cardCount;
 
-                qualifiedCandidates.RemoveAll(c => c == selectedCard);
+        if (remainingCards > 0)
+        {
+            List<CardDataSO> availableExtraBuffCards = extraBuffCards
+                .Where(card => card != null && !currentSelectionCards.Contains(card))
+                .Distinct()
+                .ToList();
+
+            Shuffle(availableExtraBuffCards);
+
+            int extraCardsToSpawn = Mathf.Min(remainingCards, availableExtraBuffCards.Count);
+
+            for (int i = 0; i < extraCardsToSpawn; i++)
+            {
+                CardDataSO card = availableExtraBuffCards[i];
+
+                currentSelectionCards.Add(card);
+                SpawnCard(card);
             }
         }
     }
@@ -251,8 +414,30 @@ public class CardManager : MonoBehaviour
                 spawnedCard = Instantiate(item_cardPrefab, cardParent);
                 spawnedCard.Initialize(card, this, weaponManager);
                 break;
-            default:
+
+            case ECardType.AffectsWeaponLevel:
                 spawnedCard = Instantiate(Weapon_cardPrefab, cardParent);
+                spawnedCard.Initialize(card, this, weaponManager);
+                break;
+
+            case ECardType.AddsWeapon:
+                spawnedCard = Instantiate(Weapon_cardPrefab, cardParent);
+                spawnedCard.Initialize(card, this, weaponManager);
+                break;
+
+
+            case ECardType.ExtraCard_Health:
+                spawnedCard = Instantiate(extra_buff_cardPrefab, cardParent);
+                spawnedCard.Initialize(card, this, weaponManager);
+                break;
+            
+            case ECardType.ExtraCard_Money:
+                spawnedCard = Instantiate(extra_buff_cardPrefab, cardParent);
+                spawnedCard.Initialize(card, this, weaponManager);
+                break;
+
+            default:
+                spawnedCard = Instantiate(item_cardPrefab, cardParent);
                 spawnedCard.Initialize(card, this, weaponManager);
                 break;
         }
@@ -299,15 +484,13 @@ public class CardManager : MonoBehaviour
         switch (card.cardType)
         {
             case ECardType.AffectsPlayer:
-                // Player related cards are always included
+                gameStatSO.isItemUnderMaxLevel(card);
                 return true;
                 
             case ECardType.AffectsEnemy:
-                // Enemy affecting cards are always included
                 return true;
                 
             case ECardType.AddsWeapon:
-                // Check if the weapon to add is already equipped
                 if (card.weaponToAdd != null)
                 {
                     bool isAlreadyEquipped = gameStatSO.IsWeaponEquipped(card.weaponToAdd.weaponName);
@@ -318,12 +501,11 @@ public class CardManager : MonoBehaviour
                     }
                     return true;
                 }
-                // If no weapon to add specified, include it
                 return true;
                 
             case ECardType.AffectsWeaponLevel:
-                // Only include cards for currently equipped weapons
                 bool isEquipped = gameStatSO.IsWeaponEquipped(card.weaponName);
+                bool isUnderMaxLevel = gameStatSO.IsWeaponUnderMaxLevel(card);
                 if (!isEquipped)
                 {
                     Debug.Log($"Card {card.name} filtered out - weapon {card.weaponName} not equipped");
@@ -410,7 +592,7 @@ public class CardManager : MonoBehaviour
     // Called by RefactorCardUi when a card is picked
     public void OnCardSelected(CardDataSO selectedData)
     {
-        RemoveCardFromCategories(selectedData);
+        //RemoveCardFromCategories(selectedData);
 
         IDCardManager.instance.ShowGameplayUI();
 

@@ -45,6 +45,8 @@ public enum ECardType
     AffectsWeaponLevel,
     AffectsSpecificWeaponStat,
     AffectsAllWeaponsStat,
+    ExtraCard_Health,
+    ExtraCard_Money,
 }
 
 // Add this to your existing enums file
@@ -52,5 +54,7 @@ public enum ECardCategory
 {
     PlayerRelated,
     WeaponAddition,
-    WeaponLevelRelated
+    WeaponLevelRelated,
+
+    ExtraBuffs,
 }

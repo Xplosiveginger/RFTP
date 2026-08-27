@@ -224,7 +224,38 @@ public class GameStat_SO : ScriptableObject
     {
         return equippedWeaponNames.Contains(weaponName);
     }
+    
+    public bool IsWeaponUnderMaxLevel(CardDataSO weapon)
+    {
+        WeaponBase baseWeapon = null;
+        if (weapon1.weaponDataSO == weapon)
+            baseWeapon = weapon1.statManager.GetComponent<WeaponBase>();
+        else if(weapon2.weaponDataSO==weapon)
+            baseWeapon = weapon1.statManager.GetComponent<WeaponBase>();
+        else if(weapon3.weaponDataSO==weapon)
+            baseWeapon = weapon1.statManager.GetComponent<WeaponBase>();
+        else if(weapon4.weaponDataSO==weapon)
+            baseWeapon = weapon1.statManager.GetComponent<WeaponBase>();
+       
+        if (baseWeapon == null) return false;
+        return (baseWeapon.level <= 8);
+        return true;
+    }
+    public int getLevel(CardDataSO weapon)
+    {
+        WeaponBase baseWeapon = null;
+        if (weapon1.weaponDataSO == weapon)
+            baseWeapon = weapon1.statManager.GetComponent<WeaponBase>();
+        else if (weapon2.weaponDataSO == weapon)
+            baseWeapon = weapon1.statManager.GetComponent<WeaponBase>();
+        else if (weapon3.weaponDataSO == weapon)
+            baseWeapon = weapon1.statManager.GetComponent<WeaponBase>();
+        else if (weapon4.weaponDataSO == weapon)
+            baseWeapon = weapon1.statManager.GetComponent<WeaponBase>();
 
+        if (baseWeapon == null) return 0;
+        return (baseWeapon.level);
+    }
     public void ResetWeaponData()
     {
         weapon1 = default;
@@ -304,6 +335,30 @@ public class GameStat_SO : ScriptableObject
         return false;
     }
 
+    
+    public bool isItemUnderMaxLevel(CardDataSO card)
+    {
+        foreach(ItemData item in items)
+        {
+            if(item.cardDataSO == card)
+            {
+                return item.level < 8;
+            }
+        }
+        return true;
+    }
+
+    public int getItemLevel(CardDataSO card)
+    {
+        foreach(ItemData data in items)
+        {
+            if(data.cardDataSO == card)
+            {
+                return data.level;
+            }
+        }
+        return 0;
+    }
     #endregion
 
     

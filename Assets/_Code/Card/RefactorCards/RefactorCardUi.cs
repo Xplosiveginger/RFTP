@@ -12,6 +12,7 @@ public class RefactorCardUi : MonoBehaviour, IPointerClickHandler
     [SerializeField, ReadOnly] private CardManager cardManager;
     private ReworkedWeaponManager weaponManager;
     [SerializeField] private CardDataSO cardData;
+    [SerializeField] private GameStat_SO gameStatSO;
 
     [Header("UIs")] 
     public Image icon;
@@ -45,10 +46,16 @@ public class RefactorCardUi : MonoBehaviour, IPointerClickHandler
     {
         icon.sprite = data.Icon;
         NameTxt.text = data.Name;
-        LevelTxt.text = "Lvl."+ "\n" + "1";
-        if (data.Description.Length > 0)
+        int level = gameStatSO.getItemLevel(data);
+        if (LevelTxt!=null)
         {
-            DescriptionTxt.text = data.Description[0];
+            LevelTxt.text =(level+1).ToString();
+        }
+
+        if (data.Description.Length > 0)  //this needs to be the value of the level in item
+        {
+            int max = Mathf.Min(data.Description.Length, level);
+            DescriptionTxt.text = data.Description[max];
         }
         else
         {

@@ -59,6 +59,7 @@ MonoBehaviour:
   timerText: {fileID: 0}
   EndPanel: {fileID: 0}
   atomPrefab: {fileID: 7117651411527206627, guid: ad70a5c7473c53047b6d9529808d7eee, type: 3}
+  AtomSpawnParticle: {fileID: 6520436353736122366, guid: 117624082503aad42847c41c2da7e8da, type: 3}
   atomPoolSize: 5
   debugMode: 0
   debugStartTime: 0
@@ -97,6 +98,8 @@ Transform:
   - {fileID: 7552708630934758488}
   - {fileID: 8595946066503855229}
   - {fileID: 3185041779411580293}
+  - {fileID: 3611219191104515073}
+  - {fileID: 219371944778448928}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7845024691445040988
@@ -111,6 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53073ab5236a88d4a92a7372741afedc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 0}
   XPManager: {fileID: 3682304232183161561}
   GameStatManager: {fileID: 7727759141301506301}
 --- !u!1 &6149343634486167696
@@ -122,7 +126,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5471574284820556388}
-  - component: {fileID: 7713203223896442766}
   m_Layer: 0
   m_Name: UIManagers
   m_TagString: Untagged
@@ -145,19 +148,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5294417539117950286}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7713203223896442766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6149343634486167696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 880a32434feb42740b28e968911a6af6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pausePanel: {fileID: 0}
 --- !u!1 &6216554441375101373
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,6 +193,96 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameStats: {fileID: 11400000, guid: c0e4e38e7c16edc4b8aece16cfd8078c, type: 2}
+--- !u!1 &7033378912216542221
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3611219191104515073}
+  - component: {fileID: 2223592863750839743}
+  m_Layer: 0
+  m_Name: GlobalVfxPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3611219191104515073
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7033378912216542221}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5294417539117950286}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2223592863750839743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7033378912216542221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4682dcd16959184f84dd86b88c187f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &7828719267544660194
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 219371944778448928}
+  - component: {fileID: 6899885674984416260}
+  m_Layer: 0
+  m_Name: EconomyManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &219371944778448928
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7828719267544660194}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5294417539117950286}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6899885674984416260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7828719267544660194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a27ab2b8f41039143aac731363e2b4b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameStat_SO: {fileID: 11400000, guid: c0e4e38e7c16edc4b8aece16cfd8078c, type: 2}
+  allowanceMoney: 0
 --- !u!1 &7993473313384114753
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,6 +330,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  combinationCheckInterval: 0.5
+  maxEnemiesForCombination: 50
 --- !u!1 &8819321065588385352
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,7 +341,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8829565793463854290}
-  - component: {fileID: 4489798372393940979}
   m_Layer: 0
   m_Name: PausepanelManager
   m_TagString: Untagged
@@ -282,19 +363,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8595946066503855229}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4489798372393940979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8819321065588385352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71a1e922f6d20c341b416e15f471decb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pausePanel: {fileID: 0}
 --- !u!1 &8940243621568615128
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,7 +408,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   progressionSO: {fileID: 11400000, guid: c83c36cd856427a469d0e0a25cda8298, type: 2}
-  cardSpawner: {fileID: 0}
   testXPAmount: 10
   testCoinAmount: 5
 --- !u!1001 &5036663119801363728

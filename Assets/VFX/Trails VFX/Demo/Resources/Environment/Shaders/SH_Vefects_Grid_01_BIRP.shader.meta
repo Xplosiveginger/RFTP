@@ -11,3 +11,10 @@ ShaderImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 242572
+  packageName: Trails VFX
+  packageVersion: 1.0.2025
+  assetPath: Assets/VFX/Trails VFX/Demo/Resources/Environment/Shaders/SH_Vefects_Grid_01_BIRP.shader
+  uploadId: 755343

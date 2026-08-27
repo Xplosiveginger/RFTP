@@ -22,3 +22,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ea16b95307268c749b6fc508de51ee7f, type: 2}
   - {fileID: 11400000, guid: ea5f482f7716c5942864aaf69b582096, type: 2}
   weaponPrefab: {fileID: 939387012340278055, guid: 1023f4fbc32d9be48b1ccc463831d4e9, type: 3}
+  maxLevel: 8

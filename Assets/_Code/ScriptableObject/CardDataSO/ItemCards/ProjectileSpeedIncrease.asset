@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 781b090621e04b44ab0b2e52cc84c23d, type: 3}
   m_Name: ProjectileSpeedIncrease
   m_EditorClassIdentifier: 
-  cardSprite: {fileID: 21300000, guid: e5dbd46cf19213b4a8e127c3f8074fe7, type: 3}
-  cardName: Movement
+  Icon: {fileID: 21300000, guid: e5dbd46cf19213b4a8e127c3f8074fe7, type: 3}
+  Name: Projectile Speed
+  Description:
+  - Increases Projectile Speed by 6%
   levelImages:
   - {fileID: 21300000, guid: e5dbd46cf19213b4a8e127c3f8074fe7, type: 3}
   - {fileID: 21300000, guid: e5dbd46cf19213b4a8e127c3f8074fe7, type: 3}
@@ -28,11 +30,12 @@ MonoBehaviour:
     description: 
     cardSprite: {fileID: 21300000, guid: e5dbd46cf19213b4a8e127c3f8074fe7, type: 3}
     affectedStat: 6
-    modifierAmount: 10
+    modifierAmount: 6
     isPercent: 1
   affectsPlayer: 1
   affectedPlayerStat: 6
-  playerStatModifier: 10
+  playerStatModifier: 6
+  playerStatIsPercentage: 1
   affectsEnemy: 0
   affectedEnemyStat: 0
   enemyStatModifier: 0
@@ -41,6 +44,7 @@ MonoBehaviour:
   affectsWeaponStat: 0
   affectedWeaponStat: 0
   weaponStatModifier: 0
+  weaponStatIsPercentage: 1
   weaponToAdd: {fileID: 0}
   isBuffDebuff: 0
   time: 0

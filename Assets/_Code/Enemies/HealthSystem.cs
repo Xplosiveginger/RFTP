@@ -9,8 +9,8 @@ public class HealthSystem : MonoBehaviour
 {
     public static HealthSystem Instance { get; private set; }
     [Header("Health Settings")]
-    [SerializeField] public int maxHealth = 100;
-    [SerializeField,  ] public int currentHealth;
+    [SerializeField] public float maxHealth = 100f;
+    [SerializeField] public float currentHealth;
 
     [Header("Settings")]
     public bool canDestroyOnDeath = true;
@@ -20,7 +20,10 @@ public class HealthSystem : MonoBehaviour
     public UnityEvent onDeath;
     public UnityEvent onPostDeath;
     public UnityEvent<int> onDamageTaken;
-
+    
+    private StatManager statManager;
+    private float healthRegenAccumulator = 0f;
+    
     [Header("Effects")]
     public GameObject deathEffect;
 
@@ -61,8 +64,8 @@ public class HealthSystem : MonoBehaviour
 
     public event Action OnDeath;
 
-    public int MaxHealth => maxHealth;
-    public int CurrentHealth => currentHealth;
+    public float MaxHealth => maxHealth;
+    public float CurrentHealth => currentHealth;
     public bool IsDead => isDead;
 
     public event Action<float> OnHealthChanged;
@@ -106,22 +109,39 @@ public class HealthSystem : MonoBehaviour
 
         ResetHealth();
     }
-
     private void Start()
     {
-        GameStat_SO=PersistentObject.Instance.GameStat_SO;
+        GameStat_SO = PersistentObject.Instance.GameStat_SO;
+        statManager = GetComponent<StatManager>();
     }
 
     private void Update()
     {
-        if (isPlayer && !isDead && HealthRegenItem.IsActive())
-        {
-            float regenPerSec = HealthRegenItem.GetRegenAmountPerSecond(maxHealth);
-            float healAmount = regenPerSec * Time.deltaTime;
-            Heal(Mathf.RoundToInt(healAmount));
-        }
-    }
+        if (!isPlayer || isDead)
+            return;
 
+        if (statManager == null)
+            return;
+
+        Stat healthRegenStat =
+            statManager.GetStat(EStatType.HealthRegen);
+
+        if (healthRegenStat == null)
+            return;
+
+        float regenPerSecond = healthRegenStat.currentValue;
+
+        if (regenPerSecond <= 0f)
+            return;
+
+        if (currentHealth >= maxHealth)
+            return;
+
+        float healAmount =
+            regenPerSecond * Time.deltaTime;
+
+        Heal(healAmount);
+    }
     public void Damage(int damageAmount)
     {
         if (isDead || damageAmount <= 0) return;
@@ -155,14 +175,15 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
-    public void Heal(int healAmount)
+    public void Heal(float healAmount)
     {
-        if (isDead || healAmount <= 0) return;
+        if (isDead || healAmount <= 0f) return;
 
         currentHealth = Mathf.Min(maxHealth, currentHealth + healAmount);
         UpdateHealthUI();
-    }
 
+        OnHealthChanged?.Invoke(currentHealth);
+    }
     public void Die()
     {
         if (isDead) return;
@@ -259,23 +280,29 @@ public class HealthSystem : MonoBehaviour
         isDead = false;
         currentHealth = maxHealth;
 
+        healthRegenAccumulator = 0f;
+
         // Make sure the scale is correct
         transform.localScale = defaultScale;
 
         //gameObject.SetActive(true);
         UpdateHealthUI();
     }
-
-    public void SetMaxHealth(int newMaxHealth, bool resetCurrentHealth = true)
+    public void SetMaxHealth(float newMaxHealth, bool resetCurrentHealth = true)
     {
         maxHealth = newMaxHealth;
+
         if (resetCurrentHealth)
         {
             currentHealth = maxHealth;
             UpdateHealthUI();
         }
+        else
+        {
+            currentHealth = Mathf.Min(currentHealth, maxHealth);
+            UpdateHealthUI();
+        }
     }
-
     private void UpdateHealthUI()
     {
         if (healthSlider != null)

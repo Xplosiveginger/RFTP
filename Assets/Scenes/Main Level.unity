@@ -270,6 +270,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1 &9274731
 GameObject:
   m_ObjectHideFlags: 0
@@ -1588,6 +1589,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1 &27205587
 GameObject:
   m_ObjectHideFlags: 0
@@ -2156,6 +2158,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1 &43745134
 GameObject:
   m_ObjectHideFlags: 0
@@ -6376,6 +6379,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1001 &138976270
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8204,6 +8208,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1 &170308381
 GameObject:
   m_ObjectHideFlags: 0
@@ -17514,6 +17519,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1001 &293818900
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18415,6 +18421,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1 &318417284
 GameObject:
   m_ObjectHideFlags: 0
@@ -43067,6 +43074,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1 &414127448
 GameObject:
   m_ObjectHideFlags: 0
@@ -43218,6 +43226,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1001 &419043778
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45810,6 +45819,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1001 &482572914
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46184,15 +46194,19 @@ MonoBehaviour:
   idPanel: {fileID: 246142987}
   screenWeaponsContainer: {fileID: 683960266}
   screenWeaponItemPrefab: {fileID: 6444681972729037023, guid: e76760512b48ee847baad1f9d276d848, type: 3}
-  screenSkillsContainer: {fileID: 1175052328}
-  screenSkillItemPrefab: {fileID: 6444681972729037023, guid: ad28c15028a29db408f506746861c6ae, type: 3}
+  screenWeaponPlaceholderPrefab: {fileID: 0}
+  screenItemsContainer: {fileID: 0}
+  screenItemPrefab: {fileID: 0}
+  screenItemPlaceholderPrefab: {fileID: 0}
   pauseUIAnimator: {fileID: 1571704104}
   riseAnimationDuration: 0.5
   pauseUIIDCard: {fileID: 1571704101}
   pauseWeaponsContainer: {fileID: 392942077}
   pauseWeaponItemPrefab: {fileID: 6444681972729037023, guid: 5872ca20005ba4742a27589eaa6a04e4, type: 3}
-  pauseSkillsContainer: {fileID: 673487940}
-  pauseSkillItemPrefab: {fileID: 6444681972729037023, guid: 49f4834393656144cb36d1a6a403685e, type: 3}
+  pauseWeaponPlaceholderPrefab: {fileID: 0}
+  pauseItemsContainer: {fileID: 0}
+  pauseItemPrefab: {fileID: 0}
+  pauseItemPlaceholderPrefab: {fileID: 0}
   playerImage: {fileID: 1469908815}
   health100Sprite: {fileID: -1620411026, guid: cada627848148f742ba5da2a270414b5, type: 3}
   health75Sprite: {fileID: 1455685575, guid: 214a77ae8549e15429953474aa754732, type: 3}
@@ -47155,6 +47169,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1 &526753069
 GameObject:
   m_ObjectHideFlags: 0
@@ -51231,6 +51246,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1 &554026686
 GameObject:
   m_ObjectHideFlags: 0
@@ -51634,6 +51650,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1001 &557063582
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53221,6 +53238,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1001 &582173514
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55772,6 +55790,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1 &613784624
 GameObject:
   m_ObjectHideFlags: 0
@@ -57436,6 +57455,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1001 &651610592
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -59656,6 +59676,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1 &689432567
 GameObject:
   m_ObjectHideFlags: 0
@@ -60091,6 +60112,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1 &693444900
 GameObject:
   m_ObjectHideFlags: 0
@@ -61215,6 +61237,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1001 &715572224
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75222,6 +75245,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1001 &885865753
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -77921,6 +77945,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!4 &909452954 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1289297993698839460, guid: c8d39ba04f02626409e5db9ebb6fa89c, type: 3}
@@ -81828,6 +81853,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1 &937816880
 GameObject:
   m_ObjectHideFlags: 0
@@ -86533,11 +86559,13 @@ MonoBehaviour:
   enemyKilledText: {fileID: 1055182700}
   damageTakenText: {fileID: 600636370}
   damageGivenText: {fileID: 587770506}
-  breakableDestroyedText: {fileID: 426996561}
+  highestLevelText: {fileID: 0}
   weaponItemContainer: {fileID: 185001820}
   weaponItemPrefab: {fileID: 8518192925927050151, guid: 27dcf0407b434fd449d365a149a117ce, type: 3}
-  skillItemContainer: {fileID: 2008406833}
-  skillItemPrefab: {fileID: 8779166116367135771, guid: 4943796c8b2cca14390f03a9a72bb3a2, type: 3}
+  itemItemContainer: {fileID: 0}
+  itemItemPrefab: {fileID: 0}
+  scrollViewControllerWeapon: {fileID: 0}
+  scrollViewControllerItems: {fileID: 0}
 --- !u!1 &1032780463
 GameObject:
   m_ObjectHideFlags: 0
@@ -88362,6 +88390,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1001 &1069501623
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -89929,6 +89958,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1 &1086190192
 GameObject:
   m_ObjectHideFlags: 0
@@ -97801,6 +97831,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1001 &1237681319
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -98451,6 +98482,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1 &1245359867
 GameObject:
   m_ObjectHideFlags: 0
@@ -100275,6 +100307,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1 &1288406254
 GameObject:
   m_ObjectHideFlags: 0
@@ -127322,6 +127355,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1 &1449397570
 GameObject:
   m_ObjectHideFlags: 0
@@ -127758,6 +127792,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1 &1455594702
 GameObject:
   m_ObjectHideFlags: 0
@@ -127982,11 +128017,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resolutionDropdown: {fileID: 1815390619}
-  qualityDropdown: {fileID: 1628310025}
-  fullscreenButton: {fileID: 1221107163}
-  fullscreenButtonImage: {fileID: 1221107164}
-  fullscreenOnColor: {r: 0, g: 1, b: 0, a: 1}
-  fullscreenOffColor: {r: 0, g: 0, b: 0, a: 1}
+  screenModeDropdown: {fileID: 0}
 --- !u!1001 &1457649606
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -129187,6 +129218,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1001 &1483930829
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -132584,6 +132616,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1001 &1529269684
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -158381,6 +158414,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1 &1623272689
 GameObject:
   m_ObjectHideFlags: 0
@@ -161402,6 +161436,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1001 &1679935654
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -161615,6 +161650,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1 &1680987829
 GameObject:
   m_ObjectHideFlags: 0
@@ -162183,6 +162219,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1 &1698523628
 GameObject:
   m_ObjectHideFlags: 0
@@ -172074,26 +172111,35 @@ MonoBehaviour:
   cardCategories:
   - cardCategory: 0
     cardDataList:
-    - {fileID: 11400000, guid: ff95bae0c3c11af44ac78d6c6e74918d, type: 2}
-    - {fileID: 11400000, guid: ecb46dddbd0d585438be7ba564879b97, type: 2}
+    - {fileID: 11400000, guid: c72fe560f5cbc174c96d192312102871, type: 2}
+    - {fileID: 11400000, guid: 9a908a08efbfa8746a16fc6e2b59a4ad, type: 2}
+    - {fileID: 11400000, guid: 7239149818b8c7f4c907dfef90dacad7, type: 2}
     - {fileID: 11400000, guid: 92ca06cc250115742b06ec3cf9c4241d, type: 2}
     - {fileID: 11400000, guid: 5751658bd92f21642b7ca062944cd6ed, type: 2}
+    - {fileID: 11400000, guid: ecb46dddbd0d585438be7ba564879b97, type: 2}
+    - {fileID: 11400000, guid: ff95bae0c3c11af44ac78d6c6e74918d, type: 2}
+    - {fileID: 11400000, guid: 9d5e1ad69ad22c74fbcbc2badb298255, type: 2}
     - {fileID: 11400000, guid: 7239149818b8c7f4c907dfef90dacad7, type: 2}
-    - {fileID: 11400000, guid: c72fe560f5cbc174c96d192312102871, type: 2}
   - cardCategory: 1
     cardDataList:
+    - {fileID: 11400000, guid: 1b04c78a95f54f749b55a0bb5baaf146, type: 2}
     - {fileID: 11400000, guid: cfe9211f9e2ac844eae5f09d14a72de5, type: 2}
     - {fileID: 11400000, guid: c06bfaf55ef69f34d9ca39e0c0d48455, type: 2}
     - {fileID: 11400000, guid: c0a36557a7305564285e0541c83a4fdc, type: 2}
     - {fileID: 11400000, guid: f1474da2e4139a1418aaae2158ef36cc, type: 2}
-    - {fileID: 11400000, guid: a9706c4c784da0b40ab07b7331ef68b4, type: 2}
+    - {fileID: 11400000, guid: d38908bd98738344887a86ae4baca732, type: 2}
   - cardCategory: 2
     cardDataList:
+    - {fileID: 11400000, guid: fae22d5e04039494eb37fd30ce555760, type: 2}
     - {fileID: 11400000, guid: 896f0d26dab79c54392e796de6a730ac, type: 2}
     - {fileID: 11400000, guid: a6455a0715989424ea0afe84664442ec, type: 2}
     - {fileID: 11400000, guid: 2507767a27f22954c8215928c72619bc, type: 2}
     - {fileID: 11400000, guid: 66c37aad32288204d81b4bd36462cd6c, type: 2}
-    - {fileID: 11400000, guid: ff17dd1c2d4b7ea44b30ef4f90cfc1f4, type: 2}
+    - {fileID: 11400000, guid: cd590f2f2f3e016468bb870e720bde4e, type: 2}
+  - cardCategory: 3
+    cardDataList:
+    - {fileID: 11400000, guid: 0422606c2750d9542891d408b9a7812a, type: 2}
+    - {fileID: 11400000, guid: a2a975d144aa1d24a8619d61c761549e, type: 2}
   cardParent: {fileID: 3798194652601841201}
   Weapon_cardPrefab: {fileID: 6817227879576255044, guid: 23aeec6c9f0efca41a407a790444b926, type: 3}
   item_cardPrefab: {fileID: 6097374879841271104, guid: 52ce0f397c6f26b499ec44832806cfc6, type: 3}
@@ -174191,6 +174237,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1 &1909359119
 GameObject:
   m_ObjectHideFlags: 0
@@ -174969,6 +175016,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1 &1922769232
 GameObject:
   m_ObjectHideFlags: 0
@@ -177601,6 +177649,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1 &1973886375 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3051376008272751230, guid: 5945f1d039a5750468dc380a30dc3e85, type: 3}
@@ -196849,6 +196898,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1 &2013097733
 GameObject:
   m_ObjectHideFlags: 0
@@ -200069,6 +200119,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1 &2076375419
 GameObject:
   m_ObjectHideFlags: 0
@@ -200220,6 +200271,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 0}
+  destroyFx: {fileID: 0}
 --- !u!1001 &2078687906
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -208890,7 +208942,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1bd8b35773c0f74b848bae282e762c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 7529418081214510911}
   _x: 0.1
   _y: 0
 --- !u!1 &5076433288757074219
