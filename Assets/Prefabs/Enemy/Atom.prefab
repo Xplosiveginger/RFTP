@@ -179,7 +179,7 @@ MonoBehaviour:
   moveSpeedMultiplier: 0
   statManager: {fileID: -7268501394254187593}
   DiesOnContactWithPlayer: 0
-  DoesDamageOnContact: 0
+  DoesDamageOnContact: 1
 --- !u!114 &-7268501394254187593
 MonoBehaviour:
   m_ObjectHideFlags: 0
