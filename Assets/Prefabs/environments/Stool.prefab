@@ -50,6 +50,7 @@ MonoBehaviour:
   spawnChance: 0.1
   prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
   furnitureSound: {fileID: 8300000, guid: 28815e8d5b2ef974cbc6930f93385d23, type: 3}
+  destroyFx: {fileID: 4883173911316470915, guid: cc0fba80a1616124b980b448027b68c9, type: 3}
 --- !u!212 &3416709864345201847
 SpriteRenderer:
   m_ObjectHideFlags: 0

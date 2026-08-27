@@ -12,8 +12,8 @@ public class Dustbin : MonoBehaviour
     public float spawnChance = 0.3f;
 
     public GameObject prefabToSpawn;
-
     public AudioClip furnitureSound;
+    public ParticleSystem destroyFx;
     private GameStat_SO GameStat_SO;
     private void Start()
     {
@@ -40,6 +40,10 @@ public class Dustbin : MonoBehaviour
 
             GameStat_SO.RegisterBreakablesDestroyed();
             GlobalAudioPlayer.Instance.PlayAudio(furnitureSound);
+            if(destroyFx != null)
+            {
+                GlobalParticleFxPlayer.Instance.PlayParticle(destroyFx, transform.position);
+            }
             Destroy(gameObject);
         }
     }

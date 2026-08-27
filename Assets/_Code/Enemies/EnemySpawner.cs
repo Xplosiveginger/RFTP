@@ -29,6 +29,12 @@ public class EnemySpawner : MonoBehaviour
     [HideLabel]
     public GameObject atomPrefab;
 
+    [Title("Special Enemies")]
+    [HorizontalGroup("Atom")]
+    [PreviewField(50)]
+    [HideLabel]
+    public ParticleSystem AtomSpawnParticle;
+
     [VerticalGroup("Atom/Info")]
     [LabelText("Pool Size")]
     [MinValue(1)]
@@ -283,6 +289,7 @@ public class EnemySpawner : MonoBehaviour
 
         BaseEnemyRefactor enemy = atom.GetComponent<BaseEnemyRefactor>();
         EnemyManager.Instance.RegisterEnemy(enemy);
+        GlobalParticleFxPlayer.Instance.PlayParticle(AtomSpawnParticle, position);
     }
 
     /// <summary>
