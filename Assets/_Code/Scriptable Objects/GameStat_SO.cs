@@ -224,6 +224,23 @@ public class GameStat_SO : ScriptableObject
     {
         return equippedWeaponNames.Contains(weaponName);
     }
+    
+    public bool IsWeaponUnderMaxLevel(CardDataSO weapon)
+    {
+        WeaponBase baseWeapon = null;
+        if (weapon1.weaponDataSO == weapon)
+            baseWeapon = weapon1.statManager.GetComponent<WeaponBase>();
+        else if(weapon2.weaponDataSO==weapon)
+            baseWeapon = weapon1.statManager.GetComponent<WeaponBase>();
+        else if(weapon3.weaponDataSO==weapon)
+            baseWeapon = weapon1.statManager.GetComponent<WeaponBase>();
+        else if(weapon4.weaponDataSO==weapon)
+            baseWeapon = weapon1.statManager.GetComponent<WeaponBase>();
+       
+        if (baseWeapon == null) return false;
+        return (baseWeapon.level <= 8);
+        return true;
+    }
 
     public void ResetWeaponData()
     {
@@ -302,6 +319,19 @@ public class GameStat_SO : ScriptableObject
         }
 
         return false;
+    }
+
+    
+    public bool isItemUnderMaxLevel(CardDataSO card)
+    {
+        foreach(ItemData item in items)
+        {
+            if(item.cardDataSO == card)
+            {
+                return item.level < 8;
+            }
+        }
+        return true;
     }
 
     #endregion

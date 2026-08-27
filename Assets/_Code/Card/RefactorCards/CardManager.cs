@@ -473,15 +473,13 @@ private string FormatPercentageModifier(Stat stat)
         switch (card.cardType)
         {
             case ECardType.AffectsPlayer:
-                // Player related cards are always included
+                gameStatSO.isItemUnderMaxLevel(card);
                 return true;
                 
             case ECardType.AffectsEnemy:
-                // Enemy affecting cards are always included
                 return true;
                 
             case ECardType.AddsWeapon:
-                // Check if the weapon to add is already equipped
                 if (card.weaponToAdd != null)
                 {
                     bool isAlreadyEquipped = gameStatSO.IsWeaponEquipped(card.weaponToAdd.weaponName);
@@ -492,12 +490,11 @@ private string FormatPercentageModifier(Stat stat)
                     }
                     return true;
                 }
-                // If no weapon to add specified, include it
                 return true;
                 
             case ECardType.AffectsWeaponLevel:
-                // Only include cards for currently equipped weapons
                 bool isEquipped = gameStatSO.IsWeaponEquipped(card.weaponName);
+                bool isUnderMaxLevel = gameStatSO.IsWeaponUnderMaxLevel(card);
                 if (!isEquipped)
                 {
                     Debug.Log($"Card {card.name} filtered out - weapon {card.weaponName} not equipped");
