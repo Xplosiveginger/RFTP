@@ -92,6 +92,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6817227879576255044, guid: 23aeec6c9f0efca41a407a790444b926, type: 3}
+      propertyPath: LevelTxt
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7782821906513690359, guid: 23aeec6c9f0efca41a407a790444b926, type: 3}
       propertyPath: m_Name
       value: Extra Buff Card Variant
@@ -101,7 +105,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: d3c207db64d79ad4e865d68279acd0be, type: 3}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 9169329557330844145, guid: 23aeec6c9f0efca41a407a790444b926, type: 3}
+    - {fileID: 553430533707863159, guid: 23aeec6c9f0efca41a407a790444b926, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23aeec6c9f0efca41a407a790444b926, type: 3}
