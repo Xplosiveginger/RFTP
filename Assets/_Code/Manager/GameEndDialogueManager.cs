@@ -17,6 +17,8 @@ public class GameEndDialogueManager : MonoBehaviour
     [Header("Dialogue Timing")]
     [SerializeField] private float dialogueGap = 1f;
 
+    public event System.Action OnDialogueComplete;
+
     private Coroutine dialogueCoroutine;
 
     private void OnEnable()
@@ -58,11 +60,11 @@ public class GameEndDialogueManager : MonoBehaviour
                 yield return new WaitForSeconds(typingSpeed);
             }
 
-            // Gap before the next dialogue
+            // Gap before next dialogue
             yield return new WaitForSeconds(dialogueGap);
         }
 
-        // All dialogue completed.
-        // We will add the next functionality here later.
+        // All dialogue completed
+        OnDialogueComplete?.Invoke();
     }
 }

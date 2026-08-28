@@ -35,11 +35,16 @@ public class GameEndManager : MonoBehaviour
     [SerializeField] private GameObject transitionObject;
     [SerializeField] private float transitionTime = 2f;
     
+
+    [Header("End Game Tilemaps")]
+    [SerializeField] private GameObject gameTile;
+    [SerializeField] private GameObject endTile;
+
     [Header("End Game Dialogue")]
     [SerializeField] private GameObject dialogueObject;
     [SerializeField] private float dialogueDelay = 1f;
     private bool gameEnded = false;
-
+    
     private void Start()
     {
         if (enemySpawner != null)
@@ -50,6 +55,21 @@ public class GameEndManager : MonoBehaviour
         {
             Debug.LogError("[GameEndManager] Enemy Spawner reference is missing!");
         }
+
+        if (dialogueObject != null)
+        {
+            GameEndDialogueManager dialogueManager =
+                dialogueObject.GetComponent<GameEndDialogueManager>();
+
+            if (dialogueManager != null)
+            {
+                dialogueManager.OnDialogueComplete += OnDialogueComplete;
+            }
+            else
+            {
+                Debug.LogError("[GameEndManager] GameEndDialogueManager not found on dialogue object!");
+            }
+        }
     }
 
     private void OnDestroy()
@@ -58,8 +78,40 @@ public class GameEndManager : MonoBehaviour
         {
             enemySpawner.OnGameTimeUpdated -= UpdateGameTime;
         }
-    }
 
+        if (dialogueObject != null)
+        {
+            GameEndDialogueManager dialogueManager =
+                dialogueObject.GetComponent<GameEndDialogueManager>();
+
+            if (dialogueManager != null)
+            {
+                dialogueManager.OnDialogueComplete -= OnDialogueComplete;
+            }
+        }
+    }
+    private void OnDialogueComplete()
+    {
+        Debug.Log("[GameEndManager] Dialogue complete!");
+
+        // Hide the normal game tilemap
+        if (gameTile != null)
+        {
+            gameTile.SetActive(false);
+        }
+
+        // Show the end-game tilemap
+        if (endTile != null)
+        {
+            endTile.SetActive(true);
+        }
+
+        // Hide dialogue
+        if (dialogueObject != null)
+        {
+            dialogueObject.SetActive(false);
+        }
+    }
     private void UpdateGameTime(float time)
     {
         gameTime = time;
@@ -69,6 +121,7 @@ public class GameEndManager : MonoBehaviour
             EndGame();
         }
     }
+
     private void PlayBossEntrance()
     {
         if (boss == null)
@@ -89,11 +142,11 @@ public class GameEndManager : MonoBehaviour
             .SetEase(Ease.OutQuad)
             .OnComplete(() =>
             {
-                // Boss has finished coming down.
-                // Wait before starting dialogue.
+                // Then wait before starting dialogue
                 StartCoroutine(EnableDialogueAfterDelay());
             });
     }
+
     private IEnumerator EnableDialogueAfterDelay()
     {
         yield return new WaitForSeconds(dialogueDelay);

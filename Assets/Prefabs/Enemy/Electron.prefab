@@ -213,6 +213,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   deathEffect: {fileID: 0}
+  flashMaterial: {fileID: 2100000, guid: c310212d74dc862409aeac049467aaf4, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 9bf1e1b9887c36641aba6f26fef852ba, type: 2}
+  flashDuration: 0.1
+  cameraShakeStrength: 0.15
+  cameraShakeDuration: 0.15
+  cameraShakeVibrato: 10
+  cameraShakeRandomness: 90
   jumpPower: 0.6
   jumpNum: 1
   jumpDuration: 0.45

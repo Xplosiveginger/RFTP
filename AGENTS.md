@@ -8,7 +8,7 @@
   - Layers:
     - Default, TransparentFX, Ignore Raycast, Ground , Water, UI, Enemy, Items, assets, Player Collision, Obstacle, Player, Projectile, Weapon, XP, death report, Ignore Collision
 - Active game object:
-  - Name: Text (TMP) (1)
-  - Tag: Untagged
-  - Layer: UI
+  - Name: Setup
+  - Tag: Folder
+  - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
