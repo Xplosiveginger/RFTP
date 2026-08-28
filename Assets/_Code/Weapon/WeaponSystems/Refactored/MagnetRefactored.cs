@@ -6,6 +6,7 @@ public class MagnetRefactored : WeaponBase
     // UNITY LIFECYCLE
     // =========================================================
 
+    public float rotationSpeed;
     protected override void Awake()
     {
         base.Awake();
@@ -17,6 +18,10 @@ public class MagnetRefactored : WeaponBase
         base.Start();
     }
 
+    private void Update()
+    {
+        gfx.transform.localEulerAngles += new Vector3(0, 0, 1 * rotationSpeed);
+    }
 
     // =========================================================
     // STAT ACCESS
