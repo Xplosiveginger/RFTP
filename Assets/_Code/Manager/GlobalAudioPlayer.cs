@@ -28,7 +28,7 @@ public class GlobalAudioPlayer : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
     }
-    public void PlayAudio(AudioClip audioClip, Transform location = null)
+    public void PlayAudio(AudioClip audioClip, Transform location = null, float pitch = 1)
     {
         if (audioClip == null)
         {
@@ -68,7 +68,7 @@ public class GlobalAudioPlayer : MonoBehaviour
 
         // 2D audio
         audioSource.spatialBlend = 0f;
-
+        audioSource.pitch = pitch;
         audioSource.Play();
 
         // Destroy after the clip finishes

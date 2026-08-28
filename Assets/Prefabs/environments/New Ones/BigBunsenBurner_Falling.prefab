@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2223913292461533765}
   - component: {fileID: 7914291902206642119}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BigBunsenBurner_Falling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 7344107070059968369}
   - component: {fileID: 5934948413355174246}
   - component: {fileID: 8175583735974793224}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BigBunsenBurner_Falling
   m_TagString: Untagged
   m_Icon: {fileID: 0}

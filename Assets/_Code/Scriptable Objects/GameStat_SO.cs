@@ -18,7 +18,14 @@ public class GameStat_SO : ScriptableObject
     #endregion
     
     #region ===== STATS =====
-
+    [ReadOnly]
+    public int playerLevel = 1;
+    
+    public void UpdatePlayerLevel(int level)
+    {
+        playerLevel = level;
+    }
+    
     [Title("Offensive Stats")]
     [BoxGroup("Stats/Offense")]
     public float damage = 100f;
@@ -487,7 +494,8 @@ public class GameStat_SO : ScriptableObject
 
         // Weapons
         ResetWeaponData();
-        
+        playerLevel = 1;
+
         runTime = 0f;
         damageGiven = 0f;
         damageTaken = 0f;

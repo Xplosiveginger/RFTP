@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 6084770404475375615}
   - component: {fileID: 6085188785029213427}
   - component: {fileID: 8536180074158042139}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TestTubeFalling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
