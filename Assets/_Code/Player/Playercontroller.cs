@@ -21,7 +21,8 @@ public class PlayerController2D : MonoBehaviour
     public StatManager statManager;
     public ReworkedWeaponManager weaponManager;
     public ItemManager itemManager;
-
+    [Header("Game State")]
+    public bool gameEnded = false;
     //test
     public WeaponDataSO weaponToAdd;
 
@@ -57,6 +58,21 @@ public class PlayerController2D : MonoBehaviour
 
     private void Update()
     {
+        if (gameEnded)
+        {
+            moveInput = Vector2.zero;
+
+            // Force player to face right
+            lastHorizontalDir = 1f;
+
+            // Play idle animation while facing right
+            animator.SetInteger("move", 0);
+            animator.SetFloat("facing", lastHorizontalDir);
+
+            inflicted = health.takingDOT;
+
+            return;
+        }
         // Read movement input
         moveInput.x = Input.GetAxisRaw("Horizontal");
         moveInput.y = Input.GetAxisRaw("Vertical");
@@ -79,6 +95,13 @@ public class PlayerController2D : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (gameEnded)
+        {
+            moveInput = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
+
         // Move the player
         rb.MovePosition(rb.position + moveInput * moveSpeed * Time.fixedDeltaTime);
     }
