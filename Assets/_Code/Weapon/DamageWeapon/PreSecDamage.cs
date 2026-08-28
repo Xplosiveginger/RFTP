@@ -24,7 +24,7 @@ public class PreSecDamage : MonoBehaviour
 
         Vector2 scale = transform.localScale;
 
-        scale = scale * size;
+        scale = aoeSize * size;
 
         transform.localScale = scale;
 

@@ -2,6 +2,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
+using Sirenix.Utilities;
 
 [CreateAssetMenu(fileName = "GameStat", menuName = "ScriptableObjects/Game Stats")]
 public class GameStat_SO : ScriptableObject
@@ -17,7 +18,14 @@ public class GameStat_SO : ScriptableObject
     #endregion
     
     #region ===== STATS =====
-
+    [ReadOnly]
+    public int playerLevel = 1;
+    
+    public void UpdatePlayerLevel(int level)
+    {
+        playerLevel = level;
+    }
+    
     [Title("Offensive Stats")]
     [BoxGroup("Stats/Offense")]
     public float damage = 100f;
@@ -224,34 +232,79 @@ public class GameStat_SO : ScriptableObject
     {
         return equippedWeaponNames.Contains(weaponName);
     }
-    
-    public bool IsWeaponUnderMaxLevel(CardDataSO weapon)
+    public bool IsWeaponSlotAvailable()
     {
-        WeaponBase baseWeapon = null;
-        if (weapon1.weaponDataSO == weapon)
-            baseWeapon = weapon1.statManager.GetComponent<WeaponBase>();
-        else if(weapon2.weaponDataSO==weapon)
-            baseWeapon = weapon1.statManager.GetComponent<WeaponBase>();
-        else if(weapon3.weaponDataSO==weapon)
-            baseWeapon = weapon1.statManager.GetComponent<WeaponBase>();
-        else if(weapon4.weaponDataSO==weapon)
-            baseWeapon = weapon1.statManager.GetComponent<WeaponBase>();
-       
-        if (baseWeapon == null) return false;
-        return (baseWeapon.level <= 8);
+        if (weapon1.weaponDataSO != null && weapon2.weaponDataSO != null && weapon3.weaponDataSO != null && weapon4.weaponDataSO != null)
+            return false;
         return true;
     }
-    public int getLevel(CardDataSO weapon)
+    public bool IsWeaponUnderMaxLevel(EWeaponName weaponName)
     {
+        int index = 0;
+        for (int i = 0; i < equippedWeaponNames.Count; i++)
+        {
+            if (equippedWeaponNames[i] == weaponName)
+            {
+                index = i;
+            }
+        }
         WeaponBase baseWeapon = null;
-        if (weapon1.weaponDataSO == weapon)
-            baseWeapon = weapon1.statManager.GetComponent<WeaponBase>();
-        else if (weapon2.weaponDataSO == weapon)
-            baseWeapon = weapon1.statManager.GetComponent<WeaponBase>();
-        else if (weapon3.weaponDataSO == weapon)
-            baseWeapon = weapon1.statManager.GetComponent<WeaponBase>();
-        else if (weapon4.weaponDataSO == weapon)
-            baseWeapon = weapon1.statManager.GetComponent<WeaponBase>();
+        switch (index)
+        {
+            case 0:
+                baseWeapon = weapon1.statManager.GetComponent<WeaponBase>();
+                break;
+
+            case 1:
+                baseWeapon = weapon2.statManager.GetComponent<WeaponBase>();
+                break;
+
+            case 2:
+                baseWeapon = weapon3.statManager.GetComponent<WeaponBase>();
+                break;
+
+            case 3:
+                baseWeapon = weapon4.statManager.GetComponent<WeaponBase>();
+                break;
+            default:
+                return true;
+                break;
+        }
+        if (baseWeapon == null) return false;
+        return (baseWeapon.level <= 8);
+    }
+    public int getLevel(EWeaponName weaponName)
+    {
+        int index = 0;
+        for (int i = 0; i < equippedWeaponNames.Count; i++)
+        {
+            if (equippedWeaponNames[i] == weaponName)
+            {
+                index = i;
+            }
+        }
+        WeaponBase baseWeapon = null;
+        switch (index)
+        {
+            case 0:
+                baseWeapon = weapon1.statManager.GetComponent<WeaponBase>();
+                break;
+
+            case 1:
+                baseWeapon = weapon2.statManager.GetComponent<WeaponBase>();
+                break;
+
+            case 2:
+                baseWeapon = weapon3.statManager.GetComponent<WeaponBase>();
+                break;
+
+            case 3:
+                baseWeapon = weapon4.statManager.GetComponent<WeaponBase>();
+                break;
+            default:
+                return 0;
+                break;
+        }
 
         if (baseWeapon == null) return 0;
         return (baseWeapon.level);
@@ -359,8 +412,25 @@ public class GameStat_SO : ScriptableObject
         }
         return 0;
     }
+    public bool IsItemSlotAvailable()
+    {
+        if (items.Count >= 4) return false;
+        return true;
+    }
     #endregion
 
+    public int GetCardLevel(CardDataSO card)
+    {
+        int itemLevel = 0; 
+        if(card.cardType==ECardType.AffectsPlayer)
+            itemLevel= getItemLevel(card);
+        else if (card.cardType == ECardType.AddsWeapon)
+            itemLevel = getLevel(card.weaponToAdd.weaponName);
+        else if (card.cardType==ECardType.AffectsWeaponLevel)
+            itemLevel = getLevel(card.weaponName);
+
+        return itemLevel;
+    }
     
     #region Realtime Stats
 
@@ -424,7 +494,8 @@ public class GameStat_SO : ScriptableObject
 
         // Weapons
         ResetWeaponData();
-        
+        playerLevel = 1;
+
         runTime = 0f;
         damageGiven = 0f;
         damageTaken = 0f;

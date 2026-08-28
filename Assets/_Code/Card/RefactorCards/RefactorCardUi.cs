@@ -46,15 +46,24 @@ public class RefactorCardUi : MonoBehaviour, IPointerClickHandler
     {
         icon.sprite = data.Icon;
         NameTxt.text = data.Name;
-        int level = gameStatSO.getItemLevel(data);
-        if (LevelTxt!=null)
+        int level = gameStatSO.GetCardLevel(data);
+        if (LevelTxt != null)
         {
-            LevelTxt.text =(level+1).ToString();
+
+            if (data.cardType == ECardType.AddsWeapon)
+            {
+                LevelTxt.text = (1).ToString();
+            }
+            else
+            {
+                LevelTxt.text = (level + 1).ToString();
+
+            }
         }
 
         if (data.Description.Length > 0)  //this needs to be the value of the level in item
         {
-            int max = Mathf.Min(data.Description.Length, level);
+            int max = Mathf.Min(data.Description.Length-1, level);
             DescriptionTxt.text = data.Description[max];
         }
         else

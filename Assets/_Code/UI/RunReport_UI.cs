@@ -106,10 +106,10 @@ public class RunReport_UI : MonoBehaviour
             gameStat.runTime.ToString("F2");
 
         moneyEarnedText.text =
-            gameStat.AllowanceMoney.ToString("F2");
+            gameStat.AllowanceMoney.ToString("0");
 
         enemyKilledText.text =
-            gameStat.EnemiesKilled.ToString("F2");
+            gameStat.EnemiesKilled.ToString("0");
 
         damageTakenText.text =
             gameStat.damageTaken.ToString("F2");
@@ -118,7 +118,7 @@ public class RunReport_UI : MonoBehaviour
             gameStat.damageGiven.ToString("F2");
 
         highestLevelText.text =
-            gameStat.highestLevel.ToString("F2");
+            gameStat.playerLevel.ToString("0");
 
 
         PopulateWeapons();
