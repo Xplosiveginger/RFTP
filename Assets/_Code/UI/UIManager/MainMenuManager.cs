@@ -10,6 +10,7 @@ public class MainMenuManager : MonoBehaviour
     public GameObject startPanel;
     public GameObject settingsPanel;
     public GameObject shopPanel;
+    public GameObject creditsPanel;
 
     [Header("Shop")]
     public Button shopBuyButton;
@@ -34,6 +35,7 @@ public class MainMenuManager : MonoBehaviour
         startPanel.SetActive(true);
         settingsPanel.SetActive(false);
         shopPanel.SetActive(false);
+        creditsPanel.SetActive(false);
 
         shopBuyButton.onClick.AddListener(OnClickedShopBuyButton);
         shopRefundButton.onClick.AddListener(OnClickedShopRefundButton);
@@ -95,6 +97,26 @@ public class MainMenuManager : MonoBehaviour
     public void OnClickedShopCloseButton()
     {
         shopPanel.SetActive(false);
+        startPanel.SetActive(true);
+
+        PlaySound(buttonClick);
+    }
+
+    // -------------------------
+    // CREDITS
+    // -------------------------
+
+    public void OnClickedCreditsButton()
+    {
+        startPanel.SetActive(false);
+        creditsPanel.SetActive(true);
+
+        PlaySound(buttonClick);
+    }
+
+    public void OnClickedCreditsBackButton()
+    {
+        creditsPanel.SetActive(false);
         startPanel.SetActive(true);
 
         PlaySound(buttonClick);
