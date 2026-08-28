@@ -7,6 +7,7 @@ public class Projectile : MonoBehaviour
     public float damage;
     public bool isDOT = false;
     public float dotDuration = 2f;
+    public float _damage_interval=.3f;
 
     //private void OnCollisionEnter2D(Collision2D collision)
     //{
@@ -26,12 +27,11 @@ public class Projectile : MonoBehaviour
         {
             if (isDOT)
             {
-                enemy.GetComponent<HealthSystem>().TakeDamageOverTime(dotDuration, 1f, (int)damage);
+                enemy.GetComponent<HealthSystem>().TakeDamageOverTime(dotDuration, _damage_interval, (int)damage);
             }
             else
                 enemy.GetComponent<HealthSystem>().Damage((int)damage);
         }
 
-        Destroy(gameObject);
     }
 }

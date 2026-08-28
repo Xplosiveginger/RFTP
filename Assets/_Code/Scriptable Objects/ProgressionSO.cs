@@ -55,10 +55,10 @@ public class ProgressionSO : ScriptableObject
         "[2] = Levels 21-30")]
     public List<float> xpMultipliers = new List<float>()
     {
-        0.8f,
-        1.2f,
-        1.15f,
-        1.1f
+        0.4f,
+        0.5f,
+        0.6f,
+        0.7f
     };
 
     [FoldoutGroup("XP Scaling")]
@@ -71,10 +71,11 @@ public class ProgressionSO : ScriptableObject
         "[2] = Levels 21-30")]
     public List<int> xpAdditions = new List<int>()
     {
+        20,
         50,
         100,
-        150,
-        200
+        150
+
     };
 
     // --------------------------------------------------

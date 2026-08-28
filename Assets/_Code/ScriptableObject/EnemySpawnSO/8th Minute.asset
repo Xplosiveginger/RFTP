@@ -13,15 +13,14 @@ MonoBehaviour:
   m_Name: 8th Minute
   m_EditorClassIdentifier: 
   startTime: 480
+  spawnGap: 2
+  spawnCount: 8
   enemiesToSpawn:
   - enemyPrefab: {fileID: 12792752347874169, guid: d9449dfb5d871904084db87c3ae4fed3, type: 3}
-    minSpawnRate: 0.1
-    maxSpawnRate: 0.5
-    timeToIncrease: 60
-    poolSize: 50
+    weight: 0.5
+    initialPoolSize: 10
+    maxPoolSize: 50
   - enemyPrefab: {fileID: 7677058516892065867, guid: 406104f61aca627489fe9dffb10f9173, type: 3}
-    minSpawnRate: 0.2
-    maxSpawnRate: 0.6
-    timeToIncrease: 60
-    poolSize: 50
-  keepPreviousEnemiesAlive: 0
+    weight: 0.5
+    initialPoolSize: 10
+    maxPoolSize: 50
