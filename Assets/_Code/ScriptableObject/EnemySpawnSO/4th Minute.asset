@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: 4th Minute
   m_EditorClassIdentifier: 
   startTime: 240
+  spawnGap: 3
+  spawnCount: 3
   enemiesToSpawn:
   - enemyPrefab: {fileID: 7677058516892065867, guid: 406104f61aca627489fe9dffb10f9173, type: 3}
-    minSpawnRate: 0.2
-    maxSpawnRate: 0.6
-    timeToIncrease: 60
-    poolSize: 50
-  keepPreviousEnemiesAlive: 0
+    weight: 0.5
+    initialPoolSize: 10
+    maxPoolSize: 50
