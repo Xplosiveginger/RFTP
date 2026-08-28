@@ -50,6 +50,7 @@ MonoBehaviour:
   gfx: {fileID: 9121690177814540391}
   weaponData: {fileID: 11400000, guid: 2d034c0d9dc1d2a45a4736256411c5f9, type: 2}
   enemyDetector: {fileID: 0}
+  debuffCooldownAdditionDuration: 0
   level: 1
   isActive: 0
   inCooldown: 0
@@ -135,15 +136,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6942e897cfdf92469f2c1f3ea19d790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseAOESize: {x: 3.8461537, y: 3.8461537}
   damage: 0
-  aoeSize: {x: 7, y: 3}
+  aoeSize: {x: 7, y: 7}
   size: 1
   damageInterval: 1
   magnet: {fileID: 6851178415755960992}
   damageLM:
     serializedVersion: 2
     m_Bits: 3521
-  drawHitBox: 0
+  drawHitBox: 1
 --- !u!212 &8247946809532645485
 SpriteRenderer:
   m_ObjectHideFlags: 0

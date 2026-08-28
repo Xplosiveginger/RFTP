@@ -141,7 +141,7 @@ MonoBehaviour:
   damage: 1
   damageInterval: 1
   deathAfterSec: 3
-  aoeSize: {x: 1, y: 1}
+  aoeSize: {x: 1.5, y: 1.5}
   size: 0
   damageLM:
     serializedVersion: 2

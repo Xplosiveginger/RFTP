@@ -484,7 +484,22 @@ private string FormatPercentageModifier(Stat stat)
         switch (card.cardType)
         {
             case ECardType.AffectsPlayer:
-                gameStatSO.isItemUnderMaxLevel(card);
+                if(gameStatSO.IsItemSlotAvailable())
+                {
+                    return true;
+                }
+                else
+                {
+                    if (gameStatSO.IsItemOwned(card))
+                    {
+                        if (gameStatSO.isItemUnderMaxLevel(card))
+                            return true;
+                        else
+                            return false;
+                    }
+                    else
+                        return false;
+                }
                 return true;
                 
             case ECardType.AffectsEnemy:
@@ -493,6 +508,8 @@ private string FormatPercentageModifier(Stat stat)
             case ECardType.AddsWeapon:
                 if (card.weaponToAdd != null)
                 {
+                    if (!gameStatSO.IsWeaponSlotAvailable())
+                        return false;
                     bool isAlreadyEquipped = gameStatSO.IsWeaponEquipped(card.weaponToAdd.weaponName);
                     if (isAlreadyEquipped)
                     {
@@ -505,7 +522,7 @@ private string FormatPercentageModifier(Stat stat)
                 
             case ECardType.AffectsWeaponLevel:
                 bool isEquipped = gameStatSO.IsWeaponEquipped(card.weaponName);
-                bool isUnderMaxLevel = gameStatSO.IsWeaponUnderMaxLevel(card);
+                bool isUnderMaxLevel = gameStatSO.IsWeaponUnderMaxLevel(card.weaponName);
                 if (!isEquipped)
                 {
                     Debug.Log($"Card {card.name} filtered out - weapon {card.weaponName} not equipped");
