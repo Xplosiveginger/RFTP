@@ -90,6 +90,10 @@ public class EnemySpawner : MonoBehaviour
     {
         Instance = this;
         atomPooler = new DynamicEnemyPooler(atomPrefab, atomPoolSize, atomPoolSize * 2, poolParent);
+        EnemySpawnDataNew atomSpawnData = new EnemySpawnDataNew();
+        atomSpawnData.enemyPrefab = atomPrefab;
+        poolDictionary[atomSpawnData] = atomPooler;
+
     }
 
     private void Start()

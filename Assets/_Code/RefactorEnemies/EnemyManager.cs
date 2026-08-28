@@ -54,7 +54,7 @@ public class EnemyManager : MonoBehaviour
         }
 
         // Cache player position once per frame
-        cachedPlayerPosition = player.position;
+        cachedPlayerPosition = player.position; 
         float deltaTime = Time.deltaTime;
 
         // Process all enemy updates in a single pass

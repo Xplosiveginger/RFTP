@@ -275,6 +275,8 @@ public class StatManager : MonoBehaviour
             return;
         }
 
+
+
         Debug.Log(
             $"Modifying {statName}: " +
             $"Before = {stat.currentValue}, " +
@@ -283,7 +285,12 @@ public class StatManager : MonoBehaviour
 
         // Special handling for cooldown because a positive
         // modifier represents a reduction in cooldown.
-        if (statName == EStatType.AttackCooldown)
+
+        if(statName==EStatType.Health)
+        {
+            stat.ApplyHealthModifier(modifier);
+        }
+        else if (statName == EStatType.AttackCooldown)
         {
             stat.ApplyCooldownModifier(modifier);
         }

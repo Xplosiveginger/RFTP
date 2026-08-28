@@ -96,6 +96,10 @@ PrefabInstance:
       propertyPath: LevelTxt
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7115125608951513314, guid: 23aeec6c9f0efca41a407a790444b926, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 223f017567168f043a0e309b61c0eadb, type: 3}
     - target: {fileID: 7782821906513690359, guid: 23aeec6c9f0efca41a407a790444b926, type: 3}
       propertyPath: m_Name
       value: Extra Buff Card Variant
