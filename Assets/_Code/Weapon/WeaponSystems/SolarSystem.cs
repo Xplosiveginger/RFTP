@@ -45,8 +45,8 @@ public class SolarSystem : WeaponBase
 
             // First planet keeps max speed; others get reduced speed
             float calculatedSpeed = (i == 0)
-                ? maxOrbitSpeed
-                : maxOrbitSpeed - (speedSubtractor * i);
+                ? projectileSpeed
+                : projectileSpeed - (speedSubtractor * i);
 
             Vector3 position = player.position + Quaternion.Euler(0, 0, angle) * Vector3.right * radius;
             GameObject planet = Instantiate(planetPrefabs[i], position, Quaternion.identity, transform);
@@ -113,6 +113,15 @@ public class SolarSystem : WeaponBase
         duration = statManager.GetStat(EStatType.ActiveDuration).currentValue;
         projectileSpeed = statManager.GetStat(EStatType.ProjectileSpeed).currentValue;
         projectileCount = statManager.GetStat(EStatType.ProjectileCount).currentValue;
+
+        for (int i = 0; i < planets.Count; i++)
+        {
+            float calculatedSpeed = (i == 0)
+                ? projectileSpeed
+                : projectileSpeed - (speedSubtractor * i);
+
+            planets[i].speed = calculatedSpeed;
+        }
     }
 
     public override void UpdateWeaponDamage()
