@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LitmusPaperDamage
   m_EditorClassIdentifier: 
   statName: 7
-  baseValue: 3.5
-  maxValue: 3.5
+  baseValue: 6
+  maxValue: 6
   startValue: 0
   startMultiplier: 1

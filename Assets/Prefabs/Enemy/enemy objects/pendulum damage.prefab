@@ -199,5 +199,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 2
   lifetime: 5
-  speed: 12
+  speed: 8
   destroysOnCollisionWithObjects: 0

@@ -86,7 +86,7 @@ MonoBehaviour:
   cooldownReduction: 2
   lifetime: 5
   debuffDuration: 5
-  speed: 12
+  speed: 8
   destroysOnCollisionWithObjects: 0
 --- !u!50 &2804146228783408131
 Rigidbody2D:

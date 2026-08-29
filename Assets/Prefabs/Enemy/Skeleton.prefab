@@ -191,7 +191,7 @@ MonoBehaviour:
   attackAnimationLength: 0.2
   boneProjectilePrefab: {fileID: 4378682058645906929, guid: 928b57ab7bc594d4d91f9949ac698da1, type: 3}
   attackRange: 5
-  attackCooldown: 2
+  attackCooldown: 3
   throwPoint: {fileID: 7896511847740555964}
 --- !u!114 &-4183431948116384970
 MonoBehaviour:

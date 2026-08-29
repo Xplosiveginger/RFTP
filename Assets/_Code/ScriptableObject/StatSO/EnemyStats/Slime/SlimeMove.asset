@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SlimeMove
   m_EditorClassIdentifier: 
   statName: 0
-  baseValue: 1
-  maxValue: 1
+  baseValue: 3
+  maxValue: 3
   startValue: 0
   startMultiplier: 1

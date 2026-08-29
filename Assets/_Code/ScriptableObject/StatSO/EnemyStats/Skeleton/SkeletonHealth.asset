@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SkeletonHealth
   m_EditorClassIdentifier: 
   statName: 1
-  baseValue: 60
-  maxValue: 60
+  baseValue: 30
+  maxValue: 30
   startValue: 0
   startMultiplier: 1

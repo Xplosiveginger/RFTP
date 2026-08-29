@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Slime_Damage
   m_EditorClassIdentifier: 
   statName: 7
-  baseValue: 1
-  maxValue: 1
+  baseValue: 3
+  maxValue: 3
   startValue: 0
   startMultiplier: 1

@@ -436,7 +436,7 @@ MonoBehaviour:
   DamageAmount: 0
   wavePrefab: {fileID: 7058418551612159453, guid: 1f6248a521a63df418755f055498ffd8, type: 3}
   waveSpawnPoint: {fileID: 8200705173164664287}
-  CooldownIncrease: 2
+  CooldownIncrease: 4
   waveProjectileCount: 5
   CooldownDebuffDuration: 10
   normalFace: {fileID: 8137379548161450130}
