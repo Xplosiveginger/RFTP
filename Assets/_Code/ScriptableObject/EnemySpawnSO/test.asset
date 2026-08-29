@@ -16,7 +16,7 @@ MonoBehaviour:
   spawnGap: 5
   spawnCount: 1
   enemiesToSpawn:
-  - enemyPrefab: {fileID: 7117651411527206627, guid: ad70a5c7473c53047b6d9529808d7eee, type: 3}
+  - enemyPrefab: {fileID: 2913699253501788760, guid: e5147eaf5765b1b41b6e3f3a88e96b40, type: 3}
     weight: 1
     initialPoolSize: 5
     maxPoolSize: 50

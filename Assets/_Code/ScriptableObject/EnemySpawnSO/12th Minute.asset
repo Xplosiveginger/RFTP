@@ -16,15 +16,27 @@ MonoBehaviour:
   spawnGap: 1
   spawnCount: 10
   enemiesToSpawn:
-  - enemyPrefab: {fileID: 12792752347874169, guid: d9449dfb5d871904084db87c3ae4fed3, type: 3}
-    weight: 0.5
+  - enemyPrefab: {fileID: 7117651411527206627, guid: 190e50e4431018549a72760b6e5a32a5, type: 3}
+    weight: 0.1
     initialPoolSize: 10
     maxPoolSize: 50
-  - enemyPrefab: {fileID: 7677058516892065867, guid: 7f462e843f317f048b1a21968bff8e2e, type: 3}
-    weight: 0.5
+  - enemyPrefab: {fileID: 7117651411527206627, guid: 0b9ef65ac8301c2498035107fa7d0f57, type: 3}
+    weight: 0.1
+    initialPoolSize: 10
+    maxPoolSize: 50
+  - enemyPrefab: {fileID: 7117651411527206627, guid: b7e0dc40970839c43a6160d6b4f23a67, type: 3}
+    weight: 0.1
+    initialPoolSize: 10
+    maxPoolSize: 50
+  - enemyPrefab: {fileID: 7677058516892065867, guid: 406104f61aca627489fe9dffb10f9173, type: 3}
+    weight: 0.3
+    initialPoolSize: 10
+    maxPoolSize: 50
+  - enemyPrefab: {fileID: 12792752347874169, guid: d9449dfb5d871904084db87c3ae4fed3, type: 3}
+    weight: 0.25
     initialPoolSize: 10
     maxPoolSize: 50
   - enemyPrefab: {fileID: 2913699253501788760, guid: e5147eaf5765b1b41b6e3f3a88e96b40, type: 3}
-    weight: 0.5
+    weight: 0.15
     initialPoolSize: 10
     maxPoolSize: 50

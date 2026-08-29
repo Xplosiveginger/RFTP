@@ -22,6 +22,14 @@ public class PendulumDamageWave : MonoBehaviour
     {
         damage= _damage;
         direction = _direction.normalized;
+        
+        if(_direction.x<0)
+        {
+            transform.localScale = new Vector3(-1*transform.localScale.x,transform.localScale.y,transform.localScale.z);
+
+        }
+
+
         Destroy(gameObject, lifetime);
     }
 

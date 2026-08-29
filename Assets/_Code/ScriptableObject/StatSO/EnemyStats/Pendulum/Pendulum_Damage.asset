@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pendulum_Damage
   m_EditorClassIdentifier: 
   statName: 7
-  baseValue: 15
-  maxValue: 15
+  baseValue: 6
+  maxValue: 6
   startValue: 0
   startMultiplier: 1

@@ -88,6 +88,7 @@ public class AsyncLevelLoader : MonoBehaviour
     public void OnMenuButtonClicked()
     {
         PauseManager.instance.gameScreenCanvas.SetActive(false);
+        Time.timeScale = 1f;
         loadingPanel.SetActive(true);
         StartCoroutine(LoadLevelAsync(menuLevelName));
     }

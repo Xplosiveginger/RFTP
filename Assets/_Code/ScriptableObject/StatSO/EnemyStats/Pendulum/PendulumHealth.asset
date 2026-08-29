@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PendulumHealth
   m_EditorClassIdentifier: 
   statName: 1
-  baseValue: 50
-  maxValue: 50
+  baseValue: 30
+  maxValue: 30
   startValue: 0
   startMultiplier: 1

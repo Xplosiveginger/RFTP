@@ -14,9 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startTime: 240
   spawnGap: 3
-  spawnCount: 3
+  spawnCount: 5
   enemiesToSpawn:
   - enemyPrefab: {fileID: 7677058516892065867, guid: 406104f61aca627489fe9dffb10f9173, type: 3}
-    weight: 0.5
+    weight: 0.6
+    initialPoolSize: 10
+    maxPoolSize: 50
+  - enemyPrefab: {fileID: 7677058516892065867, guid: 7f462e843f317f048b1a21968bff8e2e, type: 3}
+    weight: 0.4
     initialPoolSize: 10
     maxPoolSize: 50

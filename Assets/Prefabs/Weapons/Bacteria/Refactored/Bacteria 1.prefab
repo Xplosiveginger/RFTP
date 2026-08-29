@@ -5004,3 +5004,5 @@ MonoBehaviour:
   damage: 0
   isDOT: 1
   dotDuration: 2
+  _damage_interval: 0.3
+  destroyOnCollision: 0

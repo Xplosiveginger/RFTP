@@ -25,6 +25,11 @@ public class Pendulum_Wave : MonoBehaviour
         cooldownReduction = _cooldownReduction;
         direction = _direction.normalized;
         this.debuffDuration= _debuffDuration;
+        if (_direction.x < 0)
+        {
+            transform.localScale = new Vector3(-1 * transform.localScale.x, transform.localScale.y, transform.localScale.z);
+
+        }
         Destroy(gameObject, lifetime);
     }
 
