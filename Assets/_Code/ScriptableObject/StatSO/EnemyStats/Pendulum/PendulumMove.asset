@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PendulumMove
   m_EditorClassIdentifier: 
   statName: 0
-  baseValue: 4
-  maxValue: 4
+  baseValue: 2
+  maxValue: 2
   startValue: 0
   startMultiplier: 1

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startTime: 240
   spawnGap: 3
-  spawnCount: 3
+  spawnCount: 5
   enemiesToSpawn:
   - enemyPrefab: {fileID: 7677058516892065867, guid: 406104f61aca627489fe9dffb10f9173, type: 3}
     weight: 0.6

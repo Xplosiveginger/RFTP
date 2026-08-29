@@ -18,6 +18,9 @@ public class PendulumEnemy2D : BaseEnemyRefactor
     public int waveProjectileCount = 5;
     public float CooldownDebuffDuration = 10f;
 
+
+    public GameObject normalFace, abnormalFace;
+
     private int currentProjecetileCount = 0;
     private Transform playerTarget;
     private float attackTimer;
@@ -50,6 +53,14 @@ public class PendulumEnemy2D : BaseEnemyRefactor
         playerTarget = GameObject.FindGameObjectWithTag("Player")?.transform;
         attackTimer = attackCooldown;
 
+        ShowNormalFace(true);
+
+    }
+
+    void ShowNormalFace(bool b)
+    {
+        normalFace.SetActive(b);
+        abnormalFace.SetActive(!b);
     }
 
     void UpdateStats()
@@ -81,6 +92,16 @@ public class PendulumEnemy2D : BaseEnemyRefactor
         {
             SpawnDamageWave();
         }
+        
+        if((currentProjecetileCount+1)%waveProjectileCount==0)
+        {
+            ShowNormalFace(false);
+        }
+        else
+        {
+            ShowNormalFace(true);
+        }
+
     }
     void SpawnDamageWave()
     {
