@@ -9,6 +9,8 @@ public class Projectile : MonoBehaviour
     public float dotDuration = 2f;
     public float _damage_interval=.3f;
 
+    public bool destroyOnCollision = true;
+
     //private void OnCollisionEnter2D(Collision2D collision)
     //{
     //    BaseEnemyRefactor enemy = collision.gameObject.GetComponent<BaseEnemyRefactor>();
@@ -31,6 +33,11 @@ public class Projectile : MonoBehaviour
             }
             else
                 enemy.GetComponent<HealthSystem>().Damage((int)damage);
+
+            if (destroyOnCollision)
+            {
+                Destroy(gameObject);
+            }
         }
 
     }

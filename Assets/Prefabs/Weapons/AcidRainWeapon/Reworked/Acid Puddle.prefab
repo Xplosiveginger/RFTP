@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  damageInterval: 1
+  damageInterval: 0.3
   deathAfterSec: 3
   aoeSize: {x: 1.5, y: 1.5}
   size: 0
