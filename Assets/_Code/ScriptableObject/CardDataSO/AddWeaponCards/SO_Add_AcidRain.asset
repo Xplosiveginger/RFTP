@@ -13,21 +13,21 @@ MonoBehaviour:
   m_Name: SO_Add_AcidRain
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 99e0bb58b88c7324daf105b6391f2173, type: 3}
-  Name: Acid Rain Cloud
+  Name: Acid Rain
   Description:
   - Acid Rain puddles are going to be a nightmare for the enemies if they enter the
     zones
   - Area of Effect of the weapon is increased by 10%
   - 'The total damage of the weapon is increased by 10. The duration of the weapon
-    is reduction by 0.5 seconds '
+    is increased by 0.5 seconds '
   - 'Area of Effect of the weapon is increased by 10%. One more cloud is added to
     the roster '
   - 'The total damage of the weapon is increased by 10. The duration of the weapon
-    is reduction by 0.5 seconds '
+    is increased by 0.5 seconds '
   - 'Area of Effect of the weapon is increased by 10%. One more cloud is added to
     the roster '
   - 'The total damage of the weapon is increased by 10. The duration of the weapon
-    is reduction by 0.5 seconds '
+    is  increased by 0.5 seconds '
   - 'Area of Effect of the weapon is increased by 10%. '
   levelImages:
   - {fileID: 21300000, guid: 3702fe1baff4bc44b9b417d901462c28, type: 3}
@@ -51,6 +51,7 @@ MonoBehaviour:
   affectsPlayer: 0
   affectedPlayerStat: 0
   playerStatModifier: 0
+  playerStatIsPercentage: 1
   affectsEnemy: 0
   affectedEnemyStat: 0
   enemyStatModifier: 0
@@ -59,6 +60,9 @@ MonoBehaviour:
   affectsWeaponStat: 0
   affectedWeaponStat: 0
   weaponStatModifier: 0
+  weaponStatIsPercentage: 1
   weaponToAdd: {fileID: 11400000, guid: d4f9cb0d5a6db9d4999a2ae31bbcbf42, type: 2}
+  healthToAdd: 0
+  moneyToAdd: 0
   isBuffDebuff: 0
   time: 0
