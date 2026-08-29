@@ -939,8 +939,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 206, y: -146.45}
-  m_SizeDelta: {x: 412, y: 155.7}
+  m_AnchoredPosition: {x: 206, y: -151.62001}
+  m_SizeDelta: {x: 412, y: 145.36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &66771049
 MonoBehaviour:
@@ -962,7 +962,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Srijit
+  m_text: ANIKET MAURYA
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
   m_sharedMaterial: {fileID: 7977904722213666230, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
@@ -1754,8 +1754,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 206, y: -146.45}
-  m_SizeDelta: {x: 412, y: 155.7}
+  m_AnchoredPosition: {x: 206, y: -151.62001}
+  m_SizeDelta: {x: 412, y: 145.36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &105212013
 MonoBehaviour:
@@ -1777,7 +1777,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Srijit
+  m_text: AYUSH GOSAVI
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
   m_sharedMaterial: {fileID: 7977904722213666230, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
@@ -2636,8 +2636,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 206, y: -77.85}
-  m_SizeDelta: {x: 412, y: 155.7}
+  m_AnchoredPosition: {x: 206, y: -83.020004}
+  m_SizeDelta: {x: 412, y: 166.04001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &152259651
 MonoBehaviour:
@@ -2659,7 +2659,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lead Designer
+  m_text: DEVELOPER
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
   m_sharedMaterial: {fileID: 7977904722213666230, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
@@ -2668,8 +2668,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281479911
+  m_fontColor: {r: 0.9058824, g: 0.19607845, b: 0.19607845, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2686,8 +2686,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45
-  m_fontSizeBase: 45
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3987,8 +3987,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 206, y: -146.45}
-  m_SizeDelta: {x: 412, y: 155.7}
+  m_AnchoredPosition: {x: 206, y: -151.62001}
+  m_SizeDelta: {x: 412, y: 145.36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &231967463
 MonoBehaviour:
@@ -4010,7 +4010,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Srijit
+  m_text: RAVI
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
   m_sharedMaterial: {fileID: 7977904722213666230, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
@@ -5621,8 +5621,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 206, y: -77.85}
-  m_SizeDelta: {x: 412, y: 155.7}
+  m_AnchoredPosition: {x: 206, y: -83.020004}
+  m_SizeDelta: {x: 412, y: 166.04001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &338779720
 MonoBehaviour:
@@ -5644,7 +5644,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lead Designer
+  m_text: DEVELOPER
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
   m_sharedMaterial: {fileID: 7977904722213666230, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
@@ -5653,8 +5653,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281479911
+  m_fontColor: {r: 0.9058824, g: 0.19607845, b: 0.19607845, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5671,8 +5671,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45
-  m_fontSizeBase: 45
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5838,8 +5838,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 206, y: -77.85}
-  m_SizeDelta: {x: 412, y: 155.7}
+  m_AnchoredPosition: {x: 206, y: -83.020004}
+  m_SizeDelta: {x: 412, y: 166.04001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &368782545
 MonoBehaviour:
@@ -5861,7 +5861,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lead Designer
+  m_text: DEVELOPER
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
   m_sharedMaterial: {fileID: 7977904722213666230, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
@@ -5870,8 +5870,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281479911
+  m_fontColor: {r: 0.9058824, g: 0.19607845, b: 0.19607845, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5888,8 +5888,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45
-  m_fontSizeBase: 45
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6250,8 +6250,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 206, y: -77.85}
-  m_SizeDelta: {x: 412, y: 155.7}
+  m_AnchoredPosition: {x: 206, y: -83.020004}
+  m_SizeDelta: {x: 412, y: 166.04001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &416639522
 MonoBehaviour:
@@ -6273,7 +6273,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lead Designer
+  m_text: DEVELOPER
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
   m_sharedMaterial: {fileID: 7977904722213666230, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
@@ -6282,8 +6282,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281479911
+  m_fontColor: {r: 0.9058824, g: 0.19607845, b: 0.19607845, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -6300,8 +6300,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45
-  m_fontSizeBase: 45
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -8323,8 +8323,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 206, y: -146.45}
-  m_SizeDelta: {x: 412, y: 155.7}
+  m_AnchoredPosition: {x: 206, y: -151.62001}
+  m_SizeDelta: {x: 412, y: 145.36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &557147077
 MonoBehaviour:
@@ -8346,7 +8346,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Srijit
+  m_text: S.G. SRIJITH
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
   m_sharedMaterial: {fileID: 7977904722213666230, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
@@ -10506,8 +10506,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 206, y: -146.45}
-  m_SizeDelta: {x: 412, y: 155.7}
+  m_AnchoredPosition: {x: 206, y: -151.62001}
+  m_SizeDelta: {x: 412, y: 145.36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &747790573
 MonoBehaviour:
@@ -10529,7 +10529,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Srijit
+  m_text: NINAD DIXIT
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
   m_sharedMaterial: {fileID: 7977904722213666230, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
@@ -11082,8 +11082,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 206, y: -146.45}
-  m_SizeDelta: {x: 412, y: 155.7}
+  m_AnchoredPosition: {x: 206, y: -151.62001}
+  m_SizeDelta: {x: 412, y: 145.36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &759630495
 MonoBehaviour:
@@ -11105,7 +11105,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Srijit
+  m_text: ANISA DHIMAN
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
   m_sharedMaterial: {fileID: 7977904722213666230, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
@@ -14424,8 +14424,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 206, y: -146.45}
-  m_SizeDelta: {x: 412, y: 155.7}
+  m_AnchoredPosition: {x: 206, y: -151.62001}
+  m_SizeDelta: {x: 412, y: 145.36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &940319820
 MonoBehaviour:
@@ -14447,7 +14447,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Srijit
+  m_text: ANDREW FERNS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
   m_sharedMaterial: {fileID: 7977904722213666230, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
@@ -15906,8 +15906,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 206, y: -77.85}
-  m_SizeDelta: {x: 412, y: 155.7}
+  m_AnchoredPosition: {x: 206, y: -83.020004}
+  m_SizeDelta: {x: 412, y: 166.04001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1003829654
 MonoBehaviour:
@@ -15929,7 +15929,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lead Designer
+  m_text: ARTIST
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
   m_sharedMaterial: {fileID: 7977904722213666230, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
@@ -15938,8 +15938,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281479911
+  m_fontColor: {r: 0.9058824, g: 0.19607845, b: 0.19607845, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -15956,8 +15956,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45
-  m_fontSizeBase: 45
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -17286,8 +17286,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 206, y: -146.45}
-  m_SizeDelta: {x: 412, y: 155.7}
+  m_AnchoredPosition: {x: 206, y: -151.62001}
+  m_SizeDelta: {x: 412, y: 145.36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1096650732
 MonoBehaviour:
@@ -17309,7 +17309,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Srijit
+  m_text: GAURAV
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
   m_sharedMaterial: {fileID: 7977904722213666230, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
@@ -19709,8 +19709,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 206, y: -77.85}
-  m_SizeDelta: {x: 412, y: 155.7}
+  m_AnchoredPosition: {x: 206, y: -83.020004}
+  m_SizeDelta: {x: 412, y: 166.04001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1272125642
 MonoBehaviour:
@@ -19732,7 +19732,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lead Designer
+  m_text: DEVELOPER
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
   m_sharedMaterial: {fileID: 7977904722213666230, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
@@ -19741,8 +19741,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281479911
+  m_fontColor: {r: 0.9058824, g: 0.19607845, b: 0.19607845, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -19759,8 +19759,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45
-  m_fontSizeBase: 45
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -19922,8 +19922,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 206, y: -146.45}
-  m_SizeDelta: {x: 412, y: 155.7}
+  m_AnchoredPosition: {x: 206, y: -151.62001}
+  m_SizeDelta: {x: 412, y: 145.36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1275887474
 MonoBehaviour:
@@ -19945,7 +19945,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Srijit
+  m_text: IB MAGAR
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
   m_sharedMaterial: {fileID: 7977904722213666230, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
@@ -20219,8 +20219,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 206, y: -77.85}
-  m_SizeDelta: {x: 412, y: 155.7}
+  m_AnchoredPosition: {x: 206, y: -83.020004}
+  m_SizeDelta: {x: 412, y: 166.04001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1294427695
 MonoBehaviour:
@@ -20242,7 +20242,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lead Designer
+  m_text: DEVELOPER
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
   m_sharedMaterial: {fileID: 7977904722213666230, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
@@ -20251,8 +20251,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281479911
+  m_fontColor: {r: 0.9058824, g: 0.19607845, b: 0.19607845, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -20269,8 +20269,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45
-  m_fontSizeBase: 45
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -20513,8 +20513,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 206, y: -77.85}
-  m_SizeDelta: {x: 412, y: 155.7}
+  m_AnchoredPosition: {x: 206, y: -83.020004}
+  m_SizeDelta: {x: 412, y: 166.04001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1306074721
 MonoBehaviour:
@@ -20536,7 +20536,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lead Designer
+  m_text: DEVELOPER
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
   m_sharedMaterial: {fileID: 7977904722213666230, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
@@ -20545,8 +20545,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281479911
+  m_fontColor: {r: 0.9058824, g: 0.19607845, b: 0.19607845, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -20563,8 +20563,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45
-  m_fontSizeBase: 45
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -22291,8 +22291,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 206, y: -77.85}
-  m_SizeDelta: {x: 412, y: 155.7}
+  m_AnchoredPosition: {x: 206, y: -83.020004}
+  m_SizeDelta: {x: 412, y: 166.04001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1453466166
 MonoBehaviour:
@@ -22314,7 +22314,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lead Designer
+  m_text: ARTIST
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
   m_sharedMaterial: {fileID: 7977904722213666230, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
@@ -22323,8 +22323,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281479911
+  m_fontColor: {r: 0.9058824, g: 0.19607845, b: 0.19607845, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -22341,8 +22341,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45
-  m_fontSizeBase: 45
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -23840,8 +23840,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 206, y: -77.85}
-  m_SizeDelta: {x: 412, y: 155.7}
+  m_AnchoredPosition: {x: 206, y: -83.020004}
+  m_SizeDelta: {x: 412, y: 166.04001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1543879351
 MonoBehaviour:
@@ -23863,7 +23863,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lead Designer
+  m_text: Designer
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
   m_sharedMaterial: {fileID: 7977904722213666230, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
@@ -23872,8 +23872,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281479911
+  m_fontColor: {r: 0.9058824, g: 0.19607845, b: 0.19607845, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -23890,8 +23890,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45
-  m_fontSizeBase: 45
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -24163,8 +24163,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 206, y: -146.45}
-  m_SizeDelta: {x: 412, y: 155.7}
+  m_AnchoredPosition: {x: 206, y: -151.62001}
+  m_SizeDelta: {x: 412, y: 145.36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1555192830
 MonoBehaviour:
@@ -24186,7 +24186,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Srijit
+  m_text: VYSHAK V
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
   m_sharedMaterial: {fileID: 7977904722213666230, guid: 1c944b459684a094eb7c65efa4478674, type: 2}
