@@ -114,8 +114,8 @@ public class SolarSystem : WeaponBase
             // Every following planet is slower.
             float calculatedSpeed =
                 (i == 0)
-                    ? maxOrbitSpeed
-                    : maxOrbitSpeed -
+                    ? projectileSpeed
+                    : projectileSpeed -
                       (speedSubtractor * i);
 
 
@@ -223,6 +223,17 @@ public class SolarSystem : WeaponBase
         // - Fire rate
         //
         base.UpdateStatsHandled();
+
+        for(int i = 0; i <planets.Count; i++)
+        {
+            float calculatedSpeed =
+                (i == 0)
+                    ? projectileSpeed
+                    : projectileSpeed -
+                      (speedSubtractor * i);
+
+            planets[i].speed = calculatedSpeed;
+        }
 
 
         // Projectile count may have changed because of:
