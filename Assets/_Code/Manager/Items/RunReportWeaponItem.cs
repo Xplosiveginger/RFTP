@@ -54,6 +54,7 @@ public class RunReportWeaponItem : MonoBehaviour
                 damage = damageStat.currentValue;
         }
 
-        weaponDamageText.text = damage.ToString("F0");
+        if (weaponDamageText != null)
+            weaponDamageText.text = damage.ToString("F0");
     }
 }
