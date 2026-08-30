@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -108,7 +108,271 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: HowToPlayText_0
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 826
+        width: 595
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a264eace4056f83458b178d88a3ae5c9
+      internalID: 60744519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HowToPlayText_1
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 707
+        width: 176
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a17be220be01b254ea741277b2146739
+      internalID: 1697918820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HowToPlayText_2
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 573
+        width: 530
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 629539362c4de2f4e97837e748e5eb23
+      internalID: -949763650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HowToPlayText_3
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 417
+        width: 242
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ecf0bc384390174fae3597387711798
+      internalID: 393476832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HowToPlayText_4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 187
+        width: 561
+        height: 194
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45647c2a7baeef940b30ead0f47ab93c
+      internalID: 789746676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HowToPlayText_5
+      rect:
+        serializedVersion: 2
+        x: 1322
+        y: 809
+        width: 200
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e396498de448c0b45bf9666c202eb94b
+      internalID: -578390181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HowToPlayText_6
+      rect:
+        serializedVersion: 2
+        x: 1209
+        y: 734
+        width: 249
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73fbac4e2023c6b448c2ee61594aa6a5
+      internalID: 1521005032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HowToPlayText_7
+      rect:
+        serializedVersion: 2
+        x: 1207
+        y: 646
+        width: 456
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76183c3137fb3fc46b6bed0ed1578c78
+      internalID: -681139941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HowToPlayText_8
+      rect:
+        serializedVersion: 2
+        x: 1209
+        y: 515
+        width: 378
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e4fca58b559e4f44abc2fca5863bf24
+      internalID: -953501609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HowToPlayText_9
+      rect:
+        serializedVersion: 2
+        x: 1203
+        y: 371
+        width: 466
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77284ba6844825d41b2c6eb9ff9c4571
+      internalID: 245827617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HowToPlayText_10
+      rect:
+        serializedVersion: 2
+        x: 1203
+        y: 246
+        width: 401
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e48c691f30e72e848a6f4432be4262c0
+      internalID: 623571438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HowToPlayText_11
+      rect:
+        serializedVersion: 2
+        x: 1203
+        y: 152
+        width: 421
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 378fd678d8714234a86c16d7e15995b5
+      internalID: -1382039130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -122,7 +386,19 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      HowToPlayText_0: 60744519
+      HowToPlayText_1: 1697918820
+      HowToPlayText_10: 623571438
+      HowToPlayText_11: -1382039130
+      HowToPlayText_2: -949763650
+      HowToPlayText_3: 393476832
+      HowToPlayText_4: 789746676
+      HowToPlayText_5: -578390181
+      HowToPlayText_6: 1521005032
+      HowToPlayText_7: -681139941
+      HowToPlayText_8: -953501609
+      HowToPlayText_9: 245827617
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
