@@ -97,13 +97,24 @@ public class RunReport_UI : MonoBehaviour
     }
 
 
+    private string FormatSurvivalTime(float seconds)
+    {
+        if (seconds < 60f)
+        {
+            return $"{seconds:F2} sec";
+        }
+
+        float minutes = seconds / 60f;
+        return $"{minutes:F2} min";
+    }
+
     public void UpdateRunReportStats()
     {
         if (gameStat == null)
             return;
 
         timeSurvivedText.text =
-            gameStat.runTime.ToString("F2");
+            FormatSurvivalTime(gameStat.runTime);
 
         moneyEarnedText.text =
             gameStat.AllowanceMoney.ToString("0");
@@ -119,7 +130,6 @@ public class RunReport_UI : MonoBehaviour
 
         highestLevelText.text =
             gameStat.playerLevel.ToString("0");
-
 
         PopulateWeapons();
         PopulateItems();
