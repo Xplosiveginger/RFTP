@@ -50,6 +50,7 @@ MonoBehaviour:
   gfx: {fileID: 0}
   weaponData: {fileID: 11400000, guid: 700676270b2607c41b06a8a62fbe1cbd, type: 2}
   enemyDetector: {fileID: 0}
+  debuffCooldownAdditionDuration: 0
   level: 1
   isActive: 0
   inCooldown: 0
@@ -68,6 +69,7 @@ MonoBehaviour:
   maxOrbitSpeed: 80
   speedSubtractor: 10
   damageIncWithLvl: 5
+  planets: []
   activePlanets: []
 --- !u!114 &4368186508866708953
 MonoBehaviour:
@@ -98,7 +100,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 59f48dac4ebc40c4db39def2ab154322, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0
