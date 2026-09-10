@@ -58,7 +58,7 @@ public class PauseManager : MonoBehaviour
 
     private Coroutine statusPanelRoutine;
 
-    private void Awake()
+    private void Start()
     {
         if (instance == null)
             instance = this;
@@ -71,8 +71,8 @@ public class PauseManager : MonoBehaviour
         {
             statusPanelAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
         }
+        UpdatePauseStats();
     }
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -346,28 +346,14 @@ private string FormatPercentageModifier(Stat stat)
         return "0%";
 
 
-    /*
-     * currentMultiplier represents the total multiplier.
-     *
-     * Example:
-     *
-     * 1.00 = 0%
-     * 1.10 = +10%
-     * 1.20 = +20%
-     * 0.90 = -10%
-     *
-     * We compare against the stat's starting multiplier
-     * rather than assuming it is always exactly 1.
-     */
+        float percentage = (Mathf.Max(stat.currentMultiplier, 0.0001f) - 1f)* 100f;
 
-    float percentage =
-        ((stat.currentMultiplier /
-          Mathf.Max(stat.startMultiplier, 0.0001f)) - 1f)
-        * 100f;
+        /*float percentage =
+        ((stat.baseValue /
+          Mathf.Max(stat.currentValue, 0.0001f)) - 1f)
+        * 100f;*/
 
-
-    // Avoid displaying things like +9.999998%
-    percentage = Mathf.Round(percentage);
+    percentage = Mathf.Round(percentage) *1f;    //Multily wiht -1f if the sign is to be reversed.
 
 
     if (percentage > 0f)
