@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 6958415635710307112}
   - component: {fileID: 3416709864345201847}
   - component: {fileID: 1059624030340509860}
+  - component: {fileID: -4497737187476888415}
   m_Layer: 7
   m_Name: Stool
-  m_TagString: Untagged
+  m_TagString: DamageableItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -159,3 +160,44 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
+--- !u!114 &-4497737187476888415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9223367077038041990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ff3ddee1dcecd0499cc220e9d0a097f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  currentHealth: 0
+  canDestroyOnDeath: 1
+  isPlayer: 0
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  onPostDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  onDamageTaken:
+    m_PersistentCalls:
+      m_Calls: []
+  deathEffect: {fileID: 4883173911316470918, guid: cc0fba80a1616124b980b448027b68c9, type: 3}
+  flashMaterial: {fileID: 2100000, guid: c310212d74dc862409aeac049467aaf4, type: 2}
+  normalMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  flashDuration: 0.1
+  cameraShakeStrength: 0.15
+  cameraShakeDuration: 0.15
+  cameraShakeVibrato: 10
+  cameraShakeRandomness: 90
+  jumpPower: 0.6
+  jumpNum: 1
+  jumpDuration: 0.45
+  scaleDuration: 0.4
+  scaleEase: 8
+  hurtCooldown: 0.1
+  healthSlider: {fileID: 0}
+  debug: 0

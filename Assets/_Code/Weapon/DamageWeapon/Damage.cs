@@ -9,7 +9,7 @@ public class Damage : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("DamageableItem"))
         {
             HealthSystem enemy = other.gameObject.GetComponent<HealthSystem>();
             if (enemy != null)
@@ -22,7 +22,7 @@ public class Damage : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("DamageableItem"))
         {
             HealthSystem enemy = other.gameObject.GetComponent<HealthSystem>();
             if (enemy != null)

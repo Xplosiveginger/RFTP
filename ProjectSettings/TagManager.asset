@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - Missile
   - FxTemporaire
+  - DamageableItem
   layers:
   - Default
   - TransparentFX

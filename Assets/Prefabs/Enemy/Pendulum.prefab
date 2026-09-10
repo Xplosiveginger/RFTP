@@ -192,6 +192,7 @@ GameObject:
   - component: {fileID: -5551151500942068956}
   - component: {fileID: 6926468862527863757}
   - component: {fileID: 7795124148558781589}
+  - component: {fileID: 5357072603195784063}
   m_Layer: 6
   m_Name: Pendulum
   m_TagString: Enemy
@@ -441,6 +442,20 @@ MonoBehaviour:
   CooldownDebuffDuration: 10
   normalFace: {fileID: 8137379548161450130}
   abnormalFace: {fileID: 1068322307518337541}
+--- !u!114 &5357072603195784063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2148986130981883437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caa4aaaef5ca8f14289e9c5f919e3f2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DamageAmount: 5
+  damageInterval: 1
 --- !u!1 &6540762049112074300
 GameObject:
   m_ObjectHideFlags: 0
