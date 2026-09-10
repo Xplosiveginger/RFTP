@@ -33,7 +33,7 @@ public class RunReport_UI : MonoBehaviour
     public ScrollViewController scrollViewControllerWeapon;
     public ScrollViewController scrollViewControllerItems;
 
-
+    private EconomyManager economyManager;
     private void Awake()
     {
         if (runReportManager == null)
@@ -66,10 +66,14 @@ public class RunReport_UI : MonoBehaviour
         scrollViewControllerWeapon?.UpdateScrollState();
         scrollViewControllerItems?.UpdateScrollState();
 
+        economyManager = PersistentObject.Instance.GetComponent<EconomyManager>();
+
         UpdateRunReportStats();
     }
 
-
+    private void Start()
+    {
+    }
     public void ShowRunReport()
     {
         // Get the latest GameStat
@@ -117,7 +121,7 @@ public class RunReport_UI : MonoBehaviour
             FormatSurvivalTime(gameStat.runTime);
 
         moneyEarnedText.text =
-            gameStat.AllowanceMoney.ToString("0");
+            economyManager.GetFormattedRunMoney();
 
         enemyKilledText.text =
             gameStat.EnemiesKilled.ToString("0");
