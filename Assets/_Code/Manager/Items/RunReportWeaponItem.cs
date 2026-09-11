@@ -17,7 +17,16 @@ public class RunReportWeaponItem : MonoBehaviour
     public void Setup(GameStat_SO.WeaponData weaponData)
     {
         weaponLogo.sprite = weaponData.weaponDataSO.weaponLogo;
-        weaponNameText.text = weaponData.weaponDataSO.weaponName.ToString();
+        
+        if(weaponData.weaponDataSO.weaponName == EWeaponName.LithiumIon)  //Not needed to do this if directly Name was used, but since the enum was used already so attaching this small fix
+        {
+            weaponNameText.text = "Li-Ion Battery";
+        }
+        else
+        {
+            weaponNameText.text = weaponData.weaponDataSO.weaponName.ToString();
+
+        }
 
         // Get weapon
         WeaponBase weaponBase = null;
