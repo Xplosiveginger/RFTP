@@ -323,6 +323,33 @@ public class GameStat_SO : ScriptableObject
         Debug.Log("Weapon data has been reset");
     }
 
+    public void OnItemEffectInPercentage(EStatType statName, float value)
+    {
+        if(weapon1.weaponDataSO != null)
+            weapon1.statManager.ModifyStat(statName, value);
+        if(weapon2.weaponDataSO != null)
+            weapon2.statManager.ModifyStat(statName, value);
+        if(weapon3.weaponDataSO != null)
+            weapon3.statManager.ModifyStat(statName, value);
+        if(weapon4.weaponDataSO != null)
+            weapon4.statManager.ModifyStat(statName, value);
+    }
+    
+    public void OnItemEffectInFlatValue(EStatType statName, float value)
+    {
+        if(weapon1.weaponDataSO != null)
+            weapon1.statManager.ModifyStatValue(statName, value);
+        if(weapon2.weaponDataSO != null)
+            weapon2.statManager.ModifyStatValue(statName, value);
+        if(weapon3.weaponDataSO != null)
+            weapon3.statManager.ModifyStatValue(statName, value);
+        if(weapon4.weaponDataSO != null)
+            weapon4.statManager.ModifyStatValue(statName, value);
+    }
+    
+
+
+
     #endregion
 
 

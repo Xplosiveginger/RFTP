@@ -368,7 +368,10 @@ public class ItemManager : MonoBehaviour
                 cardDataSO.affectedPlayerStat,
                 cardDataSO.playerStatModifier
             );
-
+            UpdateItemEffectToWeaponsInPercentage(
+                cardDataSO.affectedPlayerStat,
+                cardDataSO.playerStatModifier
+            );
             Debug.Log(
                 $"Applied PLAYER card '{cardDataSO.Name}': " +
                 $"{cardDataSO.affectedPlayerStat} " +
@@ -386,13 +389,24 @@ public class ItemManager : MonoBehaviour
                 cardDataSO.affectedPlayerStat,
                 cardDataSO.playerStatModifier
             );
-
+            UpdateItemEffectToWeaponsInFlatValue(
+                cardDataSO.affectedPlayerStat,
+                cardDataSO.playerStatModifier
+            );
             Debug.Log(
                 $"Applied PLAYER card '{cardDataSO.Name}': " +
                 $"{cardDataSO.affectedPlayerStat} " +
                 $"+{cardDataSO.playerStatModifier} flat"
             );
         }
+    }
+    void UpdateItemEffectToWeaponsInPercentage(EStatType statName, float value)
+    {
+        //gameStatSO.OnItemEffectInPercentage(statName, value);
+    }
+    void UpdateItemEffectToWeaponsInFlatValue(EStatType statName, float value)
+    {
+        //gameStatSO.OnItemEffectInFlatValue(statName, value);
     }
 
 
