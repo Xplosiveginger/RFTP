@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,6 +22,13 @@ public class MainMenuManager : MonoBehaviour
     public AudioClip buttonClick;
     public AudioClip buyButtonClick;
     public AudioClip refundButtonClick;
+
+    [Header("Start Custscene")]
+    public bool showCutsceneAtStart = true;
+    public GameObject cutsceneObjct;
+    [Header("How to Play ")]
+    public GameObject HowtoPlayObject;
+
 
     private void Awake()
     {

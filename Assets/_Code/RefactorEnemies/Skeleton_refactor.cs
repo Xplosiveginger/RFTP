@@ -15,6 +15,8 @@ public class Skeleton_refactor : BaseEnemyRefactor
     public float attackCooldown = 2f;
     public Transform throwPoint;
 
+    [SerializeField] private float boneSpeed = 10f;
+
     private float attackTimer = 0f;
     private float attackAnimationTimer = 0f;
 
@@ -123,44 +125,16 @@ public class Skeleton_refactor : BaseEnemyRefactor
         {
             isAttacking = true;
 
-            // Stop walk animation
             animator.SetBool("Walk", false);
-
-            // Start attack animation
             animator.SetBool("Attack", true);
 
-            // Use the length provided in the Inspector
             attackAnimationTimer = attackAnimationLength;
         }
 
         Vector2 start = throwPoint.position;
         Vector2 target = targetPos;
 
-        float gravity = Mathf.Abs(Physics2D.gravity.y);
-        float launchAngleDegrees = 45f;
-        float launchAngleRadians = launchAngleDegrees * Mathf.Deg2Rad;
-
-        float distance = Vector2.Distance(start, target);
-        float heightDifference = target.y - start.y;
-
-        float initialVelocitySq = (gravity * distance * distance) /
-                                  (2 * (heightDifference - Mathf.Tan(launchAngleRadians) * distance) *
-                                  Mathf.Pow(Mathf.Cos(launchAngleRadians), 2));
-
-        if (initialVelocitySq <= 0f)
-        {
-            ThrowStraightBone(target);
-            return;
-        }
-
-        float initialVelocity = Mathf.Sqrt(initialVelocitySq);
-        float vx = initialVelocity * Mathf.Cos(launchAngleRadians);
-        float vy = initialVelocity * Mathf.Sin(launchAngleRadians);
-
-        Vector2 dir = (target - start).normalized;
-
-        if (dir.x < 0)
-            vx = -vx;
+        Vector2 direction = (target - start).normalized;
 
         GameObject bone = GameObject.Instantiate(
             boneProjectilePrefab,
@@ -172,7 +146,7 @@ public class Skeleton_refactor : BaseEnemyRefactor
 
         if (rb != null)
         {
-            rb.linearVelocity = new Vector2(vx, vy);
+            rb.linearVelocity = direction * boneSpeed;
             rb.angularVelocity = UnityEngine.Random.Range(-500f, 500f);
         }
     }

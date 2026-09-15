@@ -312,7 +312,8 @@ public class EnemySpawner : MonoBehaviour
             }
         }
 
-        Debug.LogWarning($"Could not find pool for enemy: {enemy.name}");
+        Debug.LogWarning($"==========> Could not find pool for enemy: {enemy.name}, Destroying enemy");
+        Destroy(enemy.gameObject);
     }
 
     [Title("Debug Actions")]
