@@ -287,7 +287,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.3
+      scalar: 0.8
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -1545,7 +1545,7 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 21300000, guid: 3545659990818bd4897a15e128c464cc, type: 3}
+    - sprite: {fileID: 21300000, guid: 2e21fb71d606d9b42baa74be902222c0, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:
@@ -4961,7 +4961,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.37
+  m_Radius: 0.8
 --- !u!50 &4807343454319017067
 Rigidbody2D:
   serializedVersion: 5
@@ -5004,3 +5004,5 @@ MonoBehaviour:
   damage: 0
   isDOT: 1
   dotDuration: 2
+  _damage_interval: 0.3
+  destroyOnCollision: 0

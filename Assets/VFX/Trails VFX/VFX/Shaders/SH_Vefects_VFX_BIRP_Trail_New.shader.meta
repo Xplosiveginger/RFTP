@@ -12,3 +12,10 @@ ShaderImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 242572
+  packageName: Trails VFX
+  packageVersion: 1.0.2025
+  assetPath: Assets/VFX/Trails VFX/VFX/Shaders/SH_Vefects_VFX_BIRP_Trail_New.shader
+  uploadId: 755343

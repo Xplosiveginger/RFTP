@@ -82,11 +82,13 @@ public class AsyncLevelLoader : MonoBehaviour
         loadingPanel.SetActive(true);
         mainMenuPanel.SetActive(false);
         Time.timeScale = 1f;
+        MainMenuManager.instance.OnClickPlaySound();
         StartCoroutine(LoadLevelAsync(gameLevelName));
     }
     public void OnMenuButtonClicked()
     {
         PauseManager.instance.gameScreenCanvas.SetActive(false);
+        Time.timeScale = 1f;
         loadingPanel.SetActive(true);
         StartCoroutine(LoadLevelAsync(menuLevelName));
     }

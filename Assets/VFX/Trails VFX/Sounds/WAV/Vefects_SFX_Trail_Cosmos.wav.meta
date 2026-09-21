@@ -22,8 +22,8 @@ AudioImporter:
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
-  productId: 242574
-  packageName: Trails VFX - URP
-  packageVersion: 1.0.2023
-  assetPath: Assets/Vefects/Trails VFX URP/Sounds/WAV/Vefects_SFX_Trail_Cosmos.wav
-  uploadId: 714377
+  productId: 242572
+  packageName: Trails VFX
+  packageVersion: 1.0.2025
+  assetPath: Assets/VFX/Trails VFX/Sounds/WAV/Vefects_SFX_Trail_Cosmos.wav
+  uploadId: 755343

@@ -12,6 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 781b090621e04b44ab0b2e52cc84c23d, type: 3}
   m_Name: SO_AddBacteriaCard
   m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: f913b32fa03e78742a124d583b971995, type: 3}
+  Name: Bacteria
+  Description:
+  - A set of bacteria is released which starts Damaging the enemy over time.
+  - The cooldown is reduced by 0.3 seconds
+  - The total damage of the weapon is increased by 5.
+  - Another bacteria is added to the party
+  - The damage is increased by 5. The cooldown of the weapon is reduced by 0.3 secs.
+  - Another bacteria is added to the party
+  - The damage of the weapon is increased by 5.
+  - The damage is increased by 5. The cooldown of the weapon is reduced by 0.3 secs.
   levelImages:
   - {fileID: 21300000, guid: 3702fe1baff4bc44b9b417d901462c28, type: 3}
   - {fileID: 21300000, guid: 8cb509702141af84f8562eb78ade3106, type: 3}

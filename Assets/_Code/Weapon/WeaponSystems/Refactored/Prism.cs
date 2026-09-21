@@ -55,7 +55,7 @@ public class Prism : WeaponBase
         var projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
         projectile.GetComponent<Projectile>().damage = damage;
         firedProjectileCount++;
-        Vector3 shootAt = enemyDetector.GetPositionOfRandomEnemy(); // Change this later to detect enemies and fire in their direction.
+        Vector3 shootAt = enemyDetector.GetPositionOfNearestEnemy(); // Change this later to detect enemies and fire in their direction.
         projectile.GetComponent<Rigidbody2D>().linearVelocity = (shootAt - transform.position).normalized * projectileSpeed;
     }
 
@@ -69,16 +69,7 @@ public class Prism : WeaponBase
         projectileCount = statManager.GetStat(EStatType.ProjectileCount).currentValue;
         projectileSpeed = statManager.GetStat(EStatType.ProjectileSpeed).currentValue;
     }
-
-    protected override void OnDisable()
-    {
-        base.OnDisable();
-    }
-
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-    }
+    
 
     protected override void Start()
     {

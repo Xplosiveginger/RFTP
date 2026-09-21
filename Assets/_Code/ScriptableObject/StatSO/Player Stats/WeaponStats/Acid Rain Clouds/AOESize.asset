@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AOESize
   m_EditorClassIdentifier: 
   statName: 8
-  baseValue: 0.4
+  baseValue: 0.7
   maxValue: 0
   startValue: 0
   startMultiplier: 1

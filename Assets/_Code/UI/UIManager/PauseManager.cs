@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -6,6 +7,11 @@ public class PauseManager : MonoBehaviour
 {
     public static PauseManager instance;
 
+    [Header("Sound")]
+    public AudioSource  audioSource;
+    public AudioClip pauseSound;
+    public AudioClip buttonClickSound;
+    
     [Header("Pause UI")]
     public GameObject gameScreenCanvas;
 
@@ -23,6 +29,8 @@ public class PauseManager : MonoBehaviour
     public GameObject audioSettingsPanel;
 
     [Header("Stats")]
+    public GameObject statusPanel;
+
     public TextMeshProUGUI damageText;
     public TextMeshProUGUI totalHealthText;
     public TextMeshProUGUI healthRegenText;
@@ -33,107 +41,143 @@ public class PauseManager : MonoBehaviour
     public TextMeshProUGUI numOfProjectilesText;
     public TextMeshProUGUI moveSpeedText;
 
+    [Header("Status Panel Animation")]
+    public Animator statusPanelAnimator;
+    public float statusAnimationDuration = 0.5f;
+
     [Header("Run Report Test")]
     public GameObject runReportPanel;
 
-    public bool isPaused;
+    [Header("Game Data")]
+    [SerializeField] private GameStat_SO gameStatSO;
 
+    public bool isPaused;
 
     private HealthSystem PlayerHealth;
     private StatManager StatManager;
-    
-    private void Awake()
-    {
-        if (instance == null)
-            instance = this;
-    }
+
+    private Coroutine statusPanelRoutine;
 
     private void Start()
     {
+        if (instance == null)
+            instance = this;
+
         PlayerHealth = SM.Instance.Player.GetComponent<HealthSystem>();
         StatManager = SM.Instance.Player.GetComponent<StatManager>();
-    }
 
+        // Make sure the animation can play while the game is paused
+        if (statusPanelAnimator != null)
+        {
+            statusPanelAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
+        }
+        UpdatePauseStats();
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            isPaused = !isPaused;
-
             if (isPaused)
-            {
-                UpdatePauseStats();
-
-                pauseRoot.SetActive(true);
-
-                pauseBoxPanel.SetActive(true);
-                settingsMenuPanel.SetActive(false);
-
-                displaySettingsPanel.SetActive(false);
-                audioSettingsPanel.SetActive(false);
-                IDCardManager.instance.ShowPauseUI();
-                Time.timeScale = 0f;
-            }
-            else
             {
                 Resume();
             }
+            else
+            {
+                Pause();
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            runReportPanel.SetActive(!runReportPanel.activeSelf);
-            RunReportManager.Instance.UpdateRunReportStats();
-        }
+        // if (Input.GetKeyDown(KeyCode.R))
+        // {
+        //     runReportPanel.SetActive(!runReportPanel.activeSelf);
+        // }
     }
 
-    public void UpdatePauseStats()
+    //========================================================
+    // Pause / Resume
+    //========================================================
+
+    public void Pause()
     {
-        var stats = GameStatManager.instance.gameStats;
-        if (PlayerHealth != null)
+        // Stop any currently running pause/resume animation
+        if (statusPanelRoutine != null)
         {
-            totalHealthText.text = PlayerHealth.currentHealth.ToString();
+            StopCoroutine(statusPanelRoutine);
+            statusPanelRoutine = null;
         }
-        if (StatManager != null)
+
+        isPaused = true;
+        PlaySoundForPause(pauseSound);
+        UpdatePauseStats();
+
+        // Enable pause UI
+        pauseRoot.SetActive(true);
+
+        pauseBoxPanel.SetActive(true);
+        settingsMenuPanel.SetActive(false);
+
+        displaySettingsPanel.SetActive(false);
+        audioSettingsPanel.SetActive(false);
+
+        // Show ID card
+        IDCardManager.instance.ShowPauseUI();
+
+        // Enable status panel
+        if (statusPanel != null)
         {
-            if((StatManager.GetStat(EStatType.Damage)!=null))
-                damageText.text = (StatManager.GetStat(EStatType.Damage).currentValue).ToString();
-            
-            
-            if(StatManager.GetStat(EStatType.HealthRegen)!=null)
-                healthRegenText.text = (StatManager.GetStat(EStatType.HealthRegen).currentValue).ToString();
-        
-            if((StatManager.GetStat(EStatType.MoveSpeed)!=null))
-                moveSpeedText.text = ((StatManager.GetStat(EStatType.MoveSpeed).currentValue)).ToString();
-            
-            if((StatManager.GetStat(EStatType.AOESize)!=null))
-                aoeText.text = (StatManager.GetStat(EStatType.AOESize).currentValue).ToString();
-            
-            if(StatManager.GetStat(EStatType.ProjectileSpeed)!=null)
-                speedOfWeaponText.text = (StatManager.GetStat(EStatType.ProjectileSpeed).currentValue).ToString();
-            
-            if((StatManager.GetStat(EStatType.ProjectileCount)!=null))
-                numOfProjectilesText.text = (StatManager.GetStat(EStatType.ProjectileCount)).currentValue.ToString();
-            
-            if((StatManager.GetStat(EStatType.AttackCooldown)!=null))
-                cooldownText.text = (StatManager.GetStat(EStatType.AttackCooldown)).currentValue.ToString();  
-            
-            if((StatManager.GetStat(EStatType.ActiveDuration)!=null))
-                durationText.text = (StatManager.GetStat(EStatType.ActiveDuration)).currentValue.ToString();
-            
-            
+            statusPanel.SetActive(true);
+
+            if (statusPanelAnimator != null)
+            {
+                statusPanelAnimator.Play("SlideIn", 0, 0f);
+            }
         }
+
+        // Pause game AFTER setting up the UI
+        Time.timeScale = 0f;
     }
 
-    //========================================================
-    // Pause Menu
-    //========================================================
+    private void PlaySoundForPause(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
+    }
 
     public void Resume()
     {
-        IDCardManager.instance.ShowGameplayUI();
+        // Stop any currently running animation
+        if (statusPanelRoutine != null)
+        {
+            StopCoroutine(statusPanelRoutine);
+            statusPanelRoutine = null;
+        }
+        PlaySoundForPause(pauseSound);
         isPaused = false;
-        
+        // Start resume animation
+        statusPanelRoutine = StartCoroutine(ResumeRoutine());
+    }
+
+    private IEnumerator ResumeRoutine()
+    {
+        // Play ID card hide animation
+        IDCardManager.instance.ShowGameplayUI();
+
+        // Play status panel slide out
+        if (statusPanel != null && statusPanelAnimator != null)
+        {
+            statusPanelAnimator.Play("SlideOut", 0, 0f);
+
+            // Give the animation time to finish
+            yield return new WaitForSecondsRealtime(statusAnimationDuration);
+
+            statusPanel.SetActive(false);
+        }
+        else
+        {
+            if (statusPanel != null)
+                statusPanel.SetActive(false);
+        }
+
+        // Now hide the pause UI
         pauseRoot.SetActive(false);
 
         pauseBoxPanel.SetActive(false);
@@ -142,20 +186,201 @@ public class PauseManager : MonoBehaviour
         displaySettingsPanel.SetActive(false);
         audioSettingsPanel.SetActive(false);
 
+        // Resume game
         Time.timeScale = 1f;
+
+        statusPanelRoutine = null;
     }
+
+    //========================================================
+    // Stats
+    //========================================================
+
+   //========================================================
+// Stats
+//========================================================
+
+public void UpdatePauseStats()
+{
+    // -----------------------------------------------------
+    // HEALTH
+    // -----------------------------------------------------
+    // Health is the exception.
+    // We want to show the actual maximum health value.
+    // -----------------------------------------------------
+
+    if (PlayerHealth != null && totalHealthText != null)
+    {
+        totalHealthText.text =
+            Mathf.RoundToInt(PlayerHealth.maxHealth).ToString();
+    }
+
+    if (StatManager == null)
+        return;
+
+
+    // -----------------------------------------------------
+    // DAMAGE
+    // -----------------------------------------------------
+
+    Stat damage = StatManager.GetStat(EStatType.Damage);
+
+    if (damage != null && damageText != null)
+    {
+        damageText.text =
+            FormatPercentageModifier(damage);
+    }
+
+
+    // -----------------------------------------------------
+    // HEALTH REGEN
+    // -----------------------------------------------------
+
+    Stat healthRegen =
+        StatManager.GetStat(EStatType.HealthRegen);
+
+    if (healthRegen != null && healthRegenText != null)
+    {
+        healthRegenText.text =
+            healthRegen.currentValue.ToString("0.##");
+    }
+
+
+    // -----------------------------------------------------
+    // MOVE SPEED
+    // -----------------------------------------------------
+
+    Stat moveSpeed =
+        StatManager.GetStat(EStatType.MoveSpeed);
+
+    if (moveSpeed != null && moveSpeedText != null)
+    {
+        moveSpeedText.text =
+            FormatPercentageModifier(moveSpeed);
+    }
+
+
+    // -----------------------------------------------------
+    // AOE SIZE
+    // -----------------------------------------------------
+
+    Stat aoeSize =
+        StatManager.GetStat(EStatType.AOESize);
+
+    if (aoeSize != null && aoeText != null)
+    {
+        aoeText.text =
+            FormatPercentageModifier(aoeSize);
+    }
+
+
+    // -----------------------------------------------------
+    // PROJECTILE SPEED
+    // -----------------------------------------------------
+
+    Stat projectileSpeed =
+        StatManager.GetStat(EStatType.ProjectileSpeed);
+
+    if (projectileSpeed != null && speedOfWeaponText != null)
+    {
+        speedOfWeaponText.text =
+            FormatPercentageModifier(projectileSpeed);
+    }
+
+
+    // -----------------------------------------------------
+    // PROJECTILE COUNT
+    // -----------------------------------------------------
+    // Projectile count is different because it uses flat
+    // modifiers (+1 projectile, +2 projectiles, etc.).
+    //
+    // Show the actual whole-number value.
+    // -----------------------------------------------------
+
+    Stat projectileCount =
+        StatManager.GetStat(EStatType.ProjectileCount);
+
+    if (projectileCount != null && numOfProjectilesText != null)
+    {
+        numOfProjectilesText.text =
+            Mathf.RoundToInt(projectileCount.currentValue).ToString();
+    }
+
+
+    // -----------------------------------------------------
+    // COOLDOWN
+    // -----------------------------------------------------
+
+    Stat cooldown =
+        StatManager.GetStat(EStatType.AttackCooldown);
+
+    if (cooldown != null && cooldownText != null)
+    {
+        cooldownText.text =
+            FormatPercentageModifier(cooldown);
+    }
+
+
+    // -----------------------------------------------------
+    // ACTIVE DURATION
+    // -----------------------------------------------------
+
+    Stat duration =
+        StatManager.GetStat(EStatType.ActiveDuration);
+
+    if (duration != null && durationText != null)
+    {
+        durationText.text =
+            FormatPercentageModifier(duration);
+    }
+}
+
+
+//========================================================
+// STAT UI HELPERS
+//========================================================
+
+private string FormatPercentageModifier(Stat stat)
+{
+    if (stat == null)
+        return "0%";
+
+
+        float percentage = (Mathf.Max(stat.currentMultiplier, 0.0001f) - 1f)* 100f;
+
+        /*float percentage =
+        ((stat.baseValue /
+          Mathf.Max(stat.currentValue, 0.0001f)) - 1f)
+        * 100f;*/
+
+    percentage = Mathf.Round(percentage) *1f;    //Multily wiht -1f if the sign is to be reversed.
+
+
+    if (percentage > 0f)
+        return $"+{percentage:0}%";
+
+    if (percentage < 0f)
+        return $"{percentage:0}%";
+
+    return "0%";
+}
+    //========================================================
+    // Pause Menu
+    //========================================================
 
     public void OpenSettingsMenu()
     {
         pauseBoxPanel.SetActive(false);
         settingsMenuPanel.SetActive(true);
-
+        PlaySoundForPause(buttonClickSound);
         displaySettingsPanel.SetActive(false);
         audioSettingsPanel.SetActive(false);
     }
 
     public void ExitGame()
     {
+        PlaySoundForPause(buttonClickSound);
+
         Application.Quit();
     }
 
@@ -165,18 +390,24 @@ public class PauseManager : MonoBehaviour
 
     public void OpenDisplaySettings()
     {
+        PlaySoundForPause(buttonClickSound);
+
         settingsMenuPanel.SetActive(false);
         displaySettingsPanel.SetActive(true);
     }
 
     public void OpenAudioSettings()
     {
+        PlaySoundForPause(buttonClickSound);
+
         settingsMenuPanel.SetActive(false);
         audioSettingsPanel.SetActive(true);
     }
 
     public void BackToPauseMenu()
     {
+        PlaySoundForPause(buttonClickSound);
+
         settingsMenuPanel.SetActive(false);
 
         displaySettingsPanel.SetActive(false);
@@ -191,6 +422,8 @@ public class PauseManager : MonoBehaviour
 
     public void CloseDisplaySettings()
     {
+        PlaySoundForPause(buttonClickSound);
+
         displaySettingsPanel.SetActive(false);
         settingsMenuPanel.SetActive(true);
     }
@@ -201,6 +434,8 @@ public class PauseManager : MonoBehaviour
 
     public void CloseAudioSettings()
     {
+        PlaySoundForPause(buttonClickSound);
+
         audioSettingsPanel.SetActive(false);
         settingsMenuPanel.SetActive(true);
     }

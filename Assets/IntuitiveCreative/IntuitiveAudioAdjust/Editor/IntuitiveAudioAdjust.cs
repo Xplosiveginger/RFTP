@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
@@ -641,8 +641,8 @@ namespace IntuitiveCreative
 
             string directory = Path.GetDirectoryName(sourcePath) ?? string.Empty;
             string baseName = Path.GetFileNameWithoutExtension(sourcePath);
-            string timestamp = System.DateTime.Now.ToString("yyMMddHHmmss");
-            string newPath = Path.Combine(directory, baseName + "_new_" + timestamp + ".wav");
+            string timestamp = System.DateTime.Now.ToString("ddMMMyyyyHHmmss", System.Globalization.CultureInfo.InvariantCulture);
+            string newPath = Path.Combine(directory, baseName + "_C" + timestamp + ".wav");
             newPath = AssetDatabase.GenerateUniqueAssetPath(newPath);
 
             WriteWavToPath(trimmedData, frequency, channels, newPath);
@@ -671,9 +671,9 @@ namespace IntuitiveCreative
 
             if (createBackup)
             {
-                string timestamp = System.DateTime.Now.ToString("yyMMddHHmmss");
+                string timestamp = System.DateTime.Now.ToString("ddMMMyyyyHHmmss", System.Globalization.CultureInfo.InvariantCulture);
                 string backupPath = Path.Combine(Path.GetDirectoryName(sourcePath) ?? string.Empty,
-                    Path.GetFileNameWithoutExtension(sourcePath) + "_old_" + timestamp + ".wav");
+                    Path.GetFileNameWithoutExtension(sourcePath) + "_O" + timestamp + ".wav");
                 backupPath = AssetDatabase.GenerateUniqueAssetPath(backupPath);
 
                 if (!AssetDatabase.CopyAsset(sourcePath, backupPath))

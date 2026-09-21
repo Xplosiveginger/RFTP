@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LithiumIonWeapon_Data
   m_EditorClassIdentifier: 
   weaponName: 3
-  weaponLogo: {fileID: 21300000, guid: 57d78f5d71e830b4dbbda6abf6cfd1a7, type: 3}
+  weaponLogo: {fileID: 21300000, guid: 50d13a892705d3445a516ed2f39096bf, type: 3}
   weaponStatData:
   - {fileID: 11400000, guid: 932d4271d2daf374193a65e456fe13ae, type: 2}
   - {fileID: 11400000, guid: f09357fddfbe7bc45a4f06b3c6e97b60, type: 2}
@@ -23,3 +23,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9902a7a6324aed3478116bcb1d6093f3, type: 2}
   - {fileID: 11400000, guid: 865b91b483e33e142b16ed69c4c0209c, type: 2}
   weaponPrefab: {fileID: 7638613402298008950, guid: ac527d2c94e47304b9c02894b6944065, type: 3}
+  maxLevel: 8

@@ -12,18 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41f4d1ac2a78c6141a45b4793a0ddb40, type: 3}
   m_Name: ProgressionSO
   m_EditorClassIdentifier: 
-  coins: 0
-  XP: 1000
-  startXP: 50
-  currentXP: 21
-  currentLevel: 5
-  currentXPRequired: 476
+  coins: 5
+  XP: 694
+  startXP: 20
+  currentXP: 7
+  currentLevel: 1
+  currentXPRequired: 20
   levelGap: 10
   xpMultipliers:
-  - 0.8
-  - 1
-  - 1.2
-  - 1
-  xpAdditions: 320000006400000096000000c8000000
-  testLevel: 12
-  testedXP: 423
+  - 0.4
+  - 0.5
+  - 0.6
+  - 0.7
+  xpAdditions: 14000000320000006400000096000000
+  testLevel: 25
+  testedXP: 239

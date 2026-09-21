@@ -1,21 +1,14 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class DisplaySettings : MonoBehaviour
 {
     [Header("Resolution")]
-    public TMP_Dropdown resolutionDropdown;
+    [SerializeField] private TMP_Dropdown resolutionDropdown;
 
-    [Header("Graphics Quality")]
-    public TMP_Dropdown qualityDropdown;
-
-    [Header("Fullscreen")]
-    public Button fullscreenButton;
-    public Image fullscreenButtonImage;
-    public Color fullscreenOnColor = Color.green;
-    public Color fullscreenOffColor = Color.black;
+    [Header("Screen Mode")]
+    [SerializeField] private TMP_Dropdown screenModeDropdown;
 
     private readonly Vector2Int[] resolutions =
     {
@@ -24,15 +17,10 @@ public class DisplaySettings : MonoBehaviour
         new Vector2Int(3840, 2160)
     };
 
-    private bool isFullscreen;
-
     private void Start()
     {
-        isFullscreen = Screen.fullScreen;
-
         SetupResolutionDropdown();
-        SetupQualityDropdown();
-        UpdateFullscreenButton();
+        SetupScreenModeDropdown();
     }
 
     private void SetupResolutionDropdown()
@@ -48,59 +36,51 @@ public class DisplaySettings : MonoBehaviour
 
         resolutionDropdown.AddOptions(options);
 
+        int currentResolutionIndex = 0;
+
         for (int i = 0; i < resolutions.Length; i++)
         {
-            if (Screen.currentResolution.width == resolutions[i].x &&
-                Screen.currentResolution.height == resolutions[i].y)
+            if (Screen.width == resolutions[i].x &&
+                Screen.height == resolutions[i].y)
             {
-                resolutionDropdown.value = i;
+                currentResolutionIndex = i;
                 break;
             }
         }
 
+        resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
     }
 
-    private void SetupQualityDropdown()
+    private void SetupScreenModeDropdown()
     {
-        qualityDropdown.ClearOptions();
+        screenModeDropdown.ClearOptions();
 
-        qualityDropdown.AddOptions(new List<string>()
+        screenModeDropdown.AddOptions(new List<string>
         {
-            "Low",
-            "Medium",
-            "High"
+            "Fullscreen",
+            "Windowed"
         });
 
-        qualityDropdown.value = Mathf.Clamp(QualitySettings.GetQualityLevel(), 0, 2);
-        qualityDropdown.RefreshShownValue();
-    }
+        screenModeDropdown.value =
+            Screen.fullScreenMode == FullScreenMode.FullScreenWindow ? 0 : 1;
 
-    public void ToggleFullscreen()
-    {
-        isFullscreen = !isFullscreen;
-        UpdateFullscreenButton();
-    }
-
-    private void UpdateFullscreenButton()
-    {
-        fullscreenButtonImage.color =
-            isFullscreen ? fullscreenOnColor : fullscreenOffColor;
+        screenModeDropdown.RefreshShownValue();
     }
 
     public void ApplySettings()
     {
         Vector2Int resolution = resolutions[resolutionDropdown.value];
 
+        FullScreenMode screenMode =
+            screenModeDropdown.value == 0
+                ? FullScreenMode.FullScreenWindow
+                : FullScreenMode.Windowed;
+
         Screen.SetResolution(
             resolution.x,
             resolution.y,
-            isFullscreen
-        );
-
-        QualitySettings.SetQualityLevel(
-            qualityDropdown.value,
-            true
+            screenMode
         );
     }
 

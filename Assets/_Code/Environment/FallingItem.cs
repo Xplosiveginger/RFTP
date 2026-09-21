@@ -38,7 +38,7 @@ public class InteractiveFallingItem : MonoBehaviour
 
     [Header("Destroy")]
     public bool destroyOnFall = true;
-
+    public AudioClip testTubeFallingAudio;
     private bool hasFallen = false;
     private Vector3 originalScale;
     private Quaternion originalRotation;
@@ -49,6 +49,8 @@ public class InteractiveFallingItem : MonoBehaviour
     private float currentArcHeight;
     private bool hasTargetPosition = false;
 
+    [Header("Sound")]
+    public AudioClip fireSound;
     private void Awake()
     {
         originalScale = transform.localScale;
@@ -217,7 +219,11 @@ public class InteractiveFallingItem : MonoBehaviour
             {
                 Instantiate(prefabToSpawn, end, Quaternion.identity);
             }
-
+            if(testTubeFallingAudio)
+                GlobalAudioPlayer.Instance.PlayAudio(testTubeFallingAudio, transform);
+                
+            if(fireSound)
+                GlobalAudioPlayer.Instance.PlayAudio(fireSound, transform);
             if (destroyOnFall)
                 Destroy(gameObject);
         });

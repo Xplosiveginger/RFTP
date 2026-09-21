@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LaserWeapon_Data
   m_EditorClassIdentifier: 
   weaponName: 2
-  weaponLogo: {fileID: 21300000, guid: 56c662f5c2c1a2844a57994057f49a66, type: 3}
+  weaponLogo: {fileID: 21300000, guid: ba39a99ffae51a34ca9b7a4ce37eebe9, type: 3}
   weaponStatData:
   - {fileID: 11400000, guid: 691b414de1d876140b32bc84d6ce1459, type: 2}
   - {fileID: 11400000, guid: 623c172b48784f9458bbb7c29aaf413d, type: 2}
@@ -23,3 +23,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 290d4821b3212f842b51f8a997a23811, type: 2}
   - {fileID: 11400000, guid: cade014f3f4ead846a0420213ed7a604, type: 2}
   weaponPrefab: {fileID: 356355764091272799, guid: e27f151903661194d8b635110386d09d, type: 3}
+  maxLevel: 8

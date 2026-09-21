@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 6958415635710307112}
   - component: {fileID: 3416709864345201847}
   - component: {fileID: 1059624030340509860}
-  m_Layer: 0
+  - component: {fileID: -4497737187476888415}
+  m_Layer: 7
   m_Name: Stool
-  m_TagString: Untagged
+  m_TagString: DamageableItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,8 +48,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 10
-  spawnChance: 0.1
-  prefabToSpawn: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
+  spawnItems:
+  - prefab: {fileID: 0}
+    probability: 60
+  - prefab: {fileID: 8604245700193426791, guid: 1d1ea0adb7d587c4a82ba04dc529d6e5, type: 3}
+    probability: 5
+  - prefab: {fileID: 8604245700193426791, guid: e9cacfcab1e6ef547b4d98d745a4c5bc, type: 3}
+    probability: 20
+  - prefab: {fileID: 8604245700193426791, guid: 4450b63a995e010408304e66774b9933, type: 3}
+    probability: 15
+  furnitureSound: {fileID: 8300000, guid: 28815e8d5b2ef974cbc6930f93385d23, type: 3}
+  destroyFx: {fileID: 4883173911316470915, guid: cc0fba80a1616124b980b448027b68c9, type: 3}
 --- !u!212 &3416709864345201847
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -66,6 +76,9 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -109,6 +122,7 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9223367077038041990}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -132,7 +146,8 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,6 +158,46 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
+--- !u!114 &-4497737187476888415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9223367077038041990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ff3ddee1dcecd0499cc220e9d0a097f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  currentHealth: 0
+  canDestroyOnDeath: 1
+  isPlayer: 0
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  onPostDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  onDamageTaken:
+    m_PersistentCalls:
+      m_Calls: []
+  deathEffect: {fileID: 4883173911316470918, guid: cc0fba80a1616124b980b448027b68c9, type: 3}
+  flashMaterial: {fileID: 2100000, guid: c310212d74dc862409aeac049467aaf4, type: 2}
+  normalMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  flashDuration: 0.1
+  cameraShakeStrength: 0.15
+  cameraShakeDuration: 0.15
+  cameraShakeVibrato: 10
+  cameraShakeRandomness: 90
+  jumpPower: 0.6
+  jumpNum: 1
+  jumpDuration: 0.45
+  scaleDuration: 0.4
+  scaleEase: 8
+  hurtCooldown: 0.1
+  healthSlider: {fileID: 0}
+  debug: 0

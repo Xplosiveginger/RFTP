@@ -122,3 +122,10 @@ TextureImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 242572
+  packageName: Trails VFX
+  packageVersion: 1.0.2025
+  assetPath: Assets/VFX/Trails VFX/VFX/Textures/T_VFX_Trail_Mask_03.tga
+  uploadId: 755343

@@ -9,6 +9,7 @@ public class SoundMixerManager : MonoBehaviour
     private float masterVolume = 100f;
     private float musicVolume = 100f;
     private float sfxVolume = 100f;
+    private float uiVolume = 100f;
 
     private bool isMasterMuted = false;
     
@@ -32,6 +33,15 @@ public class SoundMixerManager : MonoBehaviour
         float volume = value / 100f;
 
         audioMixer.SetFloat("MusicVolume", Mathf.Log10(volume) * 20);
+    }   
+    public void SetUIVolume(float value)
+    {
+        uiVolume = value;
+
+        value = Mathf.Clamp(value, 0.0001f, 100f);
+        float volume = value / 100f;
+
+        audioMixer.SetFloat("UIVolume", Mathf.Log10(volume) * 20);
     }
 
     public void SetSFXVolume(float value)

@@ -101,21 +101,7 @@ public class GameStatManager : MonoBehaviour
 
     #endregion
 
-
-    #region ===== SKILLS =====
-
-    public void SetSkill(int index, Sprite image, int level)
-    {
-        gameStats.SetSkillData(index, image, level);
-        InvokeStatUpdated();
-    }
-
-    public GameStat_SO.SkillData GetSkill(int index)
-    {
-        return gameStats.GetSkillData(index);
-    }
-
-    #endregion
+    
 
 
     #region ===== RESET =====

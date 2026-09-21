@@ -6,7 +6,9 @@ public class XpManager : MonoBehaviour
 {
     [Header("Progression")]
     public ProgressionSO progressionSO;
-    
+
+    [Header("Game Stats")]
+    public GameStat_SO gameStatSO;
     public static event Action OnPlayerLeveledUp;
     public static event Action OnXPUpdated;
     public static event Action OnCoinsUpdated;
@@ -81,11 +83,16 @@ public class XpManager : MonoBehaviour
     private void Start()
     {
         if (progressionSO == null)
-        {
             return;
-        }
+
         ResetProgression();
-        // Notify UI of initial state
+
+        // Sync GameStat level from ProgressionSO
+        if (gameStatSO != null)
+        {
+            gameStatSO.UpdatePlayerLevel(progressionSO.currentLevel);
+        }
+
         OnXPUpdated?.Invoke();
         OnCoinsUpdated?.Invoke();
     }
@@ -116,17 +123,28 @@ public class XpManager : MonoBehaviour
 
     private void OnLevelUp()
     {
+        // ProgressionSO is the source of truth
+        if (gameStatSO != null)
+        {
+            gameStatSO.UpdatePlayerLevel(progressionSO.currentLevel);
+        }
 
         OnXPUpdated?.Invoke();
         OnPlayerLeveledUp?.Invoke();
     }
-
     [Button("Reset Progression", ButtonSizes.Medium)]
     public void ResetProgression()
     {
-        if (progressionSO == null) return;
+        if (progressionSO == null)
+            return;
 
         progressionSO.ResetProgression();
+
+        if (gameStatSO != null)
+        {
+            gameStatSO.UpdatePlayerLevel(progressionSO.currentLevel);
+        }
+
         OnXPUpdated?.Invoke();
         OnCoinsUpdated?.Invoke();
     }

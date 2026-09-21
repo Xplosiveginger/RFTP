@@ -4,8 +4,8 @@ using System.Collections.Generic;
 public class LitmusPaper2D : BaseEnemy
 {
     [Header("Health and Sprite Stages")]
-    private int maxHealth;
-    private int litmusHealth;
+    private float maxHealth;
+    private float litmusHealth;
 
     [Tooltip("Sprites representing alkaline, neutral, and acidic states.")]
     public Sprite alkalineSprite;

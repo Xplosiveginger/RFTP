@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BacteriaWeapon_Data
   m_EditorClassIdentifier: 
   weaponName: 1
-  weaponLogo: {fileID: 21300000, guid: f913b32fa03e78742a124d583b971995, type: 3}
+  weaponLogo: {fileID: 21300000, guid: f9d59fd36b9059c4cb4434ad64a86c57, type: 3}
   weaponStatData:
   - {fileID: 11400000, guid: 306da15689376e745ab8eb81280991a3, type: 2}
   - {fileID: 11400000, guid: 3c36066ab367ab043a4e9bfa029a730d, type: 2}
@@ -24,3 +24,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f08a1759439fd3f44b1240a9a23890ef, type: 2}
   - {fileID: 11400000, guid: 0502fc3862d81614ea721f885ee99696, type: 2}
   weaponPrefab: {fileID: 5562305457002169948, guid: c6720c861af1d3146a1379d40c618710, type: 3}
+  maxLevel: 8

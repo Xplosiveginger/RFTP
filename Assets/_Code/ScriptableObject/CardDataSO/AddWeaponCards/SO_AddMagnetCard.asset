@@ -12,6 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 781b090621e04b44ab0b2e52cc84c23d, type: 3}
   m_Name: SO_AddMagnetCard
   m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: 48803254e002167488a5dcc342084c67, type: 3}
+  Name: Magnet
+  Description:
+  - 'A magnetic field is formed around the player that damages enemies that get caught
+    in the field '
+  - The total damage of the weapon is increased by 4
+  - The total damage of the weapon is increased by 4. Area Of Effect is increased
+    by 15% .
+  - The total damage of the weapon is increased by 4. The cooldown is reduced by
+    0.5s
+  - The total damage of the weapon is increased by 4. Area Of Effect is increased
+    by 15% .
+  - The total damage of the weapon is increased by 4. The cooldown is reduced by
+    0.5 secs.
+  - The total damage of the weapon is increased by 5.
+  - The total damage of the weapon is increased by 6.
   levelImages:
   - {fileID: 21300000, guid: cc9b1d83d8572a24380e4ad8488e98db, type: 3}
   - {fileID: 21300000, guid: d501fb44bb1854148a70df03cd9661b2, type: 3}

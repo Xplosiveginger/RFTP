@@ -12,6 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 781b090621e04b44ab0b2e52cc84c23d, type: 3}
   m_Name: MaxHealth Increase Item
   m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: 02824405cc5f0924ea4df69b7666a397, type: 3}
+  Name: Max Health
+  Description:
+  - Increase the max health of the player by 15%
+  - Increase the max health of the player by 15%
+  - Increase the max health of the player by 15%
+  - Increase the max health of the player by 15%
+  - Increase the max health of the player by 15%
   levelImages:
   - {fileID: 21300000, guid: 9abfdad0c92a24d4f943820d97c825a4, type: 3}
   - {fileID: 21300000, guid: 9abfdad0c92a24d4f943820d97c825a4, type: 3}

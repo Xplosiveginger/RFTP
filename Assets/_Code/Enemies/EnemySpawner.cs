@@ -21,13 +21,18 @@ public class EnemySpawner : MonoBehaviour
 
     [Title("UI References")]
     public TextMeshProUGUI timerText;
-    public GameObject EndPanel;
-
+    
     [Title("Special Enemies")]
     [HorizontalGroup("Atom")]
     [PreviewField(50)]
     [HideLabel]
     public GameObject atomPrefab;
+
+    [Title("Special Enemies")]
+    [HorizontalGroup("Atom")]
+    [PreviewField(50)]
+    [HideLabel]
+    public ParticleSystem AtomSpawnParticle;
 
     [VerticalGroup("Atom/Info")]
     [LabelText("Pool Size")]
@@ -53,7 +58,9 @@ public class EnemySpawner : MonoBehaviour
     private DynamicEnemyPooler atomPooler;
 
     private float spawnTimer = 0f;
-
+    
+    public event System.Action<float> OnGameTimeUpdated;
+    
     [Title("Runtime Info")]
     [ShowInInspector, ReadOnly]
     private string CurrentPhaseInfo => currentPhase != null ?
@@ -84,6 +91,10 @@ public class EnemySpawner : MonoBehaviour
     {
         Instance = this;
         atomPooler = new DynamicEnemyPooler(atomPrefab, atomPoolSize, atomPoolSize * 2, poolParent);
+        EnemySpawnDataNew atomSpawnData = new EnemySpawnDataNew();
+        atomSpawnData.enemyPrefab = atomPrefab;
+        poolDictionary[atomSpawnData] = atomPooler;
+
     }
 
     private void Start()
@@ -113,8 +124,7 @@ public class EnemySpawner : MonoBehaviour
 
         UpdateTimerUI();
 
-        if (elapsedTime >= 901)
-            EndPanel.SetActive(true);
+        OnGameTimeUpdated?.Invoke(elapsedTime);
 
         // Check for phase transition
         if (currentPhaseIndex + 1 < spawnPhases.Count &&
@@ -129,7 +139,6 @@ public class EnemySpawner : MonoBehaviour
             HandleSpawning();
         }
     }
-
     private void HandleSpawning()
     {
         if (currentPhase.spawnCount <= 0 || currentPhase.enemiesToSpawn.Count == 0)
@@ -283,6 +292,7 @@ public class EnemySpawner : MonoBehaviour
 
         BaseEnemyRefactor enemy = atom.GetComponent<BaseEnemyRefactor>();
         EnemyManager.Instance.RegisterEnemy(enemy);
+        GlobalParticleFxPlayer.Instance.PlayParticle(AtomSpawnParticle, position);
     }
 
     /// <summary>
@@ -302,7 +312,8 @@ public class EnemySpawner : MonoBehaviour
             }
         }
 
-        Debug.LogWarning($"Could not find pool for enemy: {enemy.name}");
+        Debug.LogWarning($"==========> Could not find pool for enemy: {enemy.name}, Destroying enemy");
+        Destroy(enemy.gameObject);
     }
 
     [Title("Debug Actions")]

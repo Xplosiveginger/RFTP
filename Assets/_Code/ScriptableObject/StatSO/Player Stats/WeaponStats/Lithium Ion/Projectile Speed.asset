@@ -13,11 +13,7 @@ MonoBehaviour:
   m_Name: Projectile Speed
   m_EditorClassIdentifier: 
   statName: 6
-  baseValue: 30
-  maxValue: 10
+  baseValue: 15
+  maxValue: 15
   startValue: 0
   startMultiplier: 1
-  currentMultiplier: 1
-  currentValue: 30
-  customMaxValue: 0
-  showCurrentValues: 0

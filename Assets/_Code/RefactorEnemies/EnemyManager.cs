@@ -54,7 +54,7 @@ public class EnemyManager : MonoBehaviour
         }
 
         // Cache player position once per frame
-        cachedPlayerPosition = player.position;
+        cachedPlayerPosition = player.position; 
         float deltaTime = Time.deltaTime;
 
         // Process all enemy updates in a single pass
@@ -209,11 +209,11 @@ public class EnemyManager : MonoBehaviour
     {
         for (int i = mutatedRats.Count - 1; i >= 0; i--)
         {
-            if (mutatedRats[i] == null || !mutatedRats[i].isActiveAndEnabled)
+            /*if (mutatedRats[i] == null || !mutatedRats[i].isActiveAndEnabled)
             {
                 mutatedRats.RemoveAt(i);
                 continue;
-            }
+            }*/
             mutatedRats[i].CheckAcidSpawn(playerPos, deltaTime);
         }
     }
@@ -222,11 +222,11 @@ public class EnemyManager : MonoBehaviour
     {
         for (int i = skeletons.Count - 1; i >= 0; i--)
         {
-            if (skeletons[i] == null || !skeletons[i].isActiveAndEnabled)
+            /*if (skeletons[i] == null || !skeletons[i].isActiveAndEnabled)
             {
                 skeletons.RemoveAt(i);
                 continue;
-            }
+            }*/
             skeletons[i].CheckAttack(playerPos, deltaTime);
         }
     }

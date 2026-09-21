@@ -2,6 +2,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
+using Sirenix.Utilities;
 
 [CreateAssetMenu(fileName = "GameStat", menuName = "ScriptableObjects/Game Stats")]
 public class GameStat_SO : ScriptableObject
@@ -17,13 +18,23 @@ public class GameStat_SO : ScriptableObject
     #endregion
     
     #region ===== STATS =====
-
+    [ReadOnly]
+    public int playerLevel = 1;
+    
+    public void UpdatePlayerLevel(int level)
+    {
+        playerLevel = level;
+    }
+    
     [Title("Offensive Stats")]
     [BoxGroup("Stats/Offense")]
     public float damage = 100f;
 
     [BoxGroup("Stats/Offense")]
     public float areaOfEffect = 100f;
+    
+    [BoxGroup("Highest Level Reached For Run Report")]
+    public float highestLevel = 100f;
 
     [BoxGroup("Stats/Offense")]
     public float projectileSpeed = 100f;
@@ -81,28 +92,24 @@ public class GameStat_SO : ScriptableObject
 
     #endregion
 
-
-    #region ===== SKILL DATA =====
+    #region ===== ITEM DATA =====
 
     [System.Serializable]
-    public struct SkillData
+    public struct ItemData
     {
-        public Sprite image;
+        public CardDataSO cardDataSO;
         public int level;
+
+        public ItemData(CardDataSO cardDataSO, int level)
+        {
+            this.cardDataSO = cardDataSO;
+            this.level = level;
+        }
     }
-
-    [Title("Skills")]
-    [BoxGroup("Loadout/Skills")]
-    public SkillData skill1;
-
-    [BoxGroup("Loadout/Skills")]
-    public SkillData skill2;
-
-    [BoxGroup("Loadout/Skills")]
-    public SkillData skill3;
-
-    [BoxGroup("Loadout/Skills")]
-    public SkillData skill4;
+    
+    [Title("Items")]
+    [BoxGroup("Loadout/Items")]
+    public List<ItemData> items = new List<ItemData>();
 
     #endregion
 
@@ -225,7 +232,83 @@ public class GameStat_SO : ScriptableObject
     {
         return equippedWeaponNames.Contains(weaponName);
     }
+    public bool IsWeaponSlotAvailable()
+    {
+        if (weapon1.weaponDataSO != null && weapon2.weaponDataSO != null && weapon3.weaponDataSO != null && weapon4.weaponDataSO != null)
+            return false;
+        return true;
+    }
+    public bool IsWeaponUnderMaxLevel(EWeaponName weaponName)
+    {
+        int index = 0;
+        for (int i = 0; i < equippedWeaponNames.Count; i++)
+        {
+            if (equippedWeaponNames[i] == weaponName)
+            {
+                index = i;
+            }
+        }
+        WeaponBase baseWeapon = null;
+        switch (index)
+        {
+            case 0:
+                baseWeapon = weapon1.statManager.GetComponent<WeaponBase>();
+                break;
 
+            case 1:
+                baseWeapon = weapon2.statManager.GetComponent<WeaponBase>();
+                break;
+
+            case 2:
+                baseWeapon = weapon3.statManager.GetComponent<WeaponBase>();
+                break;
+
+            case 3:
+                baseWeapon = weapon4.statManager.GetComponent<WeaponBase>();
+                break;
+            default:
+                return true;
+                break;
+        }
+        if (baseWeapon == null) return false;
+        return (baseWeapon.level <= 8);
+    }
+    public int getLevel(EWeaponName weaponName)
+    {
+        int index = 0;
+        for (int i = 0; i < equippedWeaponNames.Count; i++)
+        {
+            if (equippedWeaponNames[i] == weaponName)
+            {
+                index = i;
+            }
+        }
+        WeaponBase baseWeapon = null;
+        switch (index)
+        {
+            case 0:
+                baseWeapon = weapon1.statManager.GetComponent<WeaponBase>();
+                break;
+
+            case 1:
+                baseWeapon = weapon2.statManager.GetComponent<WeaponBase>();
+                break;
+
+            case 2:
+                baseWeapon = weapon3.statManager.GetComponent<WeaponBase>();
+                break;
+
+            case 3:
+                baseWeapon = weapon4.statManager.GetComponent<WeaponBase>();
+                break;
+            default:
+                return 0;
+                break;
+        }
+
+        if (baseWeapon == null) return 0;
+        return (baseWeapon.level);
+    }
     public void ResetWeaponData()
     {
         weapon1 = default;
@@ -240,43 +323,141 @@ public class GameStat_SO : ScriptableObject
         Debug.Log("Weapon data has been reset");
     }
 
+    public void OnItemEffectInPercentage(EStatType statName, float value)
+    {
+        if(weapon1.weaponDataSO != null)
+            weapon1.statManager.ModifyStat(statName, value);
+        if(weapon2.weaponDataSO != null)
+            weapon2.statManager.ModifyStat(statName, value);
+        if(weapon3.weaponDataSO != null)
+            weapon3.statManager.ModifyStat(statName, value);
+        if(weapon4.weaponDataSO != null)
+            weapon4.statManager.ModifyStat(statName, value);
+    }
+    
+    public void OnItemEffectInFlatValue(EStatType statName, float value)
+    {
+        if(weapon1.weaponDataSO != null)
+            weapon1.statManager.ModifyStatValue(statName, value);
+        if(weapon2.weaponDataSO != null)
+            weapon2.statManager.ModifyStatValue(statName, value);
+        if(weapon3.weaponDataSO != null)
+            weapon3.statManager.ModifyStatValue(statName, value);
+        if(weapon4.weaponDataSO != null)
+            weapon4.statManager.ModifyStatValue(statName, value);
+    }
+    
+
+
+
     #endregion
 
 
-    #region ===== SKILL FUNCTIONS =====
+    #region ===== ITEM FUNCTIONS =====
 
-    public void SetSkillData(int index, Sprite image, int level)
+    /// <summary>
+    /// Updates GameStat_SO item data from ItemManager.
+    /// GameStat_SO mirrors ItemManager.currentItems.
+    /// </summary>
+    public void UpdateItemsFromItemManager(List<ItemManager.CurrentItem> currentItems)
     {
-        SkillData data = new SkillData { image = image, level = level };
+        items.Clear();
 
-        switch (index)
+        foreach (ItemManager.CurrentItem currentItem in currentItems)
         {
-            case 1: skill1 = data; break;
-            case 2: skill2 = data; break;
-            case 3: skill3 = data; break;
-            case 4: skill4 = data; break;
-            default:
-                Debug.LogError("Invalid Skill Index");
-                return;
+            if (currentItem.cardData == null)
+                continue;
+
+            items.Add(new ItemData(
+                currentItem.cardData,
+                currentItem.level
+            ));
         }
-        
-        OnSkillUpdated?.Invoke(index);
+
+        Debug.Log($"GameStat_SO updated. Current items: {items.Count}");
     }
 
-    public SkillData GetSkillData(int index)
+    /// <summary>
+    /// Clears all item data.
+    /// </summary>
+    public void ResetItemData()
     {
-        return index switch
-        {
-            1 => skill1,
-            2 => skill2,
-            3 => skill3,
-            4 => skill4,
-            _ => throw new System.IndexOutOfRangeException("Invalid Skill Index")
-        };
+        items.Clear();
+
+        Debug.Log("GameStat_SO item data has been reset.");
     }
 
+    /// <summary>
+    /// Gets the data for a specific item.
+    /// </summary>
+    public ItemData GetItemData(CardDataSO cardDataSO)
+    {
+        foreach (ItemData item in items)
+        {
+            if (item.cardDataSO == cardDataSO)
+                return item;
+        }
+
+        return default;
+    }
+
+    /// <summary>
+    /// Checks if an item is currently owned.
+    /// </summary>
+    public bool IsItemOwned(CardDataSO cardDataSO)
+    {
+        foreach (ItemData item in items)
+        {
+            if (item.cardDataSO == cardDataSO)
+                return true;
+        }
+
+        return false;
+    }
+
+    
+    public bool isItemUnderMaxLevel(CardDataSO card)
+    {
+        foreach(ItemData item in items)
+        {
+            if(item.cardDataSO == card)
+            {
+                return item.level < 8;
+            }
+        }
+        return true;
+    }
+
+    public int getItemLevel(CardDataSO card)
+    {
+        foreach(ItemData data in items)
+        {
+            if(data.cardDataSO == card)
+            {
+                return data.level;
+            }
+        }
+        return 0;
+    }
+    public bool IsItemSlotAvailable()
+    {
+        if (items.Count >= 4) return false;
+        return true;
+    }
     #endregion
 
+    public int GetCardLevel(CardDataSO card)
+    {
+        int itemLevel = 0; 
+        if(card.cardType==ECardType.AffectsPlayer)
+            itemLevel= getItemLevel(card);
+        else if (card.cardType == ECardType.AddsWeapon)
+            itemLevel = getLevel(card.weaponToAdd.weaponName);
+        else if (card.cardType==ECardType.AffectsWeaponLevel)
+            itemLevel = getLevel(card.weaponName);
+
+        return itemLevel;
+    }
     
     #region Realtime Stats
 
@@ -340,12 +521,7 @@ public class GameStat_SO : ScriptableObject
 
         // Weapons
         ResetWeaponData();
-
-        // Skills
-        skill1 = default;
-        skill2 = default;
-        skill3 = default;
-        skill4 = default;
+        playerLevel = 1;
 
         runTime = 0f;
         damageGiven = 0f;
@@ -353,6 +529,7 @@ public class GameStat_SO : ScriptableObject
         EnemiesKilled = 0;
         breakablesDestroyed = 0;
         
+        ResetItemData();
         Debug.Log("All data has been reset");
     }
 

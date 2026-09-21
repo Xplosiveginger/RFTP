@@ -10,17 +10,27 @@ public class MaxHealthIncreaseItem : MonoBehaviour
     private static bool isActive = false;
     private static float totalPercentBonus = 0f;
 
+    // Stores the player's original max health.
+    private static float baseMaxHealth = -1f;
+
     private void OnEnable()
     {
         isActive = true;
         totalPercentBonus += percentBonus;
+
         ApplyToPlayerHealth();
-        Debug.Log($"[MaxHealthIncreaseItem] Activated: +{percentBonus}% (total {totalPercentBonus}%)");
+
+        Debug.Log(
+            $"[MaxHealthIncreaseItem] Activated: " +
+            $"+{percentBonus}% " +
+            $"(total {totalPercentBonus}%)"
+        );
     }
 
     private void OnDisable()
     {
         totalPercentBonus -= percentBonus;
+
         if (totalPercentBonus <= 0f)
         {
             totalPercentBonus = 0f;
@@ -28,7 +38,11 @@ public class MaxHealthIncreaseItem : MonoBehaviour
         }
 
         ApplyToPlayerHealth();
-        Debug.Log($"[MaxHealthIncreaseItem] Deactivated: total {totalPercentBonus}%");
+
+        Debug.Log(
+            $"[MaxHealthIncreaseItem] Deactivated: " +
+            $"total {totalPercentBonus}%"
+        );
     }
 
     /// <summary>
@@ -36,24 +50,39 @@ public class MaxHealthIncreaseItem : MonoBehaviour
     /// </summary>
     private void ApplyToPlayerHealth()
     {
-        HealthSystem player = FindObjectOfType<HealthSystem>(includeInactive: true);
+        HealthSystem player =
+            FindObjectOfType<HealthSystem>(includeInactive: true);
+
         if (player == null || !player.isPlayer)
             return;
 
-        int baseMaxHealth = player.MaxHealth; // store current as reference
-        int newMaxHealth = GetModifiedMaxHealth(player.MaxHealth);
-        player.SetMaxHealth(newMaxHealth, resetCurrentHealth: false);
+        // Store the original max health once.
+        if (baseMaxHealth < 0f)
+        {
+            baseMaxHealth = player.MaxHealth;
+        }
+
+        float newMaxHealth =
+            GetModifiedMaxHealth(baseMaxHealth);
+
+        player.SetMaxHealth(
+            newMaxHealth,
+            resetCurrentHealth: false
+        );
     }
 
     /// <summary>
-    /// Calculates boosted max health based on current total percentage.
+    /// Calculates boosted max health based on the
+    /// original base max health and total percentage bonus.
     /// </summary>
-    public static int GetModifiedMaxHealth(int baseMaxHealth)
+    public static float GetModifiedMaxHealth(float baseMaxHealth)
     {
         if (!isActive || totalPercentBonus <= 0f)
             return baseMaxHealth;
 
-        float multiplier = 1f + (totalPercentBonus / 100f);
+        float multiplier =
+            1f + (totalPercentBonus / 100f);
+
         return Mathf.RoundToInt(baseMaxHealth * multiplier);
     }
 

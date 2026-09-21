@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Sirenix.OdinInspector;
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using Sirenix.OdinInspector;
 
 [System.Serializable]
 public struct CardCategoryData
@@ -12,11 +14,47 @@ public struct CardCategoryData
 
 public class CardManager : MonoBehaviour
 {
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip levelUpSound;
+    public AudioClip cardSelectionSound;
+    
+    [Header("Status Panel")]
+    [SerializeField] private GameObject statusPanel;
+    [Header("Level Up Image")]
+    [SerializeField] private GameObject levelUpImage;
+
+    [Header("Level Up Animation")]
+    [SerializeField] private Animator levelUpImageAnimator;
+    [SerializeField] private string levelUpAnimation = "LevelUp";
+
+    [Header("Status Panel Animation")]
+    [SerializeField] private Animator statusPanelAnimator;
+    [SerializeField] private float statusAnimationDuration = 0.5f;
+
+    private Coroutine statusPanelRoutine;
+    [Header("Status Panel Stats")]
+    [SerializeField] private TMPro.TextMeshProUGUI damageText;
+    [SerializeField] private TMPro.TextMeshProUGUI totalHealthText;
+    [SerializeField] private TMPro.TextMeshProUGUI healthRegenText;
+    [SerializeField] private TMPro.TextMeshProUGUI cooldownText;
+    [SerializeField] private TMPro.TextMeshProUGUI aoeText;
+    [SerializeField] private TMPro.TextMeshProUGUI speedOfWeaponText;
+    [SerializeField] private TMPro.TextMeshProUGUI durationText;
+    [SerializeField] private TMPro.TextMeshProUGUI numOfProjectilesText;
+    [SerializeField] private TMPro.TextMeshProUGUI moveSpeedText;
+    
     [Header("Card Categories")]
     [SerializeField] protected List<CardCategoryData> cardCategories;
-    
+    [SerializeField] protected List<CardDataSO> extraBuffCards;
+
+
     [Header("Card UI References")]
-    [SerializeField] protected List<RefactorCardUi> cards;
+    public Transform cardParent;
+    public RefactorCardUi Weapon_cardPrefab;
+    public RefactorCardUi item_cardPrefab;
+    public RefactorCardUi extra_buff_cardPrefab;
+    public int totalCardsToSpawn = 3;
     
     [Header("Game Data")]
     [SerializeField] private GameStat_SO gameStatSO;
@@ -26,11 +64,22 @@ public class CardManager : MonoBehaviour
     
     // Track which cards have been shown in the current selection
     private HashSet<CardDataSO> currentSelectionCards = new HashSet<CardDataSO>();
-
+    private HealthSystem PlayerHealth;
+    private StatManager StatManager;
     public event Action OnCardsInitialized;
     public static event Action<CardDataSO> CardSelected;
     public static event Action CardClicked;
 
+    private void Awake()
+    {
+        if (statusPanelAnimator != null)
+        {
+            statusPanelAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
+        }
+        
+        PlayerHealth = SM.Instance.Player.GetComponent<HealthSystem>();
+        StatManager = SM.Instance.Player.GetComponent<StatManager>();
+    }
     private void OnEnable()
     {
         XpManager.OnPlayerLeveledUp += CardInitializer;
@@ -40,63 +89,364 @@ public class CardManager : MonoBehaviour
         {
             gameStatSO.OnEquippedWeaponNamesUpdated += OnEquippedWeaponNamesUpdatedHandler;
         }
+        ClearCards();
+    }
+    private void PlayLevelUpAnimation()
+    {
+        if (levelUpImageAnimator == null)
+            return;
+
+        if (string.IsNullOrEmpty(levelUpAnimation))
+            return;
+
+        // Make sure the Animator is reset before replaying
+        levelUpImageAnimator.Rebind();
+        levelUpImageAnimator.Update(0f);
+
+        levelUpImageAnimator.Play(
+            levelUpAnimation,
+            0,
+            0f
+        );
     }
     
     private void OnEquippedWeaponNamesUpdatedHandler(List<EWeaponName> weaponNames)
     {
         Debug.Log($"CardManager notified of weapon name update: [{string.Join(", ", weaponNames)}]");
     }
+    private void UpdateStatusPanelStats()
+{
+    if (StatManager == null)
+    {
+        Debug.LogError("CardManager: StatManager reference is NULL.");
+        return;
+    }
+
+    // =====================================================
+    // GET STATS
+    // =====================================================
+
+    Stat damage =
+        StatManager.GetStat(EStatType.Damage);
+
+    Stat health =
+        StatManager.GetStat(EStatType.Health);
+
+    Stat healthRegen =
+        StatManager.GetStat(EStatType.HealthRegen);
+
+    Stat cooldown =
+        StatManager.GetStat(EStatType.AttackCooldown);
+
+    Stat aoe =
+        StatManager.GetStat(EStatType.AOESize);
+
+    Stat projectileSpeed =
+        StatManager.GetStat(EStatType.ProjectileSpeed);
+
+    Stat projectileCount =
+        StatManager.GetStat(EStatType.ProjectileCount);
+
+    Stat duration =
+        StatManager.GetStat(EStatType.ActiveDuration);
+
+    Stat moveSpeed =
+        StatManager.GetStat(EStatType.MoveSpeed);
+
+
+    // =====================================================
+    // DAMAGE
+    // =====================================================
+
+    if (damage != null && damageText != null)
+    {
+        damageText.text =
+            FormatPercentageModifier(damage);
+    }
+
+
+    // =====================================================
+    // HEALTH
+    // =====================================================
+    // Health is the exception.
+    // Show the actual maximum health.
+    // =====================================================
+
+    if (health != null && totalHealthText != null)
+    {
+        totalHealthText.text =
+            Mathf.RoundToInt(health.maxValue).ToString();
+    }
+
+
+    // =====================================================
+    // HEALTH REGEN
+    // =====================================================
+
+    if (healthRegen != null && healthRegenText != null)
+    {
+        healthRegenText.text =
+            healthRegen.currentValue.ToString("0.##");
+    }
+
+    // =====================================================
+    // COOLDOWN
+    // =====================================================
+
+    if (cooldown != null && cooldownText != null)
+    {
+        cooldownText.text =
+            FormatPercentageModifier(cooldown);
+    }
+
+
+    // =====================================================
+    // AOE SIZE
+    // =====================================================
+
+    if (aoe != null && aoeText != null)
+    {
+        aoeText.text =
+            FormatPercentageModifier(aoe);
+    }
+
+
+    // =====================================================
+    // PROJECTILE SPEED
+    // =====================================================
+
+    if (projectileSpeed != null &&
+        speedOfWeaponText != null)
+    {
+        speedOfWeaponText.text =
+            FormatPercentageModifier(projectileSpeed);
+    }
+
+
+    // =====================================================
+    // PROJECTILE COUNT
+    // =====================================================
+    // Projectile count is a FLAT stat.
+    // Always display it as a whole number.
+    // =====================================================
+
+    if (projectileCount != null &&
+        numOfProjectilesText != null)
+    {
+        numOfProjectilesText.text =
+            Mathf.RoundToInt(
+                projectileCount.currentValue
+            ).ToString();
+
+        Debug.Log(
+            $"Projectile Count: " +
+            $"{Mathf.RoundToInt(projectileCount.currentValue)}"
+        );
+    }
+
+
+    // =====================================================
+    // ACTIVE DURATION
+    // =====================================================
+
+    if (duration != null && durationText != null)
+    {
+        durationText.text =
+            FormatPercentageModifier(duration);
+    }
+
+
+    // =====================================================
+    // MOVE SPEED
+    // =====================================================
+
+    if (moveSpeed != null && moveSpeedText != null)
+    {
+        moveSpeedText.text =
+            FormatPercentageModifier(moveSpeed);
+    }
+}
+
+
+// =========================================================
+// FORMAT PLAYER STAT MODIFIER
+// =========================================================
+
+private string FormatPercentageModifier(Stat stat)
+{
+    if (stat == null)
+        return "0%";
+
+
+    /*
+     * Player stats are now treated as modifiers rather
+     * than actual gameplay values.
+     *
+     * Examples:
+     *
+     * currentMultiplier = 1.00
+     * => 0%
+     *
+     * currentMultiplier = 1.10
+     * => +10%
+     *
+     * currentMultiplier = 1.20
+     * => +20%
+     *
+     * currentMultiplier = 0.90
+     * => -10%
+     *
+     * We compare against startMultiplier so this also
+     * works if the starting multiplier isn't exactly 1.
+     */
+
+    float percentage =
+        (
+            stat.currentMultiplier /
+            Mathf.Max(
+                stat.startMultiplier,
+                0.0001f
+            )
+            - 1f
+        ) * 100f;
+
+
+    // Prevent values such as 9.999998%
+    percentage = Mathf.Round(percentage);
+
+
+    if (percentage > 0f)
+        return $"+{percentage:0}%";
+
+
+    if (percentage < 0f)
+        return $"{percentage:0}%";
+
+
+    return "0%";
+}
     
     private void CardInitializer()
     {
+
+        // Stop any previous status animation
+        if (statusPanelRoutine != null)
+        {
+            StopCoroutine(statusPanelRoutine);
+            statusPanelRoutine = null;
+        }
+        audioSource.PlayOneShot(levelUpSound);
         Time.timeScale = 0f;
-        
-        // Clear the current selection tracking
+
         currentSelectionCards.Clear();
-        
+
+        IDCardManager.instance.ShowPauseUI();
+
+        // Show status panel
+        ShowStatusPanel();
+
+        // Show level-up image
+        if (levelUpImage != null)
+        {
+            levelUpImage.SetActive(true);
+
+            // Play the one-shot animation from the beginning
+            PlayLevelUpAnimation();
+        }
+        ClearCards();
         PopulateCards();
 
-        foreach (var card in cards)
+        /*foreach (var card in cards)
         {
             card.gameObject.SetActive(true);
-        }
+        }*/
     }
-
     private void PopulateCards()
     {
-        // Step 1: Accumulate all qualified candidates from all categories with relevancy filtering
         List<CardDataSO> qualifiedCandidates = GetAllQualifiedCandidates();
-        
-        // Step 2: Randomize the qualified candidates list
         Shuffle(qualifiedCandidates);
-        
-        // Step 3: Determine how many cards to show
-        int cardCount = Mathf.Min(cards.Count, qualifiedCandidates.Count);
-        
-        // Clear current selection tracking
+
+        int cardCount = Mathf.Min(totalCardsToSpawn, qualifiedCandidates.Count);
+
         currentSelectionCards.Clear();
-        
+
         Debug.Log($"Populating {cardCount} cards from {qualifiedCandidates.Count} qualified candidates");
-        
-        // Step 4: Select cards from the randomized list
+
         for (int i = 0; i < cardCount; i++)
         {
-            if (qualifiedCandidates.Count == 0) break;
-
-            // Get a unique random card from the qualified candidates
             CardDataSO selectedCard = GetUniqueRandomCard(qualifiedCandidates);
 
             if (selectedCard != null)
             {
-                // Track this card as selected for this round
                 currentSelectionCards.Add(selectedCard);
-                
-                // Initialize the card UI
-                cards[i].Initialize(selectedCard, this, weaponManager);
-
-                // Remove the selected card from the candidates to prevent duplicates
-                qualifiedCandidates.RemoveAll(c => c == selectedCard);
+                SpawnCard(selectedCard);
             }
+        }
+        int remainingCards = totalCardsToSpawn - cardCount;
+
+        if (remainingCards > 0)
+        {
+            List<CardDataSO> availableExtraBuffCards = extraBuffCards
+                .Where(card => card != null && !currentSelectionCards.Contains(card))
+                .Distinct()
+                .ToList();
+
+            Shuffle(availableExtraBuffCards);
+
+            int extraCardsToSpawn = Mathf.Min(remainingCards, availableExtraBuffCards.Count);
+
+            for (int i = 0; i < extraCardsToSpawn; i++)
+            {
+                CardDataSO card = availableExtraBuffCards[i];
+
+                currentSelectionCards.Add(card);
+                SpawnCard(card);
+            }
+        }
+    }
+
+    public void SpawnCard(CardDataSO card)
+    {
+        RefactorCardUi spawnedCard=null;
+        switch(card.cardType)
+        {
+            case ECardType.AffectsPlayer:
+                spawnedCard = Instantiate(item_cardPrefab, cardParent);
+                spawnedCard.Initialize(card, this, weaponManager);
+                break;
+
+            case ECardType.AffectsWeaponLevel:
+                spawnedCard = Instantiate(Weapon_cardPrefab, cardParent);
+                spawnedCard.Initialize(card, this, weaponManager);
+                break;
+
+            case ECardType.AddsWeapon:
+                spawnedCard = Instantiate(Weapon_cardPrefab, cardParent);
+                spawnedCard.Initialize(card, this, weaponManager);
+                break;
+
+
+            case ECardType.ExtraCard_Health:
+                spawnedCard = Instantiate(extra_buff_cardPrefab, cardParent);
+                spawnedCard.Initialize(card, this, weaponManager);
+                break;
+            
+            case ECardType.ExtraCard_Money:
+                spawnedCard = Instantiate(extra_buff_cardPrefab, cardParent);
+                spawnedCard.Initialize(card, this, weaponManager);
+                break;
+
+            default:
+                spawnedCard = Instantiate(item_cardPrefab, cardParent);
+                spawnedCard.Initialize(card, this, weaponManager);
+                break;
+        }
+    }
+    void ClearCards()
+    {
+        for(int i=0;i<cardParent.transform.childCount;i++)
+        {
+            Destroy(cardParent.transform.GetChild(i).gameObject);
         }
     }
 
@@ -134,17 +484,32 @@ public class CardManager : MonoBehaviour
         switch (card.cardType)
         {
             case ECardType.AffectsPlayer:
-                // Player related cards are always included
+                if(gameStatSO.IsItemSlotAvailable())
+                {
+                    return true;
+                }
+                else
+                {
+                    if (gameStatSO.IsItemOwned(card))
+                    {
+                        if (gameStatSO.isItemUnderMaxLevel(card))
+                            return true;
+                        else
+                            return false;
+                    }
+                    else
+                        return false;
+                }
                 return true;
                 
             case ECardType.AffectsEnemy:
-                // Enemy affecting cards are always included
                 return true;
                 
             case ECardType.AddsWeapon:
-                // Check if the weapon to add is already equipped
                 if (card.weaponToAdd != null)
                 {
+                    if (!gameStatSO.IsWeaponSlotAvailable())
+                        return false;
                     bool isAlreadyEquipped = gameStatSO.IsWeaponEquipped(card.weaponToAdd.weaponName);
                     if (isAlreadyEquipped)
                     {
@@ -153,12 +518,11 @@ public class CardManager : MonoBehaviour
                     }
                     return true;
                 }
-                // If no weapon to add specified, include it
                 return true;
                 
             case ECardType.AffectsWeaponLevel:
-                // Only include cards for currently equipped weapons
                 bool isEquipped = gameStatSO.IsWeaponEquipped(card.weaponName);
+                bool isUnderMaxLevel = gameStatSO.IsWeaponUnderMaxLevel(card.weaponName);
                 if (!isEquipped)
                 {
                     Debug.Log($"Card {card.name} filtered out - weapon {card.weaponName} not equipped");
@@ -245,20 +609,49 @@ public class CardManager : MonoBehaviour
     // Called by RefactorCardUi when a card is picked
     public void OnCardSelected(CardDataSO selectedData)
     {
-        // Remove the selected card from its category
-        RemoveCardFromCategories(selectedData);
+        //RemoveCardFromCategories(selectedData);
 
-        Time.timeScale = 1f; // Resume game
+        IDCardManager.instance.ShowGameplayUI();
 
-        foreach (var card in cards)
-        {
-            card.gameObject.SetActive(false);
-        }
-        
+        if (levelUpImage != null)
+            levelUpImage.SetActive(false);
+
+        ClearCards();
+
         CardSelected?.Invoke(selectedData);
+        audioSource.PlayOneShot(cardSelectionSound);
         CardClicked?.Invoke();
-    }
 
+        if (statusPanelRoutine != null)
+        {
+            StopCoroutine(statusPanelRoutine);
+        }
+
+        statusPanelRoutine = StartCoroutine(
+            HideStatusAndResumeRoutine()
+        );
+    }
+    private IEnumerator HideStatusAndResumeRoutine()
+    {
+        if (statusPanel != null && statusPanelAnimator != null)
+        {
+            statusPanelAnimator.Play("SlideOut", 0, 0f);
+
+            yield return new WaitForSecondsRealtime(
+                statusAnimationDuration
+            );
+
+            statusPanel.SetActive(false);
+        }
+        else if (statusPanel != null)
+        {
+            statusPanel.SetActive(false);
+        }
+
+        Time.timeScale = 1f;
+
+        statusPanelRoutine = null;
+    }
     // Remove a card from all categories
     private void RemoveCardFromCategories(CardDataSO cardToRemove)
     {
@@ -294,15 +687,40 @@ public class CardManager : MonoBehaviour
         
         cardCategories.Add(newCategory);
     }
+    private void ShowStatusPanel()
+    {
+        if (statusPanelRoutine != null)
+        {
+            StopCoroutine(statusPanelRoutine);
+            statusPanelRoutine = null;
+        }
 
+        if (statusPanel == null)
+            return;
+
+        UpdateStatusPanelStats();
+
+        statusPanel.SetActive(true);
+
+        if (statusPanelAnimator != null)
+        {
+            statusPanelAnimator.Play("SlideIn", 0, 0f);
+        }
+    }
     private void OnDisable()
     {
+        if (statusPanelRoutine != null)
+        {
+            StopCoroutine(statusPanelRoutine);
+            statusPanelRoutine = null;
+        }
+
         XpManager.OnPlayerLeveledUp -= CardInitializer;
-        
-        // Unsubscribe from weapon name updates
+
         if (gameStatSO != null)
         {
-            gameStatSO.OnEquippedWeaponNamesUpdated -= OnEquippedWeaponNamesUpdatedHandler;
+            gameStatSO.OnEquippedWeaponNamesUpdated -=
+                OnEquippedWeaponNamesUpdatedHandler;
         }
     }
 }

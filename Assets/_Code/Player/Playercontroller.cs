@@ -21,7 +21,8 @@ public class PlayerController2D : MonoBehaviour
     public StatManager statManager;
     public ReworkedWeaponManager weaponManager;
     public ItemManager itemManager;
-
+    [Header("Game State")]
+    public bool gameEnded = false;
     //test
     public WeaponDataSO weaponToAdd;
 
@@ -57,6 +58,21 @@ public class PlayerController2D : MonoBehaviour
 
     private void Update()
     {
+        if (gameEnded)
+        {
+            moveInput = Vector2.zero;
+
+            // Force player to face right
+            lastHorizontalDir = 1f;
+
+            // Play idle animation while facing right
+            animator.SetInteger("move", 0);
+            animator.SetFloat("facing", lastHorizontalDir);
+
+            inflicted = health.takingDOT;
+
+            return;
+        }
         // Read movement input
         moveInput.x = Input.GetAxisRaw("Horizontal");
         moveInput.y = Input.GetAxisRaw("Vertical");
@@ -79,6 +95,13 @@ public class PlayerController2D : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (gameEnded)
+        {
+            moveInput = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
+
         // Move the player
         rb.MovePosition(rb.position + moveInput * moveSpeed * Time.fixedDeltaTime);
     }
@@ -107,7 +130,9 @@ public class PlayerController2D : MonoBehaviour
     private void GetModifiedHealth()
     {
         Stat stat = statManager.GetStat(EStatType.Health);
-        health.currentHealth = (int)stat.currentValue;
+        health.maxHealth= (int)stat.maxValue;
+        health.currentHealth= (int)stat.currentValue;
+
     }
 
     private void AddWeapon(WeaponDataSO weapon)
@@ -117,39 +142,48 @@ public class PlayerController2D : MonoBehaviour
 
     private void OnCardSelectedHandled(CardDataSO card)
     {
-        //if (card.affectsEnemy) return;
-
-        //if (card.affectsPlayer)
-        //{
-        //    statManager.ModifyStat(card.affectedPlayerStat, card.playerStatModifier);
-        //}
-
-        //if (card.affectsWeaponLevel)
-        //{
-        //    weaponManager.LevelUpWeapon(card.weaponName);
-        //}
-
-        //if (card.affectsWeaponStat)
-        //{
-        //    weaponManager.UpdateWeaponStat(card.weaponName, card.affectedWeaponStat, card.weaponStatModifier);
-        //}
+        if (card == null)
+            return;
 
         switch (card.cardType)
         {
             case ECardType.AddsWeapon:
                 AddWeapon(card.weaponToAdd);
                 break;
+
             case ECardType.AffectsPlayer:
-                statManager.ModifyStat(card.affectedPlayerStat, card.playerStatModifier);
+                // ItemManager handles:
+                // 1. Adding/upgrading the item
+                // 2. Applying the item's stat effect
+                // 3. Updating GameStat_SO
                 itemManager.AddCurrentItems(card);
-                itemManager.AddItem(card.itemSO);
                 break;
+
             case ECardType.AffectsWeaponLevel:
                 weaponManager.LevelUpWeapon(card.weaponName);
                 break;
+
             case ECardType.AffectsSpecificWeaponStat:
-                weaponManager.UpdateWeaponStat(card.weaponName, card.affectedWeaponStat, card.weaponStatModifier);
+                weaponManager.UpdateWeaponStat(
+                    card.weaponName,
+                    card.affectedWeaponStat,
+                    card.weaponStatModifier
+                );
                 break;
+
+            case ECardType.ExtraCard_Health:
+                //AddsHealth();
+                health.Heal((int)card.healthToAdd);
+                Debug.Log("Health added");
+                break;
+            case ECardType.ExtraCard_Money:
+                //Adds money 
+                EconomyManager.Instance.AddMoney(card.moneyToAdd);
+                Debug.Log("Moeny added");
+
+                break;
+
+
             default:
                 break;
         }

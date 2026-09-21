@@ -21,8 +21,10 @@ public class XpUIManager : MonoBehaviour
         if (xpManager == null)
         {
             xpManager = SM.Instance.XPManager;
-            return;
         }
+
+        if (xpManager == null || xpManager.progressionSO == null)
+            return;
 
         InitializeUI();
     }
@@ -54,7 +56,8 @@ public class XpUIManager : MonoBehaviour
 
     private void UpdateXPUI()
     {
-        if (xpManager == null || xpManager.progressionSO == null) return;
+        if (xpManager == null || xpManager.progressionSO == null)
+            return;
 
         UpdateXPBar();
         UpdateTextElements();
@@ -65,28 +68,37 @@ public class XpUIManager : MonoBehaviour
         if (xpBar != null)
         {
             float targetValue = xpManager.GetProgressPercentage();
-            xpBar.DOValue(targetValue, fillDuration).SetEase(Ease.OutCubic);
+
+            xpBar
+                .DOValue(targetValue, fillDuration)
+                .SetEase(Ease.OutCubic);
         }
     }
 
     private void OnlevelUp()
     {
-        xpBar.value = 1f;
-        //xpBar.DOValue(1, fillDuration).SetEase(Ease.OutCubic);
+        if (xpBar != null)
+        {
+            xpBar.value = 1f;
+        }
     }
 
     private void UpdateTextElements()
     {
-        if (xpManager == null || xpManager.progressionSO == null) return;
+        if (xpManager == null || xpManager.progressionSO == null)
+            return;
 
         if (levelText != null)
         {
-            levelText.text = xpManager.progressionSO.currentLevel.ToString();
+            levelText.text =
+                xpManager.progressionSO.currentLevel.ToString();
         }
 
         if (xpText != null)
         {
-            xpText.text = $"{xpManager.progressionSO.currentXP}/{xpManager.progressionSO.currentXPRequired}";
+            xpText.text =
+                $"{xpManager.progressionSO.currentXP}/" +
+                $"{xpManager.progressionSO.currentXPRequired}";
         }
     }
 

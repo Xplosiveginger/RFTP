@@ -7,8 +7,8 @@ PrefabImporter:
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
-  productId: 242574
-  packageName: Trails VFX - URP
-  packageVersion: 1.0.2023
-  assetPath: Assets/Vefects/Trails VFX URP/VFX/Particles/VFX_Trail_Earth.prefab
-  uploadId: 714377
+  productId: 242572
+  packageName: Trails VFX
+  packageVersion: 1.0.2025
+  assetPath: Assets/VFX/Trails VFX/VFX/Particles/VFX_Trail_Earth.prefab
+  uploadId: 755343

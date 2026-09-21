@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Image = UnityEngine.UIElements.Image;
 
 namespace Magar
 {
@@ -13,9 +14,9 @@ namespace Magar
         private void Update()
         {
             image.uvRect = new Rect(
-                image.uvRect.position + new Vector2(_x, _y) * Time.unscaledDeltaTime,
+                 image.uvRect.position + new Vector2(_x, _y) * Time.unscaledDeltaTime,
                 image.uvRect.size
-            );
+             );
         }
     }
 }

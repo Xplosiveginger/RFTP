@@ -1,6 +1,8 @@
 
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
 public interface IAttractable
 {
     void AttractTo(Transform target);
@@ -15,6 +17,7 @@ public class XpDrop : MonoBehaviour, IAttractable
     [SerializeField] private float accelerationTime = 0.35f;
     [SerializeField] private float collectDistance = 0.1f;
 
+    public AudioClip expCollectSound;
     private Transform target;
     private Collider2D col;
 
@@ -79,6 +82,7 @@ public class XpDrop : MonoBehaviour, IAttractable
     {
         
         XpManager?.AddXP(xpAmount);
+        GlobalAudioPlayer.Instance.PlayAudio(expCollectSound, transform, Random.Range(0.5f,1.5f));
         Destroy(gameObject);
     }
 }

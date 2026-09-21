@@ -50,6 +50,9 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -112,3 +115,4 @@ MonoBehaviour:
   chanceMultiplier: 1
   slowMultiplier: 10
   slowDuration: 3
+  smokeSound: {fileID: 8300000, guid: 4667c7e7603245a46bf4d57358120bfa, type: 3}
