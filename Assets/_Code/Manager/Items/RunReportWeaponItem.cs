@@ -18,14 +18,33 @@ public class RunReportWeaponItem : MonoBehaviour
     {
         weaponLogo.sprite = weaponData.weaponDataSO.weaponLogo;
         
-        if(weaponData.weaponDataSO.weaponName == EWeaponName.LithiumIon)  //Not needed to do this if directly Name was used, but since the enum was used already so attaching this small fix
-        {
-            weaponNameText.text = "Li-Ion Battery";
-        }
-        else
-        {
-            weaponNameText.text = weaponData.weaponDataSO.weaponName.ToString();
 
+        switch(weaponData.weaponDataSO.weaponName)
+        {
+            case EWeaponName.AcidRainClouds:
+                weaponNameText.text = "Acid Rain Clouds";
+                break;
+            case EWeaponName.Bacteria:
+                weaponNameText.text = "Bacteria";
+                break;
+            case EWeaponName.Laser:
+                weaponNameText.text = "Laser";
+                break;
+            case EWeaponName.LithiumIon:
+                weaponNameText.text = "Li-Ion Battery";
+                break;
+            case EWeaponName.Magnet:
+                weaponNameText.text = "Magnet";
+                break;
+            case EWeaponName.Prism:
+                weaponNameText.text = "Prism";
+                break;
+            case EWeaponName.SolarSystem:
+                weaponNameText.text = "Planets";
+                break;
+            case EWeaponName.TuningFork:
+                weaponNameText.text = "Tuning Fork";
+                break;
         }
 
         // Get weapon
