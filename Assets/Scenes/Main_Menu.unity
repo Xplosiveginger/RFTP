@@ -493,18 +493,18 @@ MonoBehaviour:
   playOnAwake: 0
   panelProperties:
   - panel: {fileID: 1743015675}
-    revealDirection: 0
-    delay: 0
-    duration: 0.4
+    revealDirection: 2
+    delay: 0.5
+    duration: 0.6
     ease: 0
   - panel: {fileID: 2105199449}
-    revealDirection: 0
-    delay: 0
-    duration: 0.4
+    revealDirection: 3
+    delay: 1
+    duration: 0.6
     ease: 0
   nextPage: {fileID: 609424297}
   pageTransition: 1
-  delayBeforePageTransition: 0.5
+  delayBeforePageTransition: 1.5
   buttonVisibilityDelay: 0.5
   button: {fileID: 0}
   OnAnimationCompleted:
@@ -523,7 +523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.74509805, g: 0.76862746, b: 0.78431374, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1223,7 +1223,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -97, y: -312}
+  m_AnchoredPosition: {x: -34, y: -314.5}
   m_SizeDelta: {x: 346, y: 331}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &60006873
@@ -1578,13 +1578,13 @@ MonoBehaviour:
   playOnAwake: 0
   panelProperties:
   - panel: {fileID: 1773790400}
-    revealDirection: 0
-    delay: 0
-    duration: 0.4
+    revealDirection: 2
+    delay: 0.5
+    duration: 0.6
     ease: 0
   nextPage: {fileID: 310160544}
   pageTransition: 1
-  delayBeforePageTransition: 0.5
+  delayBeforePageTransition: 1.5
   buttonVisibilityDelay: 0.5
   button: {fileID: 0}
   OnAnimationCompleted:
@@ -1603,7 +1603,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.74509805, g: 0.76862746, b: 0.78431374, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3974,7 +3974,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 365, y: 316}
+  m_AnchoredPosition: {x: 518, y: 310}
   m_SizeDelta: {x: 352, y: 326}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &173622814
@@ -4062,7 +4062,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -150, y: 312}
+  m_AnchoredPosition: {x: -0.000015259, y: 315.5}
   m_SizeDelta: {x: 359, y: 333}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &182104646
@@ -4857,7 +4857,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -560, y: -321}
+  m_AnchoredPosition: {x: -490, y: -321}
   m_SizeDelta: {x: 347, y: 312}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &227176822
@@ -5082,7 +5082,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 621, y: 0}
+  m_AnchoredPosition: {x: 621, y: -21.500017}
   m_SizeDelta: {x: 512, y: 745}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &230070648
@@ -6765,27 +6765,27 @@ MonoBehaviour:
   panelProperties:
   - panel: {fileID: 2118849067}
     revealDirection: 0
-    delay: 0
-    duration: 0.4
+    delay: 0.5
+    duration: 0.6
     ease: 0
   - panel: {fileID: 182104645}
     revealDirection: 0
-    delay: 0
-    duration: 0.4
+    delay: 1
+    duration: 0.6
     ease: 0
   - panel: {fileID: 173622813}
     revealDirection: 0
-    delay: 0
-    duration: 0.4
+    delay: 1
+    duration: 0.6
     ease: 0
   - panel: {fileID: 2093126044}
-    revealDirection: 0
-    delay: 0
-    duration: 0.4
+    revealDirection: 3
+    delay: 1
+    duration: 0.6
     ease: 0
   nextPage: {fileID: 624627522}
   pageTransition: 1
-  delayBeforePageTransition: 0.5
+  delayBeforePageTransition: 1.5
   buttonVisibilityDelay: 0.5
   button: {fileID: 0}
   OnAnimationCompleted:
@@ -6804,7 +6804,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.74509805, g: 0.76862746, b: 0.78431374, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -9414,17 +9414,17 @@ MonoBehaviour:
   panelProperties:
   - panel: {fileID: 564287671}
     revealDirection: 0
-    delay: 0
-    duration: 0.4
+    delay: 0.5
+    duration: 0.6
     ease: 0
   - panel: {fileID: 948860189}
-    revealDirection: 0
-    delay: 0
-    duration: 0.4
+    revealDirection: 1
+    delay: 1
+    duration: 0.6
     ease: 0
   nextPage: {fileID: 71164902}
   pageTransition: 1
-  delayBeforePageTransition: 0.5
+  delayBeforePageTransition: 1.5
   buttonVisibilityDelay: 0.5
   button: {fileID: 0}
   OnAnimationCompleted:
@@ -9443,7 +9443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.74509805, g: 0.76862746, b: 0.78431374, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -9873,32 +9873,32 @@ MonoBehaviour:
   panelProperties:
   - panel: {fileID: 889488092}
     revealDirection: 0
-    delay: 0
-    duration: 0.4
+    delay: 0.5
+    duration: 0.6
     ease: 0
   - panel: {fileID: 670706589}
     revealDirection: 0
-    delay: 0
-    duration: 0.4
+    delay: 1
+    duration: 0.6
     ease: 0
   - panel: {fileID: 227176821}
-    revealDirection: 0
-    delay: 0
-    duration: 0.4
+    revealDirection: 1
+    delay: 1
+    duration: 0.6
     ease: 0
   - panel: {fileID: 60006872}
-    revealDirection: 0
-    delay: 0
-    duration: 0.4
+    revealDirection: 1
+    delay: 1
+    duration: 0.6
     ease: 0
   - panel: {fileID: 959643210}
-    revealDirection: 0
-    delay: 0
-    duration: 0.4
+    revealDirection: 1
+    delay: 1
+    duration: 0.6
     ease: 0
   nextPage: {fileID: 502318866}
   pageTransition: 1
-  delayBeforePageTransition: 0.5
+  delayBeforePageTransition: 1.5
   buttonVisibilityDelay: 0.5
   button: {fileID: 0}
   OnAnimationCompleted:
@@ -9917,7 +9917,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.74509805, g: 0.76862746, b: 0.78431374, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -10137,23 +10137,23 @@ MonoBehaviour:
   panelProperties:
   - panel: {fileID: 300073602}
     revealDirection: 0
-    delay: 0
-    duration: 0.4
+    delay: 0.5
+    duration: 0.6
     ease: 1
   - panel: {fileID: 2147115699}
     revealDirection: 0
-    delay: 0.1
-    duration: 0.4
+    delay: 1
+    duration: 0.6
     ease: 1
   - panel: {fileID: 1410288563}
     revealDirection: 0
-    delay: 0.1
-    duration: 0.4
+    delay: 1
+    duration: 0.6
     ease: 1
   - panel: {fileID: 1213624278}
     revealDirection: 0
-    delay: 0.3
-    duration: 2
+    delay: 1
+    duration: 1
     ease: 6
   nextPage: {fileID: 0}
   pageTransition: 0
@@ -10188,7 +10188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.74509805, g: 0.76862746, b: 0.78431374, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -11744,23 +11744,23 @@ MonoBehaviour:
   playOnAwake: 0
   panelProperties:
   - panel: {fileID: 1473737209}
-    revealDirection: 0
-    delay: 0
-    duration: 0.4
+    revealDirection: 2
+    delay: 0.5
+    duration: 0.6
     ease: 0
   - panel: {fileID: 82088708}
     revealDirection: 0
-    delay: 0
-    duration: 0.4
+    delay: 1
+    duration: 0.6
     ease: 0
   - panel: {fileID: 1457994832}
-    revealDirection: 0
-    delay: 0
-    duration: 0.4
+    revealDirection: 3
+    delay: 1
+    duration: 0.6
     ease: 0
   nextPage: {fileID: 2027046964}
   pageTransition: 1
-  delayBeforePageTransition: 0.5
+  delayBeforePageTransition: 1.5
   buttonVisibilityDelay: 0.5
   button: {fileID: 0}
   OnAnimationCompleted:
@@ -11779,7 +11779,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.74509805, g: 0.76862746, b: 0.78431374, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -12010,13 +12010,13 @@ MonoBehaviour:
   playOnAwake: 0
   panelProperties:
   - panel: {fileID: 1242513638}
-    revealDirection: 0
-    delay: 0
-    duration: 0.4
+    revealDirection: 1
+    delay: 0.5
+    duration: 0.6
     ease: 0
   nextPage: {fileID: 526348667}
   pageTransition: 1
-  delayBeforePageTransition: 0.75
+  delayBeforePageTransition: 1.5
   buttonVisibilityDelay: 0.5
   button: {fileID: 0}
   OnAnimationCompleted:
@@ -12035,7 +12035,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.74509805, g: 0.76862746, b: 0.78431374, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -12708,7 +12708,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -147, y: -316}
+  m_AnchoredPosition: {x: 19.5, y: -304}
   m_SizeDelta: {x: 367, y: 355}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &658623629
@@ -12872,7 +12872,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 231, y: 183}
+  m_AnchoredPosition: {x: 295, y: 173}
   m_SizeDelta: {x: 406, y: 622}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &670706590
@@ -15973,13 +15973,13 @@ MonoBehaviour:
   playOnAwake: 0
   panelProperties:
   - panel: {fileID: 559720807}
-    revealDirection: 3
-    delay: 0
-    duration: 0.4
+    revealDirection: 1
+    delay: 0.5
+    duration: 0.6
     ease: 0
   nextPage: {fileID: 1255909672}
   pageTransition: 1
-  delayBeforePageTransition: 0.5
+  delayBeforePageTransition: 1.5
   buttonVisibilityDelay: 0.5
   button: {fileID: 0}
   OnAnimationCompleted:
@@ -15998,7 +15998,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.74509805, g: 0.76862746, b: 0.78431374, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -16889,7 +16889,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -342, y: 187}
+  m_AnchoredPosition: {x: -241, y: 183}
   m_SizeDelta: {x: 666, y: 642}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &889488093
@@ -18733,7 +18733,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 321, y: -321}
+  m_AnchoredPosition: {x: 434, y: -321}
   m_SizeDelta: {x: 346, y: 318}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &959643211
@@ -23346,7 +23346,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -617, y: -304}
+  m_AnchoredPosition: {x: -379, y: -284}
   m_SizeDelta: {x: 348, y: 315}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1233972518
@@ -23892,22 +23892,22 @@ MonoBehaviour:
   panelProperties:
   - panel: {fileID: 163550451}
     revealDirection: 0
-    delay: 0
-    duration: 0.4
+    delay: 0.5
+    duration: 0.6
     ease: 0
   - panel: {fileID: 1339931417}
     revealDirection: 0
-    delay: 0
-    duration: 0.4
+    delay: 1
+    duration: 0.6
     ease: 0
   - panel: {fileID: 230070647}
     revealDirection: 0
-    delay: 0
-    duration: 0.4
+    delay: 1
+    duration: 0.6
     ease: 0
   nextPage: {fileID: 520286164}
   pageTransition: 1
-  delayBeforePageTransition: 0.5
+  delayBeforePageTransition: 1.5
   buttonVisibilityDelay: 0.5
   button: {fileID: 0}
   OnAnimationCompleted:
@@ -23926,7 +23926,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.74509805, g: 0.76862746, b: 0.78431374, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -27369,7 +27369,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 580, y: -4}
+  m_AnchoredPosition: {x: 552, y: 2}
   m_SizeDelta: {x: 479, y: 759}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1457994833
@@ -31660,7 +31660,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 503, y: 199}
+  m_AnchoredPosition: {x: 527, y: 186}
   m_SizeDelta: {x: 600, y: 426}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1730555779
@@ -31900,7 +31900,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -321, y: 130}
+  m_AnchoredPosition: {x: -233, y: 65}
   m_SizeDelta: {x: 1230, y: 752}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1743015676
@@ -36268,13 +36268,13 @@ MonoBehaviour:
   playOnAwake: 0
   panelProperties:
   - panel: {fileID: 1014582862}
-    revealDirection: 2
-    delay: 0
-    duration: 0.4
+    revealDirection: 0
+    delay: 0.5
+    duration: 0.6
     ease: 0
   nextPage: {fileID: 845223528}
   pageTransition: 1
-  delayBeforePageTransition: 0.5
+  delayBeforePageTransition: 1.5
   buttonVisibilityDelay: 0.5
   button: {fileID: 0}
   OnAnimationCompleted:
@@ -36293,7 +36293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.74509805, g: 0.76862746, b: 0.78431374, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -36992,7 +36992,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -28, y: -183}
+  m_AnchoredPosition: {x: -0.000015259, y: -195}
   m_SizeDelta: {x: 940, y: 619}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2093126045
@@ -37159,7 +37159,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 341, y: -300}
+  m_AnchoredPosition: {x: 427, y: -274}
   m_SizeDelta: {x: 374, y: 446}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2099860765
@@ -37323,7 +37323,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 592, y: -247}
+  m_AnchoredPosition: {x: 554, y: -151}
   m_SizeDelta: {x: 493, y: 476}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2105199450
@@ -37394,7 +37394,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2107713752
 RectTransform:
   m_ObjectHideFlags: 0
@@ -37435,32 +37435,32 @@ MonoBehaviour:
   panelProperties:
   - panel: {fileID: 2111783493}
     revealDirection: 0
-    delay: 0.3
-    duration: 0.3
+    delay: 1
+    duration: 0.6
     ease: 0
   - panel: {fileID: 1730555778}
     revealDirection: 0
-    delay: 0.4
-    duration: 0.4
+    delay: 1
+    duration: 0.6
     ease: 0
   - panel: {fileID: 1233972517}
-    revealDirection: 0
-    delay: 0.4
-    duration: 0.4
+    revealDirection: 1
+    delay: 1
+    duration: 0.6
     ease: 0
   - panel: {fileID: 658623628}
-    revealDirection: 0
-    delay: 0.4
-    duration: 0.4
+    revealDirection: 1
+    delay: 1
+    duration: 0.6
     ease: 0
   - panel: {fileID: 2099860764}
-    revealDirection: 0
-    delay: 0.4
-    duration: 0.4
+    revealDirection: 1
+    delay: 1
+    duration: 0.6
     ease: 0
   nextPage: {fileID: 14474188}
   pageTransition: 1
-  delayBeforePageTransition: 0.5
+  delayBeforePageTransition: 1.5
   buttonVisibilityDelay: 0.5
   button: {fileID: 0}
   OnAnimationCompleted:
@@ -37479,7 +37479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7423906, g: 0.7647798, b: 0.7830189, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -37539,7 +37539,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -410, y: 207}
+  m_AnchoredPosition: {x: -356, y: 186}
   m_SizeDelta: {x: 1064, y: 561}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2111783494
@@ -37780,7 +37780,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -645, y: 304}
+  m_AnchoredPosition: {x: -518, y: 313}
   m_SizeDelta: {x: 398, y: 328}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2118849068
