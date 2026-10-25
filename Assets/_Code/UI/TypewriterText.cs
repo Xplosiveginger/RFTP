@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TypewriterText : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class TypewriterText : MonoBehaviour
     [SerializeField] private float completionTime = 20f;
 
     private Coroutine writingCoroutine;
+
+    public UnityEvent OnComplete;
 
 
     private void Start()
@@ -41,5 +44,6 @@ public class TypewriterText : MonoBehaviour
 
         text.maxVisibleCharacters = characterCount;
         writingCoroutine = null;
+        OnComplete?.Invoke();
     }
 }
