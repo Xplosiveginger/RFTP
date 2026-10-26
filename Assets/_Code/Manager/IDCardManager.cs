@@ -85,7 +85,7 @@ public class IDCardManager : MonoBehaviour
         playerHealth = HealthSystem.Instance;
         if (playerHealth != null)
         {
-            playerHealth.onDamageTaken.AddListener(OnPlayerDamage);
+            //playerHealth.onDamageTaken.AddListener(OnPlayerDamage);
         }
         // Spawn all placeholder slots once.
         InitializeSlots();
@@ -96,7 +96,7 @@ public class IDCardManager : MonoBehaviour
     {
         if (playerHealth != null)
         {
-            playerHealth.onDamageTaken.RemoveListener(OnPlayerDamage);
+            //playerHealth.onDamageTaken.RemoveListener(OnPlayerDamage);
         }
     }
 
