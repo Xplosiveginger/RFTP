@@ -5007,4 +5007,4 @@ MonoBehaviour:
   _damage_interval: 0.3
   destroyOnCollision: 1
   blastFx: {fileID: 976826496554015608, guid: 9fe4a31253a53274e9cc8a5ba147113b, type: 3}
-  blastRadius: 1.5
+  blastRadius: 2.5

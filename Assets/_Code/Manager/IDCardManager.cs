@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using Sirenix.OdinInspector;
 
 public class IDCardManager : MonoBehaviour
 {
@@ -68,7 +70,7 @@ public class IDCardManager : MonoBehaviour
     private List<GameObject> pauseItemSlots =
         new List<GameObject>();
 
-
+    private HealthSystem playerHealth;
     private void Awake()
     {
         if (instance == null)
@@ -80,12 +82,23 @@ public class IDCardManager : MonoBehaviour
 
     private void Start()
     {
+        playerHealth = HealthSystem.Instance;
+        if (playerHealth != null)
+        {
+            playerHealth.onDamageTaken.AddListener(OnPlayerDamage);
+        }
         // Spawn all placeholder slots once.
         InitializeSlots();
 
         RefreshAll();
     }
-
+    private void OnDestroy()
+    {
+        if (playerHealth != null)
+        {
+            playerHealth.onDamageTaken.RemoveListener(OnPlayerDamage);
+        }
+    }
 
     private void Update()
     {
@@ -521,4 +534,22 @@ public class IDCardManager : MonoBehaviour
             }
         }
     }
+
+
+    [Title("ON Damage")]
+    public Sprite damageSprite;
+    public float damageImageChangeTime = .2f;
+    public void OnPlayerDamage(int dmgValue)
+    {
+        Debug.Log("Player took damage: " + dmgValue);
+
+        playerImage.sprite = damageSprite;
+        StartCoroutine(UpdatePortraitRoutine());
+    }
+    IEnumerator UpdatePortraitRoutine()
+    {
+        yield return new WaitForSeconds(damageImageChangeTime);
+        UpdatePlayerPortrait();
+    }
+
 }
