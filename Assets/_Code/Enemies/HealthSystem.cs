@@ -210,7 +210,6 @@ public class HealthSystem : MonoBehaviour
         if (isPlayer)
         {
             GameStat_SO.RegisterDamageTaken(damageAmount);
-            Debug.Log("Player damage: " + damageAmount);
         }
         else
         {

@@ -541,7 +541,54 @@ public class IDCardManager : MonoBehaviour
     public float damageImageChangeTime = .2f;
     public void OnPlayerDamage(int dmgValue)
     {
-        Debug.Log("Player took damage: " + dmgValue);
+        {
+            if (HealthSystem.Instance == null)
+                return;
+
+            float maxHealth = HealthSystem.Instance.MaxHealth;
+            float currentHealth = HealthSystem.Instance.CurrentHealth;
+
+            if (maxHealth <= 0f)
+            {
+                playerImage.sprite = health0Sprite;
+                return;
+            }
+
+            currentHealth = Mathf.Clamp(
+                currentHealth,
+                0f,
+                maxHealth
+            );
+
+            float healthPercent =
+                (currentHealth / maxHealth) * 100f;
+
+            if (healthPercent >= 87.5f)
+            {
+                damageSprite = health75Sprite;
+            }
+            else if (healthPercent >= 62.5f)
+            {
+                damageSprite = health50Sprite;
+            }
+            else if (healthPercent >= 37.5f)
+            {
+                damageSprite = health25Sprite;
+            }
+            else if (healthPercent >= 15f)
+            {
+                damageSprite = health5Sprite;
+            }
+            else if (healthPercent > 0f)
+            {
+                damageSprite = health5Sprite;
+            }
+            else
+            {
+                damageSprite = health0Sprite;
+                //damageSprite = health5Sprite;
+            }
+        }
 
         playerImage.sprite = damageSprite;
         StartCoroutine(UpdatePortraitRoutine());
