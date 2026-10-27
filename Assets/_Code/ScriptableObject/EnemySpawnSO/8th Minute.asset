@@ -19,12 +19,12 @@ MonoBehaviour:
   - enemyPrefab: {fileID: 12792752347874169, guid: d9449dfb5d871904084db87c3ae4fed3, type: 3}
     weight: 0.05
     initialPoolSize: 10
-    maxPoolSize: 50
+    maxPoolSize: 200
   - enemyPrefab: {fileID: 2148986130981883437, guid: 1ff67f7bb2abc34409d2321779448f87, type: 3}
     weight: 0.05
     initialPoolSize: 10
-    maxPoolSize: 50
+    maxPoolSize: 200
   - enemyPrefab: {fileID: 7677058516892065867, guid: 406104f61aca627489fe9dffb10f9173, type: 3}
     weight: 0.9
     initialPoolSize: 10
-    maxPoolSize: 50
+    maxPoolSize: 200

@@ -90,7 +90,8 @@ public class EnemySpawner : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        atomPooler = new DynamicEnemyPooler(atomPrefab, atomPoolSize, atomPoolSize * 2, poolParent);
+        // Remove hard coded value after IGDC
+        atomPooler = new DynamicEnemyPooler(atomPrefab, atomPoolSize, 200, poolParent);
         EnemySpawnDataNew atomSpawnData = new EnemySpawnDataNew();
         atomSpawnData.enemyPrefab = atomPrefab;
         poolDictionary[atomSpawnData] = atomPooler;

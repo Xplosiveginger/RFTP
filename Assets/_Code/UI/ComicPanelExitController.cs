@@ -13,6 +13,13 @@ public class ComicPanelExitController : MonoBehaviour
 
     public void ExitComicPanel()
     {
+        StartCoroutine(ExitComicPanelAfterDelay());
+    }
+
+    IEnumerator ExitComicPanelAfterDelay()
+    {
+        yield return new WaitForSeconds(delay);
+
         textGrp.gameObject.SetActive(true);
         textGrp.DOFade(1f, 1f).OnComplete(() => {
             comicPage.gameObject.SetActive(false);
