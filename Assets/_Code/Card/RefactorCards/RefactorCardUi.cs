@@ -63,8 +63,15 @@ public class RefactorCardUi : MonoBehaviour, IPointerClickHandler
 
         if (data.Description.Length > 0)  //this needs to be the value of the level in item
         {
-            int max = Mathf.Min(data.Description.Length-1, level);
-            DescriptionTxt.text = data.Description[max];
+            if (data.cardType != ECardType.AddsWeapon)
+            {
+                int max = Mathf.Min(data.Description.Length - 1, level);
+                DescriptionTxt.text = data.Description[max]; 
+            }
+            else
+            {
+                DescriptionTxt.text = data.Description[0];
+            }
         }
         else
         {
