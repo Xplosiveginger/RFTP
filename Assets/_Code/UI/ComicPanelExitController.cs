@@ -1,15 +1,39 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class ComicPanelExitController : MonoBehaviour
 {
+    public GameObject skipBtn;
+
     public ComicPagePanel comicPage;
     public CanvasGroup textGrp;
     public TypewriterText textRevealer;
 
     public float delay = 1f;
     public CanvasGroup howToPlayGrp;
+
+    public static event Action stopPanelAnimation;
+
+    // very temporary fix,  change afterwards //////////////////////////////
+    public void EnableSkipButton()
+    {
+        StartCoroutine(ShowSkipButtonAfterDelay());
+    }
+
+    IEnumerator ShowSkipButtonAfterDelay()
+    {
+        yield return new WaitForSeconds(0.8f);
+        skipBtn.SetActive(true);
+    }
+
+    public void SkipComicPanelCutscene()
+    {
+        stopPanelAnimation?.Invoke();
+        ExitComicPanel();
+    }
+    ////////////////////////////////////////////////////////////////////////
 
     public void ExitComicPanel()
     {

@@ -21,13 +21,25 @@ public class ComicPagePanel : MonoBehaviour
     public Button button;
 
     private List<Vector2> endPositions;
+    private Coroutine panelAnimationRoutine;
     #endregion
 
     #region Events
-    public UnityEvent OnAnimationCompleted; 
+    public UnityEvent OnAnimationCompleted;
     #endregion
 
     #region Built-In Methods
+
+    public void OnEnable()
+    {
+        ComicPanelExitController.stopPanelAnimation += StopAnimation;
+    }
+
+    private void OnDisable()
+    {
+        ComicPanelExitController.stopPanelAnimation -= StopAnimation;
+    }
+
     private void Start()
     {
         Initialize();
@@ -112,7 +124,7 @@ public class ComicPagePanel : MonoBehaviour
     [ContextMenu("Play Animation")]
     public void PlayAnimation()
     {
-        StartCoroutine(AnimateComicPanel());
+        panelAnimationRoutine = StartCoroutine(AnimateComicPanel());
     }
 
     [ContextMenu("Transition To Next Page")]
@@ -170,6 +182,15 @@ public class ComicPagePanel : MonoBehaviour
     {
         yield return new WaitForSeconds(buttonVisibilityDelay);
         EnableButton();
+    }
+
+    public void StopAnimation()
+    {
+        if (panelAnimationRoutine != null)
+        {
+            StopCoroutine(panelAnimationRoutine);
+            panelAnimationRoutine = null;
+        }
     }
     #endregion
 }
