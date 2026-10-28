@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cooldown
   m_EditorClassIdentifier: 
   statName: 3
-  baseValue: 4
-  maxValue: 4
+  baseValue: 3
+  maxValue: 3
   startValue: 0
   startMultiplier: 1

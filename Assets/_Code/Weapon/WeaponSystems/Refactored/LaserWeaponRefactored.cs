@@ -200,11 +200,11 @@ public class LaserWeaponRefactored : WeaponBase
     public override void ToggleGFXVisibility(
         bool visible)
     {
-        if (activeLasers == null ||
-            activeLasers.Count == 0)
-        {
-            return;
-        }
+        //if (activeLasers == null ||
+        //    activeLasers.Count == 0)
+        //{
+        //    return;
+        //}
 
 
         foreach (GameObject laser in activeLasers)
@@ -215,8 +215,11 @@ public class LaserWeaponRefactored : WeaponBase
             }
         }
 
-
-        UpdateLaserVisibility();
+        if (projectileCount < 3)
+            activeLasers[activeLasers.Count - 1].SetActive(false);
+        else
+            activeLasers[activeLasers.Count - 1].SetActive(visible);
+        //UpdateLaserVisibility();
     }
 
 

@@ -261,8 +261,7 @@ public abstract class WeaponBase : MonoBehaviour
 
         if (!isActive)
         {
-            activeTimer =
-                duration;
+            activeTimer = duration;
 
             ToggleGFXVisibility(true);
 
@@ -278,9 +277,7 @@ public abstract class WeaponBase : MonoBehaviour
         }
         else
         {
-            coolDownTimer =
-                cooldown +
-                debuffCooldownAdditionDuration;
+            coolDownTimer = cooldown + debuffCooldownAdditionDuration;
 
             ToggleGFXVisibility(false);
 
